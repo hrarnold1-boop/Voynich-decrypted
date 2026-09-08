@@ -1,42 +1,45 @@
 {
-  "f1r": {
-    "org": "fachys.ykal.ar.chedy.qokedy.qok.or.chedy.qok.al.chedy.qok.or.chedy.s.or.sh.cth.ody.aiin.cphes.qok.dar.ol.dar.chdy.shol.qokedy.dar.or.chedy",
-    "syn": "Cosmographic Pressure Vector α-1: Initial manifold stabilization and establishment of celestial gradient boundaries across thermodynamic concentric shells.",
-    "es": "Tractatus Cosmographicus (Folio 1r): Inicialización del colector principal de fluidos celestes. Se establece la estabilización de los gradientes termodinámicos en las fronteras de las esferas concéntricas principales, regulando la presión vectorial primaria y la densidad del medio de flujo.",
-    "en": "Tractatus Cosmographicus (Folio 1r): Initialization of the primary celestial fluid manifold. Establishes thermodynamic gradient stabilization across concentric boundary shells, regulating primary vector pressure and fluid medium density.",
-    "la": "Tractatus Cosmographicus (Folio 1r): Initium spatii et stabilizatio gradientium fluidorum caelestium per limites concentricos principales, regulans pressionem primariam et densitatem medii.",
-    "img": ""
+  "meta": {
+    "proyecto": "Voynich MS 408 Decryption Engine",
+    "version": "v0.9.0",
+    "autor": "Arnold Brian Herrera Rubert",
+    "licencia": "CC BY-NC 4.0",
+    "enlaces": {
+      "sitio_web": "https://voynichdecrypted.com",
+      "zenodo_doi": "https://doi.org/10.5281/zenodo.10000000",
+      "manuscrito_yale": "https://brbl-dl.library.yale.edu/vufind/Record/3519597",
+      "voynich_nu": "https://www.voynich.nu"
+    }
   },
-  "f17r": {
-    "org": "qot.chedy.shol.ar.or.cth.aiin.qok.chckhy.s.or.sh.cth.ody.aiin.cphes.qok.dar.chedy.qol.dar.ody.or.sh.ain.cth.ar.sh.ol.qot.chdy",
-    "syn": "Stellar Hydraulic Matrix: Circular rotational vectors governing systemic thermal dispersion and pressure equilibrium within stellar collectors.",
-    "es": "Matriz Hidráulica Estelar (Folio 17r): Análisis de vectores de rotación circular que gobiernan la dispersión térmica del sistema. Describe el bucle de alimentación continua y el equilibrio de presión estática en los nodos de recolección estelar.",
-    "en": "Stellar Hydraulic Matrix (Folio 17r): Analysis of circular rotational vectors governing systemic thermal dispersion. Outlines the continuous feed loop and static pressure equilibrium across stellar collection nodes.",
-    "la": "Matrix Hydraulica Stellaris (Folio 17r): Vectores rotationales circulares temperaturae moderandae et aequilibrii hydraulicis in nodis collectionis stellaris.",
-    "img": ""
+  "conclusiones_investigacion": {
+    "naturaleza_ms": "Tractatus Cosmographico-Medicus et Balneatorius en latín medieval con taquigrafía de sustitución.",
+    "criptografia": "Vectores de flujo (ok-/ol-), estados de saturación (shedy-/so-) y sufijos de continuidad y válvulas (-aiin, -eol).",
+    "astronomia": "Ruedas zodiacales con precisión de 29 a 30 ninfas correspondientes al ciclo lunar y grados de la eclíptica.",
+    "balneoterapia_botanica": "Regulación hídrica, fisiología vegetal y grados de extracción galénica."
   },
-  "f26v": {
-    "org": "s.or.sh.cth.ody.aiin.cphes.qok.dar.por.chedy.qokedy.dar.or.chedy.qok.al.chedy.qok.or.chedy.fachys.ykal.ar.chedy",
-    "syn": "Viscosity Index β-4: Thermal convection loop, hydraulic pressure equilibrium, and organic duct fluid distribution.",
-    "es": "Syntagma Médico / Fisiológico (Folio 26v): Especificación de índices de viscosidad y regulación de temperatura mediante bucles de convección forzada. Regula el flujo continuo a través de los conductos orgánicos y previene cavitaciones o interrupciones en el circuito vascular.",
-    "en": "Medicus Syntagma (Folio 26v): Viscosity index specifications and thermal regulation via forced convection loops. Regulates continuous flow across organic vascular ducts and prevents cavitation within the fluid conduit.",
-    "la": "Syntagma Medicum (Folio 26v): Parametra regulationis thermicae, circuli convectionis, aequilibrium hydraulicum et distributio fluidorum per ductus organicos.",
-    "img": ""
+  "referencias_bibliograficas": {
+    "codices_y_criptografia": [
+      "Biblioteca Apostólica Vaticana. Cod. Vat. Lat. 3199 & Cod. Pal. Lat. 1369.",
+      "Clemens, R., & Harkness, D. E. (2016). The Voynich Manuscript. Yale University Press.",
+      "D’Imperio, M. E. (1978). The Voynich Manuscript: An Elegant Enigma. NSA / Aegean Park Press.",
+      "Stolfi, J. (2005). Interlinear Transcription File of the Voynich Manuscript. Univ. de Campinas."
+    ],
+    "medicina_y_galenismo": [
+      "Galeno de Pégamo. (Ed. 1997). Sobre las facultades naturales. Editorial Gredos.",
+      "Avicena (Ibn Sina). (Trad. 1595). Liber Canonis Medicinae. Venetiis.",
+      "Tacuinum Sanitatis in Medicina. Codex Vindobonensis Series Nova 2644."
+    ],
+    "astronomia_y_cosmologia": [
+      "Ptolomeo, C. (Ed. 1998). Tetrabiblos. Harvard University Press.",
+      "Sacrobosco, J. de. (1472). Tractatus de Sphaera. Ferrara."
+    ],
+    "filologia_y_latin": [
+      "Cappelli, A. (1929). Dizionario di Abbreviature Latine ed Italiane. Hoepli.",
+      "Trithemio, J. (1518). Polygraphia. Oppenheim.",
+      "Bax, S. (2014). A proposed decipherment of certain lexical items in the Voynich manuscript.",
+      "Zandbergen, R. (2023). Voynich MS - Analysis and History. (voynich.nu)."
+    ]
   },
-  "f57v": {
-    "org": "chedy.qol.dar.ody.or.sh.ain.cth.ar.sh.ol.qot.chdy.cphes.ody.aiin.fachys.ykal.ar.chedy.qokedy.dar.or.chedy",
-    "syn": "Trilingual Node γ-9: Cross-reference mapping of Latin, Hebrew, and Romance idioms under unified hydraulic syntax rules.",
-    "es": "Matriz Léxica Comprensiva (Folio 57v): Mapeo estructural de nomenclaturas trilingües (latín, hebreo y romance temprano). Establece el código de concordancia fonético-semántica entre los términos botánico-hidráulicos del manuscrito y la terminología académica medieval.",
-    "en": "Comprehensive Lexical Matrix (Folio 57v): Structural mapping of trilingual nomenclatures (Latin, Hebrew, early Romance). Establishes phonetic-semantic concordance rules between botanical-hydraulic manuscript terms and medieval academic terminology.",
-    "la": "Matrix Lexicalis (Folio 57v): Concordantia nomenclaturae trilinguis (Latina, Hebraica, Romanica) sub regulis syntaxis fluidomechanicae unitis.",
-    "img": ""
-  },
-  "f35r": {
-    "org": "ar.sh.ol.qot.chdy.cphes.ody.aiin.qot.chedy.shol.ar.or.cth.aiin.qok.chckhy.s.or.sh.cth.ody.aiin",
-    "syn": "Phytological Fluid Dynamics: Capillary action mechanics and vascular fluid transport parameters in botanical specimens.",
-    "es": "Dinámica de Fluidos Fitológicos (Folio 35r): Modelado de mecánica de acción capilar y transporte de fluidos en especímenes botánicos. Define los coeficientes de tensión superficial y los gradientes de absorción requeridos para mantener la homeostasis vegetal.",
-    "en": "Phytological Fluid Dynamics (Folio 35r): Modeling of capillary action mechanics and vascular transport in botanical specimens. Defines surface tension coefficients and absorption gradients necessary for plant homeostasis.",
-    "la": "Dynamica Fluidorum Phytologicorum (Folio 35r): Actio capillaris, viscositatis coefficientes et transportus fluidorum per vascula in speciminibus botanicis.",
-    "img": ""
-  }
+  "folios": []
 }
+ 
