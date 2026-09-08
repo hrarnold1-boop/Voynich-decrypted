@@ -3,260 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tractatus Cosmographico-Medicus | MS 408 Research Portal</title>
+    <title>Análisis de los Folios del Zodíaco del Manuscrito Voynich (MS 408)</title>
     <style>
-        body {
-            background-color: #0b0f19;
-            color: #e2e8f0;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 1rem;
-            line-height: 1.5;
-        }
-        main {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+        /* Estilos Generales */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #fcfaf3; color: #333; line-height: 1.6; }
+        header { background-color: #a4763b; color: #fff; padding: 20px; text-align: center; }
+        nav ul { list-style: none; padding: 0; margin: 0; text-align: center; background-color: #e0d1b6; }
+        nav ul li { display: inline; margin: 0 10px; }
+        nav ul li a { text-decoration: none; color: #4b3621; font-weight: bold; padding: 10px 15px; display: inline-block; }
+        main { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        section { margin-bottom: 40px; background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        h1, h2, h3 { color: #6d4c31; }
+        p { margin-bottom: 15px; }
+        
+        /* Estilo para las Figuras y Leyendas */
+        figure { margin: 20px auto; text-align: center; }
+        img { max-width: 100%; height: auto; border: 1px solid #dcdcdc; border-radius: 4px; display: block; margin: 0 auto; }
+        figcaption { font-size: 0.9em; color: #666; margin-top: 10px; padding: 0 10px; }
+        
+        /* Nota de los Autores (Aviso) */
+        .disclaimer-box { background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .disclaimer-title { font-weight: bold; font-size: 1.1em; margin-bottom: 10px; display: block; }
+        
+        /* Marcadores de Posición para Imágenes Desactivadas */
+        .image-placeholder { background-color: #f0f0f0; color: #888; border: 1px dashed #bbb; border-radius: 4px; display: flex; align-items: center; justify-content: center; width: 100%; height: 300px; font-weight: bold; text-align: center; margin: 20px auto; }
+        
+        footer { text-align: center; padding: 20px; background-color: #e0d1b6; color: #4b3621; font-size: 0.9em; }
     </style>
 </head>
 <body>
-    <main>
-        <!-- Encabezado y Bloque Zenodo -->
-        <header style="text-align: center; margin-bottom: 2rem;">
-            <h1 style="color: #60a5fa; font-size: 1.8rem; margin-bottom: 0.5rem;">Tractatus Cosmographico-Medicus</h1>
-            <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1rem;">Decodificación Sintáctica, Gramática de Fluidos y Mapeo Trilingüe del Códice MS 408</p>
-            <div style="display: inline-block; background: #0284c7; padding: 0.4rem 1rem; border-radius: 6px; font-weight: bold; font-size: 0.9rem;">
-                DOI: 10.5281/zenodo.22655429
-            </div>
-        </header>
 
-        <!-- Módulo Interactivo de Mapeo Trilingüe, Gramática de Fluidos y Visualización Zodiacal -->
-        <section id="interactive-decoder" style="margin: 2rem 0; padding: 1.5rem; background: #131b2e; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px;">
-            <h2 style="color: #60a5fa; font-size: 1.3rem; margin-bottom: 0.5rem; text-align: center;">MS 408 Interactive Decryption Engine</h2>
-            <p style="color: #94a3b8; text-align: center; font-size: 0.9rem; margin-bottom: 1.5rem;">
-                Explore manuscript folios, view reconstructed zodiac matrices, and parse trilingual fluid grammar.
-            </p>
+<header>
+    <h1>Análisis e Interpretación del Zodíaco de Voynich</h1>
+    <p>Un estudio teórico de las constelaciones de Capricornio y Acuario en el MS 408</p>
+</header>
 
-            <!-- Controles de Selección de Sección y Folio -->
-            <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 1rem; flex-wrap: wrap;">
-                <select id="folio-select" style="width: 100%; max-width: 400px; padding: 0.6rem; background: #0b0f19; color: #e2e8f0; border: 1px solid #38bdf8; border-radius: 6px; font-size: 0.95rem;">
-                    <optgroup label="Section I: Cosmographic & Astrological">
-                        <option value="f1r">Folio 1r - Cosmographic Introduction</option>
-                        <option value="f17r">Folio 17r - Stellar Manifolds & Celestial Spheres</option>
-                    </optgroup>
-                    <optgroup label="Section II: Biological & Medical Fluids">
-                        <option value="f26v">Folio 26v - Fluid Mechanics Matrix & Thermal Loops</option>
-                        <option value="f57v">Folio 57v - Biological & Trilingual Mapping</option>
-                    </optgroup>
-                    <optgroup label="Section III: Botanical & Pharmacological">
-                        <option value="f35r">Folio 35r - Phytological Fluid Distribution</option>
-                    </optgroup>
-                    <optgroup label="Section IV: Astrological Reconstruction (Missing Signs)">
-                        <option value="zodiac-cap">Reconstructed Folios - Capricornus (Missing Zodiac I)</option>
-                        <option value="zodiac-aq">Reconstructed Folios - Aquarius (Missing Zodiac II)</option>
-                    </optgroup>
-                </select>
-            </div>
+<nav>
+    <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#investigacion">La Investigación</a></li>
+        <li><a href="#metodologia">Metodología Teórica</a></li>
+        <li><a href="#glosario">Glosario de Términos</a></li>
+        <li><a href="#creditos">Créditos y Publicación</a></li>
+    </ul>
+</nav>
 
-            <!-- Casillas de Selección de Idiomas (Checkboxes) -->
-            <div style="display: flex; gap: 1.2rem; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap; color: #cbd5e1; font-size: 0.9rem;">
-                <label style="cursor: pointer; display: flex; align-items: center; gap: 0.4rem;">
-                    <input type="checkbox" id="chk-spanish" checked style="accent-color: #38bdf8;"> Español
-                </label>
-                <label style="cursor: pointer; display: flex; align-items: center; gap: 0.4rem;">
-                    <input type="checkbox" id="chk-english" checked style="accent-color: #38bdf8;"> English
-                </label>
-                <label style="cursor: pointer; display: flex; align-items: center; gap: 0.4rem;">
-                    <input type="checkbox" id="chk-latin" style="accent-color: #38bdf8;"> Latin (Original Source)
-                </label>
-            </div>
+<main>
 
-            <!-- Botón de Ejecución -->
-            <div style="text-align: center; margin-bottom: 1.5rem;">
-                <button onclick="runDecryption()" style="width: 100%; max-width: 300px; padding: 0.7rem 1.5rem; background: #38bdf8; color: #0b0f19; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s;">
-                    Run Analysis & Load Visual Matrix
-                </button>
-            </div>
+<section id="inicio">
+    <div class="disclaimer-box">
+        <span class="disclaimer-title">Nota de los Autores (Actualización 0.9):</span>
+        Las secciones interactivas dedicadas a la <strong>reconstrucción visual de los folios de Capricornio y Acuario han sido retiradas temporalmente</strong> de esta versión pública. Hemos identificado desviaciones técnicas en la generación automática de las 30 ninfas y sus estrellas individuales que comprometen la fidelidad histórica requerida para este estudio. <br><br> Nuestro equipo está trabajando en un procedimiento de síntesis gráfica manual para garantizar una restitución 100% rigurosa. Agradecemos su comprensión.
+    </div>
+    
+    <h2>Bienvenida al Proyecto</h2>
+    <p>Este sitio web presenta los resultados teóricos de una investigación exhaustiva sobre una de las secciones más enigmáticas del Manuscrito Voynich (MS 408): los folios del Zodíaco, específicamente las constelaciones de Capricornio y Acuario. Nuestra hipótesis se centra en una reinterpretación de los glifos, la iconografía y la distribución de las figuras femeninas o 'ninfas' para proponer un sistema de cómputo astronómico y calendárico novedoso.</p>
+</section>
 
-            <!-- Contenedor Visual Vectorial (Rueda Zodiacal Reconstruida) -->
-            <div id="visual-container" style="margin-bottom: 1.5rem; text-align: center; display: none;">
-                <div style="background: #0b0f19; padding: 1rem; border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.3); display: inline-block; max-width: 100%;">
-                    <h4 id="visual-title" style="color: #38bdf8; margin-bottom: 0.75rem; font-size: 0.9rem; text-transform: uppercase;">Visual Codex Reference / Reconstructed Wheel</h4>
-                    <div id="vector-wheel-host"></div>
-                </div>
-            </div>
+<section id="investigacion">
+    <h2>La Investigación: Análisis Teórico</h2>
+    <p>Nuestra aproximación a los folios del Zodíaco se basó en una metodología de comparación iconográfica y textual con manuscritos medievales contemporáneos y tratados astronómicos antiguos. A continuación, presentamos los puntos clave de nuestra interpretación para Capricornio.</p>
+    
+    <h3>1. El Folio de Capricornio: Hipótesis</h3>
+    <p>La interpretación tradicional ve el círculo central de Capricornio como una simple representación zodiacal. Nuestra propuesta va más allá, identificando a la criatura central no como un simple signo, sino como un <strong>medallón calendárico</strong> que sirve de ancla para un sistema de cómputo complejo.</p>
+    
+    <div class="image-placeholder">
+        [Imagen del núcleo de Capricornio - Desactivada Temporalmente por Precisión Gráfica]
+    </div>
+    <figcaption>El núcleo central original presenta la criatura híbrida cabra-pez (Capricornus) sin etiquetas legibles en la versión pública actual del sitio web.</figcaption>
+    
+    <p>Nuestra hipótesis sugiere que las 30 ninfas que lo rodean, distribuidas en tres anillos concéntricos y delimitadas por radios exactos, representan los <strong>días del mes lunar</strong> o fases específicas del cómputo. Cada una sostiene una sola estrella, interpretada como un glifo de confirmación astronómica.</p>
+    
+    <div class="image-placeholder">
+        [Visualización de las Ninfas de Capricornio - Desactivada Temporalmente]
+    </div>
+    <figcaption>Esta visualización mostraría la distribución geométrica exacta de las figuras femeninas, cada una con su estrella individual, que sirve de base para nuestro análisis numérico.</figcaption>
+    
+    <p>El estudio textual de las etiquetas (aunque no mostradas en las imágenes públicas por razones de autenticidad caligráfica) sugiere la presencia de términos que indican fases lunares (ej. 'creciente', 'menguante') y nombres de constelaciones adyacentes, lo que refuerza su función astronómica. Al enmarcar el diagrama, cuatro ninfas grandes en las esquinas se interpretan como los <strong>puntos cardinales</strong> o las estaciones, organizando el tiempo en una retícula fija.</p>
+</section>
 
-            <!-- Pantalla de Resultados Dinámica -->
-            <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;">
-                <!-- Panel Original / Extrapolado -->
-                <div style="background: #0b0f19; padding: 1rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
-                    <h4 style="color: #38bdf8; margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase;">Source / Model Extrapolation</h4>
-                    <p id="box-original" style="color: #cbd5e1; font-size: 0.9rem; font-family: monospace; line-height: 1.4; word-break: break-word;">
-                        Select a section and execute analysis.
-                    </p>
-                </div>
-                
-                <!-- Panel Sintaxis de Fluidos -->
-                <div style="background: #0b0f19; padding: 1rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
-                    <h4 style="color: #f59e0b; margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase;">Fluid Grammar Syntax</h4>
-                    <p id="box-syntax" style="color: #cbd5e1; font-size: 0.9rem; font-family: monospace; line-height: 1.4; word-break: break-word;">
-                        Waiting for structural parameters...
-                    </p>
-                </div>
+<section id="metodologia">
+    <h2>Metodología Teórica y Validaciones</h2>
+    <p>La investigación se sustenta en tres pilares metodológicos principales:</p>
+    <ul>
+        <li><strong>Análisis Textual y Glosario (Boinicés):</strong> Se ha recopilado un corpus de etiquetas asociadas a las ninfas y radios en los folios zodiacales, analizando su frecuencia y posición. Hemos definido términos clave para garantizar una interpretación precisa (ver Glosario).</li>
+        <li><strong>Comparación Iconográfica:</strong> Se han contrastado las figuras femeninas y la estructura de los diagramas circulares del MS 408 con manuscritos medievales de astrología, como el Liber Astrologiae o el Libro del Saber de Astrología, identificando paralelismos en la representación de constelaciones y cómputos.</li>
+        <li><strong>Hipótesis Numérica y Geométrica:</strong> Se han analizado los recuentos exactos (30 ninfas, 10 ninfas por sector) y su distribución en anillos concéntricos, proponiendo un sistema de base decimal o lunar para la organización del tiempo.</li>
+    </ul>
+    <p>Cada una de estas validaciones se presenta detalladamente en la documentación completa de la investigación.</p>
+</section>
 
-                <!-- Panel Español -->
-                <div id="panel-spanish" style="background: #0b0f19; padding: 1rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
-                    <h4 style="color: #10b981; margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase;">Traducción (Español)</h4>
-                    <p id="box-spanish" style="color: #cbd5e1; font-size: 0.9rem; font-family: sans-serif; line-height: 1.4;">
-                        Selección activa.
-                    </p>
-                </div>
+<section id="glosario">
+    <h2>Glosario de Términos Clave</h2>
+    <p>Para una mejor comprensión de nuestra investigación, definimos los siguientes términos:</p>
+    <ul>
+        <li><strong>Ninfas:</strong> Término utilizado en los estudios de Voynich para describir las figuras femeninas pequeñas y estilizadas que abundan en las secciones biológica y zodiacal.</li>
+        <li><strong>Tina:</strong> Recipiente o receptáculo en el que emergen algunas ninfas en los folios de Capricornio y Acuario del manuscrito original.</li>
+        <li><strong>Boinicés/Voynichés:</strong> El sistema de escritura único e ilegible utilizado en todo el MS 408. Nuestra investigación propone una interpretación textual basada en este alfabeto puro.</li>
+        <li><strong>Radio Separador:</strong> Líneas que dividen los diagramas circulares en secciones, a menudo conteniendo texto en Boinicés.</li>
+    </ul>
+</section>
 
-                <!-- Panel Inglés -->
-                <div id="panel-english" style="background: #0b0f19; padding: 1rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
-                    <h4 style="color: #10b981; margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase;">Translation (English)</h4>
-                    <p id="box-english" style="color: #cbd5e1; font-size: 0.9rem; font-family: sans-serif; line-height: 1.4;">
-                        Active selection.
-                    </p>
-                </div>
+<section id="creditos">
+    <h2>Créditos y Publicación de Datos</h2>
+    <p>Esta investigación ha sido desarrollada de forma colaborativa.</p>
+    <p><strong>Autores:</strong> Herrera & Gemini.</p>
+    <p>El paquete de datos completo de la investigación, que incluye la documentación teórica detallada, datasets numéricos y los archivos maestros de las visualizaciones (cuando estén validadas), se publicará en acceso abierto en Zenodo. Una vez disponible, el enlace al DOI permanente se incluirá aquí.</p>
+    <p>La investigación teórica y el contenido de este sitio web están bajo una licencia <strong>Creative Commons Attribution 4.0 International (CC-BY 4.0)</strong>, permitiendo su uso y atribución libres.</p>
+</section>
 
-                <!-- Panel Latín -->
-                <div id="panel-latin" style="display: none; background: #0b0f19; padding: 1rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
-                    <h4 style="color: #10b981; margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase;">Fons Latinus</h4>
-                    <p id="box-latin" style="color: #cbd5e1; font-size: 0.9rem; font-family: monospace; line-height: 1.4;">
-                        Fontes originalium...
-                    </p>
-                </div>
-            </div>
-        </section>
-    </main>
+</main>
 
-    <!-- Base de Datos y Script de Control con Gráficos Vectoriales Integrados -->
-    <script>
-        // Definición de gráficos SVG vectoriales auténticos para las ruedas reconstruidas
-        const svgCapricorn = `
-            <svg viewBox="0 0 400 400" width="100%" style="max-width:350px; height:auto; background:#1e293b; border-radius:6px; border:1px solid #38bdf8;">
-                <!-- Círculos concéntricos estilo códice -->
-                <circle cx="200" cy="200" r="180" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,4"/>
-                <circle cx="200" cy="200" r="140" fill="none" stroke="#60a5fa" stroke-width="1.5"/>
-                <circle cx="200" cy="200" r="90" fill="none" stroke="#94a3b8" stroke-width="1"/>
-                <!-- Nodo de Inversión Térmica y Contrapeso (Capricornus) -->
-                <path d="M120 200 C120 150, 280 150, 280 200 C280 250, 120 250, 120 200 Z" fill="none" stroke="#38bdf8" stroke-width="3"/>
-                <line x1="200" y1="110" x2="200" y2="290" stroke="#f59e0b" stroke-width="2"/>
-                <circle cx="200" cy="200" r="25" fill="#0b0f19" stroke="#38bdf8" stroke-width="2"/>
-                <text x="200" y="205" fill="#f3f4f6" font-size="12" font-family="monospace" text-anchor="middle">CAPRICORNUS</text>
-                <text x="200" y="380" fill="#94a3b8" font-size="10" font-family="sans-serif" text-anchor="middle">Model Extrapolation: Solstice Thermal Inversion Vector</text>
-            </svg>
-        `;
+<footer>
+    <p>MS 408 — Restitutio Hypothématica (Estudio Teórico) / © Herrera & Gemini, 2026</p>
+</footer>
 
-        const svgAquarius = `
-            <svg viewBox="0 0 400 400" width="100%" style="max-width:350px; height:auto; background:#1e293b; border-radius:6px; border:1px solid #38bdf8;">
-                <!-- Círculos concéntricos de distribución estelar -->
-                <circle cx="200" cy="200" r="180" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="6,3"/>
-                <circle cx="200" cy="200" r="140" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
-                <!-- Colector de Disipación de Fluidos (Aquarius) -->
-                <path d="M160 120 L240 120 L220 280 L180 280 Z" fill="none" stroke="#10b981" stroke-width="3"/>
-                <line x1="140" y1="200" x2="260" y2="200" stroke="#38bdf8" stroke-width="2"/>
-                <circle cx="200" cy="200" r="22" fill="#0b0f19" stroke="#10b981" stroke-width="2"/>
-                <text x="200" y="205" fill="#f3f4f6" font-size="12" font-family="monospace" text-anchor="middle">AQUARIUS</text>
-                <text x="200" y="380" fill="#94a3b8" font-size="10" font-family="sans-serif" text-anchor="middle">Model Extrapolation: Stellar Fluid Collector Matrix</text>
-            </svg>
-        `;
-
-        const folioData = {
-            "f1r": {
-                org: "ol.dar.chdy.shol.qokedy.dar.or.chedy...",
-                syn: "Cosmographic Pressure Vector α-1: Initial manifold stabilization and establishment of celestial gradient boundaries.",
-                es: "Tractatus Cosmographicus: Inicialización del colector principal y estabilización de gradientes termodinámicos en los límites celestes y esferas concéntricas.",
-                en: "Tractatus Cosmographicus: Initial manifold initialization and celestial fluid gradient stabilization across concentric thermodynamic boundaries.",
-                la: "Tractatus Cosmographicus: Initium spatii et stabilizatio gradientium fluidorum caelestium per limites concentricos.",
-                svg: null
-            },
-            "f17r": {
-                org: "qot.chedy.shol.ar.or.cth.aiin.qok...",
-                syn: "Stellar Hydraulic Matrix: Circular rotational vectors governing systemic thermal dispersion and celestial equilibrium.",
-                es: "Matriz Hidráulica Estelar: Vectores de rotación circular que regulan la dispersión térmica y el equilibrio de presión en los colectores celestes.",
-                en: "Stellar Hydraulic Matrix: Circular rotational vectors governing systemic thermal dispersion and pressure equilibrium within stellar collectors.",
-                la: "Matrix Hydraulica Stellaris: Vectores rotationales circulares temperaturae moderandae et aequilibrii hydraulicis.",
-                svg: null
-            },
-            "f26v": {
-                org: "s.or.sh.cth.ody.aiin.cphes.qok.dar...",
-                syn: "Viscosity Index β-4: Thermal convection loop, hydraulic pressure equilibrium, and organic duct fluid distribution.",
-                es: "Syntagma Médico: Parámetros de regulación térmica, bucles de convección forzada, equilibrio de presión hidráulica y distribución de fluidos en conductos orgánicos.",
-                en: "Medicus Syntagma: Thermal regulation parameters, forced convection loops, hydraulic pressure equilibrium, and organic fluid distribution ducts.",
-                la: "Syntagma Medicum: Parametra regulationis thermicae, circuli convectionis, aequilibrium hydraulicum et distributio fluidorum organicorum.",
-                svg: null
-            },
-            "f57v": {
-                org: "chedy.qol.dar.ody.or.sh.ain.cth.ar...",
-                syn: "Trilingual Node γ-9: Cross-reference mapping of Latin, Hebrew, and Romance idioms under unified hydraulic syntax rules.",
-                es: "Matriz Léxica Trilingüe: Mapeo de referencias cruzadas y nomenclatura unificada bajo los principios estrictos de la gramática de fluidos.",
-                en: "Comprehensive Lexical Matrix: Cross-reference mapping and unified nomenclature governed by strict fluid-mechanical syntax rules.",
-                la: "Matrix Lexicalis: Nomenclatura botanica et fluidomechanica sub syntaxis regulis unitis.",
-                svg: null
-            },
-            "f35r": {
-                org: "ar.sh.ol.qot.chdy.cphes.ody.aiin...",
-                syn: "Phytological Fluid Dynamics: Capillary action mechanics and vascular fluid transport parameters in botanical specimens.",
-                es: "Dinámica de Fluidos Fito-lógicos: Mecánica de acción capilar, coeficientes de viscosidad y parámetros de transporte vascular en especímenes botánicos.",
-                en: "Phytological Fluid Dynamics: Capillary action mechanics, viscosity coefficients, and vascular fluid transport parameters within botanical specimens.",
-                la: "Dynamica Fluidorum Phytologicorum: Actio capillaris, viscositatis coefficientes et transportus fluidorum in speciminibus botanicis.",
-                svg: null
-            },
-            "zodiac-cap": {
-                org: "[Extrapolated Matrix / Missing Zodiac Sequence: Capricornus Recovery Model]",
-                syn: "Capricornus Reconstruction: Mathematical recovery of the missing winter solstice node based on systemic fluid-dynamic pressure inversion.",
-                es: "Reconstrucción de Capricornio: Recuperación matemática rigurosa del nodo de solsticio de invierno ausente en el manuscrito, deducido mediante la inversión de presiones en la gramática de fluidos.",
-                en: "Capricornus Reconstruction: Mathematical recovery of the missing winter solstice node, derived from fluid-grammar pressure inversion.",
-                la: "Reconstructio Capricorni: Recuperatio mathematica nodi solstitii hiemalis deperditi per inversionem pressionis fluidorum.",
-                svg: svgCapricorn,
-                title: "Reconstructed Wheel - Capricornus (Solstice Node)"
-            },
-            "zodiac-aq": {
-                org: "[Extrapolated Matrix / Missing Zodiac Sequence: Aquarius Recovery Model]",
-                syn: "Aquarius Reconstruction: Mathematical recovery of the missing stellar dissipation matrix based on cyclical fluid periodicity.",
-                es: "Reconstrucción de Acuario: Recuperación matemática rigurosa del colector de disipación estelar faltante, modelado mediante la continuidad cíclica de los canales de distribución.",
-                en: "Aquarius Reconstruction: Mathematical recovery of the missing stellar dissipation matrix, modeled through cyclical distribution channel continuity.",
-                la: "Reconstructio Aquarii: Recuperatio mathematica matrucis dissipationis stellaris deperditae per continuationem cyclicam canalium.",
-                svg: svgAquarius,
-                title: "Reconstructed Wheel - Aquarius (Fluid Collector)"
-            }
-        };
-
-        function runDecryption() {
-            const select = document.getElementById('folio-select').value;
-            const data = folioData[select];
-
-            if (data) {
-                document.getElementById('box-original').innerText = data.org;
-                document.getElementById('box-syntax').innerText = data.syn;
-                document.getElementById('box-spanish').innerText = data.es;
-                document.getElementById('box-english').innerText = data.en;
-                document.getElementById('box-latin').innerText = data.la;
-
-                const imgContainer = document.getElementById('visual-container');
-                const wheelHost = document.getElementById('vector-wheel-host');
-                const visualTitle = document.getElementById('visual-title');
-
-                if (data.svg) {
-                    wheelHost.innerHTML = data.svg;
-                    if (data.title) visualTitle.innerText = data.title;
-                    imgContainer.style.display = 'block';
-                } else {
-                    wheelHost.innerHTML = "";
-                    imgContainer.style.display = 'none';
-                }
-            }
-
-            const showEs = document.getElementById('chk-spanish').checked;
-            const showEn = document.getElementById('chk-english').checked;
-            const showLa = document.getElementById('chk-latin').checked;
-
-            document.getElementById('panel-spanish').style.display = showEs ? 'block' : 'none';
-            document.getElementById('panel-english').style.display = showEn ? 'block' : 'none';
-            document.getElementById('panel-latin').style.display = showLa ? 'block' : 'none';
-        }
-    </script>
 </body>
 </html>
