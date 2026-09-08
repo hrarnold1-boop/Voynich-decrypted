@@ -212,6 +212,134 @@
         </a>
     </div>
 </div>
+<!-- Módulo Interactivo de Mapeo Trilingüe y Gramática de Fluidos -->
+<section id="interactive-decoder" style="margin: 3rem 0; padding: 2rem; background: #131b2e; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; font-family: Arial, sans-serif;">
+    <h2 style="color: #60a5fa; font-size: 1.5rem; margin-bottom: 0.5rem; text-align: center;">MS 408 Interactive Decryption Engine</h2>
+    <p style="color: #94a3b8; text-align: center; font-size: 0.95rem; margin-bottom: 1.5rem;">
+        Select folio source, choose your desired target languages, and run the parsing matrix.
+    </p>
+
+    <!-- Controles de Selección de Folio -->
+    <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 1rem; flex-wrap: wrap;">
+        <select id="folio-select" style="padding: 0.5rem 1rem; background: #0b0f19; color: #e2e8f0; border: 1px solid #38bdf8; border-radius: 6px; font-size: 0.95rem;">
+            <option value="f1r">Folio 1r - Cosmographic Introduction</option>
+            <option value="f26v">Folio 26v - Fluid Mechanics Matrix</option>
+            <option value="f57v">Folio 57v - Biological & Trilingual Mapping</option>
+        </select>
+    </div>
+
+    <!-- Casillas de Selección de Idiomas (Checkboxes) -->
+    <div style="display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap; color: #cbd5e1; font-size: 0.9rem;">
+        <label style="cursor: pointer; display: flex; align-items: center; gap: 0.4rem;">
+            <input type="checkbox" id="chk-spanish" checked style="accent-color: #38bdf8;"> Español
+        </label>
+        <label style="cursor: pointer; display: flex; align-items: center; gap: 0.4rem;">
+            <input type="checkbox" id="chk-english" checked style="accent-color: #38bdf8;"> English
+        </label>
+        <label style="cursor: pointer; display: flex; align-items: center; gap: 0.4rem;">
+            <input type="checkbox" id="chk-latin" style="accent-color: #38bdf8;"> Latin (Original Source)
+        </label>
+    </div>
+
+    <!-- Botón de Ejecución -->
+    <div style="text-align: center; margin-bottom: 1.5rem;">
+        <button onclick="runDecryption()" style="padding: 0.6rem 1.5rem; background: #38bdf8; color: #0b0f19; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s;">
+            Run Analysis
+        </button>
+    </div>
+
+    <!-- Pantalla de Resultados Dinámica -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem;">
+        <!-- Panel Original (Siempre Visible) -->
+        <div style="background: #0b0f19; padding: 1rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
+            <h4 style="color: #38bdf8; margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase;">Original Voynichese</h4>
+            <p id="box-original" style="color: #cbd5e1; font-size: 0.9rem; font-family: monospace; line-height: 1.4;">
+                Select parameters and click run to parse syntax.
+            </p>
+        </div>
+        
+        <!-- Panel Sintaxis de Fluidos -->
+        <div style="background: #0b0f19; padding: 1rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
+            <h4 style="color: #f59e0b; margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase;">Fluid Grammar Syntax</h4>
+            <p id="box-syntax" style="color: #cbd5e1; font-size: 0.9rem; font-family: monospace; line-height: 1.4;">
+                Waiting for input parameters...
+            </p>
+        </div>
+
+        <!-- Panel Español -->
+        <div id="panel-spanish" style="background: #0b0f19; padding: 1rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
+            <h4 style="color: #10b981; margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase;">Traducción (Español)</h4>
+            <p id="box-spanish" style="color: #cbd5e1; font-size: 0.9rem; font-family: sans-serif; line-height: 1.4;">
+                Seleccionado por defecto.
+            </p>
+        </div>
+
+        <!-- Panel Inglés -->
+        <div id="panel-english" style="background: #0b0f19; padding: 1rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
+            <h4 style="color: #10b981; margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase;">Translation (English)</h4>
+            <p id="box-english" style="color: #cbd5e1; font-size: 0.9rem; font-family: sans-serif; line-height: 1.4;">
+                Selected by default.
+            </p>
+        </div>
+
+        <!-- Panel Latín -->
+        <div id="panel-latin" style="display: none; background: #0b0f19; padding: 1rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.05);">
+            <h4 style="color: #10b981; margin-bottom: 0.5rem; font-size: 0.9rem; text-transform: uppercase;">Fons Latinus</h4>
+            <p id="box-latin" style="color: #cbd5e1; font-size: 0.9rem; font-family: monospace; line-height: 1.4;">
+                Fontes litterarum latinarum...
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Script de Funcionalidad Interactiva con Control de Casillas -->
+<script>
+    const folioData = {
+        "f1r": {
+            org: "ol.dar.chdy.shol.qokedy...",
+            syn: "Fluid Pressure Vector α-1: Gradient stabilization across cosmological boundaries.",
+            es: "Tractatus Cosmographicus: Inicialización del colector e inicialización de la dinámica de fluidos celestes.",
+            en: "Tractatus Cosmographicus: Initial manifold initialization and celestial fluid dynamics.",
+            la: "Tractatus Cosmographicus: Initium spatii et dynamica fluidorum caelestium."
+        },
+        "f26v": {
+            org: "s.or.sh.cth.ody.aiin.cphes...",
+            syn: "Viscosity Index β-4: Thermal convection loop and hydraulic pressure equilibrium.",
+            es: "Syntagma Médico: Parámetros de regulación térmica para la distribución de fluidos orgánicos.",
+            en: "Medicus Syntagma: Thermal regulation parameters for organic fluid distribution.",
+            la: "Syntagma Medicum: Parametra regulationis thermicae fluidorum organicorum."
+        },
+        "f57v": {
+            org: "chedy.qol.dar.ody.or.sh.ain...",
+            syn: "Trilingual Node γ-9: Cross-reference mapping of Latin, Hebrew, and Romance idioms.",
+            es: "Matriz Léxica Integral: Nomenclatura botánica y mecánico-hidráulica armonizada.",
+            en: "Comprehensive Lexical Matrix: Harmonized botanical and fluid-mechanical nomenclature.",
+            la: "Matrix Lexicalis: Nomenclatura botanica et fluidomechanica harmonizata."
+        }
+    };
+
+    function runDecryption() {
+        const select = document.getElementById('folio-select').value;
+        const data = folioData[select];
+
+        if (data) {
+            document.getElementById('box-original').innerText = data.org;
+            document.getElementById('box-syntax').innerText = data.syn;
+            document.getElementById('box-spanish').innerText = data.es;
+            document.getElementById('box-english').innerText = data.en;
+            document.getElementById('box-latin').innerText = data.la;
+        }
+
+        // Mostrar u ocultar paneles según las casillas seleccionadas
+        const showEs = document.getElementById('chk-spanish').checked;
+        const showEn = document.getElementById('chk-english').checked;
+        const showLa = document.getElementById('chk-latin').checked;
+
+        document.getElementById('panel-spanish').style.display = showEs ? 'block' : 'none';
+        document.getElementById('panel-english').style.display = showEn ? 'block' : 'none';
+        document.getElementById('panel-latin').style.display = showLa ? 'block' : 'none';
+    }
+</script>
 
 </body>
 </html>
