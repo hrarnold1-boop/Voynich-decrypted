@@ -144,59 +144,32 @@
     </div>
 
     <script>
-        const folioData = {
-            "f1r": {
-                org: "ol.dar.chdy.shol.qokedy.dar.or.chedy...",
-                syn: "Cosmographic Pressure Vector α-1: Initial manifold stabilization and establishment of celestial gradient boundaries.",
-                es: "Tractatus Cosmographicus: Inicialización del colector principal y estabilización de gradientes termodinámicos en los límites celestes y esferas concéntricas.",
-                en: "Tractatus Cosmographicus: Initial manifold initialization and celestial fluid gradient stabilization across concentric thermodynamic boundaries.",
-                la: "Tractatus Cosmographicus: Initium spatii et stabilizatio gradientium fluidorum caelestium per limites concentricos.",
-                img: ""
-            },
-            "f17r": {
-                org: "qot.chedy.shol.ar.or.cth.aiin.qok...",
-                syn: "Stellar Hydraulic Matrix: Circular rotational vectors governing systemic thermal dispersion and celestial equilibrium.",
-                es: "Matriz Hidráulica Estelar: Vectores de rotación circular que regulan la dispersión térmica y el equilibrio de presión en los colectores celestes.",
-                en: "Stellar Hydraulic Matrix: Circular rotational vectors governing systemic thermal dispersion and pressure equilibrium within stellar collectors.",
-                la: "Matrix Hydraulica Stellaris: Vectores rotationales circulares temperaturae moderandae et aequilibrii hydraulicis.",
-                img: ""
-            },
-            "f26v": {
-                org: "s.or.sh.cth.ody.aiin.cphes.qok.dar...",
-                syn: "Viscosity Index β-4: Thermal convection loop, hydraulic pressure equilibrium, and organic duct fluid distribution.",
-                es: "Syntagma Médico: Parámetros de regulación térmica, bucles de convección forzada, equilibrio de presión hidráulica y distribución de fluidos en conductos orgánicos.",
-                en: "Medicus Syntagma: Thermal regulation parameters, forced convection loops, hydraulic pressure equilibrium, and organic fluid distribution ducts.",
-                la: "Syntagma Medicum: Parametra regulationis thermicae, circuli convectionis, aequilibrium hydraulicum et distributio fluidorum organicorum.",
-                img: ""
-            },
-            "f57v": {
-                org: "chedy.qol.dar.ody.or.sh.ain.cth.ar...",
-                syn: "Trilingual Node γ-9: Cross-reference mapping of Latin, Hebrew, and Romance idioms under unified hydraulic syntax rules.",
-                es: "Matriz Léxica Trilingüe: Mapeo de referencias cruzadas y nomenclatura unificada bajo los principios estrictos de la gramática de fluidos.",
-                en: "Comprehensive Lexical Matrix: Cross-reference mapping and unified nomenclature governed by strict fluid-mechanical syntax rules.",
-                la: "Matrix Lexicalis: Nomenclatura botanica et fluidomechanica sub syntaxis regulis unitis.",
-                img: ""
-            },
-            "f35r": {
-                org: "ar.sh.ol.qot.chdy.cphes.ody.aiin...",
-                syn: "Phytological Fluid Dynamics: Capillary action mechanics and vascular fluid transport parameters in botanical specimens.",
-                es: "Dinámica de Fluidos Fito-lógicos: Mecánica de acción capilar, coeficientes de viscosidad y parámetros de transporte vascular en especímenes botánicos.",
-                en: "Phytological Fluid Dynamics: Capillary action mechanics, viscosity coefficients, and vascular fluid transport parameters within botanical specimens.",
-                la: "Dynamica Fluidorum Phytologicorum: Actio capillaris, viscositatis coefficientes et transportus fluidorum in speciminibus botanicis.",
-                img: ""
+        let folioData = {};
+
+        // Carga dinámica del archivo corpus.json al iniciar la página
+        async function loadCorpus() {
+            try {
+                const response = await fetch('corpus.json');
+                if (!response.ok) throw new Error('Error al localizar corpus.json');
+                folioData = await response.json();
+            } catch (error) {
+                console.warn('Corpus no encontrado o en proceso de carga:', error);
+                document.getElementById('box-original').innerText = "[Inicializando corpus.json desde el repositorio...]";
             }
-        };
+        }
+
+        window.onload = loadCorpus;
 
         function runDecryption() {
             const select = document.getElementById('folio-select').value;
             const data = folioData[select];
 
             if (data) {
-                document.getElementById('box-original').innerText = data.org;
-                document.getElementById('box-syntax').innerText = data.syn;
-                document.getElementById('box-spanish').innerText = data.es;
-                document.getElementById('box-english').innerText = data.en;
-                document.getElementById('box-latin').innerText = data.la;
+                document.getElementById('box-original').innerText = data.org || '-';
+                document.getElementById('box-syntax').innerText = data.syn || '-';
+                document.getElementById('box-spanish').innerText = data.es || '-';
+                document.getElementById('box-english').innerText = data.en || '-';
+                document.getElementById('box-latin').innerText = data.la || '-';
 
                 const imgContainer = document.getElementById('visual-container');
                 const imgElement = document.getElementById('folio-image');
@@ -206,6 +179,12 @@
                 } else {
                     imgContainer.style.display = 'none';
                 }
+            } else {
+                document.getElementById('box-original').innerText = "[Datos no disponibles en corpus.json]";
+                document.getElementById('box-syntax').innerText = "-";
+                document.getElementById('box-spanish').innerText = "-";
+                document.getElementById('box-english').innerText = "-";
+                document.getElementById('box-latin').innerText = "-";
             }
 
             const showEs = document.getElementById('chk-spanish').checked;
@@ -219,3 +198,4 @@
     </script>
 </body>
 </html>
+ 
