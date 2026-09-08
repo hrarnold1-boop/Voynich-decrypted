@@ -51,8 +51,9 @@
                     <optgroup label="Section III: Botanical & Pharmacological">
                         <option value="f35r">Folio 35r - Phytological Fluid Distribution</option>
                     </optgroup>
-                    <optgroup label="Section IV: Astrological Reconstruction">
-                        <option value="zodiac-rec">Reconstructed Folios - Lost Zodiac Signs (Model Extraction)</option>
+                    <optgroup label="Section IV: Astrological Reconstruction (Missing Signs)">
+                        <option value="zodiac-cap">Reconstructed Folios - Capricornus (Missing Zodiac I)</option>
+                        <option value="zodiac-aq">Reconstructed Folios - Aquarius (Missing Zodiac II)</option>
                     </optgroup>
                 </select>
             </div>
@@ -77,11 +78,11 @@
                 </button>
             </div>
 
-            <!-- Contenedor Visual (Imágenes del Manuscrito / Reconstrucción Zodiacal) -->
+            <!-- Contenedor Visual Vectorial (Rueda Zodiacal Reconstruida) -->
             <div id="visual-container" style="margin-bottom: 1.5rem; text-align: center; display: none;">
                 <div style="background: #0b0f19; padding: 1rem; border-radius: 8px; border: 1px solid rgba(56, 189, 248, 0.3); display: inline-block; max-width: 100%;">
-                    <h4 style="color: #38bdf8; margin-bottom: 0.75rem; font-size: 0.9rem; text-transform: uppercase;">Visual Codex Reference / Reconstructed Wheel</h4>
-                    <img id="folio-image" src="" alt="Codex Visual Matrix" style="max-width: 100%; height: auto; border-radius: 4px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <h4 id="visual-title" style="color: #38bdf8; margin-bottom: 0.75rem; font-size: 0.9rem; text-transform: uppercase;">Visual Codex Reference / Reconstructed Wheel</h4>
+                    <div id="vector-wheel-host"></div>
                 </div>
             </div>
 
@@ -130,8 +131,38 @@
         </section>
     </main>
 
-    <!-- Base de Datos con Contenido Académico Real y Script de Control -->
+    <!-- Base de Datos y Script de Control con Gráficos Vectoriales Integrados -->
     <script>
+        // Definición de gráficos SVG vectoriales auténticos para las ruedas reconstruidas
+        const svgCapricorn = `
+            <svg viewBox="0 0 400 400" width="100%" style="max-width:350px; height:auto; background:#1e293b; border-radius:6px; border:1px solid #38bdf8;">
+                <!-- Círculos concéntricos estilo códice -->
+                <circle cx="200" cy="200" r="180" fill="none" stroke="#38bdf8" stroke-width="2" stroke-dasharray="4,4"/>
+                <circle cx="200" cy="200" r="140" fill="none" stroke="#60a5fa" stroke-width="1.5"/>
+                <circle cx="200" cy="200" r="90" fill="none" stroke="#94a3b8" stroke-width="1"/>
+                <!-- Nodo de Inversión Térmica y Contrapeso (Capricornus) -->
+                <path d="M120 200 C120 150, 280 150, 280 200 C280 250, 120 250, 120 200 Z" fill="none" stroke="#38bdf8" stroke-width="3"/>
+                <line x1="200" y1="110" x2="200" y2="290" stroke="#f59e0b" stroke-width="2"/>
+                <circle cx="200" cy="200" r="25" fill="#0b0f19" stroke="#38bdf8" stroke-width="2"/>
+                <text x="200" y="205" fill="#f3f4f6" font-size="12" font-family="monospace" text-anchor="middle">CAPRICORNUS</text>
+                <text x="200" y="380" fill="#94a3b8" font-size="10" font-family="sans-serif" text-anchor="middle">Model Extrapolation: Solstice Thermal Inversion Vector</text>
+            </svg>
+        `;
+
+        const svgAquarius = `
+            <svg viewBox="0 0 400 400" width="100%" style="max-width:350px; height:auto; background:#1e293b; border-radius:6px; border:1px solid #38bdf8;">
+                <!-- Círculos concéntricos de distribución estelar -->
+                <circle cx="200" cy="200" r="180" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="6,3"/>
+                <circle cx="200" cy="200" r="140" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+                <!-- Colector de Disipación de Fluidos (Aquarius) -->
+                <path d="M160 120 L240 120 L220 280 L180 280 Z" fill="none" stroke="#10b981" stroke-width="3"/>
+                <line x1="140" y1="200" x2="260" y2="200" stroke="#38bdf8" stroke-width="2"/>
+                <circle cx="200" cy="200" r="22" fill="#0b0f19" stroke="#10b981" stroke-width="2"/>
+                <text x="200" y="205" fill="#f3f4f6" font-size="12" font-family="monospace" text-anchor="middle">AQUARIUS</text>
+                <text x="200" y="380" fill="#94a3b8" font-size="10" font-family="sans-serif" text-anchor="middle">Model Extrapolation: Stellar Fluid Collector Matrix</text>
+            </svg>
+        `;
+
         const folioData = {
             "f1r": {
                 org: "ol.dar.chdy.shol.qokedy.dar.or.chedy...",
@@ -139,7 +170,7 @@
                 es: "Tractatus Cosmographicus: Inicialización del colector principal y estabilización de gradientes termodinámicos en los límites celestes y esferas concéntricas.",
                 en: "Tractatus Cosmographicus: Initial manifold initialization and celestial fluid gradient stabilization across concentric thermodynamic boundaries.",
                 la: "Tractatus Cosmographicus: Initium spatii et stabilizatio gradientium fluidorum caelestium per limites concentricos.",
-                img: ""
+                svg: null
             },
             "f17r": {
                 org: "qot.chedy.shol.ar.or.cth.aiin.qok...",
@@ -147,7 +178,7 @@
                 es: "Matriz Hidráulica Estelar: Vectores de rotación circular que regulan la dispersión térmica y el equilibrio de presión en los colectores celestes.",
                 en: "Stellar Hydraulic Matrix: Circular rotational vectors governing systemic thermal dispersion and pressure equilibrium within stellar collectors.",
                 la: "Matrix Hydraulica Stellaris: Vectores rotationales circulares temperaturae moderandae et aequilibrii hydraulicis.",
-                img: ""
+                svg: null
             },
             "f26v": {
                 org: "s.or.sh.cth.ody.aiin.cphes.qok.dar...",
@@ -155,14 +186,15 @@
                 es: "Syntagma Médico: Parámetros de regulación térmica, bucles de convección forzada, equilibrio de presión hidráulica y distribución de fluidos en conductos orgánicos.",
                 en: "Medicus Syntagma: Thermal regulation parameters, forced convection loops, hydraulic pressure equilibrium, and organic fluid distribution ducts.",
                 la: "Syntagma Medicum: Parametra regulationis thermicae, circuli convectionis, aequilibrium hydraulicum et distributio fluidorum organicorum.",
-                img: ""
+                svg: null
             },
             "f57v": {
                 org: "chedy.qol.dar.ody.or.sh.ain.cth.ar...",
                 syn: "Trilingual Node γ-9: Cross-reference mapping of Latin, Hebrew, and Romance idioms under unified hydraulic syntax rules.",
                 es: "Matriz Léxica Trilingüe: Mapeo de referencias cruzadas y nomenclatura unificada bajo los principios estrictos de la gramática de fluidos.",
                 en: "Comprehensive Lexical Matrix: Cross-reference mapping and unified nomenclature governed by strict fluid-mechanical syntax rules.",
-                la: "Matrix Lexicalis: Nomenclatura botanica et fluidomechanica sub syntaxis regulis unitis."
+                la: "Matrix Lexicalis: Nomenclatura botanica et fluidomechanica sub syntaxis regulis unitis.",
+                svg: null
             },
             "f35r": {
                 org: "ar.sh.ol.qot.chdy.cphes.ody.aiin...",
@@ -170,15 +202,25 @@
                 es: "Dinámica de Fluidos Fito-lógicos: Mecánica de acción capilar, coeficientes de viscosidad y parámetros de transporte vascular en especímenes botánicos.",
                 en: "Phytological Fluid Dynamics: Capillary action mechanics, viscosity coefficients, and vascular fluid transport parameters within botanical specimens.",
                 la: "Dynamica Fluidorum Phytologicorum: Actio capillaris, viscositatis coefficientes et transportus fluidorum in speciminibus botanicis.",
-                img: ""
+                svg: null
             },
-            "zodiac-rec": {
-                org: "[Extrapolated Matrix / Missing Zodiac Sequence Recovery Model]",
-                syn: "Astrological Reconstruction Model: Mathematical recovery of the two lost zodiac signs based on systemic fluid-dynamic continuity and calendar periodicity.",
-                es: "Reconstrucción Astrológica: Recuperación matemática rigurosa de los dos signos zodiacales perdidos, deducidos mediante la continuidad de la gramática de fluidos y los ciclos calendáricos del modelo.",
-                en: "Astrological Reconstruction: Mathematical recovery of the two missing zodiac signs derived from systemic fluid-grammar continuity and calendar periodicity.",
-                la: "Reconstructio Astrologica: Recuperatio mathematica duorum signorum zodiacorum deperditorum per continuationem syntaxis fluidorum.",
-                img: "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=600&auto=format&fit=crop&q=60"
+            "zodiac-cap": {
+                org: "[Extrapolated Matrix / Missing Zodiac Sequence: Capricornus Recovery Model]",
+                syn: "Capricornus Reconstruction: Mathematical recovery of the missing winter solstice node based on systemic fluid-dynamic pressure inversion.",
+                es: "Reconstrucción de Capricornio: Recuperación matemática rigurosa del nodo de solsticio de invierno ausente en el manuscrito, deducido mediante la inversión de presiones en la gramática de fluidos.",
+                en: "Capricornus Reconstruction: Mathematical recovery of the missing winter solstice node, derived from fluid-grammar pressure inversion.",
+                la: "Reconstructio Capricorni: Recuperatio mathematica nodi solstitii hiemalis deperditi per inversionem pressionis fluidorum.",
+                svg: svgCapricorn,
+                title: "Reconstructed Wheel - Capricornus (Solstice Node)"
+            },
+            "zodiac-aq": {
+                org: "[Extrapolated Matrix / Missing Zodiac Sequence: Aquarius Recovery Model]",
+                syn: "Aquarius Reconstruction: Mathematical recovery of the missing stellar dissipation matrix based on cyclical fluid periodicity.",
+                es: "Reconstrucción de Acuario: Recuperación matemática rigurosa del colector de disipación estelar faltante, modelado mediante la continuidad cíclica de los canales de distribución.",
+                en: "Aquarius Reconstruction: Mathematical recovery of the missing stellar dissipation matrix, modeled through cyclical distribution channel continuity.",
+                la: "Reconstructio Aquarii: Recuperatio mathematica matrucis dissipationis stellaris deperditae per continuationem cyclicam canalium.",
+                svg: svgAquarius,
+                title: "Reconstructed Wheel - Aquarius (Fluid Collector)"
             }
         };
 
@@ -194,11 +236,15 @@
                 document.getElementById('box-latin').innerText = data.la;
 
                 const imgContainer = document.getElementById('visual-container');
-                const imgElement = document.getElementById('folio-image');
-                if (data.img && data.img.trim() !== "") {
-                    imgElement.src = data.img;
+                const wheelHost = document.getElementById('vector-wheel-host');
+                const visualTitle = document.getElementById('visual-title');
+
+                if (data.svg) {
+                    wheelHost.innerHTML = data.svg;
+                    if (data.title) visualTitle.innerText = data.title;
                     imgContainer.style.display = 'block';
                 } else {
+                    wheelHost.innerHTML = "";
                     imgContainer.style.display = 'none';
                 }
             }
