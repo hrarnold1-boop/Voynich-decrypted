@@ -174,20 +174,49 @@
     </div>
 
     <script>
-        let folioData = {};
-
-        async function loadCorpus() {
-            try {
-                const response = await fetch('corpus.json');
-                if (!response.ok) throw new Error('Error al localizar corpus.json');
-                folioData = await response.json();
-            } catch (error) {
-                console.warn('Corpus no encontrado o en proceso de carga:', error);
-                document.getElementById('box-original').innerText = "[Inicializando corpus.json desde el repositorio...]";
+        // Corpus embebido directamente para garantizar la autonomía y ejecución instantánea del motor
+        const folioData = {
+            "f1r": {
+                "org": "Tractatus Cosmographicus et Mineralis - Initium codicis et proportio elementorum.",
+                "syn": "Prefijos de flujo activo (ok-) y operadores de estabilidad termodinámica.",
+                "es": "Tratado cosmográfico y mineral: inicio del códice y proporción de los elementos primarios.",
+                "en": "Cosmographic and mineral treatise: beginning of the codex and proportion of primary elements.",
+                "la": "Tractatus cosmographicus et mineralis: initium codicis et proportio elementorum primariorum.",
+                "img": ""
+            },
+            "f17r": {
+                "org": "Matricis Stellarium Hydraulica - Distributio humorum per circulos coelestes.",
+                "syn": "Vector ascendente (okaiin) vinculado a la saturación estelar máxima (shedy).",
+                "en": "Stellar Hydraulic Matrix: Distribution of humors through celestial circles.",
+                "es": "Matriz Estelar Hidráulica: Distribución de humores a través de los círculos celestes.",
+                "la": "Matrix stellarium hydraulica: distributio humorum per circulos coelestes.",
+                "img": ""
+            },
+            "f26v": {
+                "org": "Syntagma Medicus - De balneis et regimine corporum infirmorum.",
+                "syn": "Válvulas de control hídrico (-eol) y drenaje regulado (olaiin).",
+                "en": "Medical Syntagma: On baths and the regimen of infirm bodies.",
+                "es": "Sintagma Médico: Sobre los baños y el régimen de los cuerpos enfermos.",
+                "la": "Syntagma medicus: de balneis et regimine corporum infirmorum.",
+                "img": ""
+            },
+            "f57v": {
+                "org": "Matrix Lexicalis Comprehensiva - Tabula universalis coniunctionis elementorum.",
+                "syn": "Mapeo completo de operadores sintácticos galénicos y astronómicos.",
+                "en": "Comprehensive Lexical Matrix: Universal table of element conjunction.",
+                "es": "Matriz Léxica Comprehensiva: Tabla universal de la conjunción de los elementos.",
+                "la": "Matrix lexicalis comprehensiva: tabula universalis coniunctionis elementorum.",
+                "img": ""
+            },
+            "f35r": {
+                "org": "Dynamica Fluidorum Phytologicorum - Extractio succorum et gradus caloris.",
+                "syn": "Saturación humoral (shedy-) en raíces y conductos vasculares vegetales.",
+                "en": "Phytological Fluid Dynamics: Juice extraction and degrees of heat.",
+                "es": "Dinámica de Fluidos Fitológicos: Extracción de jugos y grados de calor.",
+                "la": "Dynamica fluidorum phytologicorum: extractio succorum et gradus caloris.",
+                "img": ""
             }
-        }
-
-        window.onload = loadCorpus;
+        };
 
         function runDecryption() {
             const select = document.getElementById('folio-select').value;
@@ -209,7 +238,7 @@
                     imgContainer.style.display = 'none';
                 }
             } else {
-                document.getElementById('box-original').innerText = "[Datos no disponibles en corpus.json]";
+                document.getElementById('box-original').innerText = "[Datos no disponibles]";
                 document.getElementById('box-syntax').innerText = "-";
                 document.getElementById('box-spanish').innerText = "-";
                 document.getElementById('box-english').innerText = "-";
