@@ -16,6 +16,20 @@
         h1, h2, h3 {
             color: #38bdf8;
         }
+        .main-header {
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            padding: 0 10px;
+        }
+        .main-header h1 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+        .main-header p {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            margin: 0;
+        }
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -107,6 +121,12 @@
 </head>
 <body>
 
+    <!-- Encabezado Principal restaurado -->
+    <header class="main-header">
+        <h1>Voynich MS 408 Decryption Engine</h1>
+        <p>Autor: Arnold Brian Herrera Rubert (Investigador Independiente)</p>
+    </header>
+
     <div class="container">
         <h2>Decryption Engine</h2>
         <p>Explore manuscript folios and parse trilingual fluid grammar.</p>
@@ -174,7 +194,6 @@
     </div>
 
     <script>
-        // Corpus embebido directamente para garantizar la autonomía y ejecución instantánea del motor
         const folioData = {
             "f1r": {
                 "org": "Tractatus Cosmographicus et Mineralis - Initium codicis et proportio elementorum.",
