@@ -60,17 +60,17 @@
       font-size: 0.85rem;
     }
 
-    /* BANNER DE BIENVENIDA MEJORADO */
+    /* BANNER DE BIENVENIDA MODERNO Y ELEGANTE */
     .hero-banner {
-      background: linear-gradient(135deg, rgba(0, 104, 71, 0.2) 0%, rgba(22, 27, 34, 0.9) 50%, rgba(206, 17, 38, 0.15) 100%), url('https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      background: linear-gradient(135deg, rgba(0, 104, 71, 0.25) 0%, rgba(13, 17, 23, 0.92) 50%, rgba(88, 166, 255, 0.2) 100%), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 4.5rem 2rem;
+      padding: 5rem 2rem;
       margin-top: 2rem;
       text-align: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
     }
 
     .hero-banner::after {
@@ -94,6 +94,7 @@
       justify-content: center;
       gap: 0.5rem;
       margin-bottom: 1.2rem;
+      flex-wrap: wrap;
     }
 
     .badge {
@@ -111,9 +112,9 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      background: rgba(0, 104, 71, 0.25);
+      background: rgba(0, 104, 71, 0.3);
       color: #56d364;
-      border: 1px solid rgba(0, 104, 71, 0.5);
+      border: 1px solid rgba(0, 104, 71, 0.6);
       padding: 0.3rem 0.8rem;
       border-radius: 999px;
       font-size: 0.82rem;
@@ -136,6 +137,8 @@
       color: var(--muted);
       font-size: 1.15rem;
       margin-bottom: 1.8rem;
+      text-align: justify;
+      text-align-last: center;
     }
 
     .origin-callout {
@@ -146,7 +149,7 @@
       margin-top: 1.5rem;
       font-size: 0.96rem;
       color: var(--text);
-      text-align: left;
+      text-align: justify;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
@@ -165,6 +168,7 @@
       color: var(--muted);
       margin-bottom: 1.1rem;
       font-size: 0.98rem;
+      text-align: justify;
     }
 
     .grid {
@@ -190,6 +194,7 @@
     .card p {
       font-size: 0.9rem;
       margin-bottom: 0;
+      text-align: justify;
     }
 
     /* CORPUS WORKBENCH STYLES */
@@ -258,6 +263,7 @@
       color: var(--text);
       white-space: pre-wrap;
       min-height: 115px;
+      text-align: left;
     }
 
     /* ROADMAP / NEXT PHASE */
@@ -273,6 +279,10 @@
       color: var(--gold);
       font-size: 1.1rem;
       margin-bottom: 0.5rem;
+    }
+
+    .roadmap-card p {
+      text-align: justify;
     }
 
     /* BUDGET TABLE */
@@ -312,6 +322,47 @@
       margin-top: 1.5rem;
     }
 
+    .support-box p {
+      text-align: justify;
+    }
+
+    /* CONTACT FORM STYLES */
+    .contact-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .form-control {
+      width: 100%;
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.75rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -322,6 +373,8 @@
       text-decoration: none;
       font-size: 0.95rem;
       transition: all 0.2s;
+      cursor: pointer;
+      border: none;
     }
 
     .btn-primary {
@@ -331,6 +384,18 @@
 
     .btn-primary:hover {
       background-color: var(--accent-hover);
+    }
+
+    .form-success {
+      background: rgba(63, 185, 80, 0.15);
+      color: var(--success);
+      border: 1px solid rgba(63, 185, 80, 0.4);
+      padding: 0.9rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+      display: none;
+      font-weight: 600;
+      text-align: center;
     }
 
     .status-note {
@@ -347,6 +412,8 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 1rem;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
     }
 
     footer a { color: var(--accent); text-decoration: none; }
@@ -368,7 +435,7 @@
     </header>
 
     <main>
-      <!-- 1. HERO / BANNER DE BIENVENIDA MEJORADO -->
+      <!-- 1. HERO / BANNER DE BIENVENIDA MODERNO Y ELEGANTE -->
       <div class="hero-banner">
         <div class="hero-content">
           <div class="badge-container">
@@ -531,11 +598,40 @@
           </p>
         </div>
       </section>
+
+      <!-- 5. SECCIÓN DE CONTACTO -->
+      <section id="contact">
+        <h2 data-i18n="contactTitle">Contact & Collaborations</h2>
+        <p data-i18n="contactDesc">
+          Are you a researcher, historian, institution, or enthusiast interested in our computational decryption framework or collaborative archiving? Send us a message below.
+        </p>
+
+        <div class="contact-section">
+          <form id="contactForm" onsubmit="handleContact(event)">
+            <div class="form-group">
+              <label for="senderName" data-i18n="lblName">Your Name / Institution</label>
+              <input type="text" id="senderName" class="form-control" required placeholder="Dr. Jane Doe / University of Oxford">
+            </div>
+            <div class="form-group">
+              <label for="senderEmail" data-i18n="lblEmail">Email Address</label>
+              <input type="email" id="senderEmail" class="form-control" required placeholder="janedoe@example.com">
+            </div>
+            <div class="form-group">
+              <label for="senderMessage" data-i18n="lblMessage">Message</label>
+              <textarea id="senderMessage" class="form-control" required placeholder="Write your inquiry or collaboration proposal here..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" data-i18n="btnSend">Send Message</button>
+            <div id="formSuccess" class="form-success" data-i18n="successMsg">
+              Thank you! Your message has been successfully dispatched. We will get back to you shortly.
+            </div>
+          </form>
+        </div>
+      </section>
     </main>
 
     <footer>
-      <div>© 2026 Codex MS 408 Research Initiative • Tested Across All Pages • CC BY-NC 4.0</div>
-      <div><a href="https://zenodo.org/records/24200946" target="_blank" rel="noopener">Zenodo Preprint</a></div>
+      <div data-i18n="footerCopy">© 2026 Codex MS 408 Research Initiative • Independent Research by A. B. H. R. • CC BY-NC 4.0</div>
+      <div><a href="https://zenodo.org/records/24200946" target="_blank" rel="noopener" data-i18n="footerZenodo">Zenodo Preprint</a></div>
     </footer>
   </div>
 
@@ -646,7 +742,16 @@
         boxDesc: "Operating under Model A fiscal sponsorship via Raft Foundation. Every donation is publicly ledgered and allocated directly to open infrastructure and research deliverables.",
         donateBtnActive: "Donate via Open Collective →",
         donateBtnPending: "Donate via Open Collective (Onboarding in Progress)",
-        statusPending: "* Fiscal sponsorship application submitted to Raft Foundation. Direct donation link will activate upon onboarding approval."
+        statusPending: "* Fiscal sponsorship application submitted to Raft Foundation. Direct donation link will activate upon onboarding approval.",
+        contactTitle: "Contact & Collaborations",
+        contactDesc: "Are you a researcher, historian, institution, or enthusiast interested in our computational decryption framework or collaborative archiving? Send us a message below.",
+        lblName: "Your Name / Institution",
+        lblEmail: "Email Address",
+        lblMessage: "Message",
+        btnSend: "Send Message",
+        successMsg: "Thank you! Your message has been successfully dispatched. We will get back to you shortly.",
+        footerCopy: "© 2026 Codex MS 408 Research Initiative • Independent Research by A. B. H. R. • CC BY-NC 4.0",
+        footerZenodo: "Zenodo Preprint"
       },
       es: {
         badge: "Ciencia Abierta • CC BY-NC 4.0",
@@ -692,7 +797,16 @@
         boxDesc: "Operando bajo patrocinio fiscal Modelo A con Raft Foundation. Cada donativo se registra públicamente y se destina directamente a infraestructura abierta y entregables.",
         donateBtnActive: "Donar vía Open Collective →",
         donateBtnPending: "Donar vía Open Collective (Aprobación en curso)",
-        statusPending: "* Solicitud de patrocinio fiscal enviada a Raft Foundation. El enlace directo se activará tras la aprobación."
+        statusPending: "* Solicitud de patrocinio fiscal enviada a Raft Foundation. El enlace directo se activará tras la aprobación.",
+        contactTitle: "Contacto y Colaboraciones",
+        contactDesc: "¿Eres investigador, historiador, institución o entusiasta interesado en nuestro marco de desciframiento computacional o archivado colaborativo? Envíanos un mensaje.",
+        lblName: "Tu Nombre / Institución",
+        lblEmail: "Correo Electrónico",
+        lblMessage: "Mensaje",
+        btnSend: "Enviar Mensaje",
+        successMsg: "¡Gracias! Tu mensaje ha sido enviado con éxito. Nos pondremos en contacto contigo a la brevedad.",
+        footerCopy: "© 2026 Iniciativa de Investigación Códice MS 408 • Investigación Independiente por A. B. H. R. • CC BY-NC 4.0",
+        footerZenodo: "Preprint en Zenodo"
       },
       zh: {
         badge: "开放科学 • CC BY-NC 4.0",
@@ -738,7 +852,16 @@
         boxDesc: "在 Raft Foundation 财政赞助模式下运营，每笔捐款均公开账目，直接用于开放基础设施和研究成果。",
         donateBtnActive: "通过 Open Collective 捐赠 →",
         donateBtnPending: "通过 Open Collective 捐赠（正在审核）",
-        statusPending: "* 申请已提交至 Raft Foundation，直接链接将在批准后激活。"
+        statusPending: "* 申请已提交至 Raft Foundation，直接链接将在批准后激活。",
+        contactTitle: "联系与合作",
+        contactDesc: "如果您是研究人员、历史学家、机构或爱好者，对我们的计算解密框架或协作归档感兴趣，请在下方给我们留言。",
+        lblName: "您的姓名 / 机构",
+        lblEmail: "电子邮件地址",
+        lblMessage: "留言内容",
+        btnSend: "发送留言",
+        successMsg: "谢谢！您的留言已成功发送。我们将尽快与您联系。",
+        footerCopy: "© 2026 MS 408 手稿研究倡议 • A. B. H. R. 独立研究 • CC BY-NC 4.0",
+        footerZenodo: "Zenodo 预印本"
       },
       ar: {
         badge: "العلوم المفتوحة • CC BY-NC 4.0",
@@ -747,7 +870,7 @@
         heroSubtitle: "منصة حوسبية مفتوحة المصدر توثق الحل الهيكلي لمخطوطة فويتش من خلال نمذجة الارتباط المصفوفي وقواعد السوائل.",
         originStory: "💡 <strong>إنجاز علمي مستقل:</strong> تم تطويره من المكسيك كمبادرة بحثية مستقلة رائدة بالتعاون المباشر مع الذكاء الاصطناعي، مما حقق ما فاتته centuries من المؤسسات: اخضاع محرك حوسبي صارم لـ 100% من صفحات المخطوطة والوصول إلى نموذج أولي فعال ومفتوح للعالم.",
         historyTitle: "اللغز، قرون من الغموض والإنجاز الحاسم",
-        historyP1: "لأكثر من قرن منذ اكتشافها من قبل تاجر التحف ويلفريد فويتش في عام 1912، حيرت مخطوطة MS 408 (مخطوطة فويتش) أجيالاً من كبار علماء التشفير واللغويين والمؤرخين في جميع أنحاء العالم. تعود إلى القرن الخامس عشر (حوالي 1404–1438)، وأثار رسمها الغريبة لنباتات مجهولة ومخططات فلكية وأنابيب بيولوجية مجهرية نقاشاً لا ينتهي: هل كانت خدعة معقدة، أم لغة طبيعية مجهولة، أم شفرة سرية متقنة؟ لقد تعثرت العقول النيرة—بما في ذلك فاعلو فك الشفرات الأسطوريون في الحرب العالمية الثانية—لأنهم عومل النص كشفرة استبدال تقليدية أو بناء اصطناعي معزول.",
+        historyP1: "لأكثر من قرن منذ اكتشافها من قبل تاجر التحف ويلفريد فويتش في عام 1912، حيرت مخطوطة MS 408 (مخطوطة فويتش) أجيالاً من كبار علماء التشفير واللغويين والمؤرخين في جميع أنحاء العالم. تعود إلى القرن الخامس عشر (حوالي 1404–1438)، وأثار رسمها الغريبة لنباتات مجهولة ومخططات فلكية وأنابيب بيولوجية مجهرية نقاشاً لا ينتهي: هل كانت خدعة معقدة، أم لغة طبيعية مجهولة، أم شفرة سرية متقنة؟ لقد تعثرت العقول النيرة—بما في ذلك فاعلو ف克 الشفرات الأسطوريون في الحرب العالمية الثانية—لأنهم عومل النص كشفرة استبدال تقليدية أو بناء اصطناعي معزول.",
         historyP2: "تم تحقيق الإنجاز الحاسم من خلال التخلي عن افتراضات التشفير التعسفية وتطبيق إطار رياضي صارم لارتباط المصفوفات مقترناً بنمذجة قواعد السوائل. من خلال ربط البوادئ واللاحقات المورفولوجية مباشرة بالوظائف البيولوجية والعلمية الموضحة عبر صفحاتها (الاختصارات الطبية الجالينية، خصائص الأعشاب، والدورات الكوزمولوجية)، تم فتح الهيكل الوسيط الكامن بنجاح.",
         historyP3: "تتمثل مهمتنا الأساسية في إخراج هذا الاكتشاف التاريخي من خزائن الأكاديمية المتربة ووضعه مباشرة في متناول الجميع. نريد من عشاق التاريخ والتشفير والطلاب والعقول الفضولية في جميع أنحاء العالم التفاعل مع المخطوطة في الوقت الفعلي—مما يجعل استكشاف الأسرار القديمة ذا طابع تعليمي عميق ومسلٍ حقاً.",
         card1Title: "تم الاختبار عبر جميع الصفحات",
@@ -784,7 +907,16 @@
         boxDesc: "تعمل تحت رعاية مالية عبر Raft Foundation. يتم تسجيل كل تبرع علنًا وتخصيصه مباشرة للبنية التحتية المفتوحة.",
         donateBtnActive: "التبرع عبر Open Collective ←",
         donateBtnPending: "التبرع عبر Open Collective (قيد الموافقة)",
-        statusPending: "* تم تقديم طلب الرعاية المالية إلى Raft Foundation. سيتم تفعيل رابط التبرع المباشر عند الموافقة."
+        statusPending: "* تم تقديم طلب الرعاية المالية إلى Raft Foundation. سيتم تفعيل رابط التبرع المباشر عند الموافقة.",
+        contactTitle: "اتصل بنا والتعاون",
+        contactDesc: "هل أنت باحث أو مؤرخ أو مؤسسة أو متحمس مهتم بإطار عمل فك التشفير الحوسبي أو الأرشفة التعاونية؟ أرسل لنا رسالة أدناه.",
+        lblName: "اسمك / مؤسستك",
+        lblEmail: "عنوان البريد الإلكتروني",
+        lblMessage: "الرسالة",
+        btnSend: "إرسال الرسالة",
+        successMsg: "شكراً لك! تم إرسال رسالتك بنجاح. سنتواصل معك قريباً.",
+        footerCopy: "© 2026 مبادرة بحث مخطوطة MS 408 • بحث مستقل بواسطة A. B. H. R. • CC BY-NC 4.0",
+        footerZenodo: "نسخة أولية على Zenodo"
       },
       fr: {
         badge: "Science Ouverte • CC BY-NC 4.0",
@@ -830,7 +962,16 @@
         boxDesc: "Sous parrainage fiscal de Raft Foundation. Chaque don est comptabilisé publiquement.",
         donateBtnActive: "Faire un don via Open Collective →",
         donateBtnPending: "Faire un don (Approbation en cours)",
-        statusPending: "* Demande de parrainage soumise à Raft Foundation. Lien actif après approbation."
+        statusPending: "* Demande de parrainage soumise à Raft Foundation. Lien actif après approbation.",
+        contactTitle: "Contact et Collaborations",
+        contactDesc: "Êtes-vous chercheur, historien, institution ou passionné intéressé par notre cadre de déchiffrement computationnel ou d'archivage collaboratif ? Laissez-nous un message.",
+        lblName: "Votre Nom / Institution",
+        lblEmail: "Adresse E-mail",
+        lblMessage: "Message",
+        btnSend: "Envoyer le Message",
+        successMsg: "Merci ! Votre message a été envoyé avec succès. Nous vous répondrons dans les plus brefs délais.",
+        footerCopy: "© 2026 Initiative de Recherche Codex MS 408 • Recherche Indépendante par A. B. H. R. • CC BY-NC 4.0",
+        footerZenodo: "Prépublication Zenodo"
       },
       it: {
         badge: "Scienza Aperta • CC BY-NC 4.0",
@@ -876,7 +1017,16 @@
         boxDesc: "Sotto sponsorizzazione di Raft Foundation. Ogni donazione è registrata pubblicamente.",
         donateBtnActive: "Dona tramite Open Collective →",
         donateBtnPending: "Dona (Approvazione in corso)",
-        statusPending: "* Richiesta di sponsorizzazione inviata a Raft Foundation. Link attivo dopo l'approvazione."
+        statusPending: "* Richiesta di sponsorizzazione inviata a Raft Foundation. Link attivo dopo l'approvazione.",
+        contactTitle: "Contatti e Collaborazioni",
+        contactDesc: "Sei un ricercatore, storico, istituzione o appassionato interessato al nostro framework di decifrazione computazionale o archiviazione collaborativa? Inviaci un messaggio.",
+        lblName: "Il tuo Nome / Istituzione",
+        lblEmail: "Indirizzo Email",
+        lblMessage: "Messaggio",
+        btnSend: "Invia Messaggio",
+        successMsg: "Grazie! Il tuo messaggio è stato inviato con successo. Ti risponderemo al più presto.",
+        footerCopy: "© 2026 Iniziativa di Ricerca Codice MS 408 • Ricerca Indipendente di A. B. H. R. • CC BY-NC 4.0",
+        footerZenodo: "Preprint su Zenodo"
       },
       ru: {
         badge: "Открытая наука • CC BY-NC 4.0",
@@ -922,7 +1072,16 @@
         boxDesc: "Под финансовым спонсорством Raft Foundation. Каждое пожертвование регистрируется публично.",
         donateBtnActive: "Пожертвовать через Open Collective →",
         donateBtnPending: "Пожертвовать (Одобрение в процессе)",
-        statusPending: "* Заявка на спонсорство подана в Raft Foundation. Ссылка активируется после одобрения."
+        statusPending: "* Заявка на спонсорство подана в Raft Foundation. Ссылка активируется после одобрения.",
+        contactTitle: "Контакты и сотрудничество",
+        contactDesc: "Вы исследователь, историк, представитель института или энтузиаст, заинтересованный в нашей структуре вычислительной расшифровки? Отправьте нам сообщение.",
+        lblName: "Ваше имя / Институт",
+        lblEmail: "Адрес электронной почты",
+        lblMessage: "Сообщение",
+        btnSend: "Отправить сообщение",
+        successMsg: "Спасибо! Ваше сообщение успешно отправлено. Мы свяжемся с вами в ближайшее время.",
+        footerCopy: "© 2026 Инициатива исследования кодекса MS 408 • Независимое исследование A. B. H. R. • CC BY-NC 4.0",
+        footerZenodo: "Препринт Zenodo"
       }
     };
 
@@ -976,6 +1135,15 @@
       }
 
       updateFolioData();
+    }
+
+    function handleContact(event) {
+      event.preventDefault();
+      document.getElementById("formSuccess").style.display = "block";
+      document.getElementById("contactForm").reset();
+      setTimeout(() => {
+        document.getElementById("formSuccess").style.display = "none";
+      }, 5000);
     }
 
     changeLanguage("en");
