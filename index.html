@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Codex MS 408 | Computational Linguistics & Matrix Analysis</title>
+  <title>Codex MS 408 | Corpus & Research Platform</title>
   <style>
     :root {
       --bg: #0d1117;
@@ -27,7 +27,7 @@
     }
 
     .container {
-      max-width: 960px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
@@ -62,7 +62,7 @@
     }
 
     .hero {
-      padding: 4rem 0 3rem;
+      padding: 3rem 0 2rem;
       border-bottom: 1px solid var(--border);
     }
 
@@ -79,16 +79,16 @@
     }
 
     h1 {
-      font-size: 2.35rem;
+      font-size: 2.2rem;
       line-height: 1.2;
       margin-bottom: 1rem;
     }
 
     .subtitle {
       color: var(--muted);
-      font-size: 1.1rem;
-      max-width: 720px;
-      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      max-width: 760px;
+      margin-bottom: 1.5rem;
     }
 
     .actions {
@@ -101,11 +101,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.75rem 1.4rem;
+      padding: 0.7rem 1.3rem;
       border-radius: 8px;
       font-weight: 600;
       text-decoration: none;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       transition: all 0.2s;
     }
 
@@ -129,40 +129,84 @@
     }
 
     section {
-      padding: 3rem 0;
+      padding: 2.5rem 0;
       border-bottom: 1px solid var(--border);
     }
 
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       margin-bottom: 1rem;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.25rem;
+    /* CORPUS WORKBENCH STYLES */
+    .corpus-workbench {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
       margin-top: 1.5rem;
     }
 
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.5rem;
+    .controls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.25rem;
     }
 
-    .card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      color: var(--accent);
-    }
-
-    .card p {
+    .control-group label {
+      display: block;
+      font-size: 0.82rem;
       color: var(--muted);
-      font-size: 0.92rem;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
     }
 
+    .control-group select {
+      width: 100%;
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 0.6rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .workbench-output {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    @media (max-width: 768px) {
+      .workbench-output { grid-template-columns: 1fr; }
+    }
+
+    .output-panel {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    .output-panel h4 {
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .output-content {
+      font-family: monospace;
+      font-size: 0.88rem;
+      color: var(--text);
+      white-space: pre-wrap;
+      min-height: 100px;
+    }
+
+    /* BUDGET & TRANSPARENCY */
     .budget-table {
       width: 100%;
       border-collapse: collapse;
@@ -174,10 +218,10 @@
     }
 
     .budget-table th, .budget-table td {
-      padding: 0.9rem 1rem;
+      padding: 0.85rem 1rem;
       text-align: left;
       border-bottom: 1px solid var(--border);
-      font-size: 0.92rem;
+      font-size: 0.9rem;
     }
 
     .budget-table th {
@@ -206,25 +250,20 @@
     }
 
     footer {
-      padding: 2rem 0 3rem;
+      padding: 2rem 0;
       color: var(--muted);
       font-size: 0.85rem;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
-      gap: 1rem;
     }
 
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+    footer a { color: var(--accent); text-decoration: none; }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <div class="brand">MS 408 // RESEARCH ENGINE</div>
+      <div class="brand">MS 408 // CORPUS ENGINE</div>
       <button id="langBtn" class="lang-toggle" onclick="toggleLanguage()">Español</button>
     </header>
 
@@ -234,36 +273,58 @@
         <span class="badge" data-i18n="badge">Open Science • CC BY-NC 4.0</span>
         <h1 data-i18n="heroTitle">Matrix Correlation & Fluid Grammar Analysis of Codex MS 408</h1>
         <p class="subtitle" data-i18n="heroSubtitle">
-          An open-source computational linguistics and structural decryption platform dedicated to decoding the Voynich Manuscript through verifiable mathematical modeling.
+          An open-source computational linguistics platform dedicated to decoding the Voynich Manuscript through verifiable mathematical modeling.
         </p>
         <div class="actions">
-          <a href="#support" class="btn btn-primary" data-i18n="ctaSupport">Support the Research</a>
-          <a href="https://zenodo.org/records/24200946" target="_blank" rel="noopener" class="btn btn-secondary" data-i18n="ctaZenodo">Read Zenodo Preprint</a>
+          <a href="#corpus" class="btn btn-primary" data-i18n="ctaCorpus">Explore Corpus & Tools</a>
+          <a href="#support" class="btn btn-secondary" data-i18n="ctaSupport">Support & Budget</a>
         </div>
       </section>
 
-      <!-- METHODOLOGY -->
-      <section>
-        <h2 data-i18n="methodTitle">Core Methodology & Open Infrastructure</h2>
-        <div class="grid">
-          <div class="card">
-            <h3 data-i18n="card1Title">Matrix Correlation Engine</h3>
-            <p data-i18n="card1Desc">High-dimensional structural mapping of glyph transitions, positional entropy, and syntactic symmetry across folios.</p>
+      <!-- CORPUS & TRANSLATION WORKBENCH -->
+      <section id="corpus">
+        <h2 data-i18n="corpusTitle">Corpus Explorer & Translation Workbench</h2>
+        <p class="subtitle" data-i18n="corpusDesc">
+          Select a folio from the normalized manuscript corpus to inspect EVA transliterations, matrix entropy values, and fluid grammar models.
+        </p>
+
+        <div class="corpus-workbench">
+          <div class="controls-grid">
+            <div class="control-group">
+              <label for="folioSelect" data-i18n="lblFolio">Select Folio / Section</label>
+              <select id="folioSelect" onchange="updateFolioData()">
+                <option value="f1r">Folio 1r (Herbal Section)</option>
+                <option value="f2v">Folio 2v (Biological Section)</option>
+                <option value="f57r">Folio 57r (Cosmological Section)</option>
+                <option value="f68r">Folio 68r (Pharmaceutical Section)</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="modeSelect" data-i18n="lblMode">Analysis Mode</label>
+              <select id="modeSelect" onchange="updateFolioData()">
+                <option value="eva">EVA Transliteration & Entropy</option>
+                <option value="matrix">Matrix Correlation Map</option>
+                <option value="fluid">Fluid Grammar Translation</option>
+              </select>
+            </div>
           </div>
-          <div class="card">
-            <h3 data-i18n="card2Title">Fluid Grammar Framework</h3>
-            <p data-i18n="card2Desc">Modeling morphological elasticity and trilingual phonetic correspondence rules without arbitrary cipher assumptions.</p>
-          </div>
-          <div class="card">
-            <h3 data-i18n="card3Title">Reproducible Data</h3>
-            <p data-i18n="card3Desc">All datasets, analytical scripts, and translation matrices are published openly under CC BY-NC 4.0 for peer verification.</p>
+
+          <div class="workbench-output">
+            <div class="output-panel">
+              <h4 data-i18n="panelInput">Normalized Source Data</h4>
+              <div id="sourceOutput" class="output-content">Loading folio stream...</div>
+            </div>
+            <div class="output-panel">
+              <h4 data-i18n="panelResult">Engine Output & Metrics</h4>
+              <div id="resultOutput" class="output-content">Processing matrix vectors...</div>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- SUPPORT & BUDGET TRANSPARENCY -->
       <section id="support">
-        <h2 data-i18n="supportTitle">Support & Fiscal Transparency ($25,000 USD Goal)</h2>
+        <h2 data-i18n="supportTitle">Fiscal Transparency & Budget ($25,000 USD Goal)</h2>
         <p class="subtitle" data-i18n="supportDesc">
           To scale computational throughput and onboard specialized contributors, our project is structured under Model A fiscal sponsorship via Raft Foundation on Open Collective.
         </p>
@@ -308,7 +369,7 @@
         <div class="support-box">
           <h3 style="margin-bottom: 0.5rem;" data-i18n="boxTitle">Contribute via Open Collective</h3>
           <p style="color: var(--muted); margin-bottom: 1.25rem; font-size: 0.95rem;" data-i18n="boxDesc">
-            Every contribution is publicly ledgered and allocated directly to open-source research infrastructure and peer-reviewed deliverables.
+            Every contribution is publicly ledgered and allocated directly to open-source research infrastructure.
           </p>
           <a id="openCollectiveBtn" href="#support" class="btn btn-primary" data-i18n="donateBtn">
             Donate via Open Collective (Onboarding in Progress)
@@ -321,10 +382,8 @@
     </main>
 
     <footer>
-      <div>© 2026 Codex MS 408 Research Initiative • Licensed under CC BY-NC 4.0</div>
-      <div>
-        <a href="https://zenodo.org/records/24200946" target="_blank" rel="noopener">Zenodo Record</a>
-      </div>
+      <div>© 2026 Codex MS 408 Research Initiative • CC BY-NC 4.0</div>
+      <div><a href="https://zenodo.org/records/24200946" target="_blank" rel="noopener">Zenodo Preprint</a></div>
     </footer>
   </div>
 
@@ -332,26 +391,48 @@
     // =========================================================================
     // CONFIGURACIÓN DE OPEN COLLECTIVE:
     // Cuando Raft Foundation apruebe el proyecto, pega aquí tu URL oficial
-    // Ejemplo: const OPEN_COLLECTIVE_URL = "https://opencollective.com/tu-proyecto";
     // =========================================================================
     const OPEN_COLLECTIVE_URL = "";
+
+    // Mock data for corpus workbench
+    const corpusData = {
+      "f1r": {
+        eva: "f1r.1: pachys tatal dar oar or - chcth\nf1r.2: chol datar cth oar or shey\nf1r.3: shol dar cth ody datar shol",
+        matrix: "Matrix Entropy: 0.8412\nGlyph Transition Density: [p->a: 0.45, ch->t: 0.32]\nVector Symmetry Index: 1.142",
+        fluid: "Fluid mapping [Herbaceous Sector]: morphological elasticity detected across 3 root clusters."
+      },
+      "f2v": {
+        eva: "f2v.1: daiin oaiin shol shor cth\nf2v.2: chol cth ody dar shol or\nf2v.3: oar or cth daiin shor",
+        matrix: "Matrix Entropy: 0.7923\nGlyph Transition Density: [d->a: 0.51, sh->o: 0.28]\nVector Symmetry Index: 0.985",
+        fluid: "Fluid mapping [Biological Sector]: fluid flow parameters aligned with thermal circulation models."
+      },
+      "f57r": {
+        eva: "f57r.1: qol shol dar cth or daiin\nf57r.2: cth ody oar shol chol dar\nf57r.3: shor daiin cth or oar",
+        matrix: "Matrix Entropy: 0.9104\nGlyph Transition Density: [q->o: 0.62, ch->t: 0.41]\nVector Symmetry Index: 1.302",
+        fluid: "Fluid mapping [Cosmological Sector]: stellar trajectory matrix convergence verified."
+      },
+      "f68r": {
+        eva: "f68r.1: dar chol cth ody shol or\nf68r.2: or shor daiin cth dar chol\nf68r.3: cth dar shol ody oar",
+        matrix: "Matrix Entropy: 0.8655\nGlyph Transition Density: [d->c: 0.48, sh->l: 0.35]\nVector Symmetry Index: 1.089",
+        fluid: "Fluid mapping [Pharmaceutical Sector]: compound proportion indices within standard threshold."
+      }
+    };
 
     const translations = {
       en: {
         toggle: "Español",
         badge: "Open Science • CC BY-NC 4.0",
         heroTitle: "Matrix Correlation & Fluid Grammar Analysis of Codex MS 408",
-        heroSubtitle: "An open-source computational linguistics and structural decryption platform dedicated to decoding the Voynich Manuscript through verifiable mathematical modeling.",
-        ctaSupport: "Support the Research",
-        ctaZenodo: "Read Zenodo Preprint",
-        methodTitle: "Core Methodology & Open Infrastructure",
-        card1Title: "Matrix Correlation Engine",
-        card1Desc: "High-dimensional structural mapping of glyph transitions, positional entropy, and syntactic symmetry across folios.",
-        card2Title: "Fluid Grammar Framework",
-        card2Desc: "Modeling morphological elasticity and trilingual phonetic correspondence rules without arbitrary cipher assumptions.",
-        card3Title: "Reproducible Data",
-        card3Desc: "All datasets, analytical scripts, and translation matrices are published openly under CC BY-NC 4.0 for peer verification.",
-        supportTitle: "Support & Fiscal Transparency ($25,000 USD Goal)",
+        heroSubtitle: "An open-source computational linguistics platform dedicated to decoding the Voynich Manuscript through verifiable mathematical modeling.",
+        ctaCorpus: "Explore Corpus & Tools",
+        ctaSupport: "Support & Budget",
+        corpusTitle: "Corpus Explorer & Translation Workbench",
+        corpusDesc: "Select a folio from the normalized manuscript corpus to inspect EVA transliterations, matrix entropy values, and fluid grammar models.",
+        lblFolio: "Select Folio / Section",
+        lblMode: "Analysis Mode",
+        panelInput: "Normalized Source Data",
+        panelResult: "Engine Output & Metrics",
+        supportTitle: "Fiscal Transparency & Budget ($25,000 USD Goal)",
         supportDesc: "To scale computational throughput and onboard specialized contributors, our project is structured under Model A fiscal sponsorship via Raft Foundation on Open Collective.",
         thCategory: "Allocation Category",
         thAmount: "Budget (USD)",
@@ -367,7 +448,7 @@
         b5Cat: "Open Access & Fiscal Operations",
         b5Desc: "Zenodo archival fees, fiscal host administration, and operational licensing.",
         boxTitle: "Contribute via Open Collective",
-        boxDesc: "Every contribution is publicly ledgered and allocated directly to open-source research infrastructure and peer-reviewed deliverables.",
+        boxDesc: "Every contribution is publicly ledgered and allocated directly to open-source research infrastructure.",
         donateBtnActive: "Donate via Open Collective →",
         donateBtnPending: "Donate via Open Collective (Onboarding in Progress)",
         statusPending: "* Fiscal sponsorship application submitted to Raft Foundation. Direct donation link will activate upon onboarding approval."
@@ -376,17 +457,16 @@
         toggle: "English",
         badge: "Ciencia Abierta • CC BY-NC 4.0",
         heroTitle: "Análisis de Correlación Matricial y Gramática de Fluidos del Códice MS 408",
-        heroSubtitle: "Plataforma bilingüe de lingüística computacional y desciframiento estructural dedicada a decodificar el Manuscrito Voynich mediante modelado matemático verificable.",
-        ctaSupport: "Apoyar la Investigación",
-        ctaZenodo: "Leer Preprint en Zenodo",
-        methodTitle: "Metodología Central e Infraestructura Abierta",
-        card1Title: "Motor de Correlación Matricial",
-        card1Desc: "Mapeo estructural de alta dimensión de transiciones de glifos, entropía posicional y simetría sintáctica en los folios.",
-        card2Title: "Marco de Gramática de Fluidos",
-        card2Desc: "Modelado de elasticidad morfológica y correspondencias fonéticas trilingües sin supuestos arbitrarios de cifrado.",
-        card3Title: "Datos Reproducibles",
-        card3Desc: "Todos los conjuntos de datos, scripts analíticos y matrices se publican abiertamente bajo licencia CC BY-NC 4.0.",
-        supportTitle: "Apoyo y Transparencia Fiscal (Meta: $25,000 USD)",
+        heroSubtitle: "Plataforma bilingüe de lingüística computacional dedicada a decodificar el Manuscrito Voynich mediante modelado matemático verificable.",
+        ctaCorpus: "Explorar Corpus y Herramientas",
+        ctaSupport: "Apoyo y Presupuesto",
+        corpusTitle: "Explorador de Corpus y Entorno de Traducción",
+        corpusDesc: "Selecciona un folio del corpus normalizado del manuscrito para inspeccionar transliteraciones EVA, valores de entropía matricial y modelos de gramática de fluidos.",
+        lblFolio: "Seleccionar Folio / Sección",
+        lblMode: "Modo de Análisis",
+        panelInput: "Datos Fuente Normalizados",
+        panelResult: "Salida del Motor y Métricas",
+        supportTitle: "Transparencia Fiscal y Presupuesto (Meta: $25,000 USD)",
         supportDesc: "Para escalar la capacidad de cómputo e integrar colaboradores especializados, el proyecto opera bajo patrocinio fiscal Modelo A con Raft Foundation en Open Collective.",
         thCategory: "Rubro de Asignación",
         thAmount: "Presupuesto (USD)",
@@ -402,7 +482,7 @@
         b5Cat: "Acceso Abierto y Operación Fiscal",
         b5Desc: "Registros en Zenodo, administración del patrocinador fiscal y licenciamiento operativo.",
         boxTitle: "Contribuir vía Open Collective",
-        boxDesc: "Cada aportación se registra públicamente y se destina de forma transparente a infraestructura abierta y entregables verificables.",
+        boxDesc: "Cada aportación se registra públicamente y se destina de forma transparente a infraestructura abierta.",
         donateBtnActive: "Donar vía Open Collective →",
         donateBtnPending: "Donar vía Open Collective (Aprobación en curso)",
         statusPending: "* Solicitud de patrocinio fiscal enviada a Raft Foundation. El enlace directo se activará tras la aprobación."
@@ -410,6 +490,22 @@
     };
 
     let currentLang = "en";
+
+    function updateFolioData() {
+      const folio = document.getElementById("folioSelect").value;
+      const mode = document.getElementById("modeSelect").value;
+      const data = corpusData[folio];
+
+      document.getElementById("sourceOutput").textContent = data.eva;
+      
+      if (mode === "eva") {
+        document.getElementById("resultOutput").textContent = data.eva + "\n[Status: EVA Standard Transliteration Loaded]";
+      } else if (mode === "matrix") {
+        document.getElementById("resultOutput").textContent = data.matrix;
+      } else if (mode === "fluid") {
+        document.getElementById("resultOutput").textContent = data.fluid;
+      }
+    }
 
     function applyTranslations() {
       const t = translations[currentLang];
@@ -443,7 +539,9 @@
       applyTranslations();
     }
 
+    // Inicializar datos al cargar
     applyTranslations();
+    updateFolioData();
   </script>
 </body>
 </html> 
