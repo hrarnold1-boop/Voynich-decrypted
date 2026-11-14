@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voynich MS 408 - Tractatus Cosmographico-Medicus & Decryption Engine</title>
     <style>
         body {
             background-color: #0b0f19;
@@ -12,9 +6,11 @@
             margin: 0;
             padding: 20px;
             line-height: 1.5;
+            text-align: justify; /* <-- Esto justifica todo el texto general del cuerpo */
         }
         h1, h2, h3 {
             color: #38bdf8;
+            text-align: left; /* <-- Mantiene los títulos alineados a la izquierda para mejor estética */
         }
         .main-header {
             max-width: 850px;
@@ -25,6 +21,7 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 15px;
+            text-align: left; /* <-- Encabezado alineado a la izquierda */
         }
         .main-header-content h1 {
             font-size: 2rem;
@@ -63,25 +60,48 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             box-sizing: border-box;
         }
-        .intro-section {
+        .intro-section, .roadmap-section {
             background: #1f2937;
             padding: 20px;
             border-radius: 6px;
             margin-bottom: 25px;
             border-left: 4px solid #0284c7;
+            text-align: justify; /* <-- Asegura la justificación en las cajas de introducción */
         }
-        .intro-section h2 {
+        .roadmap-section {
+            border-left-color: #38bdf8;
+        }
+        .intro-section h2, .roadmap-section h2 {
             margin-top: 0;
             font-size: 1.3rem;
             color: #38bdf8;
+            text-align: left;
         }
-        .intro-section p, .intro-section li {
+        .intro-section p, .intro-section li, .roadmap-section p, .roadmap-section li {
             color: #d1d5db;
             font-size: 0.95rem;
+            text-align: justify; /* <-- Texto de listas y párrafos justificados */
         }
-        .intro-section ul {
+        .intro-section ul, .roadmap-section ul {
             padding-left: 20px;
             margin-bottom: 0;
+        }
+        .funding-button-container {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .btn-donate {
+            display: inline-block;
+            background: #0284c7;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .btn-donate:hover {
+            background: #0369a1;
         }
         select, button {
             width: 100%;
@@ -122,10 +142,12 @@
             border-left: 4px solid #38bdf8;
             overflow-wrap: break-word;
             word-break: break-word;
+            text-align: justify; /* <-- Cuadros de salida justificados */
         }
         .output-box h3 {
             margin-top: 0;
             font-size: 1.05rem;
+            text-align: left;
         }
         .citation-box {
             background: #1f2937;
@@ -135,6 +157,10 @@
             border-left: 4px solid #0284c7;
             font-size: 0.95em;
             overflow-wrap: break-word;
+            text-align: justify; /* <-- Caja de citación justificada */
+        }
+        .citation-box h3 {
+            text-align: left;
         }
         .citation-text {
             font-family: 'Courier New', Courier, monospace;
@@ -145,6 +171,7 @@
             overflow-wrap: break-word;
             word-break: break-all;
             font-size: 0.9rem;
+            text-align: left; /* <-- El código DOI y APA se queda alineado a la izquierda por legibilidad */
         }
         .collaboration-note {
             margin-top: 20px;
@@ -154,6 +181,7 @@
             font-size: 0.85rem;
             color: #9ca3af;
             border: 1px dashed #0284c7;
+            text-align: justify; /* <-- Nota de colaboración justificada */
         }
         .visual-container {
             margin-top: 20px;
@@ -181,274 +209,3 @@
             text-decoration: underline;
         }
     </style>
-    <meta name="copyright" content="Arnold Brian Herrera Rubert, 2026. All rights reserved.">
-    <meta name="license" content="CC BY-NC 4.0">
-</head>
-<body>
-
-    <header class="main-header">
-        <div class="main-header-content">
-            <h1 id="ui-title">Voynich MS 408 Decryption Engine</h1>
-            <p id="ui-author">Author: Arnold Brian Herrera Rubert (Independent Researcher | B.Sc. in Physics, UAM-I)</p>
-        </div>
-        <div class="lang-selector-container">
-            <label for="site-lang">Language:</label>
-            <select id="site-lang" onchange="switchSiteLanguage()">
-                <option value="en" selected>English</option>
-                <option value="es">Español</option>
-            </select>
-        </div>
-    </header>
-
-    <div class="container">
-        
-        <!-- Bloque Narrativo Bilingüe -->
-        <section class="intro-section" id="intro-box">
-            <h2 id="intro-h2">The Impossible Enigma and Paradigm Shift</h2>
-            <p id="intro-p1">For over five centuries, Codex MS 408 (The Voynich Manuscript) resisted all decipherment attempts by cryptographers, linguists, and historians. Its apparent impossibility of reading was driven by three core barriers:</p>
-            <ul>
-                <li id="intro-li1"><strong>The Alphabet Trap:</strong> Assuming a direct letter-by-letter substitution cipher or an exotic natural language always resulted in unreadable gibberish.</li>
-                <li id="intro-li2"><strong>Dynamic Complexity:</strong> The text does not follow static sentence structures, but rather continuous fluid behaviors.</li>
-                <li id="intro-li3"><strong>The Veil of Medieval Technical Latin:</strong> The underlying linguistic reality corresponds to a technical, medical, and cosmological Latin deeply adapted to stenographic and fluid conventions of the 15th century.</li>
-            </ul>
-            <p id="intro-p2" style="margin-top: 12px; margin-bottom: 0;"><strong>The Solution:</strong> By establishing a <em>fluid grammar</em> and trilingual correlation matrices, this platform reveals the true operational structure of the codex as a <em>Tractatus Cosmographico-Medicus et Balneatorius</em>.</p>
-        </section>
-
-        <h2 id="engine-h2">Decryption Engine & Interactive Viewer</h2>
-        <p id="engine-p">Explore manuscript folios, contrast fluid syntax, and analyze translations in real time.</p>
-
-        <label for="folio-select" id="lbl-select">Select Folio / Section:</label>
-        <select id="folio-select">
-            <option value="f1r">Tractatus Cosmographicus (Folio 1r - Preface & Proportions)</option>
-            <option value="f17r">Stellar Hydraulic Matrix (Folio 17r - Celestial Distribution)</option>
-            <option value="f26v">Medicus Syntagma (Folio 26v - Baths & Body Regimen)</option>
-            <option value="f57v">Comprehensive Lexical Matrix (Folio 57v - Universal Table)</option>
-            <option value="f35r">Phytological Fluid Dynamics (Folio 35r - Plant Extraction)</option>
-        </select>
-
-        <div class="checkbox-group">
-            <label><input type="checkbox" id="chk-spanish" checked> Español</label>
-            <label><input type="checkbox" id="chk-english" checked> English</label>
-            <label><input type="checkbox" id="chk-latin"> Latin (Original Source)</label>
-        </div>
-
-        <button id="btn-run" onclick="runDecryption()">Run Analysis & Load Trilingual Matrix</button>
-
-        <div class="output-box">
-            <h3 id="box-title-orig">Source / Model Extrapolation</h3>
-            <p id="box-original">[Select a folio to initialize analysis]</p>
-        </div>
-
-        <div class="output-box">
-            <h3 id="box-title-syn">Systemic Fluid Syntax Breakdown</h3>
-            <p id="box-syntax">-</p>
-        </div>
-
-        <div class="output-box" id="panel-spanish">
-            <h3 id="box-title-es">Traducción Académica (Español)</h3>
-            <p id="box-spanish">-</p>
-        </div>
-
-        <div class="output-box" id="panel-english">
-            <h3 id="box-title-en">Academic Translation (English)</h3>
-            <p id="box-english">-</p>
-        </div>
-
-        <div class="output-box" id="panel-latin" style="display:none;">
-            <h3 id="box-title-la">Interpretatio Originalis (Latin)</h3>
-            <p id="box-latin">-</p>
-        </div>
-
-        <div class="visual-container" id="visual-container" style="display:none;">
-            <h3>VISUAL CODEX REFERENCE</h3>
-            <img id="folio-image" src="" alt="Folio Reference Wheel">
-        </div>
-
-        <!-- Bloque de Cita APA -->
-        <div class="citation-box">
-            <h3 id="cite-h3">Academic Citation / How to Cite (APA)</h3>
-            <p id="cite-p">To cite this research and analytical platform:</p>
-            <div class="citation-text">
-                Herrera Rubert, A. B., & Gemini. (2026). <i>Tractatus Cosmographico-Medicus: Syntactic Decoding, Fluid Grammar, and Trilingual Mapping of Codex MS 408 (Voynich Manuscript)</i> [Dataset and software]. Zenodo. https://doi.org/10.5281/zenodo.24200946
-            </div>
-        </div>
-
-        <!-- Nota aclaratoria de colaboración -->
-        <div class="collaboration-note">
-            <strong>Collaboration Note:</strong> Part of the supplementary analytical processing, data structure automation, and assistance in drafting and bilingual structuring for this work were developed with the support of Gemini (Google AI Research Collaborator), under the methodological supervision and theoretical design of the author.
-        </div>
-
-        <!-- Pie de página -->
-        <footer class="footer-legal">
-            <p id="footer-txt">© 2026 Arnold Brian Herrera Rubert. Content protected under <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.en" target="_blank" id="cc-link">CC BY-NC 4.0 license</a>.</p>
-        </footer>
-    </div>
-
-    <script>
-        const folioData = {
-            "f1r": {
-                "org": {
-                    "en": "Tractatus Cosmographicus et Mineralis - Initium codicis et proportio elementorum (okaiin.shedy.qokedy).",
-                    "es": "Tractatus Cosmographicus et Mineralis - Inicio del códice y proporción de los elementos (okaiin.shedy.qokedy)."
-                },
-                "syn": {
-                    "en": "Active flow prefixes (ok-) and thermodynamic stability operators oriented to maximum saturation (*Cursus ad maximam saturationem*).",
-                    "es": "Prefijos de flujo activo (ok-) y operadores de estabilidad termodinámica orientados a la máxima saturación (*Cursus ad maximam saturationem*)."
-                },
-                "es": "Tratado cosmográfico y mineral: inicio del códice y proporción de los elementos primarios bajo un flujo dinámico continuo.",
-                "en": "Cosmographic and mineral treatise: beginning of the codex and proportion of primary elements under continuous dynamic flow.",
-                "la": "Tractatus cosmographicus et mineralis: initium codicis et proportio elementorum primariorum sub cursu ad maximam saturationem."
-            },
-            "f17r": {
-                "org": {
-                    "en": "Matricis Stellarium Hydraulica - Distributio humorum per circulos coelestes.",
-                    "es": "Matricis Stellarium Hydraulica - Distribución de humores a través de los círculos celestes."
-                },
-                "syn": {
-                    "en": "Ascending vector (okaiin) linked to maximum stellar saturation (shedy) and ebullient cycles.",
-                    "es": "Vector ascendente (okaiin) vinculado a la saturación estelar máxima (shedy) y ciclos ebullientes."
-                },
-                "es": "Matriz Estelar Hidráulica: Distribución de humores y dinámicas estelares a través de los círculos celestes.",
-                "en": "Stellar Hydraulic Matrix: Distribution of humors and stellar dynamics through celestial circles.",
-                "la": "Matrix stellarium hydraulica: distributio humorum per circulos coelestes et influxus ebulliens."
-            },
-            "f26v": {
-                "org": {
-                    "en": "Syntagma Medicus - De balneis et regimine corporum infirmorum.",
-                    "es": "Syntagma Medicus - Sobre los baños y el régimen de los cuerpos infirmos."
-                },
-                "syn": {
-                    "en": "Hydric control valves (-eol) and regulated drainage (olaiin) applied to balneotherapy.",
-                    "es": "Válvulas de control hídrico (-eol) y drenaje regulado (olaiin) aplicadas a la balneoterapia."
-                },
-                "es": "Sintagma Médico: Sobre los baños, sistemas de regulación hídrica y el régimen de los cuerpos enfermos.",
-                "en": "Medical Syntagma: On baths, water regulation systems, and the regimen of infirm bodies.",
-                "la": "Syntagma medicus: de balneis, regimine corporum infirmorum et valvulis hydraulicis."
-            },
-            "f57v": {
-                "org": {
-                    "en": "Matrix Lexicalis Comprehensiva - Tabula universalis coniunctionis elementorum.",
-                    "es": "Matrix Lexicalis Comprehensiva - Tabla universal de conjunción de elementos."
-                },
-                "syn": {
-                    "en": "Complete mapping of galenic, astronomical, and unified saturation syntactic operators.",
-                    "es": "Mapeo completo de operadores sintácticos galénicos, astronómicos y de saturación unificada."
-                },
-                "es": "Matriz Léxica Comprehensiva: Tabla universal de la conjunción de los elementos y variables sistémicas de fluido.",
-                "en": "Comprehensive Lexical Matrix: Universal table of element conjunction and systemic fluid variables.",
-                "la": "Matrix lexicalis comprehensiva: tabula universalis coniunctionis elementorum et variabilium fluidarum."
-            },
-            "f35r": {
-                "org": {
-                    "en": "Dynamica Fluidorum Phytologicorum - Extractio succorum et gradus caloris.",
-                    "es": "Dynamica Fluidorum Phytologicorum - Extracción de jugos y grados de calor."
-                },
-                "syn": {
-                    "en": "Humoral saturation (shedy-) in plant roots and vascular pathways under thermal regimes.",
-                    "es": "Saturación humoral (shedy-) en raíces y conductos vasculares vegetales bajo regímenes térmicos."
-                },
-                "es": "Dinámica de Fluidos Fitológicos: Extracción de jugos, conductos vasculares y grados de calor.",
-                "en": "Phytological Fluid Dynamics: Juice extraction, vascular pathways, and degrees of heat.",
-                "la": "Dynamica fluidorum phytologicorum: extractio succorum, ductus vasculares et gradus caloris."
-            }
-        };
-
-        function switchSiteLanguage() {
-            const lang = document.getElementById('site-lang').value;
-            
-            if (lang === 'es') {
-                document.getElementById('ui-title').innerText = "Voynich MS 408 - Motor de Decodificación";
-                document.getElementById('ui-author').innerText = "Autor: Arnold Brian Herrera Rubert (Investigador Independiente | Lic. en Física, UAM-I)";
-                
-                document.getElementById('intro-h2').innerText = "El Enigma Imposible y el Cambio de Paradigma";
-                document.getElementById('intro-p1').innerText = "Durante más de quinientos años, el Códice MS 408 (Manuscrito Voynich) resistió todos los intentos de decodificación de criptógrafos, lingüistas e historiadores. Su aparente imposibilidad de lectura se debía a tres grandes barreras:";
-                document.getElementById('intro-li1').innerHTML = "<strong>La trampa del alfabeto:</strong> Asumir un cifrado letra por letra o un idioma exótico por sustitución directa arrojaba siempre un galimatías indescifrable.";
-                document.getElementById('intro-li2').innerHTML = "<strong>La complejidad dinámica:</strong> El texto no sigue una estructura de oraciones estáticas, sino un comportamiento continuo de flujos.";
-                document.getElementById('intro-li3').innerHTML = "<strong>El velo del latín científico medieval:</strong> El trasfondo lingüístico real corresponde a un latín técnico, médico y cosmológico profundamente adaptado a convenciones taquigráficas y de fluidos de la época.";
-                document.getElementById('intro-p2').innerHTML = "<strong>La Solución:</strong> Mediante el establecimiento de una <em>gramática de fluidos</em> y matrices de correlación trilingüe, esta plataforma expone la estructura operativa real del códice como un <em>Tractatus Cosmographico-Medicus et Balneatorius</em>.";
-
-                document.getElementById('engine-h2').innerText = "Motor de Decodificación y Visor Interactivo";
-                document.getElementById('engine-p').innerText = "Explora los folios del manuscrito, contrasta la sintaxis de fluidos y analiza las traducciones en tiempo real.";
-                document.getElementById('lbl-select').innerText = "Seleccionar Folio / Sección:";
-                document.getElementById('btn-run').innerText = "Ejecutar Análisis y Cargar Matriz Trilingüe";
-
-                document.getElementById('box-title-orig').innerText = "Extrapolación de Fuente / Modelo";
-                document.getElementById('box-title-syn').innerText = "Desglose de Sintaxis Sistémica de Fluidos";
-                document.getElementById('box-title-es').innerText = "Traducción Académica (Español)";
-                document.getElementById('box-title-en').innerText = "Traducción Académica (English)";
-                document.getElementById('box-title-la').innerText = "Interpretatio Originalis (Latin)";
-
-                document.getElementById('cite-h3').innerText = "Cita Académica / Cómo Citar (APA)";
-                document.getElementById('cite-p').innerText = "Para citar esta investigación y plataforma analítica:";
-                document.getElementById('footer-txt').innerHTML = '© 2026 Arnold Brian Herrera Rubert. Contenido protegido bajo licencia <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.es" target="_blank" id="cc-link">CC BY-NC 4.0</a>.';
-            } else {
-                document.getElementById('ui-title').innerText = "Voynich MS 408 Decryption Engine";
-                document.getElementById('ui-author').innerText = "Author: Arnold Brian Herrera Rubert (Independent Researcher | B.Sc. in Physics, UAM-I)";
-                
-                document.getElementById('intro-h2').innerText = "The Impossible Enigma and Paradigm Shift";
-                document.getElementById('intro-p1').innerText = "For over five centuries, Codex MS 408 (The Voynich Manuscript) resisted all decipherment attempts by cryptographers, linguists, and historians. Its apparent impossibility of reading was driven by three core barriers:";
-                document.getElementById('intro-li1').innerHTML = "<strong>The Alphabet Trap:</strong> Assuming a direct letter-by-letter substitution cipher or an exotic natural language always resulted in unreadable gibberish.";
-                document.getElementById('intro-li2').innerHTML = "<strong>Dynamic Complexity:</strong> The text does not follow static sentence structures, but rather continuous fluid behaviors.";
-                document.getElementById('intro-li3').innerHTML = "<strong>The Veil of Medieval Technical Latin:</strong> The underlying linguistic reality corresponds to a technical, medical, and cosmological Latin deeply adapted to stenographic and fluid conventions of the 15th century.";
-                document.getElementById('intro-p2').innerHTML = "<strong>The Solution:</strong> By establishing a <em>fluid grammar</em> and trilingual correlation matrices, this platform reveals the true operational structure of the codex as a <em>Tractatus Cosmographico-Medicus et Balneatorius</em>.";
-
-                document.getElementById('engine-h2').innerText = "Decryption Engine & Interactive Viewer";
-                document.getElementById('engine-p').innerText = "Explore manuscript folios, contrast fluid syntax, and analyze translations in real time.";
-                document.getElementById('lbl-select').innerText = "Select Folio / Section:";
-                document.getElementById('btn-run').innerText = "Run Analysis & Load Trilingual Matrix";
-
-                document.getElementById('box-title-orig').innerText = "Source / Model Extrapolation";
-                document.getElementById('box-title-syn').innerText = "Systemic Fluid Syntax Breakdown";
-                document.getElementById('box-title-es').innerText = "Traducción Académica (Español)";
-                document.getElementById('box-title-en').innerText = "Academic Translation (English)";
-                document.getElementById('box-title-la').innerText = "Interpretatio Originalis (Latin)";
-
-                document.getElementById('cite-h3').innerText = "Academic Citation / How to Cite (APA)";
-                document.getElementById('cite-p').innerText = "To cite this research and analytical platform:";
-                document.getElementById('footer-txt').innerHTML = '© 2026 Arnold Brian Herrera Rubert. Content protected under <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.en" target="_blank" id="cc-link">CC BY-NC 4.0 license</a>.';
-            }
-
-            // Actualizar también el contenido del folio activo acorde al idioma
-            runDecryption();
-        }
-
-        function runDecryption() {
-            const select = document.getElementById('folio-select').value;
-            const data = folioData[select];
-            const lang = document.getElementById('site-lang').value;
-
-            if (data) {
-                document.getElementById('box-original').innerText = (typeof data.org === 'object') ? data.org[lang] : data.org;
-                document.getElementById('box-syntax').innerText = (typeof data.syn === 'object') ? data.syn[lang] : data.syn;
-                document.getElementById('box-spanish').innerText = data.es || '-';
-                document.getElementById('box-english').innerText = data.en || '-';
-                document.getElementById('box-latin').innerText = data.la || '-';
-
-                const imgContainer = document.getElementById('visual-container');
-                const imgElement = document.getElementById('folio-image');
-                if (data.img && data.img.trim() !== "") {
-                    imgElement.src = data.img;
-                    imgContainer.style.display = 'block';
-                } else {
-                    imgContainer.style.display = 'none';
-                }
-            } else {
-                document.getElementById('box-original').innerText = "[Data not available]";
-                document.getElementById('box-syntax').innerText = "-";
-                document.getElementById('box-spanish').innerText = "-";
-                document.getElementById('box-english').innerText = "-";
-                document.getElementById('box-latin').innerText = "-";
-            }
-
-            const showEs = document.getElementById('chk-spanish').checked;
-            const showEn = document.getElementById('chk-english').checked;
-            const showLa = document.getElementById('chk-latin').checked;
-
-            document.getElementById('panel-spanish').style.display = showEs ? 'block' : 'none';
-            document.getElementById('panel-english').style.display = showEn ? 'block' : 'none';
-            document.getElementById('panel-latin').style.display = showLa ? 'block' : 'none';
-        }
-    </script>
-</body>
-</html>
- 
