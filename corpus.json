@@ -1,21 +1,21 @@
 {
   "meta": {
     "proyecto": "Voynich MS 408 Decryption Engine",
-    "version": "v0.9.0",
+    "version": "v1.0.0",
     "autor": "Arnold Brian Herrera Rubert",
     "licencia": "CC BY-NC 4.0",
     "enlaces": {
-      "sitio_web": "https://voynichdecrypted.com",
-      "zenodo_doi": "https://doi.org/10.5281/zenodo.10000000",
+      "sitio_web": "https://voynich-decrypted.vercel.app",
+      "zenodo_doi": "https://doi.org/10.5281/zenodo.24200946",
       "manuscrito_yale": "https://brbl-dl.library.yale.edu/vufind/Record/3519597",
       "voynich_nu": "https://www.voynich.nu"
     }
   },
   "conclusiones_investigacion": {
-    "naturaleza_ms": "Tractatus Cosmographico-Medicus et Balneatorius en latín medieval con taquigrafía de sustitución.",
+    "naturaleza_ms": "Tractatus Cosmographico-Medicus et Balneatorius en latín medieval técnico con taquigrafía de sustitución estructural.",
     "criptografia": "Vectores de flujo (ok-/ol-), estados de saturación (shedy-/so-) y sufijos de continuidad y válvulas (-aiin, -eol).",
-    "astronomia": "Ruedas zodiacales con precisión de 29 a 30 ninfas correspondientes al ciclo lunar y grados de la eclíptica.",
-    "balneoterapia_botanica": "Regulación hídrica, fisiología vegetal y grados de extracción galénica."
+    "astronomia": "Ruedas zodiacales con precisión de ciclos lunares y grados de la eclíptica bajo dinámicas de fluidos celestes.",
+    "balneoterapia_botanica": "Regulación hídrica, fisiología vegetal y grados de extracción galénica bajo el modelo de gramática de fluidos."
   },
   "referencias_bibliograficas": {
     "codices_y_criptografia": [
@@ -40,6 +40,46 @@
       "Zandbergen, R. (2023). Voynich MS - Analysis and History. (voynich.nu)."
     ]
   },
-  "folios": []
+  "folios": [
+    {
+      "id": "f1r",
+      "seccion": "Tractatus Cosmographicus",
+      "tokens": "okaiin.shedy.qokedy",
+      "analisis_morfo": "okaiin + shedy + shedy-var",
+      "latin_medieval": "Cursus ad maximam saturationem",
+      "espanol": "Flujo hacia la máxima saturación y proporción de elementos primarios."
+    },
+    {
+      "id": "f17r",
+      "seccion": "Stellar Hydraulic Matrix",
+      "tokens": "okaiin.qokaiin.shedy",
+      "analisis_morfo": "okaiin + qokaiin + shedy",
+      "latin_medieval": "Influxus ebulliens ad plenitudinem",
+      "espanol": "Aflujo en ebullición alcanzando la saturación estelar máxima."
+    },
+    {
+      "id": "f26v",
+      "seccion": "Medicus Syntagma",
+      "tokens": "olaiin.shedy.eol",
+      "analisis_morfo": "olaiin + shedy + -eol",
+      "latin_medieval": "Regimen balneorum et valvulae fluidae",
+      "espanol": "Régimen de baños, control hídrico y drenaje regulado."
+    },
+    {
+      "id": "f35r",
+      "seccion": "Phytological Fluid Dynamics",
+      "tokens": "shedy.qokaiin.okeol",
+      "analisis_morfo": "shedy + qokaiin + okeol",
+      "latin_medieval": "Extractio succorum et gradus caloris",
+      "espanol": "Extracción de jugos vegetales, saturación humoral y grados térmicos."
+    },
+    {
+      "id": "f57v",
+      "seccion": "Comprehensive Lexical Matrix",
+      "tokens": "ok.ol.shedy.aiin",
+      "analisis_morfo": "ok- + ol- + shedy + -aiin",
+      "latin_medieval": "Tabula universalis coniunctionis elementorum",
+      "espanol": "Tabla universal de conjunción de elementos y variables sistémicas de fluido."
+    }
+  ]
 }
- 
