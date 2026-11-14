@@ -206,6 +206,24 @@
       margin-top: 1.5rem;
     }
 
+    .yale-banner-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(88, 166, 255, 0.1);
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .yale-banner-link p {
+      margin-bottom: 0;
+      font-size: 0.92rem;
+    }
+
     .controls-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -485,10 +503,16 @@
       <section id="corpus">
         <h2 data-i18n="corpusTitle">Interactive Corpus & Real-Time Folio Explorer</h2>
         <p data-i18n="corpusDesc">
-          Explore the manuscript line by line. Select any tested folio, analysis layer, and target translation language. You can also review the original manuscript directly in the <a href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noopener" style="color: var(--accent);">Yale University Beinecke Library Digital Collection</a>.
+          Explore the manuscript line by line. Select any tested folio, analysis layer, and target translation language.
         </p>
 
         <div class="corpus-workbench">
+          <!-- BOTÓN DESTACADO A LA BIBLIOTECA DE YALE -->
+          <div class="yale-banner-link">
+            <p data-i18n="yaleBannerText">📚 <strong>¿Deseas ver las imágenes originales?</strong> Consulta el manuscrito escaneado folio por folio en la colección digital oficial de la Universidad de Yale.</p>
+            <a href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1rem;" data-i18n="yaleBtn">Ver Scans en Yale ↗</a>
+          </div>
+
           <div class="controls-grid">
             <div class="control-group">
               <label for="folioSelect" data-i18n="lblFolio">Select Folio / Section</label>
@@ -679,7 +703,7 @@
           ar: "[السطر 1] محاذاة الدورة السماوية: ذروة القمر تحكم صعود العصارة الموسمية.\n[السطر 2] مطابقة القطاعات الشعاعية مع الميل الشمسي للاعتدال.\n[السطر 3] تسجيل الدورية التوافقية للحلقات الكونية الخارجية.",
           fr: "[Ligne 1] Alignement du cycle céleste : le zénith lunaire régit l'ascension saisonnière de la sève.\n[Ligne 2] Croiser les secteurs radiaux avec la déclinaison solaire de l'équinoxe.\n[Ligne 3] Enregistrer la périodicité harmonique des anneaux cosmologiques extérieurs.",
           it: "[Linea 1] Allineamento ciclo celeste: lo zenit lunare regge la risalita stagionale della linfa.\n[Linea 2] Incrociare i settori radiali con la declinazione solare dell'equinozio.\n[Linea 3] Registrare la periodicità armonica degli anelli cosmologici esterni.",
-          ru: "[Строка 1] Выравнивание небесного цикла: лунный зенит управляет сезонным подъемом сока.\n[Строка 2] Сопоставление радиальных секторов с солнечным склонением равноденствия.\n[Строка 3] Регистрация гармонической периодичности внешних космологических колец."
+          ru: "[Строка 1] Выравнивание небесного цикла: лунный зенит управляя сезонным подъемом сока.\n[Строка 2] Сопоставление радиальных секторов с солнечным склонением равноденствия.\n[Строка 3] Регистрация гармонической периодичности внешних космологических колец."
         }
       },
       "f68r": {
@@ -715,7 +739,9 @@
         card3Title: "Yale Beinecke Repository",
         card3Desc: "Digitally aligned with the official archival folios preserved at Yale University's Beinecke Library.",
         corpusTitle: "Interactive Corpus & Real-Time Folio Explorer",
-        corpusDesc: "Explore the manuscript line by line. Select any tested folio, analysis layer, and target translation language. You can also review the original manuscript directly in the Yale University Beinecke Library Digital Collection.",
+        corpusDesc: "Explore the manuscript line by line. Select any tested folio, analysis layer, and target translation language.",
+        yaleBannerText: "📚 <strong>Want to see the original images?</strong> Consult the scanned manuscript folio by folio in Yale University's official digital collection.",
+        yaleBtn: "View Scans on Yale ↗",
         lblFolio: "Select Folio / Section",
         lblMode: "Analysis Mode",
         lblTargetLang: "Output Translation Language",
@@ -770,7 +796,9 @@
         card3Title: "Repositorio Yale Beinecke",
         card3Desc: "Alineado digitalmente con los folios de archivo oficiales preservados en la Biblioteca Beinecke de la Universidad de Yale.",
         corpusTitle: "Explorador Interactivo de Corpus y Traducción en Tiempo Real",
-        corpusDesc: "Explora el manuscrito línea por línea. Selecciona cualquier folio analizado, capa de análisis e idioma de traducción. También puedes consultar el manuscrito original directamente en la Colección Digital de la Biblioteca Beinecke de Yale.",
+        corpusDesc: "Explora el manuscrito línea por línea. Selecciona cualquier folio analizado, capa de análisis e idioma de traducción.",
+        yaleBannerText: "📚 <strong>¿Deseas ver las imágenes originales?</strong> Consulta el manuscrito escaneado folio por folio en la colección digital oficial de la Universidad de Yale.",
+        yaleBtn: "Ver Scans en Yale ↗",
         lblFolio: "Seleccionar Folio / Sección",
         lblMode: "Modo de Análisis",
         lblTargetLang: "Idioma de Traducción de Salida",
@@ -825,7 +853,9 @@
         card3Title: "耶鲁贝内克典藏",
         card3Desc: "与耶鲁大学贝内克图书馆保存的官方档案对开页保持数字同步。",
         corpusTitle: "交互式语料库与实时对开页浏览器",
-        corpusDesc: "逐行探索手稿。选择任意测试过的对开页、分析层和目标翻译语言。您也可以直接在耶鲁大学贝内克图书馆数字馆藏中查看原始手稿。",
+        corpusDesc: "逐行探索手稿。选择任意测试过的对开页、分析层和目标翻译语言。",
+        yaleBannerText: "📚 <strong>想看原图吗？</strong> 在耶鲁大学官方数字藏品中逐页查阅扫描手稿。",
+        yaleBtn: "查看耶鲁扫描件 ↗",
         lblFolio: "选择 Folio / 章节",
         lblMode: "分析模式",
         lblTargetLang: "输出翻译语言",
@@ -870,7 +900,7 @@
         heroSubtitle: "منصة حوسبية مفتوحة المصدر توثق الحل الهيكلي لمخطوطة فويتش من خلال نمذجة الارتباط المصفوفي وقواعد السوائل.",
         originStory: "💡 <strong>إنجاز علمي مستقل:</strong> تم تطويره من المكسيك كمبادرة بحثية مستقلة رائدة بالتعاون المباشر مع الذكاء الاصطناعي، مما حقق ما فاتته centuries من المؤسسات: اخضاع محرك حوسبي صارم لـ 100% من صفحات المخطوطة والوصول إلى نموذج أولي فعال ومفتوح للعالم.",
         historyTitle: "اللغز، قرون من الغموض والإنجاز الحاسم",
-        historyP1: "لأكثر من قرن منذ اكتشافها من قبل تاجر التحف ويلفريد فويتش في عام 1912، حيرت مخطوطة MS 408 (مخطوطة فويتش) أجيالاً من كبار علماء التشفير واللغويين والمؤرخين في جميع أنحاء العالم. تعود إلى القرن الخامس عشر (حوالي 1404–1438)، وأثار رسمها الغريبة لنباتات مجهولة ومخططات فلكية وأنابيب بيولوجية مجهرية نقاشاً لا ينتهي: هل كانت خدعة معقدة، أم لغة طبيعية مجهولة، أم شفرة سرية متقنة؟ لقد تعثرت العقول النيرة—بما في ذلك فاعلو ف克 الشفرات الأسطوريون في الحرب العالمية الثانية—لأنهم عومل النص كشفرة استبدال تقليدية أو بناء اصطناعي معزول.",
+        historyP1: "لأكثر من قرن منذ اكتشافها من قبل تاجر التحف ويلفريد فويتش في عام 1912، حيرت مخطوطة MS 408 (مخطوطة فويتش) أجيالاً من كبار علماء التشفير واللغويين والمؤرخين في جميع أنحاء العالم. تعود إلى القرن الخامس عشر (حوالي 1404–1438)، وأثار رسمها الغريبة لنباتات مجهولة ومخططات فلكية وأنابيب بيولوجية مجهرية نقاشاً لا ينتهي: هل كانت خدعة معقدة، أم لغة طبيعية مجهولة، أم شفرة سرية متقنة؟ لقد تعثرت العقول النيرة—بما في ذلك فاعلو فك الشفرات الأسطوريون في الحرب العالمية الثانية—لأنهم عومل النص كشفرة استبدال تقليدية أو بناء اصطناعي معزول.",
         historyP2: "تم تحقيق الإنجاز الحاسم من خلال التخلي عن افتراضات التشفير التعسفية وتطبيق إطار رياضي صارم لارتباط المصفوفات مقترناً بنمذجة قواعد السوائل. من خلال ربط البوادئ واللاحقات المورفولوجية مباشرة بالوظائف البيولوجية والعلمية الموضحة عبر صفحاتها (الاختصارات الطبية الجالينية، خصائص الأعشاب، والدورات الكوزمولوجية)، تم فتح الهيكل الوسيط الكامن بنجاح.",
         historyP3: "تتمثل مهمتنا الأساسية في إخراج هذا الاكتشاف التاريخي من خزائن الأكاديمية المتربة ووضعه مباشرة في متناول الجميع. نريد من عشاق التاريخ والتشفير والطلاب والعقول الفضولية في جميع أنحاء العالم التفاعل مع المخطوطة في الوقت الفعلي—مما يجعل استكشاف الأسرار القديمة ذا طابع تعليمي عميق ومسلٍ حقاً.",
         card1Title: "تم الاختبار عبر جميع الصفحات",
@@ -880,7 +910,9 @@
         card3Title: "مستودع Yale Beinecke",
         card3Desc: "متناسق رقمياً مع صفحات الأرشيف الرسمية المحفوظة في مكتبة بينيكي بجامعة ييل.",
         corpusTitle: "مدونة النصوص التفاعلية ومستكشف الصفحات الفوري",
-        corpusDesc: "استكشف المخطوطة سطراً بسطر. حدد أي صفحة تم اختبارها وطبقة تحليل ولغة ترجمة مستهدفة. يمكنك أيضاً مراجعة المخطوطة الأصلية مباشرة في مجموعة مكتبة بينيكي الرقمية بجامعة ييل.",
+        corpusDesc: "استكشف المخطوطة سطراً بسطر. حدد أي صفحة تم اختبارها وطبقة تحليل ولغة ترجمة مستهدفة.",
+        yaleBannerText: "📚 <strong>تريد رؤية الصور الأصلية؟</strong> استشر المخطوطة الممسوحة ضوئياً صفحة بصفحة في المجموعة الرقمية الرسمية بجامعة ييل.",
+        yaleBtn: "عرض الفحوصات في ييل ↗",
         lblFolio: "تحديد الصفحة / القسم",
         lblMode: "وضع التحليل",
         lblTargetLang: "لغة الترجمة المستهدفة",
@@ -935,7 +967,9 @@
         card3Title: "Référentiel Yale Beinecke",
         card3Desc: "Aligné numériquement avec les folios officiels conservés à la bibliothèque Beinecke de Yale.",
         corpusTitle: "Corpus Interactif et Explorateur de Folios en Temps Réel",
-        corpusDesc: "Explorez le manuscrit ligne par ligne. Sélectionnez n'importe quel folio testé, couche d'analyse et langue de traduction. Consultez également l'original dans la collection numérique de Yale.",
+        corpusDesc: "Explorez le manuscrit ligne par ligne. Sélectionnez n'importe quel folio testé, couche d'analyse et langue de traduction.",
+        yaleBannerText: "📚 <strong>Envie de voir les images originales ?</strong> Consultez le manuscrit numérisé folio par folio dans la collection numérique officielle de l'Université de Yale.",
+        yaleBtn: "Voir les scans sur Yale ↗",
         lblFolio: "Sélectionner le Folio",
         lblMode: "Mode d'Analyse",
         lblTargetLang: "Langue de Traduction",
@@ -990,7 +1024,9 @@
         card3Title: "Archivio Yale Beinecke",
         card3Desc: "Allineato digitalmente con i folio ufficiali conservati alla Biblioteca Beinecke di Yale.",
         corpusTitle: "Corpus Interattivo ed Esploratore in Tempo Reale",
-        corpusDesc: "Esplora il manoscritto riga per riga. Seleziona qualsiasi folio, livello di analisi e lingua di traduzione. Consulta anche la collezione digitale di Yale.",
+        corpusDesc: "Esplora il manoscritto riga per riga. Seleziona qualsiasi folio, livello di analisi e lingua di traduzione.",
+        yaleBannerText: "📚 <strong>Vuoi vedere le immagini originali?</strong> Consulta il manoscritto digitalizzato folio per folio nella collezione ufficiale dell'Università di Yale.",
+        yaleBtn: "Vedi scansioni su Yale ↗",
         lblFolio: "Seleziona Folio",
         lblMode: "Modalità di Analisi",
         lblTargetLang: "Lingua di Traduzione",
@@ -1045,7 +1081,9 @@
         card3Title: "Репозиторий Yale Beinecke",
         card3Desc: "Цифровой аналог официальных фолио Библиотеки Бейнеке Йельского университета.",
         corpusTitle: "Интерактивный корпус и проводник по фолио",
-        corpusDesc: "Изучайте рукопись строка за строкой. Выберите фолио, режим анализа и язык перевода. Также доступна цифровая коллекция Библиотеки Бейнеке Йеля.",
+        corpusDesc: "Изучайте рукопись строка за строкой. Выберите фолио, режим анализа и язык перевода.",
+        yaleBannerText: "📚 <strong>Хотите увидеть оригинальные изображения?</strong> Изучайте сканы рукописи фолио за фолио в официальной цифровой коллекции Йельского университета.",
+        yaleBtn: "Смотреть сканы в Yale ↗",
         lblFolio: "Выберите фолио",
         lblMode: "Режим анализа",
         lblTargetLang: "Язык перевода",
@@ -1072,7 +1110,7 @@
         boxDesc: "Под финансовым спонсорством Raft Foundation. Каждое пожертвование регистрируется публично.",
         donateBtnActive: "Пожертвовать через Open Collective →",
         donateBtnPending: "Пожертвовать (Одобрение в процессе)",
-        statusPending: "* Заявка на спонсорство подана в Raft Foundation. Ссылка активируется после одобрения.",
+        statusPending: "* Заявка на спонсорство подана в Рафт-фонд. Ссылка активируется после одобрения.",
         contactTitle: "Контакты и сотрудничество",
         contactDesc: "Вы исследователь, историк, представитель института или энтузиаст, заинтересованный в нашей структуре вычислительной расшифровки? Отправьте нам сообщение.",
         lblName: "Ваше имя / Институт",
