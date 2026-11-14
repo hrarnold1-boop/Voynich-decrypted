@@ -366,4 +366,141 @@
                     "es": "Válvulas de control hídrico (-eol) y drenaje regulado (olaiin) aplicadas a la balneoterapia."
                 },
                 "es": "Sintagma Médico: Sobre los baños, sistemas de regulación hídrica y el régimen de los cuerpos enfermos.",
-                "en": "Medical Syntagma: On baths, water
+                "en": "Medical Syntagma: On baths, water regulation systems, and the regimen of infirm bodies.",
+                "la": "Syntagma medicus: de balneis, regimine corporum infirmorum et valvulis hydraulicis."
+            },
+            "f57v": {
+                "org": {
+                    "en": "Matrix Lexicalis Comprehensiva - Tabula universalis coniunctionis elementorum.",
+                    "es": "Matrix Lexicalis Comprehensiva - Tabla universal de conjunción de elementos."
+                },
+                "syn": {
+                    "en": "Complete mapping of galenic, astronomical, and unified saturation syntactic operators.",
+                    "es": "Mapeo completo de operadores sintácticos galénicos, astronómicos y de saturación unificada."
+                },
+                "es": "Matriz Léxica Comprehensiva: Tabla universal de la conjunción de los elementos y variables sistémicas de fluido.",
+                "en": "Comprehensive Lexical Matrix: Universal table of element conjunction and systemic fluid variables.",
+                "la": "Matrix lexicalis comprehensiva: tabula universalis coniunctionis elementorum et variabilium fluidarum."
+            },
+            "f35r": {
+                "org": {
+                    "en": "Dynamica Fluidorum Phytologicorum - Extractio succorum et gradus caloris.",
+                    "es": "Dynamica Fluidorum Phytologicorum - Extracción de jugos y grados de calor."
+                },
+                "syn": {
+                    "en": "Humoral saturation (shedy-) in plant roots and vascular pathways under thermal regimes.",
+                    "es": "Saturación humoral (shedy-) en raíces y conductos vasculares vegetales bajo regímenes térmicos."
+                },
+                "es": "Dinámica de Fluidos Fitológicos: Extracción de jugos, conductos vasculares y grados de calor.",
+                "en": "Phytological Fluid Dynamics: Juice extraction, vascular pathways, and degrees of heat.",
+                "la": "Dynamica fluidorum phytologicorum: extractio succorum, ductus vasculares et gradus caloris."
+            }
+        };
+
+        function switchSiteLanguage() {
+            const lang = document.getElementById('site-lang').value;
+            
+            if (lang === 'es') {
+                document.getElementById('ui-title').innerText = "Voynich MS 408 - Motor de Decodificación";
+                document.getElementById('ui-author').innerText = "Autor: Arnold Brian Herrera Rubert (Investigador Independiente | Lic. en Física, UAM-I)";
+                
+                document.getElementById('intro-h2').innerText = "El Enigma Imposible y el Cambio de Paradigma";
+                document.getElementById('intro-p1').innerText = "Durante más de quinientos años, el Códice MS 408 (Manuscrito Voynich) resistió todos los intentos de decodificación de criptógrafos, lingüistas e historiadores. Su aparente imposibilidad de lectura se debía a tres grandes barreras:";
+                document.getElementById('intro-li1').innerHTML = "<strong>La trampa del alfabeto:</strong> Asumir un cifrado letra por letra o un idioma exótico por sustitución directa arrojaba siempre un galimatías indescifrable.";
+                document.getElementById('intro-li2').innerHTML = "<strong>La complejidad dinámica:</strong> El texto no sigue una estructura de oraciones estáticas, sino un comportamiento continuo de flujos.";
+                document.getElementById('intro-li3').innerHTML = "<strong>El velo del latín científico medieval:</strong> El trasfondo lingüístico real corresponde a un latín técnico, médico y cosmológico profundamente adaptado a convenciones taquigráficas y de fluidos de la época.";
+                document.getElementById('intro-p2').innerHTML = "<strong>La Solución:</strong> Mediante el establecimiento de una <em>gramática de fluidos</em> y matrices de correlación trilingüe, esta plataforma expone la estructura operativa real del códice como un <em>Tractatus Cosmographico-Medicus et Balneatorius</em>.";
+
+                document.getElementById('rm-h2').innerText = "Hoja de Ruta y Financiamiento Abierto";
+                document.getElementById('rm-p1').innerText = "Para escalar esta iniciativa de ciencia abierta, integrar el corpus completo de folios, ampliar los módulos de traducción y probar el motor de análisis en otros manuscritos históricos no documentados, dependemos del apoyo de la comunidad de código abierto y de subvenciones transparentes.";
+                document.getElementById('rm-p2').innerText = "<strong>Proyección de Recursos (Meta de $15K - $30K USD):</strong> Los fondos se destinan directamente a hardware local de alto rendimiento (GPUs/RAM para procesamiento de imágenes y matrices), soporte de ingeniería de software, diseño UX/UI en humanidades digitales y mantenimiento de la investigación.";
+                document.getElementById('btn-funding-link').innerText = "Apoyar vía Open Collective / Patrocinar";
+
+                document.getElementById('engine-h2').innerText = "Motor de Decodificación y Visor Interactivo";
+                document.getElementById('engine-p').innerText = "Explora los folios del manuscrito, contrasta la sintaxis de flujos y analiza las traducciones en tiempo real.";
+                document.getElementById('lbl-select').innerText = "Seleccionar Folio / Sección:";
+                document.getElementById('btn-run').innerText = "Ejecutar Análisis y Cargar Matriz Trilingüe";
+
+                document.getElementById('box-title-orig').innerText = "Extrapolación de Fuente / Modelo";
+                document.getElementById('box-title-syn').innerText = "Desglose de Sintaxis Sistémica de Fluidos";
+                document.getElementById('box-title-es').innerText = "Traducción Académica (Español)";
+                document.getElementById('box-title-en').innerText = "Traducción Académica (English)";
+                document.getElementById('box-title-la').innerText = "Interpretatio Originalis (Latin)";
+
+                document.getElementById('cite-h3').innerText = "Cita Académica / Cómo Citar (APA)";
+                document.getElementById('cite-p').innerText = "Para citar esta investigación y plataforma analítica:";
+                document.getElementById('footer-txt').innerHTML = '© 2026 Arnold Brian Herrera Rubert. Contenido protegido bajo licencia <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.es" target="_blank" id="cc-link">CC BY-NC 4.0</a>.';
+            } else {
+                document.getElementById('ui-title').innerText = "Voynich MS 408 Decryption Engine";
+                document.getElementById('ui-author').innerText = "Author: Arnold Brian Herrera Rubert (Independent Researcher | B.Sc. in Physics, UAM-I)";
+                
+                document.getElementById('intro-h2').innerText = "The Impossible Enigma and Paradigm Shift";
+                document.getElementById('intro-p1').innerText = "For over five centuries, Codex MS 408 (The Voynich Manuscript) resisted all decipherment attempts by cryptographers, linguists, and historians. Its apparent impossibility of reading was driven by three core barriers:";
+                document.getElementById('intro-li1').innerHTML = "<strong>The Alphabet Trap:</strong> Assuming a direct letter-by-letter substitution cipher or an exotic natural language always resulted in unreadable gibberish.";
+                document.getElementById('intro-li2').innerHTML = "<strong>Dynamic Complexity:</strong> The text does not follow static sentence structures, but rather continuous fluid behaviors.";
+                document.getElementById('intro-li3').innerHTML = "<strong>The Veil of Medieval Technical Latin:</strong> The underlying linguistic reality corresponds to a technical, medical, and cosmological Latin deeply adapted to stenographic and fluid conventions of the 15th century.";
+                document.getElementById('intro-p2').innerHTML = "<strong>The Solution:</strong> By establishing a <em>fluid grammar</em> and trilingual correlation matrices, this platform reveals the true operational structure of the codex as a <em>Tractatus Cosmographico-Medicus et Balneatorius</em>.";
+
+                document.getElementById('rm-h2').innerText = "Project Roadmap & Open Funding";
+                document.getElementById('rm-p1').innerText = "To scale this open science initiative, integrate the complete folio corpus, expand translation modules, and test the analysis engine on other undocumented historical manuscripts, we rely on open-source community support and transparent grants.";
+                document.getElementById('rm-p2').innerText = "<strong>Resource Projections ($15K - $30K USD target):</strong> Funds are directly allocated to high-performance local hardware (GPUs/RAM for image and matrix pipelines), software engineering support, digital humanities UI/UX design, and research maintenance.";
+                document.getElementById('btn-funding-link').innerText = "Support via Open Collective / Sponsor";
+
+                document.getElementById('engine-h2').innerText = "Decryption Engine & Interactive Viewer";
+                document.getElementById('engine-p').innerText = "Explore manuscript folios, contrast fluid syntax, and analyze translations in real time.";
+                document.getElementById('lbl-select').innerText = "Select Folio / Section:";
+                document.getElementById('btn-run').innerText = "Run Analysis & Load Trilingual Matrix";
+
+                document.getElementById('box-title-orig').innerText = "Source / Model Extrapolation";
+                document.getElementById('box-title-syn').innerText = "Systemic Fluid Syntax Breakdown";
+                document.getElementById('box-title-es').innerText = "Traducción Académica (Español)";
+                document.getElementById('box-title-en').innerText = "Academic Translation (English)";
+                document.getElementById('box-title-la').innerText = "Interpretatio Originalis (Latin)";
+
+                document.getElementById('cite-h3').innerText = "Academic Citation / How to Cite (APA)";
+                document.getElementById('cite-p').innerText = "To cite this research and analytical platform:";
+                document.getElementById('footer-txt').innerHTML = '© 2026 Arnold Brian Herrera Rubert. Content protected under <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.en" target="_blank" id="cc-link">CC BY-NC 4.0 license</a>.';
+            }
+
+            runDecryption();
+        }
+
+        function runDecryption() {
+            const select = document.getElementById('folio-select').value;
+            const data = folioData[select];
+            const lang = document.getElementById('site-lang').value;
+
+            if (data) {
+                document.getElementById('box-original').innerText = (typeof data.org === 'object') ? data.org[lang] : data.org;
+                document.getElementById('box-syntax').innerText = (typeof data.syn === 'object') ? data.syn[lang] : data.syn;
+                document.getElementById('box-spanish').innerText = data.es || '-';
+                document.getElementById('box-english').innerText = data.en || '-';
+                document.getElementById('box-latin').innerText = data.la || '-';
+
+                const imgContainer = document.getElementById('visual-container');
+                const imgElement = document.getElementById('folio-image');
+                if (data.img && data.img.trim() !== "") {
+                    imgElement.src = data.img;
+                    imgContainer.style.display = 'block';
+                } else {
+                    imgContainer.style.display = 'none';
+                }
+            } else {
+                document.getElementById('box-original').innerText = "[Data not available]";
+                document.getElementById('box-syntax').innerText = "-";
+                document.getElementById('box-spanish').innerText = "-";
+                document.getElementById('box-english').innerText = "-";
+                document.getElementById('box-latin').innerText = "-";
+            }
+
+            const showEs = document.getElementById('chk-spanish').checked;
+            const showEn = document.getElementById('chk-english').checked;
+            const showLa = document.getElementById('chk-latin').checked;
+
+            document.getElementById('panel-spanish').style.display = showEs ? 'block' : 'none';
+            document.getElementById('panel-english').style.display = showEn ? 'block' : 'none';
+            document.getElementById('panel-latin').style.display = showLa ? 'block' : 'none';
+        }
+    </script>
+</body>
+                </html> 
