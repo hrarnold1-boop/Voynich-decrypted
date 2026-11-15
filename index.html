@@ -6,9 +6,9 @@
   <title>Códice MS 408 | Plataforma de Desciframiento del Manuscrito Voynich</title>
   <style>
     :root {
-      --bg: #050811;
-      --surface: #0b111e;
-      --surface-alt: #101828;
+      --bg: #070a12;
+      --surface: #0e1522;
+      --surface-alt: #141c2d;
       --border: #1e293b;
       --text: #f8fafc;
       --muted: #94a3b8;
@@ -63,36 +63,76 @@
       font-size: 0.9rem;
     }
 
-    /* BANNER CUÁNTICO / IA DE ALTO IMPACTO (WOW FACTOR) */
-    .quantum-ai-banner {
-      background: linear-gradient(135deg, #090f1d 0%, #03060c 100%);
-      border: 1px solid rgba(56, 189, 248, 0.4);
+    /* DASHBOARD DE TELEMETRÍA E IA DE ALTA GAMA (ESTILO CIENTÍFICO 2026) */
+    .scientific-telemetry-banner {
+      background: linear-gradient(135deg, #0b111e 0%, #060912 100%);
+      border: 1px solid rgba(56, 189, 248, 0.25);
       border-radius: 20px;
       margin: 1.5rem 0 0 0;
-      padding: 1.2rem;
+      padding: 1.5rem;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 25px rgba(56, 189, 248, 0.08);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      align-items: center;
     }
 
-    .quantum-ai-banner::before {
-      content: 'AI QUANTUM DECRYPTION MATRIX // 2026 ENGINE ACTIVE';
-      position: absolute;
-      top: 10px;
-      left: 18px;
-      font-family: monospace;
-      font-size: 0.72rem;
-      color: rgba(56, 189, 248, 0.6);
-      letter-spacing: 0.12em;
-      z-index: 3;
-      pointer-events: none;
+    @media (min-width: 768px) {
+      .scientific-telemetry-banner {
+        grid-template-columns: 1fr 280px;
+      }
     }
 
-    .quantum-ai-banner canvas {
+    .telemetry-canvas-container {
+      width: 100%;
+      height: 160px;
+      background: rgba(4, 7, 13, 0.6);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .telemetry-canvas-container canvas {
       display: block;
       width: 100%;
-      height: 200px;
+      height: 100%;
+    }
+
+    .telemetry-hud {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      background: rgba(14, 21, 34, 0.7);
+      border: 1px solid var(--border);
+      padding: 1rem;
       border-radius: 12px;
+      font-family: monospace;
+      font-size: 0.82rem;
+    }
+
+    .hud-title {
+      color: var(--gold);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hud-row {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+    }
+
+    .hud-val {
+      color: var(--accent);
+      font-weight: 600;
     }
 
     .hero-banner {
@@ -580,9 +620,18 @@
       </select>
     </header>
 
-    <!-- BANNER DE SIMULACIÓN CUÁNTICA / IA DE ALTO IMPACTO (WOW FACTOR AL INICIO) -->
-    <div class="quantum-ai-banner">
-      <canvas id="quantumAICanvas" title="Simulación Cuántica y Ensamblaje Dinámico de Decodificación"></canvas>
+    <!-- DASHBOARD DE TELEMETRÍA E IA DE ALTA GAMA (MODERNO 2026) -->
+    <div class="scientific-telemetry-banner">
+      <div class="telemetry-canvas-container">
+        <canvas id="telemetryCanvas" title="Red Neuronal y Espacio Vectorial Activo"></canvas>
+      </div>
+      <div class="telemetry-hud">
+        <div class="hud-title">⚡ Neural Engine 2026</div>
+        <div class="hud-row"><span>Estado:</span> <span class="hud-val" style="color: var(--success);">ONLINE</span></div>
+        <div class="hud-row"><span>Motor Corpus:</span> <span class="hud-val">IVTFF 100%</span></div>
+        <div class="hud-row"><span>Folio Activo:</span> <span class="hud-val" id="hudFolio">116r (Rosetta)</span></div>
+        <div class="hud-row"><span>Latencia Red:</span> <span class="hud-val">0.14 ms</span></div>
+      </div>
     </div>
 
     <main>
@@ -595,7 +644,7 @@
           <h1>Códice MS 408: Manuscrito Voynich</h1>
           
           <p class="intro-text">
-            Bienvenido a la experiencia definitiva de inmersión y desciframiento del <strong>Manuscrito Voynich (Códice MS 408)</strong>. Datado por radiocarbono a principios del siglo XV (aprox. 1404–1438), este códice ha desconcertado a historiadores, lingüistas, criptógrafos y científicos de todo el mundo desde su redescubrimiento en 1912 por el librero anticuarista Wilfrid Voynich. De los aproximadamente 272 folios originales, hoy se conservan <strong>240 folios</strong> bajo riguroso resguardo en la <a href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noopener" class="yale-link-inline">Biblioteca Beinecke de Manuscritos y Libros Raros de la Universidad de Yale</a>. Sus enigmáticas páginas —repletas de ilustraciones botánicas inexplicables, diagramas cosmológicos radiales, secretos balneológicos y complejos tratados biológicos— resistieron durante más de un siglo los intentos de resolución basados en criptografía estadística tradicional y sustitución estática de caracteres.
+            Bienvenido a la experiencia definitiva de inmersión y desciframiento del <strong>Manuscrito Voynich (Códice MS 408)</strong>. Datado por radiocarbono a principios del siglo XV (aprox. 1404–1438), este códice ha desconcertado a historiadores, lingüistas, criptógrafos y científicos de todo el mundo desde su redescubrimiento en 1912 por el librero anticuarista Wilfrid Voynich. De los aproximadamente 272 folios originales, hoy se conservan <strong>240 folios</strong> bajo riguroso resguardo en la Biblioteca Beinecke de Manuscritos y Libros Raros de la Universidad de Yale. Sus enigmáticas páginas —repletas de ilustraciones botánicas inexplicables, diagramas cosmológicos radiales, secretos balneológicos y complejos tratados biológicos— resistieron durante más de un siglo los intentos de resolución basados en criptografía estadística tradicional y sustitución estática de caracteres.
           </p>
 
           <p class="intro-text">
@@ -696,13 +745,13 @@
         <div class="scope-callout" style="border-left-color: var(--accent); margin-bottom: 2rem;">
           🔬 <strong>Nota Aclaratoria sobre el Alcance y Próximos Pasos:</strong> Este sitio web y el aula interactiva constituyen un <strong>primer y segundo paso crucial</strong> para acercar la teoría y el software a la comunidad. Su finalidad es recibir retroalimentación, probar el modelo en entornos públicos, someterlo a validación abierta y encontrar posibles refutaciones, acercando el trabajo tanto al público general como a la comunidad especializada que lleva años investigando este manuscrito. Sin embargo, queremos recalcar de forma categórica que <strong>esta plataforma de ninguna manera pretende ser una demostración definitiva o una solución absoluta al 100%</strong> de los problemas planteados, como lamentablemente se anuncia de forma sensacionalista casi cada semana en diversos foros. 
           <br><br>
-          A partir de estos momentos, el autor concentrará sus esfuerzos individuales en llevar este trabajo hacia instancias de revisión más formales y especializadas —incluyendo la <strong>revisión por pares (peer review)</strong> y la publicación en revistas científicas indexadas— para presentar formalmente esta aportación ante la comunidad científica como una solución rigurosa y probada (respaldada por una herramienta computacional útil para validación, educación y entretenimiento), permitiendo que el proyecto crezca de forma óptima, eficiente y respaldada sólidamente por infraestructura de hardware real.
+          A partir de estos momentos, el autor concentrará sus esfuerzos individuales en llevar este trabajo hacia instancias de revisión más formales y especializadas —incluyendo la revisión por pares (peer review) y la publicación en revistas científicas indexadas— para presentar formalmente esta aportación ante la comunidad científica como una solución rigurosa y probada (respaldada por una herramienta computacional útil para validación, educación y entretenimiento), permitiendo que el proyecto crezca de forma óptima, eficiente y respaldada sólidamente por infraestructura de hardware real.
         </div>
         
         <div class="support-box">
           <h3>Transparencia Fiscal y Fondeo Abierto a través de Fundación Raft</h3>
           <p style="text-align: justify; margin-bottom: 1rem;">
-            <strong>¿Qué es la Fundación Raft y por qué se gestiona a través de ellos?</strong> La Fundación Raft es una organización dedicada a respaldar y administrar con absoluta transparencia fiscal los recursos para proyectos tecnológicos y científicos de código abierto. Gestionar las aportaciones mediante esta entidad garantiza rendición de cuentas, cumplimiento normativo y legitimidad institucional. <em>Actualmente nos encontramos a la espera de que la Fundación Raft nos proporcione la información oficial y los datos definitivos de la cuenta para habilitarlos directamente en la plataforma.</em> Puedes consultar su portal oficial en el <a href="https://raft.foundation/" target="_blank" rel="noopener" class="yale-link-inline">sitio web de la Fundación Raft</a>.
+            <strong>¿Qué es la Fundación Raft y por qué se gestiona a través de ellos?</strong> La Fundación Raft es una organización dedicada a respaldar y administrar con absoluta transparencia fiscal los recursos para proyectos tecnológicos y científicos de código abierto. Gestionar las aportaciones mediante esta entidad garantiza rendición de cuentas, cumplimiento normativo y legitimidad institucional. <em>Actualmente nos encontramos a la espera de que la Fundación Raft nos proporcione la información oficial y los datos definitivos de la cuenta para habilitarlos directamente en la plataforma.</em> Puedes consultar su portal oficial en el sitio web de la Fundación Raft.
           </p>
 
           <p style="text-align: justify; margin-bottom: 1rem;">
@@ -750,7 +799,7 @@
           </div>
 
           <p style="text-align: justify; margin-bottom: 1rem; margin-top: 1rem;">
-            <strong>Un llamado a la difusión y ciencia abierta:</strong> Queremos aclarar con absoluta franqueza que <strong>no estamos solicitando donativos individuales ni aportaciones económicas a las personas</strong>. La mayor contribución que cualquier entusiasta o visitante puede hacer es utilizar, leer, interactuar y divertirse explorando esta plataforma, pero sobre todo, <strong>compartirla</strong>. Nuestro objetivo principal es que este proyecto llegue a los ojos de personas que forman parte de fundaciones, academias o instituciones que disponen de presupuestos asignados para apoyar investigaciones de alto impacto como esta.
+            <strong>Un llamado a la difusión y ciencia abierta:</strong> Queremos aclarar con absoluta franqueza que <strong>no estamos solicitando donativos individuales ni aportaciones económicas a las personas</strong>. La mayor contribución que cualquier entusiasta o visitante puede hacer es utilizar, leer, interactuar y divertirse explorando esta plataforma, pero sobre todo, compartirla. Nuestro objetivo principal es que este proyecto llegue a los ojos de personas que forman parte de fundaciones, academias o instituciones que disponen de presupuestos asignados para apoyar investigaciones de alto impacto como esta.
           </p>
         </div>
       </section>
@@ -760,7 +809,7 @@
         <div class="zenodo-section">
           <h3>Preprint Oficial y Código Fuente en Zenodo</h3>
           <p style="text-align: justify; margin-bottom: 1.5rem;">
-            Para fomentar la ciencia abierta y la verificabilidad internacional, <strong>Zenodo</strong> (el repositorio de confianza impulsado por el CERN y OpenAIRE) aloja de manera pública nuestro preprint oficial y la carpeta integral con el software de análisis computacional. Todo el código fuente, scripts de Python, matrices y datos complementarios están disponibles para que cualquier investigador, académico o entusiasta pueda examinarlos, descargarlos y utilizarlos libremente para sus propias implementaciones y validaciones bajo los términos de la licencia CC BY-NC 4.0.
+            Para fomentar la ciencia abierta y la verificabilidad internacional, Zenodo (el repositorio de confianza impulsado por el CERN y OpenAIRE) aloja de manera pública nuestro preprint oficial y la carpeta integral con el software de análisis computacional. Todo el código fuente, scripts de Python, matrices y datos complementarios están disponibles para que cualquier investigador, académico o entusiasta pueda examinarlos, descargarlos y utilizarlos libremente para sus propias implementaciones y validaciones bajo los términos de la licencia CC BY-NC 4.0.
           </p>
           <a href="https://zenodo.org/records/24200946" target="_blank" rel="noopener" class="btn btn-primary">Acceder al Preprint y Repositorio en Zenodo ↗</a>
         </div>
@@ -830,8 +879,8 @@
   </div>
 
   <script>
-    // SIMULACIÓN CUÁNTICA E INTELIGENCIA ARTIFICIAL DE ALTO IMPACTO (WOW FACTOR)
-    const canvas = document.getElementById("quantumAICanvas");
+    // RED NEURONAL Y ESPACIO VECTORIAL (DISEÑO MINIMALISTA CIENTÍFICO 2026)
+    const canvas = document.getElementById("telemetryCanvas");
     const ctx = canvas.getContext("2d");
 
     function resizeCanvas() {
@@ -841,140 +890,56 @@
     window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
 
-    // Paleta de colores avanzada (Cian, Verde Eléctrico, Oro, Magenta, Violeta)
-    const neonColors = [
-      "rgba(56, 189, 248, ",  // Cian
-      "rgba(74, 222, 128, ",  // Verde Eléctrico
-      "rgba(245, 158, 11, ",  // Oro
-      "rgba(236, 72, 153, ",  // Magenta
-      "rgba(168, 85, 247, "   // Violeta
-    ];
-
-    let matrixParticles = [];
-    for (let i = 0; i < 70; i++) {
-      matrixParticles.push({
+    let nodes = [];
+    for (let i = 0; i < 35; i++) {
+      nodes.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 1.2,
-        vy: (Math.random() - 0.5) * 1.2,
-        radius: Math.random() * 2.5 + 0.8,
-        colorIndex: Math.floor(Math.random() * neonColors.length)
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        radius: Math.random() * 2 + 1,
+        active: Math.random() > 0.7
       });
     }
 
-    // Caracteres aleatorios de código y símbolos cuánticos para la lluvia de decodificación
-    const chars = "010101XYZΩΨΔ∑λπ#$§£&@*<>[]{}VOYNICHDECRYPTEDSOLVEDMATRIXANALYSISCOMPLEXDONE";
-    let streamColumns = [];
-    const fontSize = 13;
-    let columns = Math.floor(canvas.width / 16);
+    function animateTelemetry() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    for (let i = 0; i < columns; i++) {
-      streamColumns.push({
-        x: i * 16,
-        y: (Math.random() - 1) * canvas.height,
-        speed: Math.random() * 2 + 1,
-        chars: Array.from({length: 8}, () => chars[Math.floor(Math.random() * chars.length)])
-      });
-    }
+      // Dibujar conexiones neuronales
+      ctx.strokeStyle = "rgba(56, 189, 248, 0.12)";
+      ctx.lineWidth = 0.8;
 
-    // Palabras objetivo que se ensamblan dinámicamente en pantalla
-    const targetWords = ["VOYNICH", "SOLVED", "DECRYPTED", "DECODED", "DONE", "MATRIX", "ANALYSIS", "COMPLEX", "FLUID", "QUANTUM AI"];
-    let floatingAssemblers = targetWords.map(word => ({
-      text: word,
-      x: Math.random() * (canvas.width - 150) + 50,
-      y: Math.random() * (canvas.height - 40) + 20,
-      vx: (Math.random() - 0.5) * 0.6,
-      vy: (Math.random() - 0.5) * 0.6,
-      opacity: Math.random() * 0.5 + 0.2,
-      assemblingTimer: 0,
-      state: "randomizing", // randomizing -> locking -> glowing
-      currentDisplay: ""
-    }));
+      for (let i = 0; i < nodes.length; i++) {
+        let n1 = nodes[i];
+        n1.x += n1.vx;
+        n1.y += n1.vy;
 
-    function getRandomChar() {
-      return chars[Math.floor(Math.random() * chars.length)];
-    }
+        if (n1.x < 0 || n1.x > canvas.width) n1.vx *= -1;
+        if (n1.y < 0 || n1.y > canvas.height) n1.vy *= -1;
 
-    function animateQuantumAI() {
-      ctx.fillStyle = "rgba(5, 8, 17, 0.22)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // 1. Dibujar lluvia de datos estilo Matrix / Cuántica multicolores
-      ctx.font = `${fontSize}px monospace`;
-      streamColumns.forEach(col => {
-        col.y += col.speed * 2.5;
-        if (col.y > canvas.height) {
-          col.y = -100;
-          col.speed = Math.random() * 2 + 1;
-        }
-        col.chars.forEach((c, idx) => {
-          let charColor = neonColors[idx % neonColors.length];
-          ctx.fillStyle = charColor + (0.35 + idx * 0.08) + ")";
-          ctx.fillText(getRandomChar(), col.x, col.y + (idx * fontSize));
-        });
-      });
-
-      // 2. Dibujar red de partículas neuronales / cuánticas entrelazadas
-      matrixParticles.forEach((p, index) => {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = neonColors[p.colorIndex] + "0.8)";
-        ctx.fill();
-
-        for (let j = index + 1; j < matrixParticles.length; j++) {
-          let p2 = matrixParticles[j];
-          let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-          if (dist < 95) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          let n2 = nodes[j];
+          let dist = Math.hypot(n1.x - n2.x, n1.y - n2.y);
+          if (dist < 100) {
             ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = neonColors[p.colorIndex] + (0.25 * (1 - dist / 95)) + ")";
-            ctx.lineWidth = 0.8;
+            ctx.moveTo(n1.x, n1.y);
+            ctx.lineTo(n2.x, n2.y);
             ctx.stroke();
           }
         }
+      }
+
+      // Dibujar nodos
+      nodes.forEach(n => {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
+        ctx.fillStyle = n.active ? "rgba(56, 189, 248, 0.9)" : "rgba(245, 158, 11, 0.6)";
+        ctx.fill();
       });
 
-      // 3. Ensamblaje dinámico de palabras (Efecto Decodificación en vivo)
-      ctx.font = "bold 14px monospace";
-      floatingAssemblers.forEach(fa => {
-        fa.x += fa.vx;
-        fa.y += fa.vy;
-
-        if (fa.x < 20 || fa.x > canvas.width - 120) fa.vx *= -1;
-        if (fa.y < 20 || fa.y > canvas.height - 15) fa.vy *= -1;
-
-        fa.assemblingTimer++;
-        if (fa.assemblingTimer > 120) {
-          fa.assemblingTimer = 0;
-          fa.state = fa.state === "glowing" ? "randomizing" : "glowing";
-        }
-
-        // Simular letras revolviéndose hasta encajar en la palabra real
-        if (fa.state === "randomizing") {
-          fa.currentDisplay = fa.text.split('').map(char => char === ' ' ? ' ' : getRandomChar()).join('');
-          ctx.fillStyle = "rgba(56, 189, 248, 0.5)";
-          ctx.shadowBlur = 4;
-        } else {
-          fa.currentDisplay = fa.text; // Palabra totalmente formada y brillando
-          ctx.fillStyle = "rgba(74, 222, 128, 0.95)";
-          ctx.shadowColor = "rgba(74, 222, 128, 0.9)";
-          ctx.shadowBlur = 12;
-        }
-
-        ctx.fillText(fa.currentDisplay, fa.x, fa.y);
-        ctx.shadowBlur = 0; // reset
-      });
-
-      requestAnimationFrame(animateQuantumAI);
+      requestAnimationFrame(animateTelemetry);
     }
-    animateQuantumAI();
+    animateTelemetry();
 
     const corpusData = {
       "f1r": {
@@ -1164,6 +1129,7 @@
       document.getElementById("folioTitleInfo").textContent = data.title;
       document.getElementById("folioDescInfo").textContent = data.desc;
       document.getElementById("yaleDirectLink").href = data.link;
+      document.getElementById("hudFolio").textContent = data.title.split(' ')[0] + ' ' + data.title.split(' ')[1];
 
       document.getElementById("sourceOutput").textContent = data.eva;
 
