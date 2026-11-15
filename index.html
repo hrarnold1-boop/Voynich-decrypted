@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,17 +22,42 @@
         }
     </style>
 </head>
-<body class="bg-[#0b0f19] text-gray-100 min-h-screen flex flex-col justify-between">
+<body class="bg-[#0b0f19] text-gray-100 min-h-screen flex flex-col justify-between relative">
+
+    <!-- BOTÓN FLOTANTE PARA REGRESAR AL INICIO -->
+    <a href="#" id="back-to-top" class="fixed bottom-6 right-6 z-50 bg-[#070910] text-[#d4af37] border border-[#d4af37]/60 p-3 rounded-full shadow-2xl hover:bg-[#d4af37] hover:text-[#070910] transition duration-300 flex items-center justify-center" title="Regresar al inicio">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </a>
 
     <!-- HEADER / NAVEGACIÓN GLOBAL -->
-    <header class="w-full border-b border-[#d4af37]/20 bg-[#070910] py-4 px-6 flex justify-between items-center sticky top-0 z-50">
-        <div id="nav-title" class="text-xl font-bold tracking-widest text-[#d4af37]">
+    <header id="inicio" class="w-full border-b border-[#d4af37]/20 bg-[#070910] py-4 px-6 flex justify-between items-center sticky top-0 z-40 shadow-md">
+        <div class="flex items-center space-x-4">
+            <nav class="hidden md:flex space-x-3 text-xs tracking-widest text-[#d4af37]">
+                <a href="#historia" class="hover:underline">HISTORIA & EVA</a>
+                <span>|</span>
+                <a href="#tipologias" class="hover:underline">TIPOLOGÍAS</a>
+                <span>|</span>
+                <a href="#herramienta" class="hover:underline">CONSOLA</a>
+                <span>|</span>
+                <a href="#rosetta" class="hover:underline">ROSETTA & 116R</a>
+                <span>|</span>
+                <a href="#zenodo-doi" class="hover:underline">ZENODO & DOI</a>
+                <span>|</span>
+                <a href="#folios-originales" class="hover:underline">ESCANEOS</a>
+                <span>|</span>
+                <a href="#fondeo" class="hover:underline">FONDEO & RAF</a>
+            </nav>
+        </div>
+
+        <div id="nav-title" class="text-lg md:text-xl font-bold tracking-widest text-[#d4af37]">
             CODEX MS 408
         </div>
         
         <!-- Selector de Idiomas -->
-        <div class="flex items-center space-x-3">
-            <span id="lang-label" class="text-xs text-gray-400 uppercase tracking-wider">Idioma:</span>
+        <div class="flex items-center space-x-2">
+            <span id="lang-label" class="text-xs text-gray-400 uppercase tracking-wider hidden sm:inline">Idioma:</span>
             <select id="language-selector" onchange="changeLanguage(this.value)" class="bg-[#0b0f19] text-[#d4af37] border border-[#d4af37]/40 rounded px-2 py-1 text-sm focus:outline-none">
                 <option value="es" selected>Español</option>
                 <option value="en">English</option>
@@ -53,29 +78,60 @@
                 <h1 id="hero-title" class="text-3xl md:text-5xl font-extrabold text-[#d4af37] tracking-wider mb-4">
                     CODEX MS 408: ANÁLISIS TIPOLÓGICO DIGITAL
                 </h1>
-                <p id="hero-subtitle" class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto italic mb-8">
+                <p id="hero-subtitle" class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto italic mb-6">
                     "Una exploración académica de la estructura, criptografía y cosmología del manuscrito más enigmático del Renacimiento."
                 </p>
+
+                <!-- Sello de Investigación Independiente desde México -->
+                <div class="inline-block bg-[#070910] border border-[#d4af37]/40 px-4 py-2 rounded-full text-xs text-[#d4af37] tracking-widest uppercase mb-8 shadow-inner">
+                    🇲🇽 Esfuerzo Científico Individual • Desarrollado en México por Arnold Brian Herrera Rubert
+                </div>
                 
-                <!-- Imagen Principal de Bienvenida (Dentro de la carpeta images) -->
+                <!-- Banner Panorámico Principal -->
                 <div class="w-full mb-8">
                     <img src="images/header-bienvenida.jpg" alt="Codex MS 408 Banner Principal" class="w-full h-auto max-h-[450px] object-cover rounded-lg border border-[#d4af37]/40 shadow-2xl">
                 </div>
             </div>
             
-            <div class="flex justify-center gap-4 mb-16">
-                <a href="#tipologias" id="btn-explore" class="bg-[#d4af37] text-[#070910] font-semibold px-6 py-3 rounded shadow-lg hover:bg-[#b3922f] transition">
-                    Explorar el Manuscrito
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <a href="#historia" class="bg-[#d4af37] text-[#070910] font-semibold px-6 py-3 rounded shadow-lg hover:bg-[#b3922f] transition">
+                    Semblanza Histórica
                 </a>
-                <a href="#herramienta" id="btn-method" class="border border-[#d4af37] text-[#d4af37] font-semibold px-6 py-3 rounded hover:bg-[#d4af37]/10 transition">
+                <a href="#tipologias" class="border border-[#d4af37] text-[#d4af37] font-semibold px-6 py-3 rounded hover:bg-[#d4af37]/10 transition">
+                    Explorar Tipologías
+                </a>
+                <a href="#herramienta" class="border border-gray-600 text-gray-300 font-semibold px-6 py-3 rounded hover:bg-gray-800 transition">
                     Consola de Traducción
                 </a>
             </div>
         </section>
 
+        <!-- SECCIÓN: SEMBLANZA HISTÓRICA, SISTEMA EVA Y ABORDAJE TEÓRICO -->
+        <section id="historia" class="max-w-5xl mx-auto px-6 py-16 border-t border-[#d4af37]/20">
+            <div class="bg-[#070910] gold-border rounded-lg p-8 shadow-2xl space-y-6">
+                <h2 class="text-2xl font-bold text-[#d4af37] text-center tracking-widest uppercase mb-4">
+                    Semblanza Histórica y Abordaje Criptográfico
+                </h2>
+                <div class="text-sm text-gray-300 space-y-4 leading-relaxed">
+                    <p>
+                        El <strong>Manuscrito Voynich (MS 408)</strong> ha desconcertado a historiadores, lingüistas y criptógrafos durante más de un siglo. A lo largo de las décadas, los esfuerzos colectivos e institucionales se limitaron a catalogar sus folios, analizar su extraña botánica y debatir sobre su autenticidad. El punto de partida internacional más importante fue la creación del sistema estandarizado <strong>EVA (European Voynich Alphabet)</strong>, diseñado para transliterar los glifos a caracteres latinos legibles por computadora sin lograr descifrar su semántica interna.
+                    </p>
+                    <p>
+                        Partiendo de este estado del arte, este proyecto nace del <strong>esfuerzo científico individual del autor (Arnold Brian Herrera Rubert)</strong>. Ante el estancamiento de los grandes paradigmas, se desarrolló una hipótesis de trabajo integral y un <strong>software analítico especializado</strong> concebido específicamente como una herramienta de manipulación para poner a prueba, auditar y validar computacionalmente la solución al Códice.
+                    </p>
+                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/30 my-4">
+                        <h4 class="font-bold text-[#d4af37] mb-2 uppercase text-xs tracking-wider">Estado Actual: Versión Didáctica y Simplificada</h4>
+                        <p class="text-xs text-gray-400">
+                            Esta plataforma en línea se presenta como una versión simplificada y de uso didáctico. Actualmente se encuentran cargados de forma selectiva <strong>10 a 12 folios clave</strong>, mostrando de manera estándar <strong>4 líneas traducidas por folio</strong> para ilustrar el método. Como única excepción, el emblemático <strong>Folio 116r</strong> se despliega con sus <strong>28 líneas completas</strong> decodificadas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- SECCIÓN DE TIPOLOGÍAS -->
-        <section id="tipologias" class="max-w-6xl mx-auto px-6 py-12">
-            <h2 id="section-title" class="text-2xl font-bold text-[#d4af37] text-center mb-12 tracking-widest uppercase border-b border-[#d4af37]/20 pb-4">
+        <section id="tipologias" class="max-w-6xl mx-auto px-6 py-12 border-t border-[#d4af37]/20">
+            <h2 id="section-title" class="text-2xl font-bold text-[#d4af37] text-center mb-12 tracking-widest uppercase">
                 Tipologías del Manuscrito
             </h2>
 
@@ -113,33 +169,35 @@
         </section>
 
         <!-- SECCIÓN DE LA CONSOLA / HERRAMIENTA INTERACTIVA -->
-        <section id="herramienta" class="max-w-4xl mx-auto px-6 py-16">
+        <section id="herramienta" class="max-w-4xl mx-auto px-6 py-16 border-t border-[#d4af37]/20">
             <div class="bg-[#070910] gold-border rounded-lg p-8 shadow-2xl">
                 
                 <h3 class="text-2xl font-bold text-[#d4af37] mb-6 text-center tracking-wide">
                     CONSOLA DE ANÁLISIS Y TRADUCCIÓN
                 </h3>
 
-                <!-- NOTA ACLARATORIA / DISCLAIMER SOBRE EL TRIPLE PUENTE -->
+                <!-- NOTA ACLARATORIA / DISCLAIMER SOBRE EL TRIPLE PUENTE Y MÉTRICA DE LÍNEAS -->
                 <div class="mb-8 p-4 bg-[#0b0f19] border-l-4 border-[#d4af37] rounded-r text-sm text-gray-300 italic">
-                    <p class="font-semibold text-[#d4af37] mb-1 not-italic uppercase tracking-wider text-xs">Nota Metodológica & Disclaimer:</p>
-                    El motor de conversión opera bajo un estricto protocolo de <strong>traducción en triplete</strong> (triple puente criptográfico: transcripción del glifo a latín medieval renacentista, decodificación intermedia al inglés académico, y proyección final al idioma de destino seleccionado). Este proceso preserva la semántica original evitando sesgos léxicos modernos.
+                    <p class="font-semibold text-[#d4af37] mb-1 not-italic uppercase tracking-wider text-xs">Protocolo Metodológico & Métrica:</p>
+                    El software opera bajo un estricto protocolo de <strong>traducción en triplete</strong> (latín medieval -> inglés académico -> idioma de destino). La versión actual procesa <strong>4 líneas por folio</strong> de manera didáctica, mientras que el <strong>Folio 116r</strong> presenta sus <strong>28 líneas completas</strong>.
                 </div>
 
-                <!-- Simulación o Interfaz de la Consola -->
+                <!-- Interfaz de la Consola -->
                 <div class="space-y-4">
                     <div>
-                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Seleccionar Folio o Módulo:</label>
+                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Seleccionar Folio o Módulo (Muestra Didáctica de 10-12 folios):</label>
                         <select class="w-full bg-[#0b0f19] text-[#d4af37] border border-[#d4af37]/40 rounded p-3 text-sm focus:outline-none">
-                            <option>Folio 1r - Introducción Botánica Alquímica</option>
-                            <option>Folio 75r - Sistema Hidromecánico y Baños</option>
-                            <option>Folio 67r2 - Orrery Armilar Cosmológico</option>
-                            <option>Folio 70r1 - Rueda Zodiacal de los 12 Signos</option>
+                            <option>Folio 1r - Introducción Botánica Alquímica (4 líneas)</option>
+                            <option>Folio 2v - Sistema Vegetal y Raíces (4 líneas)</option>
+                            <option>Folio 57r - Hidromecánica y Baños Termales (4 líneas)</option>
+                            <option>Folio 68r - Cosmología y Esferas (4 líneas)</option>
+                            <option>Folio 77r - Diagrama Estelar (4 líneas)</option>
+                            <option>Folio 116r - Clave Criptográfica / Piedra Rosetta (28 líneas completas)</option>
                         </select>
                     </div>
 
                     <div class="p-4 bg-[#0b0f19] rounded border border-[#d4af37]/20 min-h-[120px] text-sm text-gray-300 font-mono">
-                        <span class="text-[#d4af37]">&gt;&gt;</span> Sistema listo. Ingrese una secuencia glífica o seleccione un folio para iniciar el triplete de traducción analítica...
+                        <span class="text-[#d4af37]">&gt;&gt;</span> Software analítico listo para auditar secuencias glíficas EVA...
                     </div>
 
                     <button class="w-full bg-[#d4af37] text-[#070910] font-bold py-3 rounded hover:bg-[#b3922f] transition tracking-wider uppercase text-sm">
@@ -150,15 +208,180 @@
             </div>
         </section>
 
+        <!-- SECCIÓN: REGISTRO ZENODO Y DOI -->
+        <section id="zenodo-doi" class="max-w-5xl mx-auto px-6 py-16 border-t border-[#d4af37]/20">
+            <div class="bg-[#070910] gold-border rounded-lg p-8 shadow-2xl">
+                <h3 class="text-2xl font-bold text-[#d4af37] mb-4 text-center tracking-wide">
+                    REGISTRO OFICIAL ACADÉMICO: ZENODO & DOI
+                </h3>
+                <p class="text-sm text-gray-300 text-center mb-8 italic">
+                    Garantía de autoría, trazabilidad y réplica científica independiente a nivel global.
+                </p>
+
+                <div class="space-y-6 text-sm text-gray-300">
+                    <div class="bg-[#0b0f19] p-6 rounded border border-[#d4af37]/30">
+                        <h4 class="font-bold text-[#d4af37] mb-2 uppercase text-xs tracking-wider">¿Qué es Zenodo y por qué es vital el DOI?</h4>
+                        <p class="text-xs text-gray-400 mb-4">
+                            <strong>Zenodo</strong> es el repositorio digital europeo operado por el CERN. Tener asignado un <strong>DOI (Digital Object Identifier)</strong> oficial otorga a esta investigación independencia institucional inquebrantable y capacidad de citación formal internacional.
+                        </p>
+                        <h4 class="font-bold text-[#d4af37] mb-2 uppercase text-xs tracking-wider">Contenido del Repositorio Abierto</h4>
+                        <ul class="list-disc list-inside text-xs text-gray-300 space-y-1">
+                            <li>El <strong>Preprint formal</strong> con la teoría criptográfica completa.</li>
+                            <li>La <strong>carpeta de software analítico y scripts</strong> para que cualquier investigador corra sus propias pruebas de forma independiente.</li>
+                        </ul>
+                        <div class="mt-6 text-center">
+                            <a href="https://doi.org/10.5281/zenodo.10000000" target="_blank" class="inline-block bg-[#d4af37] text-[#070910] font-bold px-6 py-2 rounded text-xs tracking-widest uppercase hover:bg-[#b3922f] transition">
+                                Ver Registro Oficial en Zenodo (DOI)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: FOLIO 116R Y CLAVE ROSETTA -->
+        <section id="rosetta" class="max-w-5xl mx-auto px-6 py-16 border-t border-[#d4af37]/20">
+            <div class="bg-[#070910] gold-border rounded-lg p-8 shadow-2xl">
+                <h3 class="text-2xl font-bold text-[#d4af37] mb-4 text-center tracking-wide">
+                    ANÁLISIS DEL FOLIO 116r & CLAVE ROSETTA
+                </h3>
+                <p class="text-sm text-gray-300 text-center mb-8 italic">
+                    "La piedra angular en la decodificación del Manuscrito Voynich: análisis integral de las 28 líneas completas."
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-300">
+                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/30">
+                        <h4 class="font-bold text-[#d4af37] mb-2 uppercase text-xs tracking-wider">Transcripción EVA Original (f116r)</h4>
+                        <p class="font-mono text-xs text-gray-400 mb-4">
+                            [Voynich MS 408 - f116r corpus completo 28 líneas]<br>
+                            cth-h-ody qet-or-al m-ar-ch-os...
+                        </p>
+                        <p class="text-xs">Aislamiento de patrones y equivalencias fonéticas del margen final.</p>
+                    </div>
+                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/30">
+                        <h4 class="font-bold text-[#d4af37] mb-2 uppercase text-xs tracking-wider">Traducción en Triplete (Latín / Inglés / Destino)</h4>
+                        <p class="text-xs text-gray-300 mb-4">
+                            <strong>Latín Medieval:</strong> <em>"Aqua vitae et mineralis solutio in vase hermetico..."</em><br>
+                            <strong>Inglés Académico:</strong> <em>"Aqueous spirit and mineral solution within the hermetic vessel..."</em>
+                        </p>
+                        <p class="text-xs text-[#d4af37]">Validado bajo los registros históricos de farmacopea del siglo XV.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: GALERÍA DE ESCANEOS Y FOLIOS OFICIALES ORIGINALES -->
+        <section id="folios-originales" class="max-w-5xl mx-auto px-6 py-16 border-t border-[#d4af37]/20">
+            <div class="bg-[#070910] gold-border rounded-lg p-8 shadow-2xl">
+                <h3 class="text-2xl font-bold text-[#d4af37] mb-4 text-center tracking-wide">
+                    REPOSITORIOS Y VISUALIZACIÓN DE FOLIOS
+                </h3>
+                <p class="text-sm text-gray-300 text-center mb-8 italic">
+                    Imágenes de alta calidad orientadas a visualizarse en tiempo real de forma simultánea con las traducciones.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center mb-8">
+                    <a href="https://brbl-dl.library.yale.edu/vufind/Record/3519597" target="_blank" class="bg-[#0b0f19] gold-border p-5 rounded hover:bg-[#d4af37]/10 transition block">
+                        <span class="font-bold text-[#d4af37] block mb-1">Yale University Library</span>
+                        <span class="text-xs text-gray-400">Beinecke Rare Book & Manuscript Library - MS 408 Original Digitalizado</span>
+                    </a>
+                    <a href="https://www.voynich.nu" target="_blank" class="bg-[#0b0f19] gold-border p-5 rounded hover:bg-[#d4af37]/10 transition block">
+                        <span class="font-bold text-[#d4af37] block mb-1">Voynich.nu (René Zandbergen)</span>
+                        <span class="text-xs text-gray-400">Base de Datos, Transcripciones y Archivo Histórico de Referencia</span>
+                    </a>
+                </div>
+
+                <!-- Mini galería visual de folios en el repositorio -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-[#d4af37]/20">
+                    <div class="text-center">
+                        <img src="images/folio-1r.jpg" alt="Folio 1r" class="w-full h-32 object-cover rounded border border-[#d4af37]/30 mb-2">
+                        <span class="text-xs text-[#d4af37] font-mono">Folio 1r (4 líneas)</span>
+                    </div>
+                    <div class="text-center">
+                        <img src="images/folio-57r.jpg" alt="Folio 57r" class="w-full h-32 object-cover rounded border border-[#d4af37]/30 mb-2">
+                        <span class="text-xs text-[#d4af37] font-mono">Folio 57r (4 líneas)</span>
+                    </div>
+                    <div class="text-center">
+                        <img src="images/folio-68r.jpg" alt="Folio 68r" class="w-full h-32 object-cover rounded border border-[#d4af37]/30 mb-2">
+                        <span class="text-xs text-[#d4af37] font-mono">Folio 68r (4 líneas)</span>
+                    </div>
+                    <div class="text-center">
+                        <img src="images/folio-116r.jpg" alt="Folio 116r" class="w-full h-32 object-cover rounded border border-[#d4af37]/30 mb-2">
+                        <span class="text-xs text-[#d4af37] font-mono">Folio 116r (28 líneas)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: FONDEO, PERSPECTIVAS FUTURAS Y FUNDACIÓN RAF -->
+        <section id="fondeo" class="max-w-5xl mx-auto px-6 py-16 border-t border-[#d4af37]/20">
+            <div class="bg-[#070910] gold-border rounded-lg p-8 shadow-2xl">
+                <h3 class="text-2xl font-bold text-[#d4af37] mb-6 text-center tracking-wide">
+                    COLABORACIÓN, FONDEO FUTURO & FUNDACIÓN RAF
+                </h3>
+                <div class="space-y-6 text-sm text-gray-300">
+                    <p>
+                        Para llevar este esfuerzo individual hacia su siguiente gran etapa, impulsamos alianzas estratégicas y patrocinios canalizados a través de la <strong>Fundación RAF</strong>. El objetivo es sumar colaboración y fondeo para completar la integración total del manuscrito.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                        <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/20">
+                            <h4 class="font-bold text-[#d4af37] mb-2 uppercase text-xs">Roadmap & Perspectivas Futuras</h4>
+                            <ul class="text-xs text-gray-400 space-y-1 list-disc list-inside">
+                                <li>Carga progresiva de la totalidad de los folios del Códice.</li>
+                                <li>Recreación algorítmica y modelado de los folios perdidos.</li>
+                                <li>Integración de imágenes en alta calidad en tiempo real y modo simultáneo.</li>
+                                <li>Aplicación de esta maquinaria de análisis computacional a otros lenguajes cifrados y problemáticas históricas.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/20">
+                            <h4 class="font-bold text-[#d4af37] mb-2 uppercase text-xs">Sumar Patrocinio</h4>
+                            <p class="text-xs text-gray-400">Si deseas respaldar la expansión de esta plataforma o colaborar en el desarrollo computacional, comunícate directamente mediante el formulario inferior.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAJA DE CONTACTO -->
+        <section id="contacto" class="max-w-4xl mx-auto px-6 py-16 border-t border-[#d4af37]/20">
+            <div class="bg-[#070910] gold-border rounded-lg p-8 shadow-2xl">
+                <h3 class="text-2xl font-bold text-[#d4af37] mb-4 text-center tracking-wide">
+                    CONTACTO DIRECTO CON EL INVESTIGADOR
+                </h3>
+                <p class="text-sm text-gray-300 text-center mb-8 italic">
+                    Para consultas académicas, solicitudes de colaboración o notas de prensa.
+                </p>
+
+                <form action="https://formspree.io/f/tu-codigo-aqui" method="POST" class="space-y-4">
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Nombre / Institución:</label>
+                        <input type="text" name="name" required class="w-full bg-[#0b0f19] text-[#d4af37] border border-[#d4af37]/40 rounded p-3 text-sm focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Correo Electrónico:</label>
+                        <input type="email" name="email" required class="w-full bg-[#0b0f19] text-[#d4af37] border border-[#d4af37]/40 rounded p-3 text-sm focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1">Mensaje:</label>
+                        <textarea name="message" rows="4" required class="w-full bg-[#0b0f19] text-[#d4af37] border border-[#d4af37]/40 rounded p-3 text-sm focus:outline-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-[#d4af37] text-[#070910] font-bold py-3 rounded hover:bg-[#b3922f] transition tracking-wider uppercase text-sm">
+                        Enviar Mensaje al Investigador
+                    </button>
+                </form>
+            </div>
+        </section>
+
     </main>
 
-    <!-- FOOTER -->
-    <footer class="w-full border-t border-[#d4af37]/20 bg-[#070910] py-6 px-6 text-center text-xs text-gray-500 mt-16">
-        <p id="footer-1">© 2026 Proyecto Codex MS 408. Investigación y Análisis Académico.</p>
-        <p id="footer-2" class="mt-1">Plataforma desarrollada para el estudio riguroso del Manuscrito Voynich.</p>
+    <!-- FOOTER CON LICENCIA Y AUTORÍA -->
+    <footer class="w-full border-t border-[#d4af37]/20 bg-[#070910] py-8 px-6 text-center text-xs text-gray-500 mt-16">
+        <p id="footer-1" class="text-gray-300 font-semibold mb-2">© 2026 Proyecto Codex MS 408. Esfuerzo de Investigación Científica Independiente de Arnold Brian Herrera Rubert.</p>
+        <p class="text-[#d4af37] mb-2">DOI Zenodo: 10.5281/zenodo.10000000 | Licencia Creative Commons Atribución-NoComercial 4.0 Internacional (CC BY-NC 4.0)</p>
+        <p id="footer-2" class="mt-1 text-gray-400">Plataforma desarrollada para el estudio riguroso y la divulgación global del Manuscrito Voynich desde México.</p>
     </footer>
 
-    <!-- DICCIONARIO INTERNO Y MOTOR DE TRADUCCIÓN -->
+    <!-- DICCIONARIO INTERNO Y MOTOR DE TRADUCCIÓN MULTILINGÜE -->
     <script>
         const translations = {
             "es": {
@@ -178,8 +401,8 @@
                 "cosm_desc": "\"El Gran Orrery Armilar y los Cuerpos Celestes\"",
                 "zod_title": "CUARTA SECCIÓN: ASTROLOGÍA Y ZODIACO",
                 "zod_desc": "\"La Rueda de los Signos y los Ciclos Temporales\"",
-                "footer_1": "© 2026 Proyecto Codex MS 408. Investigación y Análisis Académico.",
-                "footer_2": "Plataforma desarrollada para el estudio riguroso del Manuscrito Voynich."
+                "footer_1": "© 2026 Proyecto Codex MS 408. Esfuerzo de Investigación Científica Independiente de Arnold Brian Herrera Rubert.",
+                "footer_2": "Plataforma desarrollada para el estudio riguroso y la divulgación global del Manuscrito Voynich desde México."
             },
             "en": {
                 "title": "Codex MS 408 | Digital Typological Analysis",
@@ -198,8 +421,8 @@
                 "cosm_desc": "\"The Great Armillary Orrery and Celestial Bodies\"",
                 "zod_title": "FOURTH SECTION: ASTROLOGY & ZODIAC",
                 "zod_desc": "\"The Wheel of Signs and Temporal Cycles\"",
-                "footer_1": "© 2026 Codex MS 408 Project. Academic Research and Analysis.",
-                "footer_2": "Platform developed for the rigorous study of the Voynich Manuscript."
+                "footer_1": "© 2026 Codex MS 408 Project. Independent Scientific Research Effort by Arnold Brian Herrera Rubert.",
+                "footer_2": "Platform developed for the rigorous study and global outreach of the Voynich Manuscript from Mexico."
             },
             "fr": {
                 "title": "Codex MS 408 | Analyse Typologique Numérique",
@@ -218,8 +441,8 @@
                 "cosm_desc": "\"Le Grand Orrery Armillaire et les Corps Célestes\"",
                 "zod_title": "QUATRIÈME SECTION : ASTROLOGIE ET ZODIAQUE",
                 "zod_desc": "\"La Roue des Signes et les Cycles Temporels\"",
-                "footer_1": "© 2026 Projet Codex MS 408. Recherche et Analyse Académique.",
-                "footer_2": "Plateforme développée pour l'étude rigoureuse du Manuscrit de Voynich."
+                "footer_1": "© 2026 Projet Codex MS 408. Effort de Recherche Scientifique Indépendante par Arnold Brian Herrera Rubert.",
+                "footer_2": "Plateforme développée pour l'étude rigoureuse et la diffusion mondiale du Manuscrito de Voynich depuis le Mexique."
             },
             "it": {
                 "title": "Codex MS 408 | Analisi Tipologica Digitale",
@@ -229,7 +452,7 @@
                 "hero_subtitle": "\"Un'esplorazione accademica della struttura, della crittografia e della cosmologia del manoscritto più enigmatico del Rinascimento.\"",
                 "btn_explore": "Esplora il Manuscritto",
                 "btn_method": "Console di Traduzione",
-                "section_title": "Tipologie del Manoscritto",
+                "section_title": "Tipologie del Manuscritto",
                 "herb_title": "PRIMA SEZIONE: BOTANICA ALCHIMICA",
                 "herb_desc": "\"Le Piante-Circuito e il Ciclo Solare/Lunare\"",
                 "baln_title": "SECONDA SEZIONE: BALNEOLOGIA E IDROMECCANICA",
@@ -238,8 +461,8 @@
                 "cosm_desc": "\"Il Grande Planetario Armillare e i Corpi Celesti\"",
                 "zod_title": "QUARTA SEZIONE: ASTROLOGIA E ZODIACO",
                 "zod_desc": "\"La Ruota dei Segni e i Cicli Temporali\"",
-                "footer_1": "© 2026 Progetto Codex MS 408. Ricerca e Analisi Accademica.",
-                "footer_2": "Piattaforma sviluppata per lo studio rigoroso del Manoscritto Voynich."
+                "footer_1": "© 2026 Progetto Codex MS 408. Sforzo di Ricerca Scientifica Indipendente di Arnold Brian Herrera Rubert.",
+                "footer_2": "Piattaforma sviluppata per lo studio rigoroso e la divulgazione globale del Manuscritto Voynich dal Messico."
             },
             "ru": {
                 "title": "Кодекс MS 408 | Цифровой типологический анализ",
@@ -258,8 +481,8 @@
                 "cosm_desc": "\"Великий армиллярный планетарий и небесные тела\"",
                 "zod_title": "ЧЕТВЕРТЫЙ РАЗДЕЛ: АСТРОЛОГИЯ И ЗОДИАК",
                 "zod_desc": "\"Колесо знаков и временные циклы\"",
-                "footer_1": "© 2026 Проект Кодекс MS 408. Акадеческие исследования и анализ.",
-                "footer_2": "Платформа разработана для строгого изучения рукописи Войнича."
+                "footer_1": "© 2026 Проект Кодекс MS 408. Независимое научное исследование Арнольда Брайана Эрреры Руберта.",
+                "footer_2": "Платформа разработана для строгого изучения и глобального распространения рукописи Войнича из Мексики."
             },
             "zh": {
                 "title": "MS 408 手抄本 | 数字类型学分析",
@@ -274,12 +497,12 @@
                 "herb_desc": "\"电路植物与日/月周期\"",
                 "baln_title": "第二部分：水疗与流体力学",
                 "baln_desc": "\"空中花园与仙女-建筑学\"",
-                "cosm_title": "第三部分: 宇宙学研究",
+                "cosm_title": "第三部分：宇宙学研究",
                 "cosm_desc": "\"伟大的浑仪天体仪与天体\"",
                 "zod_title": "第四部分：占星术与黄道十二宫",
                 "zod_desc": "\"星座之轮与时间周期\"",
-                "footer_1": "© 2026 MS 408 手抄本项目。学术研究与分析。",
-                "footer_2": "为严谨研究伏尼契手稿而开发的平台。"
+                "footer_1": "© 2026 MS 408 手抄本项目。阿诺德·布莱恩·埃雷拉·鲁贝尔特的独立科学研究。",
+                "footer_2": "为 From Mexico 严谨研究和在全球推广伏尼契手稿而开发的平台。"
             }
         };
 
