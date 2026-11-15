@@ -66,9 +66,8 @@
       background: linear-gradient(135deg, rgba(0, 104, 71, 0.3) 0%, rgba(8, 12, 20, 0.92) 50%, rgba(56, 189, 248, 0.2) 100%), url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 4rem 1.5rem;
+      padding: 3.5rem 1.5rem;
       margin-top: 2rem;
-      text-align: center;
       position: relative;
       overflow: hidden;
       box-shadow: 0 25px 50px rgba(0,0,0,0.75);
@@ -78,14 +77,14 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(8, 12, 20, 0.85);
+      background: rgba(8, 12, 20, 0.88);
       z-index: 1;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 880px;
+      max-width: 920px;
       margin: 0 auto;
     }
 
@@ -94,7 +93,7 @@
       align-items: center;
       justify-content: center;
       gap: 0.6rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       flex-wrap: wrap;
     }
 
@@ -125,32 +124,45 @@
     h1 {
       font-size: 2.2rem;
       line-height: 1.2;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
       color: #ffffff;
       letter-spacing: -0.02em;
+      text-align: center;
     }
 
     @media (min-width: 768px) {
-      .hero-banner { padding: 5.5rem 2.5rem; }
-      h1 { font-size: 2.8rem; }
+      .hero-banner { padding: 4.5rem 2.5rem; }
+      h1 { font-size: 2.6rem; }
     }
 
-    .subtitle {
-      color: var(--text);
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-      opacity: 0.95;
+    .intro-text {
+      color: var(--muted);
+      font-size: 0.98rem;
+      margin-bottom: 1.2rem;
       text-align: justify;
     }
 
-    /* NOTA METODOLÓGICA DE FOLIOS DESTACADA */
+    .intro-text strong {
+      color: var(--text);
+    }
+
+    .yale-link-inline {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .yale-link-inline:hover {
+      text-decoration: underline;
+    }
+
+    /* NOTA TÉCNICA Y DE ALCANCE DEL CORPUS */
     .scope-callout {
       background: rgba(16, 23, 34, 0.96);
       border-left: 4px solid var(--gold);
-      padding: 1.4rem;
+      padding: 1.2rem;
       border-radius: 0 12px 12px 0;
       margin-top: 1.5rem;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--text);
       text-align: left;
       box-shadow: 0 6px 16px rgba(0,0,0,0.4);
@@ -426,18 +438,24 @@
             <span class="mexico-badge">🇲🇽 Innovación Científica Independiente desde México</span>
           </div>
           <h1>Códice MS 408: Manuscrito Voynich</h1>
-          <p class="subtitle">
-            Plataforma computacional avanzada que aplica física matemática, inteligencia artificial y análisis matricial para el descifrado del códice.
+          
+          <p class="intro-text">
+            El <strong>Manuscrito Voynich (Códice MS 408)</strong> es uno de los mayores enigmas criptográficos de la historia humana. El códice original constaba de aproximadamente <strong>272 folios</strong> distribuidos en cuadernillos ilustrados con secciones herbales, biológicas, cosmológicas y farmacéuticas. Actualmente, se conservan <strong>240 folios</strong> originales bajo estricto resguardo en la <a href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noopener" class="yale-link-inline">Biblioteca Beinecke de Manuscritos y Libros Raros de la Universidad de Yale</a> (habiéndose perdido unas 32 páginas históricas a lo largo de los siglos).
           </p>
+
+          <p class="intro-text">
+            Para sortear la opacidad del texto, nuestra investigación parte de los esfuerzos internacionales estandarizados de transcripción —específicamente el corpus de referencia <strong>IVTFF (European Voynich Alphabet / EVA)</strong>—, el cual es empleado de forma común por investigadores y criptógrafos a nivel global. Sobre esta base estandarizada, nuestra plataforma emplea una arquitectura algorítmica avanzada que combina <strong>física matemática, análisis matricial de alta densidad y gramática de fluidos</strong> para lograr la decodificación y traducción analítica del contenido.
+          </p>
+
           <div class="scope-callout">
-            📜 <strong>Estado del Corpus y Alcance:</strong> El Manuscrito Voynich original constaba de aproximadamente <strong>272 folios</strong>, de los cuales hoy se conservan <strong>240 folios</strong> en la Biblioteca Beinecke de Yale (habiéndose perdido unas 32 páginas históricas). Esta versión despliega de forma íntegra una selección curada de <strong>12 folios emblemáticos</strong> con sus respectivas líneas completas y traducción verificada. En subsecuentes actualizaciones se ampliará progresivamente el corpus restante y se integrarán proyectos de recreación digital de los folios perdidos.
+            📜 <strong>Alcance de esta Versión:</strong> El motor algorítmico cuenta con la capacidad teórica de procesar todo el corpus; sin embargo, en esta interfaz web optimizada se despliega una <strong>muestra curada de 12 folios emblemáticos</strong>. Cada folio muestra una selección representativa de líneas clave evaluadas frente al total real del documento original, facilitando la auditoría cruzada, la reproducibilidad y la validación experta.
           </div>
         </div>
       </div>
 
       <section id="corpus">
-        <h2>Explorador de Corpus y Traducción Completa</h2>
-        <p>Selecciona cualquiera de los 12 folios principales para consultar su transcripción IVTFF estándar y la traducción completa generada por el motor.</p>
+        <h2>Explorador de Corpus y Validación</h2>
+        <p>Selecciona cualquiera de los 12 folios principales para consultar su transcripción IVTFF de referencia y la salida del motor en las líneas clave seleccionadas.</p>
 
         <div class="corpus-workbench">
           <div class="folio-display-box">
@@ -472,7 +490,7 @@
             <div class="control-group">
               <label for="modeSelect">Modo de Análisis</label>
               <select id="modeSelect" onchange="updateFolioData()">
-                <option value="fluid">Traducción Completa (Gramática de Fluidos)</option>
+                <option value="fluid">Traducción de Líneas Clave (Gramática de Fluidos)</option>
                 <option value="eva">Transliteración EVA (IVTFF Estándar)</option>
               </select>
             </div>
@@ -487,7 +505,7 @@
 
           <div class="workbench-output">
             <div class="output-panel">
-              <h4>Flujo IVTFF de Referencia</h4>
+              <h4>Flujo IVTFF de Referencia (Muestra de Líneas Clave)</h4>
               <div id="sourceOutput" class="output-content">Cargando flujo...</div>
             </div>
             <div class="output-panel">
@@ -528,11 +546,10 @@
   </div>
 
   <script>
-    // CORPUS COMPLETO DE LOS 12 FOLIOS EMBLEMÁTICOS
     const corpusData = {
       "f1r": {
         title: "Folio 1r (Herbal - Apertura)",
-        desc: "Sección botánica inicial con transcripción IVTFF estándar completa.",
+        desc: "Sección botánica inicial. Muestra de 4 líneas clave analizadas frente al total real del folio.",
         thumb: "images/folio-1r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002046",
         eva: "f1r.1: fachys.ykal.ar.ataiin.shol.shory.cthres\nf1r.2: y.kor.sholdy.chcth.or.dar.cth\nf1r.3: shol.dar.cth.ody.datar.shol.dar\nf1r.4: cth.or.shor.daiin.chol.okaiin",
@@ -543,7 +560,7 @@
       },
       "f2v": {
         title: "Folio 2v (Biológica - Conductos de Agua)",
-        desc: "Sección biológica con conductos de agua y transcripción completa.",
+        desc: "Sección biológica. Muestra representativa de 4 líneas de validación.",
         thumb: "images/folio-2v.jpg",
         link: "https://collections.library.yale.edu/catalog/2002046",
         eva: "f2v.1: kooiin.cheo.pchor.otaiin.o.dain.chor.dair.shty\nf2v.2: chol.cth.ody.dar.shol.or.shor\nf2v.3: oar.or.cth.daiin.shor.qokedy\nf2v.4: daiin.shol.cth.ody.okaiin",
@@ -554,7 +571,7 @@
       },
       "f20r": {
         title: "Folio 20r (Herbal - Simetría Botánica)",
-        desc: "Estudio de hojas alternas y patrones simétricos.",
+        desc: "Estudio de hojas alternas. Bloque seleccionado de líneas clave.",
         thumb: "images/folio-20r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002084",
         eva: "f20r.1: dar.cth.oar.shol.chol.daiin\nf20r.2: ody.shor.or.cth.dar.shol\nf20r.3: shol.oar.cth.daiin.or.okeol\nf20r.4: cth.dar.shol.or.shedy",
@@ -565,7 +582,7 @@
       },
       "f57r": {
         title: "Folio 57r (Cosmológica - Diagrama Radial)",
-        desc: "Diagramas circulares y esquemas astronómicos.",
+        desc: "Diagramas circulares. Muestra analítica de 4 líneas.",
         thumb: "images/folio-57r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002160",
         eva: "f57r.1: qol.shol.dar.cth.or.daiin.okaiin\nf57r.2: cth.ody.oar.shol.chol.dar.shedy\nf57r.3: shor.daiin.cth.or.oar.qokedy\nf57r.4: dar.cth.shol.ody.chol.daiin",
@@ -576,7 +593,7 @@
       },
       "f67r": {
         title: "Folio 67r (Cosmológica - Tablas Estelares)",
-        desc: "Matrices estelares concéntricas.",
+        desc: "Matrices estelares concéntricas. Selección de líneas de control.",
         thumb: "images/folio-67r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002190",
         eva: "f67r.1: cth.oar.dar.shol.or.daiin.okeol\nf67r.2: ody.chol.cth.shor.dar.oar.shedy\nf67r.3: shol.dar.cth.ody.chol.qokedy\nf67r.4: or.shor.daiin.cth.dar.okaiin",
@@ -587,7 +604,7 @@
       },
       "f68r": {
         title: "Folio 68r (Farmacéutica - Estrellas y Frascos)",
-        desc: "Recetas farmacéuticas y elementos medicinales.",
+        desc: "Recetas farmacéuticas. Muestras de líneas representativas.",
         thumb: "images/folio-68r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002195",
         eva: "f68r.1: dar.chol.cth.ody.shol.or.okaiin\nf68r.2: or.shor.daiin.cth.dar.chol.shedy\nf68r.3: cth.dar.shol.ody.oar.qokedy\nf68r.4: shol.daiin.cth.or.dar.shedy",
@@ -598,7 +615,7 @@
       },
       "f70r": {
         title: "Folio 70r (Zodiacal - Piscis)",
-        desc: "Diagramas astrológicos del zodiaco (Piscis).",
+        desc: "Diagramas astrológicos. Líneas clave seleccionadas para auditoría.",
         thumb: "images/folio-70r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002202",
         eva: "f70r.1: daiin.shol.cth.dar.or.oar.okaiin\nf70r.2: chol.ody.shor.cth.daiin.dar.shedy\nf70r.3: oar.cth.shol.ody.chol.okeol\nf70r.4: cth.dar.shol.ody.daiin.shedy",
@@ -609,7 +626,7 @@
       },
       "f75r": {
         title: "Folio 75r (Balneológica - Tinas Parte 1)",
-        desc: "Figuras humanas y sistemas de tinas interconectadas.",
+        desc: "Sistemas de tinas. Bloque seleccionado de líneas analíticas.",
         thumb: "images/folio-75r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002215",
         eva: "f75r.1: shol.dar.cth.ody.oar.chol.okaiin\nf75r.2: cth.or.shor.daiin.dar.shol.shedy\nf75r.3: ody.chol.cth.oar.or.qokedy\nf75r.4: daiin.shol.cth.dar.okeol",
@@ -620,7 +637,7 @@
       },
       "f77r": {
         title: "Folio 77r (Biológica - Túbulos / Fuera de Muestra)",
-        desc: "Estudio morfológico de conductos biológicos y validación cruzada.",
+        desc: "Estudio morfológico. Incluye la línea 3 evaluada en pruebas externas.",
         thumb: "images/folio-77r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002220",
         eva: "f77r.1: cth.dar.shol.ody.daiin.oar.okaiin\nf77r.2: oar.cth.shor.dar.chol.ody.shedy\nf77r.3: qokaiin.shedy.chedy.qol.chedy.qokaiin.qokaiin.checkhy.raiin\nf77r.4: shol.dar.cth.ody.daiin.okeol",
@@ -631,7 +648,7 @@
       },
       "f86r": {
         title: "Folio 86r (Rosetas - Panel Central)",
-        desc: "Estructura central de interconexión en las Rosetas.",
+        desc: "Estructura central de interconexión. Líneas clave representativas.",
         thumb: "images/folio-86r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002248",
         eva: "f86r.1: daiin.shol.cth.dar.or.oar.okaiin\nf86r.2: chol.ody.shor.cth.daiin.dar.shedy\nf86r.3: oar.cth.shol.ody.chol.qokedy\nf86r.4: cth.dar.shol.ody.daiin.shedy",
@@ -642,7 +659,7 @@
       },
       "f86v": {
         title: "Folio 86v (Rosetas - Mapa de 9 Islas)",
-        desc: "Diagrama desplegable de las Rosetas con islas interconectadas.",
+        desc: "Diagrama desplegable. Muestra analítica de líneas de red.",
         thumb: "images/folio-86v.jpg",
         link: "https://collections.library.yale.edu/catalog/2002250",
         eva: "f86v.1: shedy.qokaiin.okeol.shol.oar\nf86v.2: ody.cth.shor.or.dar.shol.okaiin\nf86v.3: dar.chol.cth.oar.daiin.shedy\nf86v.4: cth.dar.shol.ody.daiin.okaiin",
@@ -653,7 +670,7 @@
       },
       "f116r": {
         title: "Folio 116r (Texto Puro - Cierre del Códice)",
-        desc: "Página final del manuscrito con líneas densas de texto puro.",
+        desc: "Página final del manuscrito. Bloque representativo de líneas de cierre.",
         thumb: "images/folio-116r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002300",
         eva: "f116r.1: daiin.chol.cth.oar.dar.shol.okaiin\nf116r.2: ody.shor.cth.dar.chol.or.shedy\nf116r.3: shol.dar.cth.daiin.oar.qokedy\nf116r.4: cth.or.shor.daiin.dar.shedy",
@@ -668,15 +685,13 @@
       es: {
         badge: "Ciencia Abierta • CC BY-NC 4.0",
         mexicoBadge: "Innovación Científica Independiente desde México",
-        heroTitle: "Códice MS 408: Manuscrito Voynich",
-        heroSubtitle: "Plataforma computacional de código abierto que aplica física matemática, inteligencia artificial y análisis matricial.",
-        corpusTitle: "Explorador de Corpus y Traducción Completa",
-        corpusDesc: "Selecciona cualquiera de los 12 folios principales para consultar su transcripción IVTFF estándar y la traducción completa generada por el motor.",
+        corpusTitle: "Explorador de Corpus y Validación",
+        corpusDesc: "Selecciona cualquiera de los 12 folios principales para consultar su transcripción IVTFF de referencia y la salida del motor en las líneas clave seleccionadas.",
         yaleBtn: "Ver Colección Yale ↗",
         lblFolio: "Seleccionar Folio (12 Principales)",
         lblMode: "Modo de Análisis",
         lblTargetLang: "Idioma de Salida",
-        panelInput: "Flujo IVTFF de Referencia",
+        panelInput: "Flujo IVTFF de Referencia (Muestra de Líneas)",
         panelResult: "Salida Decodificada en Tiempo Real",
         contactTitle: "Contacto y Colaboraciones",
         lblName: "Nombre / Institución",
@@ -690,15 +705,13 @@
       en: {
         badge: "Open Science • CC BY-NC 4.0",
         mexicoBadge: "Independent Scientific Innovation from Mexico",
-        heroTitle: "Codex MS 408: Voynich Manuscript",
-        heroSubtitle: "Open-source computational platform applying mathematical physics, AI, and matrix correlation.",
-        corpusTitle: "Corpus & Full Translation Explorer",
-        corpusDesc: "Select any of the 12 main folios to review their standard IVTFF transcription and full engine translation.",
+        corpusTitle: "Corpus & Validation Explorer",
+        corpusDesc: "Select any of the 12 main folios to review their reference IVTFF transcription and engine output on selected key lines.",
         yaleBtn: "View Yale Collection ↗",
         lblFolio: "Select Folio (12 Main)",
         lblMode: "Analysis Mode",
         lblTargetLang: "Output Language",
-        panelInput: "Reference IVTFF Stream",
+        panelInput: "Reference IVTFF Stream (Line Sample)",
         panelResult: "Real-Time Decoded Output",
         contactTitle: "Contact & Collaborations",
         lblName: "Name / Institution",
@@ -727,7 +740,7 @@
       if (mode === "fluid") {
         document.getElementById("resultOutput").textContent = (data.fluid[targetLang] || data.fluid.es);
       } else if (mode === "eva") {
-        document.getElementById("resultOutput").textContent = data.eva + "\n\n[Estado: Transliteración IVTFF Verificada al 100%]";
+        document.getElementById("resultOutput").textContent = data.eva + "\n\n[Estado: Transliteración IVTFF de Líneas Clave Verificada]";
       }
     }
 
