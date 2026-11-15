@@ -63,10 +63,10 @@
       font-size: 0.9rem;
     }
 
-    /* DASHBOARD DE TELEMETRÍA E IA DE ALTA GAMA (ESTILO CIENTÍFICO 2026) */
+    /* DASHBOARD DE TELEMETRÍA CON RUEDA ZODIACAL VOYNICH */
     .scientific-telemetry-banner {
       background: linear-gradient(135deg, #0b111e 0%, #060912 100%);
-      border: 1px solid rgba(56, 189, 248, 0.25);
+      border: 1px solid rgba(245, 158, 11, 0.3);
       border-radius: 20px;
       margin: 1.5rem 0 0 0;
       padding: 1.5rem;
@@ -75,19 +75,19 @@
       box-shadow: 0 20px 40px rgba(0,0,0,0.7);
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.2rem;
+      gap: 1.5rem;
       align-items: center;
     }
 
     @media (min-width: 768px) {
       .scientific-telemetry-banner {
-        grid-template-columns: 1fr 280px;
+        grid-template-columns: 1fr 340px;
       }
     }
 
     .telemetry-canvas-container {
       width: 100%;
-      height: 160px;
+      height: 180px;
       background: rgba(4, 7, 13, 0.6);
       border-radius: 12px;
       border: 1px solid var(--border);
@@ -101,38 +101,106 @@
       height: 100%;
     }
 
-    .telemetry-hud {
+    /* INFOGRAFÍA TIPO RUEDA ZODIACAL VOYNICH */
+    .voynich-wheel-infographic {
+      background: rgba(14, 21, 34, 0.85);
+      border: 1px solid var(--gold-border);
+      padding: 1.2rem;
+      border-radius: 16px;
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
-      background: rgba(14, 21, 34, 0.7);
-      border: 1px solid var(--border);
-      padding: 1rem;
-      border-radius: 12px;
-      font-family: monospace;
-      font-size: 0.82rem;
+      align-items: center;
+      position: relative;
+      box-shadow: inset 0 0 20px rgba(245, 158, 11, 0.05);
     }
 
-    .hud-title {
+    .voynich-wheel-title {
       color: var(--gold);
+      font-size: 0.82rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.2rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+      text-align: center;
+    }
+
+    .wheel-svg-wrapper {
+      position: relative;
+      width: 210px;
+      height: 210px;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      justify-content: center;
     }
 
-    .hud-row {
+    .wheel-svg-wrapper svg {
+      width: 100%;
+      height: 100%;
+      animation: slowRotate 45s linear infinite;
+    }
+
+    @keyframes slowRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .wheel-center-core {
+      position: absolute;
+      width: 75px;
+      height: 75px;
+      background: radial-gradient(circle, #141c2d 0%, #070a12 100%);
+      border: 2px solid var(--gold);
+      border-radius: 50%;
       display: flex;
-      justify-content: space-between;
-      color: var(--muted);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+      text-align: center;
+      padding: 4px;
     }
 
-    .hud-val {
+    .core-status {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--success);
+      letter-spacing: 0.05em;
+    }
+
+    .core-corpus {
+      font-size: 0.55rem;
+      color: var(--muted);
+      font-family: monospace;
+    }
+
+    .wheel-telemetry-data {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      width: 100%;
+      margin-top: 0.8rem;
+      font-family: monospace;
+      font-size: 0.75rem;
+    }
+
+    .data-node {
+      background: rgba(7, 10, 18, 0.7);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.6rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .data-node span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.62rem;
+      text-transform: uppercase;
+    }
+
+    .data-node strong {
       color: var(--accent);
-      font-weight: 600;
+      font-size: 0.78rem;
     }
 
     .hero-banner {
@@ -620,17 +688,47 @@
       </select>
     </header>
 
-    <!-- DASHBOARD DE TELEMETRÍA E IA DE ALTA GAMA (MODERNO 2026) -->
+    <!-- DASHBOARD CON RED NEURONAL E INFOGRAFÍA TIPO RUEDA ZODIACAL VOYNICH -->
     <div class="scientific-telemetry-banner">
       <div class="telemetry-canvas-container">
         <canvas id="telemetryCanvas" title="Red Neuronal y Espacio Vectorial Activo"></canvas>
       </div>
-      <div class="telemetry-hud">
-        <div class="hud-title">⚡ Neural Engine 2026</div>
-        <div class="hud-row"><span>Estado:</span> <span class="hud-val" style="color: var(--success);">ONLINE</span></div>
-        <div class="hud-row"><span>Motor Corpus:</span> <span class="hud-val">IVTFF 100%</span></div>
-        <div class="hud-row"><span>Folio Activo:</span> <span class="hud-val" id="hudFolio">116r (Rosetta)</span></div>
-        <div class="hud-row"><span>Latencia Red:</span> <span class="hud-val">0.14 ms</span></div>
+
+      <div class="voynich-wheel-infographic">
+        <div class="voynich-wheel-title">Wheel of MS 408 // Telemetry</div>
+        <div class="wheel-svg-wrapper">
+          <svg viewBox="0 0 200 200">
+            <!-- Anillo Exterior Decorativo -->
+            <circle cx="100" cy="100" r="94" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.7"/>
+            <circle cx="100" cy="100" r="86" fill="none" stroke="#38bdf8" stroke-width="1" opacity="0.4"/>
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#f59e0b" stroke-width="2" opacity="0.6"/>
+            <!-- Radios / Cuadrantes Estelares -->
+            <line x1="100" y1="14" x2="100" y2="186" stroke="#f59e0b" stroke-width="1" opacity="0.4"/>
+            <line x1="14" y1="100" x2="186" y2="100" stroke="#f59e0b" stroke-width="1" opacity="0.4"/>
+            <line x1="39" y1="39" x2="161" y2="161" stroke="#38bdf8" stroke-width="0.8" opacity="0.3"/>
+            <line x1="39" y1="161" x2="161" y2="39" stroke="#38bdf8" stroke-width="0.8" opacity="0.3"/>
+            <!-- Glifos y Puntos Periféricos -->
+            <circle cx="100" cy="14" r="3" fill="#38bdf8"/>
+            <circle cx="186" cy="100" r="3" fill="#38bdf8"/>
+            <circle cx="100" cy="186" r="3" fill="#38bdf8"/>
+            <circle cx="14" cy="100" r="3" fill="#38bdf8"/>
+          </svg>
+          <div class="wheel-center-core">
+            <span class="core-status">ONLINE</span>
+            <span class="core-corpus">IVTFF 100%</span>
+          </div>
+        </div>
+
+        <div class="wheel-telemetry-data">
+          <div class="data-node">
+            <span>Folio Activo</span>
+            <strong id="hudFolio">Folio 116r</strong>
+          </div>
+          <div class="data-node">
+            <span>Latencia Red</span>
+            <strong>0.14 ms</strong>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -644,19 +742,19 @@
           <h1>Códice MS 408: Manuscrito Voynich</h1>
           
           <p class="intro-text">
-            Bienvenido a la experiencia definitiva de inmersión y desciframiento del <strong>Manuscrito Voynich (Códice MS 408)</strong>. Datado por radiocarbono a principios del siglo XV (aprox. 1404–1438), este códice ha desconcertado a historiadores, lingüistas, criptógrafos y científicos de todo el mundo desde su redescubrimiento en 1912 por el librero anticuarista Wilfrid Voynich. De los aproximadamente 272 folios originales, hoy se conservan <strong>240 folios</strong> bajo riguroso resguardo en la Biblioteca Beinecke de Manuscritos y Libros Raros de la Universidad de Yale. Sus enigmáticas páginas —repletas de ilustraciones botánicas inexplicables, diagramas cosmológicos radiales, secretos balneológicos y complejos tratados biológicos— resistieron durante más de un siglo los intentos de resolución basados en criptografía estadística tradicional y sustitución estática de caracteres.
+            Bienvenido a la experiencia definitiva de inmersión y desciframiento del <strong>Manuscrito Voynich (Códice MS 408)</strong>[span_0](start_span)[span_0](end_span). Datado por radiocarbono a principios del siglo XV (aprox. 1404–1438), este códice ha desconcertado a historiadores, lingüistas, criptógrafos y científicos de todo el mundo desde su redescubrimiento en 1912 por el librero anticuarista Wilfrid Voynich[span_1](start_span)[span_1](end_span). De los aproximadamente 272 folios originales, hoy se conservan <strong>240 folios</strong> bajo riguroso resguardo en la Biblioteca Beinecke de Manuscritos y Libros Raros de la Universidad de Yale[span_2](start_span)[span_2](end_span). Sus enigmáticas páginas —repletas de ilustraciones botánicas inexplicables, diagramas cosmológicos radiales, secretos balneológicos y complejos tratados biológicos— resistieron durante más de un siglo los intentos de resolución basados en criptografía estadística tradicional y sustitución estática de caracteres[span_3](start_span)[span_3](end_span).
           </p>
 
           <p class="intro-text">
-            <strong>¿Cómo logramos el desciframiento y cuál es nuestro enfoque?</strong> Tras años de investigación independiente, rompimos el paradigma criptoanalítico clásico. En lugar de tratar los glifos como un alfabeto cifrado convencional, partimos del corpus de referencia internacional <strong>IVTFF (European Voynich Alphabet)</strong> desarrollado y compartido por la comunidad académica global. A partir de ahí, diseñamos una potente arquitectura de software implementada en <strong>Python</strong>, fundamentada en <strong>física matemática, análisis matricial de alta densidad y gramática de fluidos</strong>. Esto permite modelar las transiciones glíficas no como símbolos estáticos de un idioma natural convencional, sino como vectores dinámicos y coherentes de un sistema termodinámico e hidrográfico.
+            <strong>¿Cómo logramos el desciframiento y cuál es nuestro enfoque?</strong> Tras años de investigación independiente, rompimos el paradigma criptoanalítico clásico. En lugar de tratar los glifos como un alfabeto cifrado convencional, partimos del corpus de referencia internacional <strong>IVTFF (European Voynich Alphabet)</strong> desarrollado y compartido por la comunidad académica global[span_4](start_span)[span_4](end_span). A partir de ahí, diseñamos una potente arquitectura de software implementada en <strong>Python</strong>, fundamentada en <strong>física matemática, análisis matricial de alta densidad y gramática de fluidos</strong>[span_5](start_span)[span_5](end_span). Esto permite modelar las transiciones glíficas no como símbolos estáticos de un idioma natural convencional, sino como vectores dinámicos y coherentes de un sistema termodinámico e hidrográfico[span_6](start_span)[span_6](end_span).
           </p>
 
           <p class="intro-text">
-            <strong>De la investigación individual al aula interactiva global:</strong> Este sitio web y el motor de manipulación teórica nacieron como el resultado de un esfuerzo unipersonal apasionado por demostrar que el enigma tenía solución científica. Hoy, este espacio se transforma en un aula interactiva donde puedes <strong>jugar, experimentar y auditar en vivo</strong> las traducciones folio por folio.
+            <strong>De la investigación individual al aula interactiva global:</strong> Este sitio web y el motor de manipulación teórica nacieron como el resultado de un esfuerzo unipersonal apasionado por demostrar que el enigma tenía solución científica[span_7](start_span)[span_7](end_span). Hoy, este espacio se transforma en un aula interactiva donde puedes <strong>jugar, experimentar y auditar en vivo</strong> las traducciones folio por folio[span_8](start_span)[span_8](end_span).
           </p>
 
           <div class="scope-callout">
-            📜 <strong>Nota Metodológica sobre las Líneas:</strong> La plataforma permite auditar folios representativos (mostrando muestras de 4 líneas clave frente al total real registrado en el corpus IVTFF), destacando de manera estelar el <strong>Folio 116r</strong> (conocido como la "Piedra Rosetta" del códice por ser texto puro sin ilustraciones), el cual se encuentra traducido e integrado al <strong>100% de sus líneas reales</strong>.
+            📜 <strong>Nota Metodológica sobre las Líneas:</strong> La plataforma permite auditar folios representativos (mostrando muestras de 4 líneas clave frente al total real registrado en el corpus IVTFF)[span_9](start_span)[span_9](end_span), destacando de manera estelar el <strong>Folio 116r</strong> (conocido como la "Piedra Rosetta" del códice por ser texto puro sin ilustraciones), el cual se encuentra traducido e integrado al <strong>100% de sus líneas reales</strong>[span_10](start_span)[span_10](end_span).
           </div>
         </div>
       </div>
@@ -751,7 +849,7 @@
         <div class="support-box">
           <h3>Transparencia Fiscal y Fondeo Abierto a través de Fundación Raft</h3>
           <p style="text-align: justify; margin-bottom: 1rem;">
-            <strong>¿Qué es la Fundación Raft y por qué se gestiona a través de ellos?</strong> La Fundación Raft es una organización dedicada a respaldar y administrar con absoluta transparencia fiscal los recursos para proyectos tecnológicos y científicos de código abierto. Gestionar las aportaciones mediante esta entidad garantiza rendición de cuentas, cumplimiento normativo y legitimidad institucional. <em>Actualmente nos encontramos a la espera de que la Fundación Raft nos proporcione la información oficial y los datos definitivos de la cuenta para habilitarlos directamente en la plataforma.</em> Puedes consultar su portal oficial en el sitio web de la Fundación Raft.
+            <strong>¿Qué es la Fundación Raft y por qué se gestiona a través de ellos?</strong> La Fundación Raft[span_11](start_span)[span_11](end_span) es una organización dedicada a respaldar y administrar con absoluta transparencia fiscal los recursos para proyectos tecnológicos y científicos de código abierto[span_12](start_span)[span_12](end_span). Gestionar las aportaciones mediante esta entidad garantiza rendición de cuentas, cumplimiento normativo y legitimidad institucional[span_13](start_span)[span_13](end_span). <em>Actualmente nos encontramos a la espera de que la Fundación Raft nos proporcione la información oficial y los datos definitivos de la cuenta para habilitarlos directamente en la plataforma.</em> Puedes consultar su portal oficial en el sitio web de la Fundación Raft[span_14](start_span)[span_14](end_span).
           </p>
 
           <p style="text-align: justify; margin-bottom: 1rem;">
@@ -792,7 +890,7 @@
                   <td><strong>Comisiones e Impuestos</strong></td>
                   <td>$2,500 USD</td>
                   <td>10%</td>
-                  <td>Pasarelas de pago, comisiones transaccionales, contabilidad y cumplimiento fiscal gestionado a través de la Fundación Raft.</td>
+                  <td>Pasarelas de pago, comisiones transaccionales, contabilidad y cumplimiento fiscal gestionado a través de la Fundación Raft[span_15](start_span)[span_15](end_span).</td>
                 </tr>
               </tbody>
             </table>
@@ -853,7 +951,7 @@
         
         <div class="links-grid">
           <a href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noopener" class="link-card">
-            <h4>Biblioteca Beinecke (Universidad de Yale)</h4>
+            <h4>Biblioteca Beinecke (Universidad de Yale)[span_16](start_span)[span_16](end_span)</h4>
             <p>Resguardo oficial del Códice MS 408 y visor digital de facsímiles en alta resolución para investigación forense.</p>
           </a>
           <a href="https://www.reddit.com/r/voynich/" target="_blank" rel="noopener" class="link-card">
@@ -879,7 +977,7 @@
   </div>
 
   <script>
-    // RED NEURONAL Y ESPACIO VECTORIAL (DISEÑO MINIMALISTA CIENTÍFICO 2026)
+    // RED NEURONAL Y ESPACIO VECTORIAL
     const canvas = document.getElementById("telemetryCanvas");
     const ctx = canvas.getContext("2d");
 
@@ -891,12 +989,12 @@
     resizeCanvas();
 
     let nodes = [];
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 30; i++) {
       nodes.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
         radius: Math.random() * 2 + 1,
         active: Math.random() > 0.7
       });
@@ -905,7 +1003,6 @@
     function animateTelemetry() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Dibujar conexiones neuronales
       ctx.strokeStyle = "rgba(56, 189, 248, 0.12)";
       ctx.lineWidth = 0.8;
 
@@ -920,7 +1017,7 @@
         for (let j = i + 1; j < nodes.length; j++) {
           let n2 = nodes[j];
           let dist = Math.hypot(n1.x - n2.x, n1.y - n2.y);
-          if (dist < 100) {
+          if (dist < 90) {
             ctx.beginPath();
             ctx.moveTo(n1.x, n1.y);
             ctx.lineTo(n2.x, n2.y);
@@ -929,7 +1026,6 @@
         }
       }
 
-      // Dibujar nodos
       nodes.forEach(n => {
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
@@ -1129,7 +1225,10 @@
       document.getElementById("folioTitleInfo").textContent = data.title;
       document.getElementById("folioDescInfo").textContent = data.desc;
       document.getElementById("yaleDirectLink").href = data.link;
-      document.getElementById("hudFolio").textContent = data.title.split(' ')[0] + ' ' + data.title.split(' ')[1];
+      
+      // Actualizar etiqueta corta en la rueda zodiacal
+      const shortFolio = data.title.split(' ')[0] + ' ' + data.title.split(' ')[1];
+      document.getElementById("hudFolio").textContent = shortFolio;
 
       document.getElementById("sourceOutput").textContent = data.eva;
 
