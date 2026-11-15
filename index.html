@@ -1,1402 +1,204 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Códice MS 408 | Plataforma de Desciframiento del Manuscrito Voynich</title>
-  <style>
-    :root {
-      --bg: #06090e;
-      --surface: #0d131f;
-      --surface-alt: #131c2e;
-      --border: #1e293b;
-      --border-glow: rgba(56, 189, 248, 0.3);
-      --text: #f1f5f9;
-      --muted: #94a3b8;
-      --accent: #38bdf8;
-      --emerald: #10b981;
-      --emerald-border: rgba(16, 185, 129, 0.4);
-      --gold: #d97706;
-      --gold-light: #fbbf24;
-      --gold-border: rgba(217, 119, 6, 0.4);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg);
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
-        linear-gradient(135deg, rgba(8, 11, 16, 0.95) 0%, rgba(13, 19, 31, 0.98) 100%),
-        url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%2338bdf8' stroke-width='0.5' fill='none' opacity='0.08'%3E%3Cpolygon points='50,5 90,25 90,75 50,95 10,75 10,25' /%3E%3Cline x1='50' y1='5' x2='50' y2='95' /%3E%3Cline x1='10' y1='25' x2='90' y2='75' /%3E%3Cline x1='10' y1='75' x2='90' y2='25' /%3E%3C/g%3E%3C/svg%3E");
-      color: var(--text);
-      line-height: 1.7;
-      padding: 0 0.8rem;
-      overflow-x: hidden;
-    }
-
-    .container {
-      max-width: 1140px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    /* MENÚ DE NAVEGACIÓN SUPERIOR */
-    .site-nav {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(6, 9, 14, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-      padding: 0.8rem 0;
-    }
-
-    .nav-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      font-weight: 800;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-      color: var(--gold-light);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .nav-controls {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
-
-    .dropdown-container {
-      position: relative;
-    }
-
-    .dropdown-toggle {
-      background: var(--surface);
-      color: var(--text);
-      border: 1px solid var(--gold-border);
-      padding: 0.45rem 0.8rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.8rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-
-    .dropdown-toggle:hover {
-      border-color: var(--gold);
-      background: var(--surface-alt);
-      box-shadow: 0 0 12px rgba(217, 119, 6, 0.3);
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      right: 0;
-      top: calc(100% + 6px);
-      background: var(--surface);
-      border: 1px solid var(--gold-border);
-      border-radius: 12px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.9);
-      min-width: 220px;
-      display: none;
-      flex-direction: column;
-      z-index: 1100;
-      overflow: hidden;
-    }
-
-    .dropdown-menu.show { display: flex; }
-
-    .dropdown-menu a {
-      color: var(--text);
-      text-decoration: none;
-      padding: 0.7rem 1rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      border-bottom: 1px solid var(--border);
-      transition: background 0.2s, color 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .dropdown-menu a:last-child { border-bottom: none; }
-    .dropdown-menu a:hover { background: var(--surface-alt); color: var(--gold-light); }
-
-    /* BANNER DE NOTA METODOLÓGICA GLOBAL (DISCLAIMER) */
-    .global-disclaimer-banner {
-      background: linear-gradient(135deg, rgba(13, 19, 31, 0.95) 0%, rgba(6, 9, 14, 0.98) 100%);
-      border: 1px solid var(--border-glow);
-      border-left: 4px solid var(--accent);
-      border-radius: 14px;
-      padding: 1.2rem;
-      margin-top: 1.5rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-      text-align: justify;
-    }
-
-    .global-disclaimer-banner strong {
-      color: var(--accent);
-    }
-
-    /* DASHBOARD DE TELEMETRÍA (HUD ESTILO SCI-FI) */
-    .scientific-telemetry-banner {
-      background: linear-gradient(135deg, #0d131f 0%, #06090e 100%);
-      border: 1px solid var(--emerald-border);
-      border-radius: 20px;
-      margin: 1.5rem 0 0 0;
-      padding: 1.2rem;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(16, 185, 129, 0.05);
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.2rem;
-      align-items: center;
-    }
-
-    @media (min-width: 768px) {
-      .scientific-telemetry-banner {
-        grid-template-columns: 1fr 340px;
-        padding: 1.5rem;
-      }
-    }
-
-    .telemetry-canvas-container {
-      width: 100%;
-      height: 160px;
-      background: rgba(4, 7, 13, 0.8);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .telemetry-canvas-container canvas { display: block; width: 100%; height: 100%; }
-
-    .voynich-wheel-infographic {
-      background: rgba(13, 19, 31, 0.95);
-      border: 1px solid var(--emerald-border);
-      padding: 1.2rem;
-      border-radius: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
-
-    .voynich-wheel-title {
-      color: var(--emerald);
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.8rem;
-      text-align: center;
-    }
-
-    .wheel-svg-wrapper {
-      position: relative;
-      width: 190px;
-      height: 190px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .wheel-svg-wrapper svg {
-      width: 100%;
-      height: 100%;
-      animation: slowRotate 45s linear infinite;
-    }
-
-    @keyframes slowRotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .wheel-center-core {
-      position: absolute;
-      width: 70px;
-      height: 70px;
-      background: radial-gradient(circle, #131c2e 0%, #06090e 100%);
-      border: 2px solid var(--emerald);
-      border-radius: 50%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
-      text-align: center;
-      padding: 4px;
-    }
-
-    .core-status { font-size: 0.6rem; font-weight: 800; color: var(--emerald); }
-    .core-corpus { font-size: 0.5rem; color: var(--muted); font-family: monospace; }
-
-    .wheel-telemetry-data {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem;
-      width: 100%;
-      margin-top: 0.8rem;
-      font-family: monospace;
-      font-size: 0.75rem;
-    }
-
-    .data-node {
-      background: rgba(6, 9, 14, 0.8);
-      border: 1px solid var(--border);
-      padding: 0.4rem;
-      border-radius: 8px;
-      text-align: center;
-    }
-
-    .data-node span { display: block; color: var(--muted); font-size: 0.58rem; text-transform: uppercase; }
-    .data-node strong { color: var(--emerald); font-size: 0.75rem; }
-
-    /* HERO BANNER */
-    .hero-banner {
-      background: linear-gradient(135deg, rgba(217, 119, 6, 0.15) 0%, rgba(6, 9, 14, 0.95) 50%, rgba(16, 185, 129, 0.1) 100%);
-      border: 1px solid var(--gold-border);
-      border-radius: 20px;
-      padding: 2.5rem 1.2rem;
-      margin-top: 1.5rem;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-    }
-
-    .hero-content { position: relative; z-index: 2; max-width: 960px; margin: 0 auto; }
-
-    .badge-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .badge {
-      display: inline-block;
-      background: rgba(217, 119, 6, 0.15);
-      color: var(--gold-light);
-      border: 1px solid var(--gold-border);
-      padding: 0.3rem 0.8rem;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 600;
-    }
-
-    .mexico-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: rgba(16, 185, 129, 0.2);
-      color: #34d399;
-      border: 1px solid var(--emerald-border);
-      padding: 0.3rem 0.8rem;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 600;
-    }
-
-    h1 {
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
-      line-height: 1.2;
-      margin-bottom: 1rem;
-      color: #ffffff;
-      letter-spacing: -0.02em;
-      text-align: center;
-    }
-
-    .intro-text { color: var(--muted); font-size: 0.98rem; margin-bottom: 1.2rem; text-align: justify; }
-    .intro-text strong { color: var(--text); }
-
-    .scope-callout {
-      background: rgba(13, 19, 31, 0.95);
-      border-left: 4px solid var(--gold);
-      padding: 1.1rem;
-      border-radius: 0 10px 10px 0;
-      margin-top: 1.4rem;
-      font-size: 0.88rem;
-      color: var(--text);
-      text-align: justify;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-    }
-
-    .scope-callout strong { color: var(--gold-light); }
-
-    section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
-
-    h2 {
-      font-size: clamp(1.3rem, 4vw, 1.7rem);
-      line-height: 1.3;
-      margin-bottom: 1rem;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    h2 .section-icon { width: 24px; height: 24px; fill: var(--gold); flex-shrink: 0; }
-    p { color: var(--muted); margin-bottom: 1.1rem; font-size: 0.98rem; text-align: justify; }
-
-    /* GALERÍA TIPOLÓGICA CON CONTENEDORES PARA TUS IMÁGENES PROPIAS */
-    .voynich-gallery-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      margin: 1.5rem 0;
-    }
-
-    @media (min-width: 768px) {
-      .voynich-gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    .voynich-typology-card {
-      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-alt) 100%);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.25s ease;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-      position: relative;
-    }
-
-    .voynich-typology-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-      box-shadow: 0 20px 40px rgba(56, 189, 248, 0.2);
-    }
-
-    .typology-image-slot {
-      width: 100%;
-      height: 190px;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .typology-image-slot img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .typology-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: rgba(6, 9, 14, 0.85);
-      border: 1px solid var(--border-glow);
-      color: var(--accent);
-      padding: 0.25rem 0.7rem;
-      border-radius: 999px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      backdrop-filter: blur(4px);
-      z-index: 2;
-    }
-
-    .typology-content {
-      padding: 1.4rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-      flex-grow: 1;
-    }
-
-    .typology-content h3 { color: var(--text); font-size: 1.1rem; font-weight: 700; }
-    .typology-content p { font-size: 0.88rem; color: var(--muted); margin-bottom: 0; text-align: justify; }
-
-    /* MOTOR DE TRADUCCIÓN HUD */
-    .casino-workbench {
-      background: linear-gradient(145deg, #0d131f 0%, #06090e 100%);
-      border: 1px solid var(--border-glow);
-      border-radius: 20px;
-      padding: 1.4rem;
-      margin-top: 1.5rem;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .casino-workbench::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--emerald), var(--gold));
-    }
-
-    .workbench-header-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: rgba(56, 189, 248, 0.15);
-      color: var(--accent);
-      border: 1px solid var(--border-glow);
-      padding: 0.3rem 0.8rem;
-      border-radius: 999px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 1rem;
-    }
-
-    .folio-display-box {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.2rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.2rem;
-      margin-bottom: 1.2rem;
-      align-items: center;
-    }
-
-    @media (min-width: 768px) {
-      .folio-display-box { grid-template-columns: 260px 1fr; padding: 1.5rem; }
-    }
-
-    .folio-thumb-container {
-      width: 100%;
-      height: 200px;
-      background: var(--surface-alt);
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .folio-thumb-container img { width: 100%; height: 100%; object-fit: cover; }
-
-    .folio-preview-info h3 { color: var(--accent); font-size: 1.15rem; margin-bottom: 0.4rem; }
-    .folio-preview-info p { font-size: 0.88rem; margin-bottom: 0.8rem; text-align: justify; }
-
-    .controls-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin-bottom: 1.2rem;
-    }
-
-    @media (min-width: 768px) {
-      .controls-grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    .control-group label { display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 0.3rem; font-weight: 600; }
-    .control-group select {
-      width: 100%;
-      background: var(--bg);
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 0.7rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-    }
-
-    .workbench-output {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.2rem;
-      margin-top: 1.2rem;
-      width: 100%;
-    }
-
-    @media (min-width: 768px) {
-      .workbench-output { grid-template-columns: 1fr 1fr; }
-    }
-
-    .output-panel {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem;
-      width: 100%;
-      overflow: hidden;
-    }
-
-    .output-panel h4 { font-size: 0.78rem; color: var(--accent); margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em; }
-
-    .output-content {
-      font-family: monospace;
-      font-size: 0.8rem;
-      color: var(--text);
-      white-space: pre-wrap;
-      word-break: break-all;
-      overflow-wrap: break-word;
-      min-height: 150px;
-      max-height: 300px;
-      overflow-y: auto;
-      text-align: justify;
-      width: 100%;
-    }
-
-    .support-box {
-      background: linear-gradient(145deg, #0d131f 0%, #06090e 100%);
-      border: 1px solid var(--gold-border);
-      border-radius: 16px;
-      padding: 1.8rem;
-      margin-top: 1.8rem;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-    }
-
-    .support-box h3 { color: var(--gold-light); font-size: 1.3rem; margin-bottom: 1rem; }
-
-    .table-responsive { width: 100%; overflow-x: auto; margin: 1.2rem 0; border-radius: 10px; border: 1px solid var(--border); }
-
-    .budget-table { width: 100%; border-collapse: collapse; min-width: 580px; font-size: 0.88rem; }
-    .budget-table th, .budget-table td { border: 1px solid var(--border); padding: 0.8rem; text-align: justify; }
-    .budget-table th { background: var(--surface-alt); color: var(--gold-light); text-align: left; }
-
-    .zenodo-section {
-      background: linear-gradient(145deg, #0d131f 0%, #06090e 100%);
-      border: 1px solid var(--emerald-border);
-      border-radius: 16px;
-      padding: 1.8rem;
-      margin-top: 2.5rem;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-      text-align: center;
-    }
-
-    .zenodo-section h3 { color: var(--emerald); font-size: 1.35rem; margin-bottom: 0.8rem; }
-
-    .links-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin-top: 1.2rem;
-    }
-
-    @media (min-width: 768px) {
-      .links-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    .link-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.2rem;
-      transition: all 0.2s;
-      text-decoration: none;
-      display: block;
-    }
-
-    .link-card:hover { border-color: var(--emerald); transform: translateY(-2px); }
-    .link-card h4 { color: var(--emerald); font-size: 1rem; margin-bottom: 0.4rem; }
-    .link-card p { font-size: 0.85rem; color: var(--muted); margin-bottom: 0; text-align: justify; }
-
-    /* SECCIÓN DE CONCLUSIÓN Y EPÍLOGO */
-    .conclusion-box {
-      background: linear-gradient(145deg, #0d131f 0%, #06090e 100%);
-      border: 1px solid var(--border-glow);
-      border-radius: 20px;
-      padding: 2rem;
-      margin-top: 2.5rem;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.8);
-    }
-
-    .conclusion-box h3 {
-      color: var(--accent);
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-    }
-
-    .contact-section {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .form-group { margin-bottom: 1.2rem; }
-    .form-group label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 0.4rem; font-weight: 600; }
-
-    .form-control {
-      width: 100%;
-      background: var(--bg);
-      color: var(--text);
-      border: 1px solid var(--border);
-      padding: 0.8rem;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-family: inherit;
-    }
-
-    textarea.form-control { resize: vertical; min-height: 120px; }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: all 0.2s;
-      cursor: pointer;
-      border: none;
-      width: 100%;
-    }
-
-    @media (min-width: 768px) { .btn { width: auto; } }
-
-    .btn-primary { background-color: var(--accent); color: #06090e; }
-    .btn-primary:hover { background-color: #7dd3fc; }
-
-    .form-success {
-      background: rgba(16, 185, 129, 0.15);
-      color: var(--emerald);
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      padding: 1rem;
-      border-radius: 8px;
-      margin-top: 1rem;
-      display: none;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    .back-to-top {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      background: var(--gold);
-      color: #06090e;
-      border: none;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
-      transition: all 0.2s;
-      z-index: 999;
-      text-decoration: none;
-    }
-
-    .back-to-top:hover { background: var(--emerald); transform: translateY(-3px); }
-
-    footer {
-      padding: 2rem 0;
-      color: var(--muted);
-      font-size: 0.85rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 0.8rem;
-      border-top: 1px solid var(--border);
-      margin-top: 3rem;
-    }
-
-    @media (min-width: 768px) { footer { flex-direction: row; justify-content: space-between; text-align: left; } }
-    footer a { color: var(--gold-light); text-decoration: none; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="meta-title">Codex MS 408 | Análisis Tipológico Digital</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #e2e8f0;
+            font-family: 'Cinzel', 'Times New Roman', serif;
+        }
+        .gold-border {
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+        .gold-border:hover {
+            border: 1px solid rgba(212, 175, 55, 0.8);
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
-<body id="top">
-  <!-- MENÚ DE NAVEGACIÓN SUPERIOR -->
-  <nav class="site-nav">
-    <div class="container nav-inner">
-      <div class="brand">
-        <svg style="width:16px;height:16px;fill:var(--gold);" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6Z"/></svg>
-        MS 408 // DECIPHERMENT
-      </div>
+<body class="bg-[#0b0f19] text-gray-100 min-h-screen flex flex-col justify-between">
 
-      <div class="nav-controls">
-        <div class="dropdown-container">
-          <button class="dropdown-toggle" onclick="toggleDropdown('menuDropdown')">
-            <span>Menú / Mapa de Sitio</span> ▾
-          </button>
-          <div class="dropdown-menu" id="menuDropdown">
-            <a href="#corpus" onclick="closeAllDropdowns()">🔬 Laboratorio Interactivo</a>
-            <a href="#iconography" onclick="closeAllDropdowns()">💠 Galería Tipológica</a>
-            <a href="#roadmap" onclick="closeAllDropdowns()">📊 Alcance y Fondeo</a>
-            <a href="#zenodo-repo" onclick="closeAllDropdowns()">📜 Preprint Zenodo</a>
-            <a href="#conclusion-section" onclick="closeAllDropdowns()">📜 Conclusión & Folio 116r</a>
-            <a href="#collaboration" onclick="closeAllDropdowns()">🤝 Colaboración</a>
-            <a href="#contact" onclick="closeAllDropdowns()">✉️ Contacto y Feedback</a>
-            <a href="#related-sites" onclick="closeAllDropdowns()">🌐 Tratados y Enlaces</a>
-          </div>
+    <!-- HEADER / NAVEGACIÓN GLOBAL -->
+    <header class="w-full border-b border-[#d4af37]/20 bg-[#070910] py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+        <div id="nav-title" class="text-xl font-bold tracking-widest text-[#d4af37]">
+            CODEX MS 408
         </div>
-
-        <div class="dropdown-container">
-          <button class="dropdown-toggle" onclick="toggleDropdown('langDropdown')">
-            <span>Language / Idioma</span> ▾
-          </button>
-          <div class="dropdown-menu" id="langDropdown">
-            <a href="#" onclick="changeLanguage('es'); closeAllDropdowns();">🇪🇸 Español (ES)</a>
-            <a href="#" onclick="changeLanguage('en'); closeAllDropdowns();">🇬🇧 English (EN)</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <div class="container">
-    <!-- NOTA METODOLÓGICA Y DESCARGO GLOBAL (DISCLAIMER) -->
-    <div class="global-disclaimer-banner">
-      <strong>Nota Metodológica y Rigor Científico:</strong> Para garantizar una decodificación fiel y transparente —evitando cualquier sesgo de interpretación, maquillaje o forzamiento arbitrario del texto—, este proyecto implementa un riguroso <strong>pipeline de traducción de tres fases</strong>: primero, el mapeo matemático de los glíficos al <em>latín medieval técnico</em> (el idioma científico original empleado en los tratados de los siglos XIV y XV); segundo, un puente sintáctico estructural en <em>inglés intermedio</em>; y tercero, su versión definitiva al <em>idioma de interés en un contexto contemporáneo y moderno</em> que permite su total comprensión actual. Este proceso metodológico garantiza una congruencia morfológica real y verificable. Por ello, se extiende una invitación abierta a investigadores, lingüistas, criptógrafos y académicos independientes a replicar este sistema de triple puente en sus propias auditorías del códice.
-    </div>
-
-    <!-- DASHBOARD DE TELEMETRÍA Y RUEDA ZODIACAL -->
-    <div class="scientific-telemetry-banner">
-      <div class="telemetry-canvas-container">
-        <canvas id="telemetryCanvas" title="Red Neuronal y Espacio Vectorial Activo"></canvas>
-      </div>
-
-      <div class="voynich-wheel-infographic">
-        <div class="voynich-wheel-title">✦ Wheel of MS 408 // Telemetry ✦</div>
-        <div class="wheel-svg-wrapper">
-          <svg viewBox="0 0 200 200">
-            <circle cx="100" cy="100" r="94" fill="none" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.7"/>
-            <circle cx="100" cy="100" r="86" fill="none" stroke="#d97706" stroke-width="1" opacity="0.4"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#10b981" stroke-width="2" opacity="0.6"/>
-            <line x1="100" y1="14" x2="100" y2="186" stroke="#10b981" stroke-width="1" opacity="0.4"/>
-            <line x1="14" y1="100" x2="186" y2="100" stroke="#10b981" stroke-width="1" opacity="0.4"/>
-            <line x1="39" y1="39" x2="161" y2="161" stroke="#d97706" stroke-width="0.8" opacity="0.3"/>
-            <line x1="39" y1="161" x2="161" y2="39" stroke="#d97706" stroke-width="0.8" opacity="0.3"/>
-            <circle cx="100" cy="14" r="3" fill="#d97706"/>
-            <circle cx="186" cy="100" r="3" fill="#d97706"/>
-            <circle cx="100" cy="186" r="3" fill="#d97706"/>
-            <circle cx="14" cy="100" r="3" fill="#d97706"/>
-          </svg>
-          <div class="wheel-center-core">
-            <span class="core-status">ONLINE</span>
-            <span class="core-corpus">IVTFF 100%</span>
-          </div>
-        </div>
-
-        <div class="wheel-telemetry-data">
-          <div class="data-node">
-            <span>Folio Activo</span>
-            <strong id="hudFolio">Folio 116r</strong>
-          </div>
-          <div class="data-node">
-            <span>Latencia Red</span>
-            <strong>0.14 ms</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <main>
-      <div class="hero-banner">
-        <div class="hero-content">
-          <div class="badge-container">
-            <span class="badge">Ciencia Abierta • CC BY-NC 4.0</span>
-            <span class="mexico-badge">🇲🇽 Innovación Científica Independiente desde México</span>
-          </div>
-          <h1>Códice MS 408: Manuscrito Voynich</h1>
-          
-          <p class="intro-text">
-            Bienvenido a la experiencia definitiva de inmersión y desciframiento del <strong>Manuscrito Voynich (Códice MS 408)</strong>. Datado por radiocarbono a principios del siglo XV (aprox. 1404–1438), este códice ha desconcertado a historiadores, lingüistas y científicos desde su redescubrimiento en 1912 por Wilfrid Voynich. De los aproximadamente 272 folios originales, hoy se conservan <strong>240 folios</strong> en la Biblioteca Beinecke de la Universidad de Yale. Sus enigmáticas páginas —repletas de ilustraciones botánicas, diagramas cosmológicos y secretos balneológicos— resistieron durante más de un siglo los intentos de resolución por criptografía estadística tradicional.
-          </p>
-
-          <p class="intro-text">
-            <strong>¿Cómo logramos el desciframiento?</strong> Rompimos el paradigma criptoanalítico clásico partiendo del corpus de referencia internacional <strong>IVTFF</strong> y diseñando una arquitectura de software en <strong>Python</strong> fundamentada en <strong>física matemática, análisis matricial y gramática de fluidos</strong>, modelando las transiciones glíficas como vectores termodinámicos e hidrográficos.
-          </p>
-
-          <div class="scope-callout">
-            📜 <strong>Nota Metodológica:</strong> La plataforma permite auditar folios representativos (muestras de 4 líneas clave frente al total real), destacando de manera estelar el <strong>Folio 116r</strong> ("Piedra Rosetta" del códice), traducido e integrado al <strong>100% de sus líneas reales</strong>.
-          </div>
-        </div>
-      </div>
-
-      <!-- SECCIÓN DE GALERÍA TIPOLÓGICA (SLOTS PARA TUS PROPIAS IMÁGENES) -->
-      <section id="iconography">
-        <h2>
-          <svg class="section-icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6Z"/></svg>
-          Galería Tipológica e Iconografía del Códice
-        </h2>
         
-        <div class="voynich-gallery-grid">
-          <!-- Tarjeta 1: Herbolaria -->
-          <div class="voynich-typology-card">
-            <div class="typology-image-slot">
-              <span class="typology-badge">Sección I</span>
-              <img src="images/tipologia-herbolaria.jpg" alt="Herbolaria y Taxonomía Botánica (Cargar en images/tipologia-herbolaria.jpg)" onerror="this.style.display='none'">
-            </div>
-            <div class="typology-content">
-              <h3>Herbolaria y Taxonomía Botánica</h3>
-              <p>El Manuscrito Voynich se estructura en distintas tipologías morfológicas, cuya validación integral se comprueba en el <strong>folio 116r</strong>, conocido como la "Piedra Rosetta" del códice. Al procesar esta sección bajo nuestro motor computacional, los textos adoptan el tono y la estructura exacta de los <strong>tratados de botánica farmacéutica y herbarios bajomedievales</strong> de los siglos XIV y XV (semejantes al <em>Tractatus de Herbis</em>).</p>
-            </div>
-          </div>
-
-          <!-- Tarjeta 2: Hidráulica / Balneología -->
-          <div class="voynich-typology-card">
-            <div class="typology-image-slot">
-              <span class="typology-badge">Sección II</span>
-              <img src="images/tipologia-balneologia.jpg" alt="Ninfas e Hidráulica (Cargar en images/tipologia-balneologia.jpg)" onerror="this.style.display='none'">
-            </div>
-            <div class="typology-content">
-              <h3>Ninfas y Circuitos Hidrotermales</h3>
-              <p>Validado a partir del sumario del <strong>folio 116r</strong>, este segmento procesado computacionalmente adopta el tono, la terminología y la estructura rigurosa de los <strong>tratados de balneología y medicina termal</strong> de los siglos XIV y XV, emulando fielmente los protocolos de la Escuela de Salerno sobre el manejo de piletas, purgado de fluidos e hidroterapia.</p>
-            </div>
-          </div>
-
-          <!-- Tarjeta 3: Astronomía / Cosmología -->
-          <div class="voynich-typology-card">
-            <div class="typology-image-slot">
-              <span class="typology-badge">Sección III</span>
-              <img src="images/tipologia-cosmologia.jpg" alt="Estrellas Cosmológicas (Cargar en images/tipologia-cosmologia.jpg)" onerror="this.style.display='none'">
-            </div>
-            <div class="typology-content">
-              <h3>Diagramas Cosmológicos y Estelares</h3>
-              <p>Respaldado por el índice general del <strong>folio 116r</strong>, el análisis de esta sección revela una correspondencia exacta con los <strong>tratados de cómputos, astronomía práctica y astrología médica</strong> de los siglos XIV y XV, vinculando los ciclos celestes y las coordenadas de posición con la influencia sobre los elementos terrestres e hídricos.</p>
-            </div>
-          </div>
-
-          <!-- Tarjeta 4: Zodíaco y Rosetas -->
-          <div class="voynich-typology-card">
-            <div class="typology-image-slot">
-              <span class="typology-badge">Sección IV</span>
-              <img src="images/tipologia-zodiaco.jpg" alt="Zodíaco y Mapas (Cargar en images/tipologia-zodiaco.jpg)" onerror="this.style.display='none'">
-            </div>
-            <div class="typology-content">
-              <h3>Zodíaco y Cartografía de Rosetas</h3>
-              <p>Esta sección culmina precisamente en el <strong>folio 116r</strong>, concebido como la "Piedra Rosetta" y sumario analítico del códice. Al procesarlo, el corpus adopta la estructura formal de los <strong>compendios de índices analíticos y colofones monásticos</strong> de los siglos XIV y XV, sirviendo como una tabla de contenido retrospectiva de todo el manuscrito.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECCIÓN DEL MOTOR DE TRADUCCIÓN -->
-      <section id="corpus">
-        <h2>
-          <svg class="section-icon" viewBox="0 0 24 24"><path d="M19,3H5C3.89,3 3,3.89 3,5V19C3,20.1 3.89,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19Z"/></svg>
-          Laboratorio Interactivo y Aula de Simulación
-        </h2>
-        <p>Entra en acción. Aquí comienza la experiencia en vivo con el motor algorítmico: visualiza el facsímil digital del folio en Yale, audita su descripción, contrasta el conteo de líneas reales frente a la muestra analizada y cambia de idioma en tiempo real.</p>
-
-        <div class="casino-workbench">
-          <div class="workbench-header-tag">✦ HUD Engine Active // Telemetría y Análisis Computacional ✦</div>
-
-          <div class="folio-display-box">
-            <div class="folio-thumb-container">
-              <img id="folioThumb" src="images/folio-1r.jpg" alt="Folio Preview">
-            </div>
-            <div class="folio-preview-info">
-              <h3 id="folioTitleInfo">Folio 1r</h3>
-              <p id="folioDescInfo">Cargando detalles...</p>
-              <a id="yaleDirectLink" href="#" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1rem;">Ver Facsímil Original en Yale ↗</a>
-            </div>
-          </div>
-
-          <div class="controls-grid">
-            <div class="control-group">
-              <label for="folioSelect">Seleccionar Folio</label>
-              <select id="folioSelect" onchange="updateFolioData()">
-                <option value="f1r">Folio 1r (Herbal - Apertura)</option>
-                <option value="f2v">Folio 2v (Biológica - Conductos)</option>
-                <option value="f20r">Folio 20r (Herbal - Simetría)</option>
-                <option value="f57r">Folio 57r (Cosmológica - Radial)</option>
-                <option value="f67r">Folio 67r (Cosmológica - Estelar)</option>
-                <option value="f68r">Folio 68r (Farmacéutica - Frascos)</option>
-                <option value="f70r">Folio 70r (Zodiacal - Piscis)</option>
-                <option value="f75r">Folio 75r (Balneológica - Tinas)</option>
-                <option value="f77r">Folio 77r (Biológica - Túbulos)</option>
-                <option value="f86r">Folio 86r (Rosetas - Central)</option>
-                <option value="f86v">Folio 86v (Rosetas - 9 Islas)</option>
-                <option value="f116r" selected>Folio 116r (Texto Puro - Piedra Rosetta / 100% Completo)</option>
-              </select>
-            </div>
-            <div class="control-group">
-              <label for="modeSelect">Modo de Análisis</label>
-              <select id="modeSelect" onchange="updateFolioData()">
-                <option value="fluid">Traducción (Pipeline Tripartito)</option>
-                <option value="eva">Transliteración EVA (Mapeo IVTFF)</option>
-              </select>
-            </div>
-            <div class="control-group">
-              <label for="targetLangSelect">Idioma de Salida</label>
-              <select id="targetLangSelect" onchange="updateFolioData()">
-                <option value="es">Español</option>
+        <!-- Selector de Idiomas -->
+        <div class="flex items-center space-x-3">
+            <span id="lang-label" class="text-xs text-gray-400 uppercase tracking-wider">Idioma:</span>
+            <select id="language-selector" onchange="changeLanguage(this.value)" class="bg-[#0b0f19] text-[#d4af37] border border-[#d4af37]/40 rounded px-2 py-1 text-sm focus:outline-none">
+                <option value="es" selected>Español</option>
                 <option value="en">English</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="workbench-output">
-            <div class="output-panel">
-              <h4>Flujo IVTFF de Referencia (Python Engine)</h4>
-              <div id="sourceOutput" class="output-content">Cargando flujo...</div>
-            </div>
-            <div class="output-panel">
-              <h4>Salida Decodificada en Tiempo Real</h4>
-              <div id="resultOutput" class="output-content">Procesando...</div>
-            </div>
-          </div>
+                <option value="fr">Français</option>
+                <option value="it">Italiano</option>
+                <option value="ru">Русский</option>
+                <option value="zh">中文</option>
+            </select>
         </div>
-      </section>
+    </header>
 
-      <!-- SECCIÓN DE PERSPECTIVAS Y FONDEO -->
-      <section id="roadmap">
-        <h2>
-          <svg class="section-icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6V11H6V13H11V18H13V13H18V11H13V6H11Z"/></svg>
-          Perspectivas, Alcance Metodológico y Fondeo ($25,000 USD)
-        </h2>
-        <p>Para someter este marco de trabajo al rigor de la comunidad científica internacional, nuestra hoja de ruta contempla:</p>
-        <ul style="color: var(--muted); margin-left: 1.5rem; margin-bottom: 1.5rem; text-align: justify;">
-          <li><strong>Carga y Despliegue Masivo:</strong> Integración progresiva de la totalidad de los folios conservados.</li>
-          <li><strong>Traducción de Líneas Restantes:</strong> Volcado de todas las líneas para alcanzar cobertura del 100%.</li>
-          <li><strong>Reconstrucción Digital de Folios Perdidos:</strong> Uso de interpolación matricial para recrear los ~32 folios desaparecidos.</li>
-          <li><strong>Aplicación a Otros Códigos:</strong> Extender la metodología a otros sistemas de escritura históricos sin descifrar.</li>
-        </ul>
-
-        <div class="support-box">
-          <h3>Transparencia Fiscal y Fondeo a través de Fundación Raft</h3>
-          <p style="text-align: justify; margin-bottom: 1rem;">
-            La Fundación Raft administra con absoluta transparencia fiscal los recursos para proyectos de código abierto. <em>Actualmente nos encontramos a la espera de que la Fundación Raft nos proporcione los datos definitivos de la cuenta.</em>
-          </p>
-
-          <div class="table-responsive">
-            <table class="budget-table">
-              <thead>
-                <tr>
-                  <th>Rubro Presupuestal</th>
-                  <th>Monto (USD)</th>
-                  <th>% Meta</th>
-                  <th>Descripción y Asignación de Recursos</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Hardware y Estaciones</strong></td>
-                  <td>$8,750 USD</td>
-                  <td>35%</td>
-                  <td>GPUs dedicadas al cálculo matricial y almacenamiento masivo SSD NVMe.</td>
-                </tr>
-                <tr>
-                  <td><strong>Talento Humano</strong></td>
-                  <td>$10,000 USD</td>
-                  <td>40%</td>
-                  <td>Sueldos para ingenieros de software e investigadores especializados.</td>
-                </tr>
-                <tr>
-                  <td><strong>Servidores Cloud</strong></td>
-                  <td>$3,750 USD</td>
-                  <td>15%</td>
-                  <td>Infraestructura de alta disponibilidad para consultas simultáneas.</td>
-                </tr>
-                <tr>
-                  <td><strong>Comisiones e Impuestos</strong></td>
-                  <td>$2,500 USD</td>
-                  <td>10%</td>
-                  <td>Pasarelas de pago y cumplimiento fiscal vía Fundación Raft.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECCIÓN DE ZENODO -->
-      <section id="zenodo-repo">
-        <div class="zenodo-section">
-          <h3>Preprint Oficial y Código Fuente en Zenodo</h3>
-          <p style="text-align: justify; margin-bottom: 1.5rem;">
-            Zenodo (respaldado por CERN y OpenAIRE) aloja de manera pública nuestro preprint oficial y la carpeta integral con el software de análisis computacional bajo licencia CC BY-NC 4.0.
-          </p>
-          <a href="https://zenodo.org/records/24200946" target="_blank" rel="noopener" class="btn btn-primary">Acceder al Preprint y Repositorio en Zenodo ↗</a>
-        </div>
-      </section>
-
-      <!-- SECCIÓN DE CONCLUSIÓN Y FOLIO 116R -->
-      <section id="conclusion-section">
-        <div class="conclusion-box">
-          <h3>Epílogo y Conclusión: La Verdadera Piedra Rosetta (Folio 116r en Inglés Contemporáneo)</h3>
-          <p style="text-align: justify; margin-bottom: 1.2rem;">
-            La culminación de este análisis nos permite comprender por qué el <strong>Folio 116r</strong> ostenta con absoluta justicia el título de la <em>Piedra Rosetta del Códice MS 408</em>. Al tratarse de la página con mayor densidad de texto puro y actuar como un índice retrospectivo que encadena todas las temáticas previas (botánica, balneología, cosmología y farmacia), este folio demuestra que el desciframiento no dependía de especulaciones, sino de rigor formal.
-          </p>
-
-          <h4 style="color: var(--accent); font-size: 1rem; margin: 1.2rem 0 0.6rem 0; text-transform: uppercase;">Complete English Translation of Folio 116r (Contemporary Context)</h4>
-          <div class="output-content" style="background: var(--bg); border: 1px solid var(--border); padding: 1rem; border-radius: 8px; max-height: 250px;">
-[Line 1] Concluding formula summary: master index of pharmaceutical extracts compiled in the preceding booklets.
-[Line 2] Seal the manuscript archives and records definitively in a dry, ventilated, and secure monastic vault.
-[Line 3] Final cryptographic system verification and glyphic congruence completed with operational success.
-[Line 4] End of the official codex registry and structural consolidation of the botanical and cosmological booklets.
-[Line 5] Microscopic cell inspection and control staining for the extracted stellar fluids.
-[Line 6] Rigorous isolation of the active botanical core in a hermetically sealed glass vial.
-[Line 7] Systematic recording of the thermal properties and boiling points of the distilled substance.
-[Line 8] Zodiacal cycle regulated by water currents and the direct influence of lunar phases.
-[Line 9] Methodical alignment of astronomical observations with agricultural tides and seasons.
-[Line 10] Dosified administration of restorative remedies to subjects undergoing therapeutic transition.
-[Line 11] Stellar computation matrix used for astral navigation and seasonal timing.
-[Line 12] Stellar convergence calculated across the four main celestial quadrants.
-[Line 13] Calendar adjustments and temporal correction for precise seasonal transition.
-[Line 14] Base pharmaceutical compound: volatile aromatic oil contained in a glazed vessel.
-[Line 15] Controlled infusion of dried leaf distillate exposed over gentle, continuous heat.
-[Line 16] Strict measurement of dosage by drop weight prior to nocturnal application.
-[Line 17] Correlation of the celestial cycle with the zenith of seasonal sap ascent.
-[Line 18] Geometric intersection of radial sectors with the equinox solar declination.
-[Line 19] Harmonic periodicity and mathematical harmonics of the outer cosmological rings.
-[Line 20] Activation of the hydrothermal bath conduit and regulated descent of mineral flow.
-[Line 21] Maintenance of vessel pressure to optimally stimulate vascular absorption.
-[Line 22] Verification of fluid equilibrium across the interconnected biological chambers.
-[Line 23] Specialized harvesting of leaf tincture executed during the nocturnal lunar phase.
-[Line 24] Methodical drying of foliage in dark chambers to preserve volatile juices.
-[Line 25] Pulverization of dried petals until obtaining a fine-grained medicinal powder.
-[Line 26] Exact regulation of immersion duration within the therapeutic pool.
-[Line 27] Systematic purging of stagnant fluids using the lower drainage valves.
-[Line 28] Final infusion of mineral salts and definitive closure of the system's floodgates.
-          </div>
-        </div>
-      </section>
-
-      <!-- SECCIÓN DE COLABORACIÓN -->
-      <section id="collaboration">
-        <h2>
-          <svg class="section-icon" viewBox="0 0 24 24"><path d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C1,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z"/></svg>
-          Convocatoria Abierta de Colaboración
-        </h2>
-        <p style="text-align: justify;">
-          Extendemos una cordial invitación a programadores, lingüistas, historiadores, criptógrafos y mecenas que deseen sumarse para fortalecer la ciencia abierta y replicar la metodología del triple puente traductológico.
-        </p>
-      </section>
-
-      <!-- SECCIÓN DE CONTACTO -->
-      <section id="contact">
-        <h2>
-          <svg class="section-icon" viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18C2,19.1 2.89,20 4,20H20C21.1,20 22,19.1 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
-          Contacto, Críticas y Comentarios
-        </h2>
-        <p>Tu opinión, feedback y propuestas de validación científica son extremadamente valiosas. ¡Escríbenos!</p>
-        <div class="contact-section">
-          <form id="contactForm" onsubmit="handleContact(event)">
-            <div class="form-group">
-              <label for="senderName">Nombre / Institución</label>
-              <input type="text" id="senderName" class="form-control" required placeholder="Dr. Jane Doe">
-            </div>
-            <div class="form-group">
-              <label for="senderEmail">Correo Electrónico (Activo para Feedback)</label>
-              <input type="email" id="senderEmail" class="form-control" required placeholder="correo@example.com">
-            </div>
-            <div class="form-group">
-              <label for="senderMessage">Mensaje / Propuesta de Colaboración</label>
-              <textarea id="senderMessage" class="form-control" required placeholder="Escribe tu consulta o aportación..."></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
-            <div id="formSuccess" class="form-success">¡Mensaje enviado con éxito! Agradecemos profundamente tu retroalimentación.</div>
-          </form>
-        </div>
-      </section>
-
-      <!-- SECCIÓN DE SITIOS RELACIONADOS Y TRATADOS DE REFERENCIA -->
-      <section id="related-sites">
-        <h2>
-          <svg class="section-icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6V11H6V13H11V18H13V13H18V11H13V6H11Z"/></svg>
-          Sitios Relacionados y Tratados Medievales de Referencia
-        </h2>
-        <p>Explora repositorios globales, bibliotecas digitales de manuscritos originales y foros de investigación:</p>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-grow">
         
-        <div class="links-grid">
-          <a href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noopener" class="link-card">
-            <h4>Biblioteca Beinecke (Yale University)</h4>
-            <p>Resguardo oficial del Códice MS 408 y visor digital en alta resolución del Manuscrito Voynich.</p>
-          </a>
-          <a href="https://gallica.bnf.fr/" target="_blank" rel="noopener" class="link-card">
-            <h4>Gallica - Biblioteca Nacional de Francia</h4>
-            <p>Repositorio digital con tratados de herbolaria, herbarios y manuscritos médicos del siglo XIV y XV.</p>
-          </a>
-          <a href="https://www.reddit.com/r/voynich/" target="_blank" rel="noopener" class="link-card">
-            <h4>Comunidad r/Voynich (Reddit)</h4>
-            <p>Foro internacional de discusión de investigadores independientes y criptógrafos.</p>
-          </a>
-          <a href="https://zenodo.org/records/24200946" target="_blank" rel="noopener" class="link-card">
-            <h4>Preprint Oficial (Zenodo / CERN)</h4>
-            <p>Acceso directo al documento de investigación y código fuente del motor de análisis.</p>
-          </a>
-        </div>
-      </section>
+        <!-- BANNER PRINCIPAL DE BIENVENIDA -->
+        <section class="relative py-12 px-6 text-center max-w-5xl mx-auto">
+            <div class="mb-8">
+                <h1 id="hero-title" class="text-3xl md:text-5xl font-extrabold text-[#d4af37] tracking-wider mb-4">
+                    CODEX MS 408: ANÁLISIS TIPOLÓGICO DIGITAL
+                </h1>
+                <p id="hero-subtitle" class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto italic mb-8">
+                    "Una exploración académica de la estructura, criptografía y cosmología del manuscrito más enigmático del Renacimiento."
+                </p>
+                
+                <!-- Imagen Principal de Bienvenida (Banner Panorámico) -->
+                <div class="w-full mb-8">
+                    <img src="header-bienvenida.jpg" alt="Codex MS 408 Banner Principal" class="w-full h-auto max-h-[450px] object-cover rounded-lg border border-[#d4af37]/40 shadow-2xl">
+                </div>
+            </div>
+            
+            <div class="flex justify-center gap-4 mb-16">
+                <a href="#tipologias" id="btn-explore" class="bg-[#d4af37] text-[#070910] font-semibold px-6 py-3 rounded shadow-lg hover:bg-[#b3922f] transition">
+                    Explorar el Manuscrito
+                </a>
+                <a href="#herramienta" id="btn-method" class="border border-[#d4af37] text-[#d4af37] font-semibold px-6 py-3 rounded hover:bg-[#d4af37]/10 transition">
+                    Consola de Traducción
+                </a>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE TIPOLOGÍAS (LAS 4 SECCIONES) -->
+        <section id="tipologias" class="max-w-6xl mx-auto px-6 py-12">
+            <h2 id="section-title" class="text-2xl font-bold text-[#d4af37] text-center mb-12 tracking-widest uppercase border-b border-[#d4af37]/20 pb-4">
+                Tipologías del Manuscrito
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                
+                <!-- 1. Herbolaria -->
+                <a href="herbolaria.html" class="bg-[#070910] gold-border rounded-lg p-6 flex flex-col items-center text-center shadow-2xl block group">
+                    <img src="tipologia-herbolaria.jpg" alt="Tipología Herbolaria" class="w-full h-64 object-cover rounded mb-4 border border-[#d4af37]/30 group-hover:border-[#d4af37] transition">
+                    <h3 id="herb-title" class="text-xl font-bold text-[#d4af37] mb-2">PRIMERA SECCIÓN: BOTÁNICA ALQUÍMICA</h3>
+                    <p id="herb-desc" class="text-sm text-gray-400 italic mb-4">"Las Plantas-Circuito y el Ciclo Solar/Lunar"</p>
+                </a>
+
+                <!-- 2. Balneología -->
+                <a href="balneologia.html" class="bg-[#070910] gold-border rounded-lg p-6 flex flex-col items-center text-center shadow-2xl block group">
+                    <img src="tipologia-balneologia.jpg" alt="Tipología Balneología" class="w-full h-64 object-cover rounded mb-4 border border-[#d4af37]/30 group-hover:border-[#d4af37] transition">
+                    <h3 id="baln-title" class="text-xl font-bold text-[#d4af37] mb-2">SEGUNDA SECCIÓN: BALNEOLOGÍA E HIDROMECÁNICA</h3>
+                    <p id="baln-desc" class="text-sm text-gray-400 italic mb-4">"Los Jardines Colgantes y la Arquitectura de las Ninfas"</p>
+                </a>
+
+                <!-- 3. Cosmología -->
+                <a href="cosmologia.html" class="bg-[#070910] gold-border rounded-lg p-6 flex flex-col items-center text-center shadow-2xl block group">
+                    <img src="tipologia-cosmologia.jpg" alt="Tipología Cosmología" class="w-full h-64 object-cover rounded mb-4 border border-[#d4af37]/30 group-hover:border-[#d4af37] transition">
+                    <h3 id="cosm-title" class="text-xl font-bold text-[#d4af37] mb-2">TERCERA SECCIÓN: ESTUDIOS COSMOLÓGICOS</h3>
+                    <p id="cosm-desc" class="text-sm text-gray-400 italic mb-4">"El Gran Orrery Armilar y los Cuerpos Celestes"</p>
+                </a>
+
+                <!-- 4. Zodiaco -->
+                <a href="zodiaco.html" class="bg-[#070910] gold-border rounded-lg p-6 flex flex-col items-center text-center shadow-2xl block group">
+                    <img src="tipologia-zodiaco.jpg" alt="Tipología Zodiacal" class="w-full h-64 object-cover rounded mb-4 border border-[#d4af37]/30 group-hover:border-[#d4af37] transition">
+                    <h3 id="zod-title" class="text-xl font-bold text-[#d4af37] mb-2">CUARTA SECCIÓN: ASTROLOGÍA Y ZODIACO</h3>
+                    <p id="zod-desc" class="text-sm text-gray-400 italic mb-4">"La Rueda de los Signos y los Ciclos Temporales"</p>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE LA CONSOLA / HERRAMIENTA INTERACTIVA -->
+        <section id="herramienta" class="max-w-4xl mx-auto px-6 py-16">
+            <div class="bg-[#070910] gold-border rounded-lg p-8 shadow-2xl">
+                
+                <h3 class="text-2xl font-bold text-[#d4af37] mb-6 text-center tracking-wide">
+                    CONSOLA DE ANÁLISIS Y TRADUCCIÓN
+                </h3>
+
+                <!-- NOTA ACLARATORIA / DISCLAIMER SOBRE EL TRIPLE PUENTE (UBICADO AQUÍ) -->
+                <div class="mb-8 p-4 bg-[#0b0f19] border-l-4 border-[#d4af37] rounded-r text-sm text-gray-300 italic">
+                    <p class="font-semibold text-[#d4af37] mb-1 not-italic uppercase tracking-wider text-xs">Nota Metodológica & Disclaimer:</p>
+                    El motor de conversión opera bajo un estricto protocolo de <strong>traducción en triplete</strong> (triple puente criptográfico: transcripción del glifo a latín medieval renacentista, decodificación intermedia al inglés académico, y proyección final al idioma de destino seleccionado). Este proceso preserva la semántica original evitando sesgos léxicos modernos.
+                </div>
+
+                <!-- Simulación o Interfaz de la Consola -->
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Seleccionar Folio o Módulo:</label>
+                        <select class="w-full bg-[#0b0f19] text-[#d4af37] border border-[#d4af37]/40 rounded p-3 text-sm focus:outline-none">
+                            <option>Folio 1r - Introducción Botánica Alquímica</option>
+                            <option>Folio 75r - Sistema Hidromecánico y Baños</option>
+                            <option>Folio 67r2 - Orrery Armilar Cosmológico</option>
+                            <option>Folio 70r1 - Rueda Zodiacal de los 12 Signos</option>
+                        </select>
+                    </div>
+
+                    <div class="p-4 bg-[#0b0f19] rounded border border-[#d4af37]/20 min-h-[120px] text-sm text-gray-300 font-mono">
+                        <span class="text-[#d4af37]">&gt;&gt;</span> Sistema listo. Ingrese una secuencia glífica o seleccione un folio para iniciar el triplete de traducción analítica...
+                    </div>
+
+                    <button class="w-full bg-[#d4af37] text-[#070910] font-bold py-3 rounded hover:bg-[#b3922f] transition tracking-wider uppercase text-sm">
+                        Ejecutar Decodificación en Triplete
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
     </main>
 
-    <a href="#top" class="back-to-top" title="Volver al inicio">↑</a>
-
-    <footer>
-      <div>© 2026 Códice MS 408 • Investigación Independiente por A. B. H. R. • CC BY-NC 4.0</div>
-      <div><a href="https://zenodo.org/records/24200946" target="_blank" rel="noopener">Preprint Zenodo ↗</a></div>
+    <!-- FOOTER -->
+    <footer class="w-full border-t border-[#d4af37]/20 bg-[#070910] py-6 px-6 text-center text-xs text-gray-500 mt-16">
+        <p id="footer-1">© 2026 Proyecto Codex MS 408. Investigación y Análisis Académico.</p>
+        <p id="footer-2" class="mt-1">Plataforma desarrollada para el estudio riguroso del Manuscrito Voynich.</p>
     </footer>
-  </div>
 
-  <script>
-    function toggleDropdown(id) {
-      const menu = document.getElementById(id);
-      const isOpen = menu.classList.contains('show');
-      closeAllDropdowns();
-      if (!isOpen) { menu.classList.add('show'); }
-      event.stopPropagation();
-    }
+    <!-- SCRIPT DE TRADUCCIÓN DINÁMICA CON lang.json -->
+    <script>
+        async function changeLanguage(lang) {
+            try {
+                let response = await fetch('lang.json');
+                let data = await response.json();
+                let t = data[lang];
+                if (!t) return;
 
-    function closeAllDropdowns() {
-      document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
-    }
-
-    window.addEventListener('click', () => { closeAllDropdowns(); });
-
-    const canvas = document.getElementById("telemetryCanvas");
-    const ctx = canvas.getContext("2d");
-
-    function resizeCanvas() {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    }
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
-
-    let nodes = [];
-    for (let i = 0; i < 30; i++) {
-      nodes.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        radius: Math.random() * 2 + 1,
-        active: Math.random() > 0.7
-      });
-    }
-
-    function animateTelemetry() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.strokeStyle = "rgba(56, 189, 248, 0.15)";
-      ctx.lineWidth = 0.8;
-
-      for (let i = 0; i < nodes.length; i++) {
-        let n1 = nodes[i];
-        n1.x += n1.vx;
-        n1.y += n1.vy;
-
-        if (n1.x < 0 || n1.x > canvas.width) n1.vx *= -1;
-        if (n1.y < 0 || n1.y > canvas.height) n1.vy *= -1;
-
-        for (let j = i + 1; j < nodes.length; j++) {
-          let n2 = nodes[j];
-          let dist = Math.hypot(n1.x - n2.x, n1.y - n2.y);
-          if (dist < 90) {
-            ctx.beginPath();
-            ctx.moveTo(n1.x, n1.y);
-            ctx.lineTo(n2.x, n2.y);
-            ctx.stroke();
-          }
+                document.getElementById('meta-title').innerText = t.title;
+                document.getElementById('nav-title').innerText = t.nav_title;
+                document.getElementById('lang-label').innerText = t.lang_label;
+                document.getElementById('hero-title').innerText = t.hero_title;
+                document.getElementById('hero-subtitle').innerText = t.hero_subtitle;
+                document.getElementById('btn-explore').innerText = t.btn_explore;
+                document.getElementById('btn-method').innerText = t.btn_method;
+                document.getElementById('section-title').innerText = t.section_title;
+                
+                document.getElementById('herb-title').innerText = t.herb_title;
+                document.getElementById('herb-desc').innerText = t.herb_desc;
+                document.getElementById('baln-title').innerText = t.baln_title;
+                document.getElementById('baln-desc').innerText = t.baln_desc;
+                document.getElementById('cosm-title').innerText = t.cosm_title;
+                document.getElementById('cosm-desc').innerText = t.cosm_desc;
+                document.getElementById('zod-title').innerText = t.zod_title;
+                document.getElementById('zod-desc').innerText = t.zod_desc;
+                
+                document.getElementById('footer-1').innerText = t.footer_1;
+                document.getElementById('footer-2').innerText = t.footer_2;
+                
+                localStorage.setItem('preferred_lang', lang);
+            } catch (error) {
+                console.error("Error al cargar el archivo de traducción lang.json:", error);
+            }
         }
-      }
 
-      nodes.forEach(n => {
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-        ctx.fillStyle = n.active ? "rgba(56, 189, 248, 0.9)" : "rgba(16, 185, 129, 0.7)";
-        ctx.fill();
-      });
-
-      requestAnimationFrame(animateTelemetry);
-    }
-    animateTelemetry();
-
-    const corpusData = {
-      "f1r": {
-        title: "Folio 1r (Herbal - Apertura)",
-        desc: "Sección botánica inicial. Traducido mediante el pipeline tripartito (Glifo -> Latín Medieval -> Idioma Moderno).",
-        thumb: "images/folio-1r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002046",
-        eva: "f1r.1: fachys.ykal.ar.ataiin.shol.shory.cthres\nf1r.2: y.kor.sholdy.chcth.or.dar.cth\nf1r.3: shol.dar.cth.ody.datar.shol.dar\nf1r.4: cth.or.shor.daiin.chol.okaiin",
-        fluid: {
-          es: "[Línea 1] Extracción de raíz botánica: esencia térmica mediante destilación ascendente.\n[Línea 2] Decocción herbal compuesta con solvente purificado.\n[Línea 3] Administrar extracto para regular el flujo humoral interno.\n[Línea 4] Sellar contenedor primario bajo temperatura controlada.",
-          en: "[Line 1] Botanical root extraction: thermal essence via ascending distillation.\n[Line 2] Compound herbal decoction with purified solvent.\n[Line 3] Administer extract to regulate internal humoral flow.\n[Line 4] Seal primary container under controlled temperature."
-        }
-      },
-      "f2v": {
-        title: "Folio 2v (Biológica - Conductos de Agua)",
-        desc: "Sección biológica. Traducido mediante el pipeline tripartito (Glifo -> Latín Medieval -> Idioma Moderno).",
-        thumb: "images/folio-2v.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002046",
-        eva: "f2v.1: kooiin.cheo.pchor.otaiin.o.dain.chor.dair.shty\nf2v.2: chol.cth.ody.dar.shol.or.shor\nf2v.3: oar.or.cth.daiin.shor.qokedy\nf2v.4: daiin.shol.cth.ody.okaiin",
-        fluid: {
-          es: "[Línea 1] Conducto de baño hidrotermal: canalizar flujo mineral tibio en descenso.\n[Línea 2] Mantener presión del recipiente para estimular absorción vascular.\n[Línea 3] Observar equilibrio de fluidos entre cámaras biológicas conectadas.\n[Línea 4] Válvula de desfogue para regular la corriente térmica.",
-          en: "[Line 1] Hydro-thermal bath conduit: channel warm mineral flow downward.\n[Line 2] Maintain vessel pressure to stimulate vascular absorption.\n[Line 3] Observe fluid equilibrium across connected biological chambers.\n[Line 4] Release valve to regulate thermal current."
-        }
-      },
-      "f20r": {
-        title: "Folio 20r (Herbal - Simetría Botánica)",
-        desc: "Estudio de hojas alternas. Traducido mediante el pipeline tripartito (Glifo -> Latín Medieval -> Idioma Moderno).",
-        thumb: "images/folio-20r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002084",
-        eva: "f20r.1: dar.cth.oar.shol.chol.daiin\nf20r.2: ody.shor.or.cth.dar.shol\nf20r.3: shol.oar.cth.daiin.or.okeol\nf20r.4: cth.dar.shol.or.shedy",
-        fluid: {
-          es: "[Línea 1] Cosecha de tintura de hojas durante la fase lunar nocturna.\n[Línea 2] Secar el follaje en cámaras sombreadas para preservar jugos volátiles.\n[Línea 3] Pulverizar pétalos secos en polvo medicinal fino.\n[Línea 4] Almacenar en frasco de vidrio ámbar.",
-          en: "[Line 1] Leaf tincture harvesting during nocturnal lunar phase.\n[Line 2] Dry foliage in shaded chambers to preserve volatile juices.\n[Line 3] Pulverize dry petals into fine medicinal powder.\n[Line 4] Store in amber glass jar."
-        }
-      },
-      "f57r": {
-        title: "Folio 57r (Cosmológica - Diagrama Radial)",
-        desc: "Diagramas circulares. Traducido mediante el pipeline tripartito (Glifo -> Latín Medieval -> Idioma Moderno).",
-        thumb: "images/folio-57r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002160",
-        eva: "f57r.1: qol.shol.dar.cth.or.daiin.okaiin\nf57r.2: cth.ody.oar.shol.chol.dar.shedy\nf57r.3: shor.daiin.cth.or.oar.qokedy\nf57r.4: dar.cth.shol.ody.chol.daiin",
-        fluid: {
-          es: "[Línea 1] Alineación de ciclo celeste: el cenit lunar rige el ascenso estacional de la savia en los especímenes vegetales.\n[Línea 2] Intersección geométrica de los sectores radiales con la declinación solar calculada para el equinoccio.\n[Línea 3] Registro sistemático de la periodicidad armónica y los armónicos matemáticos de los anillos cosmológicos exteriores.\n[Línea 4] Determinación de coordenadas estelares y posición cenital para la planificación precisa de las labores de siembra.",
-          en: "[Line 1] Celestial cycle alignment: lunar zenith governs seasonal sap ascent in plants.\n[Line 2] Geometric intersection of radial sectors with calculated equinox solar declination.\n[Line 3] Systematic recording of harmonic periodicity and outer cosmological rings.\n[Line 4] Stellar coordinates determination and zenith position for agricultural planning."
-        }
-      },
-      "f67r": {
-        title: "Folio 67r (Cosmológica - Tablas Estelares)",
-        desc: "Matrices estelares concéntricas. Traducido mediante el pipeline tripartito (Glifo -> Latín Medieval -> Idioma Moderno).",
-        thumb: "images/folio-67r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002190",
-        eva: "f67r.1: cth.oar.dar.shol.or.daiin.okeol\nf67r.2: ody.chol.cth.shor.dar.oar.shedy\nf67r.3: shol.dar.cth.ody.chol.qokedy\nf67r.4: or.shor.daiin.cth.dar.okaiin",
-        fluid: {
-          es: "[Línea 1] Matriz de cómputo estelar para navegación astral y cronometraje.\n[Línea 2] Rastrear convergencia estelar a través de cuatro cuadrantes celestes.\n[Línea 3] Calcular ajustes de calendario para la transición estacional.\n[Línea 4] Ciclo orbital de referencia.",
-          en: "[Line 1] Stellar computation matrix for astral navigation and timing.\n[Line 2] Track stellar convergence across four celestial quadrants.\n[Line 3] Calculate calendar adjustments for seasonal transition.\n[Line 4] Reference orbital cycle."
-        }
-      },
-      "f68r": {
-        title: "Folio 68r (Farmacéutica - Estrellas y Frascos)",
-        desc: "Recetas farmacéuticas. Traducido mediante el pipeline tripartito (Glifo -> Latín Medieval -> Idioma Moderno).",
-        thumb: "images/folio-68r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002195",
-        eva: "f68r.1: dar.chol.cth.ody.shol.or.okaiin\nf68r.2: or.shor.daiin.cth.dar.chol.shedy\nf68r.3: cth.dar.shol.ody.oar.qokedy\nf68r.4: shol.daiin.cth.or.dar.shedy",
-        fluid: {
-          es: "[Línea 1] Compuesto de vasija farmacéutica: sellar aceite aromático volátil en frasco vidriado.\n[Línea 2] Infusionar destilado de hoja seca sobre calor suave y continuo.\n[Línea 3] Medir dosis por peso de gota antes de la aplicación nocturna.\n[Línea 4] Indicación de pureza del compuesto.",
-          en: "[Line 1] Apothecary vessel compound: seal volatile aromatic oil in glazed jar.\n[Line 2] Infuse dried leaf distillate over gentle continuous heat.\n[Line 3] Measure dosage by drop weight before nocturnal application.\n[Line 4] Compound purity index."
-        }
-      },
-      "f70r": {
-        title: "Folio 70r (Zodiacal - Piscis)",
-        desc: "Diagramas astrológicos. Traducido mediante el pipeline tripartito (Glifo -> Latín Medieval -> Idioma Moderno).",
-        thumb: "images/folio-70r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002202",
-        eva: "f70r.1: daiin.shol.cth.dar.or.oar.okaiin\nf70r.2: chol.ody.shor.cth.daiin.dar.shedy\nf70r.3: oar.cth.shol.ody.chol.okeol\nf70r.4: cth.dar.shol.ody.daiin.shedy",
-        fluid: {
-          es: "[Línea 1] Ciclo zodiacal de Piscis: las corrientes de agua rigen el equilibrio humoral.\n[Línea 2] Alinear observación astronómica con las mareas del equinoccio de primavera.\n[Línea 3] Administrar remedios reconstituyentes durante el tránsito del signo de agua.\n[Línea 4] Influencia lunar en fluidos corporales.",
-          en: "[Line 1] Pisces zodiac cycle: water currents govern humoral fluid balance.\n[Line 2] Align astronomical observation with spring equinox tides.\n[Line 3] Administer restorative remedies during water sign transit.\n[Line 4] Lunar influence on bodily fluids."
-        }
-      },
-      "f75r": {
-        title: "Folio 75r (Balneológica - Tinas y Baños)",
-        desc: "Sistemas de tinas. Traducido mediante el pipeline tripartito (Glifo -> Latín Medieval -> Idioma Moderno).",
-        thumb: "images/folio-75r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002215",
-        eva: "f75r.1: shol.dar.cth.ody.oar.chol.okaiin\nf75r.2: cth.or.shor.daiin.dar.shol.shedy\nf75r.3: ody.chol.cth.oar.or.qokedy\nf75r.4: daiin.shol.cth.dar.okeol",
-        fluid: {
-          es: "[Línea 1] Régimen general de la piscina de terapia hidromecánica: establecimiento y regulación estricta de la duración de la inmersión térmica.\n[Línea 2] Protocolo de purgado para los fluidos estancados y sedimentos minerales a través de las válvulas y conductos de drenaje inferiores.\n[Línea 3] Infundir la mezcla dosificada de sales minerales y extractos botánicos en el circuito de circulación de la poza principal.\n[Línea 4] Control y modulación rigurosa de la temperatura de entrada del agua mediante el ajuste de las compuertas de conducción.",
-          en: "[Line 1] General regimen of the hydro-mechanical therapy pool: strict regulation of thermal immersion duration.\n[Line 2] Purging protocol for stagnant fluids and mineral sediments through lower drainage valves.\n[Line 3] Infuse the dosed mixture of mineral salts and botanical extracts into the main pool circulation.\n[Line 4] Rigorous modulation of water inlet temperature via conduction gates."
-        }
-      },
-      "f77r": {
-        title: "Folio 77r (Biológica - Túbulos y Conductos)",
-        desc: "Estudio morfológico. Traducido mediante el pipeline tripartito (Glifo -> Latín Medieval -> Idioma Moderno).",
-        thumb: "images/folio-77r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002220",
-        eva: "f77r.1: cth.dar.shol.ody.daiin.oar.okaiin\nf77r.2: oar.cth.shor.dar.chol.ody.shedy\nf77r.3: qokaiin.shedy.chedy.qol.chedy.qokaiin.qokaiin.checkhy.raiin\nf77r.4: shol.dar.cth.ody.daiin.okeol",
-        fluid: {
-          es: "[Línea 1] Sobre el tránsito de los humores a través de los conductos vasculares primarios y su distribución en las cámaras colectoras.\n[Línea 2] Inspección rigurosa de la viscosidad y densidad en las extracciones biológicas circulantes durante la fase de decocción.\n[Línea 3] Grado de saturación térmica: control de la transición en el punto de ebullición de los fluidos y liberación regulada de la presión.\n[Línea 4] Verificación de la conductividad vascular y medición del flujo a través de las membranas intermedias.",
-          en: "[Line 1] Regarding the transit of humors through primary vascular channels and collection chambers.\n[Line 2] Rigorous inspection of viscosity and density in circulating biological extractions during decoction.\n[Line 3] Thermal saturation degree: fluid boiling point transition and regulated vessel pressure release.\n[Line 4] Verification of vascular conductivity and flow measurement through intermediate membranes."
-        }
-      },
-      "f86r": {
-        title: "Folio 86r (Rosetas - Panel Central)",
-        desc: "Estructura central de interconexión. Traducido mediante el pipeline tripartito (Glifo -> Latín Medieval -> Idioma Moderno).",
-        thumb: "images/folio-86r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002248",
-        eva: "f86r.1: daiin.shol.cth.dar.or.oar.okaiin\nf86r.2: chol.ody.shor.cth.daiin.dar.shedy\nf86r.3: oar.cth.shol.ody.chol.qokedy\nf86r.4: cth.dar.shol.ody.daiin.shedy",
-        fluid: {
-          es: "[Línea 1] Fortaleza central principal y nexo de distribución de agua principal.\n[Línea 2] Vincular muros de fortificación estructural con fortalezas insulares periféricas.\n[Línea 3] Coordinar canalización defensiva de agua a través de sectores regionales.\n[Línea 4] Acceso principal al bastión.",
-          en: "[Line 1] Central fortress stronghold and principal water distribution nexus.\n[Line 2] Link structural fortification walls with peripheral island strongholds.\n[Line 3] Coordinate defensive water channeling across regional sectors.\n[Line 4] Main bastion access gate."
-        }
-      },
-      "f86v": {
-        title: "Folio 86v (Rosetas - Mapa de 9 Islas)",
-        desc: "Diagrama desplegable. Traducido mediante el pipeline tripartito (Glifo -> Latín Medieval -> Idioma Moderno).",
-        thumb: "images/folio-86v.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002250",
-        eva: "f86v.1: shedy.qokaiin.okeol.shol.oar\nf86v.2: ody.cth.shor.or.dar.shol.okaiin\nf86v.3: dar.chol.cth.oar.daiin.shedy\nf86v.4: cth.dar.shol.ody.daiin.okaiin",
-        fluid: {
-          es: "[Línea 1] Nodos de red geográfica: topografía de manantiales termales interconectados.\n[Línea 2] Medir vectores de distancia regional entre fortalezas insulares exteriores.\n[Línea 3] Alineación cartográfica de la distribución de acueductos subterráneos.\n[Línea 4] Confluencia de canales periféricos.",
-          en: "[Line 1] Geographical network nodes: interconnected thermal springs topography.\n[Line 2] Measure regional distance vectors between outer island strongholds.\n[Line 3] Cartographic alignment of subterranean aqueduct distribution.\n[Line 4] Peripheral channel confluence."
-        }
-      },
-      "f116r": {
-        title: "Folio 116r (Texto Puro - Piedra Rosetta / 100% Completo)",
-        desc: "Página final de texto puro. Este folio se incluye al 100% de su capacidad real (28 líneas) como sumario maestro.",
-        thumb: "images/folio-116r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002300",
-        eva: "f116r.1: daiin.chol.cth.oar.dar.shol.okaiin\nf116r.2: ody.shor.cth.dar.chol.or.shedy\nf116r.3: shol.dar.cth.daiin.oar.qokedy\nf116r.4: cth.or.shor.daiin.dar.shedy\nf116r.5: okaiin.shedy.qokedy.cth.shor\nf116r.6: chol.ody.shor.cth.oar.dar.shedy\nf116r.7: cth.dar.shol.ody.daiin.okaiin\nf116r.8: daiin.shol.cth.dar.or.oar.okaiin\nf116r.9: chol.ody.shor.cth.daiin.dar.shedy\nf116r.10: oar.cth.shol.ody.chol.okeol\nf116r.11: cth.oar.dar.shol.or.daiin.okeol\nf116r.12: ody.chol.cth.shor.dar.oar.shedy\nf116r.13: shol.dar.cth.ody.chol.qokedy\nf116r.14: dar.chol.cth.ody.shol.or.okaiin\nf116r.15: or.shor.daiin.cth.dar.chol.shedy\nf116r.16: cth.dar.shol.ody.oar.qokedy\nf116r.17: qol.shol.dar.cth.or.daiin.okaiin\nf116r.18: cth.ody.oar.shol.chol.dar.shedy\nf116r.19: shor.daiin.cth.or.oar.qokedy\nf116r.20: kooiin.cheo.pchor.otaiin.o.dain.chor.dair.shty\nf116r.21: chol.cth.ody.dar.shol.or.shor\nf116r.22: oar.or.cth.daiin.shor.qokedy\nf116r.23: dar.cth.oar.shol.chol.daiin\nf116r.24: ody.shor.or.cth.dar.shol\nf116r.25: shol.oar.cth.daiin.or.okeol\nf116r.26: shol.dar.cth.ody.oar.chol.okaiin\nf116r.27: cth.or.shor.daiin.dar.shol.shedy\nf116r.28: ody.chol.cth.oar.or.qokedy",
-        fluid: {
-          es: "[Línea 1] Resumen de fórmula final: índice maestro de los extractos farmacéuticos compilados.\n[Línea 2] Sellar de manera definitiva los archivos y registros del manuscrito en una bóveda monástica seca y segura.\n[Línea 3] Verificación final del sistema de cifrado y congruencia glífica completada con éxito operativo.\n[Línea 4] Fin del registro oficial del códice y consolidación estructural de los cuadernillos.\n[Línea 5] Inspección celular microscópica y tinción de control para los fluidos estelares extraídos.\n[Línea 6] Aislamiento riguroso del núcleo botánico activo en frasco de vidrio sellado herméticamente.\n[Línea 7] Registro sistemático de las propiedades térmicas y puntos de ebullición de la sustancia destilada.\n[Línea 8] Ciclo zodiacal regulado por las corrientes de agua y la influencia directa de las fases lunares.\n[Línea 9] Alineación metódica de las observaciones astronómicas con las mareas y estaciones agrícolas.\n[Línea 10] Administración dosificada de remedios reconstituyentes a los sujetos en tránsito terapéutico.\n[Línea 11] Matriz de cómputo estelar empleada para la navegación astral y el cronometraje estacional.\n[Línea 12] Convergencia estelar calculada a través de los cuatro cuadrantes celestes principales.\n[Línea 13] Ajustes de calendario y corrección temporal para la transición estacional precisa.\n[Línea 14] Compuesto farmacéutico base: aceite aromático volátil contenido en vaso vidriado.\n[Línea 15] Infusión controlada del destilado de hoja seca expuesto sobre calor suave y continuo.\n[Línea 16] Medición estricta de la dosis por peso de gota antes de proceder a la aplicación nocturna.\n[Línea 17] Correlación del ciclo celeste con el cenit de ascenso de la savia estacional.\n[Línea 18] Cruce geométrico de los sectores radiales con la declinación solar del equinoccio.\n[Línea 19] Periodicidad armónica y armónicos matemáticos de los anillos cosmológicos exteriores.\n[Línea 20] Activación del conducto de baño hidrotermal y descenso regulado del flujo mineral.\n[Línea 21] Mantenimiento de la presión en el recipiente para estimular de forma óptima la absorción vascular.\n[Línea 22] Verificación del equilibrio de fluidos entre las cámaras biológicas interconectadas.\n[Línea 23] Cosecha especializada de tintura de hojas ejecutada durante la fase lunar nocturna.\n[Línea 24] Secado metódico del follaje en cámaras oscuras para preservar los jugos volátiles.\n[Línea 25] Pulverización de los pétalos secos hasta obtener un polvo medicinal de grano fino.\n[Línea 26] Regulación exacta de la duración de la inmersión dentro de la piscina terapéutica.\n[Línea 27] Purgado sistemático de los fluidos estancados mediante el uso de las válvulas de drenaje inferiores.\n[Línea 28] Infusión final de sales minerales y cierre definitivo de las compuertas del sistema.",
-          en: "[Line 1] Concluding formula summary: master index of pharmaceutical extracts compiled in the preceding booklets.\n[Line 2] Seal the manuscript archives and records definitively in a dry, ventilated, and secure monastic vault.\n[Line 3] Final cryptographic system verification and glyphic congruence completed with operational success.\n[Line 4] End of the official codex registry and structural consolidation of the botanical and cosmological booklets.\n[Line 5] Microscopic cell inspection and control staining for the extracted stellar fluids.\n[Line 6] Rigorous isolation of the active botanical core in a hermetically sealed glass vial.\n[Line 7] Systematic recording of the thermal properties and boiling points of the distilled substance.\n[Line 8] Zodiacal cycle regulated by water currents and the direct influence of lunar phases.\n[Line 9] Methodical alignment of astronomical observations with agricultural tides and seasons.\n[Line 10] Dosified administration of restorative remedies to subjects undergoing therapeutic transition.\n[Line 11] Stellar computation matrix used for astral navigation and seasonal timing.\n[Line 12] Stellar convergence calculated across the four main celestial quadrants.\n[Line 13] Calendar adjustments and temporal correction for precise seasonal transition.\n[Line 14] Base pharmaceutical compound: volatile aromatic oil contained in a glazed vessel.\n[Line 15] Controlled infusion of dried leaf distillate exposed over gentle, continuous heat.\n[Line 16] Strict measurement of dosage by drop weight prior to nocturnal application.\n[Line 17] Correlation of the celestial cycle with the zenith of seasonal sap ascent.\n[Line 18] Geometric intersection of radial sectors with the equinox solar declination.\n[Line 19] Harmonic periodicity and mathematical harmonics of the outer cosmological rings.\n[Line 20] Activation of the hydrothermal bath conduit and regulated descent of mineral flow.\n[Line 21] Maintenance of vessel pressure to optimally stimulate vascular absorption.\n[Line 22] Verification of fluid equilibrium across the interconnected biological chambers.\n[Line 23] Specialized harvesting of leaf tincture executed during the nocturnal lunar phase.\n[Line 24] Methodical drying of foliage in dark chambers to preserve volatile juices.\n[Line 25] Pulverization of dried petals until obtaining a fine-grained medicinal powder.\n[Line 26] Exact regulation of immersion duration within the therapeutic pool.\n[Line 27] Systematic purging of stagnant fluids using the lower drainage valves.\n[Line 28] Final infusion of mineral salts and definitive closure of the system's floodgates."
-        }
-      }
-    };
-
-    function updateFolioData() {
-      const folioKey = document.getElementById("folioSelect").value;
-      const mode = document.getElementById("modeSelect").value;
-      const targetLang = document.getElementById("targetLangSelect").value;
-      const data = corpusData[folioKey];
-
-      document.getElementById("folioThumb").src = data.thumb;
-      document.getElementById("folioTitleInfo").textContent = data.title;
-      document.getElementById("folioDescInfo").textContent = data.desc;
-      document.getElementById("yaleDirectLink").href = data.link;
-      
-      const shortFolio = data.title.split(' ')[0] + ' ' + data.title.split(' ')[1];
-      document.getElementById("hudFolio").textContent = shortFolio;
-
-      document.getElementById("sourceOutput").textContent = data.eva;
-
-      if (mode === "fluid") {
-        document.getElementById("resultOutput").textContent = (data.fluid[targetLang] || data.fluid.es);
-      } else if (mode === "eva") {
-        document.getElementById("resultOutput").textContent = data.eva + "\n\n[Estado: Transliteración IVTFF Completa Verificada]";
-      }
-    }
-
-    function changeLanguage(lang) {
-      document.getElementById("targetLangSelect").value = lang;
-      updateFolioData();
-    }
-
-    function handleContact(event) {
-      event.preventDefault();
-      document.getElementById("formSuccess").style.display = "block";
-      document.getElementById("contactForm").reset();
-      setTimeout(() => { document.getElementById("formSuccess").style.display = "none"; }, 5000);
-    }
-
-    updateFolioData();
-  </script>
+        window.addEventListener('DOMContentLoaded', () => {
+            let savedLang = localStorage.getItem('preferred_lang') || 'es';
+            document.getElementById('language-selector').value = savedLang;
+            changeLanguage(savedLang);
+        });
+    </script>
 </body>
 </html>
