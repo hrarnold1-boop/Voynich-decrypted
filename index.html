@@ -16,6 +16,7 @@
       --accent-hover: #7dd3fc;
       --success: #3fb950;
       --gold: #f59e0b;
+      --gold-border: rgba(245, 158, 11, 0.4);
       --mex-green: #006847;
     }
 
@@ -189,19 +190,39 @@
       text-align: justify;
     }
 
-    .corpus-workbench {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.2rem;
+    /* ESTILO MONACO / CASINO HIGH-END PARA EL MOTOR */
+    .casino-workbench {
+      background: linear-gradient(145deg, #121a28 0%, #0d131f 100%);
+      border: 1px solid var(--gold-border);
+      border-radius: 20px;
+      padding: 1.5rem;
       margin-top: 2rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      width: 100%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+      position: relative;
       overflow: hidden;
     }
 
-    @media (min-width: 768px) {
-      .corpus-workbench { padding: 2rem; }
+    .casino-workbench::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--accent), var(--gold));
+    }
+
+    .workbench-header-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
     }
 
     .folio-display-box {
@@ -210,30 +231,26 @@
       gap: 1.5rem;
       background: var(--bg);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem;
+      border-radius: 14px;
+      padding: 1.2rem;
       margin-bottom: 1.5rem;
       align-items: center;
     }
 
     @media (min-width: 768px) {
-      .folio-display-box { grid-template-columns: 280px 1fr; padding: 1.25rem; }
+      .folio-display-box { grid-template-columns: 280px 1fr; padding: 1.5rem; }
     }
 
     .folio-thumb-container {
       width: 100%;
-      height: 200px;
+      height: 220px;
       background: var(--surface-alt);
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
       border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    @media (min-width: 768px) {
-      .folio-thumb-container { height: 240px; }
     }
 
     .folio-thumb-container img {
@@ -244,8 +261,8 @@
 
     .folio-preview-info h3 {
       color: var(--accent);
-      font-size: 1.1rem;
-      margin-bottom: 0.4rem;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
     }
 
     .folio-preview-info p {
@@ -278,7 +295,7 @@
       background: var(--bg);
       color: var(--text);
       border: 1px solid var(--border);
-      padding: 0.7rem;
+      padding: 0.75rem;
       border-radius: 8px;
       font-size: 0.95rem;
     }
@@ -305,7 +322,7 @@
     }
 
     .output-panel h4 {
-      font-size: 0.80rem;
+      font-size: 0.8rem;
       color: var(--accent);
       margin-bottom: 0.7rem;
       text-transform: uppercase;
@@ -465,7 +482,7 @@
           </p>
 
           <p class="intro-text">
-            <strong>De la investigación individual a la plataforma interactiva:</strong> Este sitio web y la herramienta de manipulación teórica fueron construidos inicialmente como el resultado de un esfuerzo unipersonal apasionado por demostrar que el enigma tenía solución científica. Sin embargo, para llevar este descubrimiento al alcance de cualquier persona, permitir la simulación interactiva, someter el modelo a rigurosas pruebas de fiabilidad, auditorías de contradicciones y simulaciones bajo el método científico, un solo esfuerzo ya no es suficiente.
+            <strong>De la investigación individual a la plataforma interactiva:</strong> Este sitio web y la herramienta de manipulación teórica fueron construidos inicialmente como el resultado de un esfuerzo unipersonal apasionado por demostrar que el enigma tenía solución científica. Sin embargo, para llevar este descubrimiento al alcance de cualquier persona, permitir la simulación interactiva, someter el modelo a rigurosas pruebas de fiabilidad, auditorías de contradicciones y simulaciones bajo el método científico, un solo esfuerzo y tiempo personal ya no son suficientes.
           </p>
 
           <div class="scope-callout">
@@ -474,11 +491,14 @@
         </div>
       </div>
 
+      <!-- SECCIÓN DEL MOTOR DE TRADUCCIÓN (ESTILO MÓNACO / CASINO HIGH-END) -->
       <section id="corpus">
-        <h2>Explorador de Corpus y Validación en Python</h2>
-        <p>Selecciona cualquiera de los folios principales para auditar el flujo IVTFF de referencia frente al motor de traducción en tiempo real. Esta herramienta deriva de nuestros scripts en Python diseñados para democratizar el análisis matricial del códice.</p>
+        <h2>Laboratorio Interactivo de Desciframiento</h2>
+        <p>Entra en acción. Aquí comienza la experiencia en vivo con el motor algorítmico: visualiza el facsímil digital del folio tal como se encuentra en Yale, audita su descripción original, contrasta el conteo de líneas reales frente a la muestra analizada, cambia de idioma en tiempo real o revisa el mapeo de transliteración algorítmica.</p>
 
-        <div class="corpus-workbench">
+        <div class="casino-workbench">
+          <div class="workbench-header-tag">🎰 Motor Activo // Vista Forense & Simulador</div>
+
           <div class="folio-display-box">
             <div class="folio-thumb-container">
               <img id="folioThumb" src="images/folio-1r.jpg" alt="Folio Preview">
@@ -486,7 +506,7 @@
             <div class="folio-preview-info">
               <h3 id="folioTitleInfo">Folio 1r</h3>
               <p id="folioDescInfo">Cargando detalles...</p>
-              <a id="yaleDirectLink" href="#" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1rem;">Ver Colección Yale ↗</a>
+              <a id="yaleDirectLink" href="#" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1rem;">Ver Facsímil Original en Yale ↗</a>
             </div>
           </div>
 
@@ -512,7 +532,7 @@
               <label for="modeSelect">Modo de Análisis</label>
               <select id="modeSelect" onchange="updateFolioData()">
                 <option value="fluid">Traducción (Gramática de Fluidos)</option>
-                <option value="eva">Transliteración EVA (IVTFF Estándar)</option>
+                <option value="eva">Transliteración EVA (Mapeo Algorítmico IVTFF)</option>
               </select>
             </div>
             <div class="control-group">
@@ -537,7 +557,7 @@
         </div>
       </section>
 
-      <!-- SECCIÓN DE PERSPECTIVAS, APLICACIÓN A OTROS LENGUAJES Y FONDEO RAFT -->
+      <!-- SECCIÓN DE PERSPECTIVAS Y FONDEO A TRAVÉS DE FUNDACIÓN RAFT -->
       <section id="roadmap">
         <h2>Perspectivas, Validación y Visión de Escalamiento ($25,000 USD)</h2>
         <p>
@@ -552,14 +572,17 @@
         </ul>
         
         <div class="support-box">
-          <h3>Transparencia Fiscal y Fondeo a través de Fundación Raft</h3>
+          <h3>Transparencia Fiscal y Fondeo Abierto a través de Fundación Raft</h3>
           <p style="text-align: justify; margin-bottom: 1rem;">
-            La meta de financiamiento abierto de <strong>$25,000 USD</strong> está destinada estrictamente a la <strong>compra de equipo especializado de procesamiento de datos</strong>, servidores de cómputo local y optimización de infraestructura de desarrollo.
+            <strong>¿Qué es la Fundación Raft y por qué se gestiona a través de ellos?</strong> La <a href="https://raft.org" target="_blank" rel="noopener" class="yale-link-inline">Fundación Raft</a> es una entidad especializada en la administración transparente de recursos para proyectos científicos de código abierto. Gestionar las aportaciones mediante esta institución garantiza absoluta legitimidad fiscal, rendición de cuentas y un manejo impecable de los fondos. <em>Actualmente nos encontramos a la espera de que la Fundación Raft nos proporcione la información oficial y los datos definitivos de la cuenta para habilitarla en la plataforma.</em>
           </p>
           <p style="text-align: justify; margin-bottom: 1rem;">
-            Para garantizar absoluta transparencia, rendición de cuentas y legitimidad fiscal, todas las aportaciones y donaciones económicas son gestionadas a través de la <strong>Fundación Raft</strong>. <em>Actualmente nos encontramos a la espera de que la Fundación Raft nos proporcione la información oficial y los datos definitivos de la cuenta para habilitar las aportaciones.</em> Puedes consultar más detalles sobre su labor en el <a href="https://raft.org" target="_blank" rel="noopener" class="yale-link-inline">sitio oficial de la Fundación Raft</a>.
+            <strong>¿En qué se empleará el recurso presupuestal ($25,000 USD)?</strong> Los fondos recaudados se destinarán de manera estricta a la <strong>compra de equipo especializado de procesamiento de datos</strong>, adquisición de hardware dedicado al cálculo matricial masivo y optimización de la infraestructura técnica de la app.
           </p>
-          <a href="https://raft.org" target="_blank" rel="noopener" class="btn btn-primary">Sitio Oficial Fundación Raft ↗</a>
+          <p style="text-align: justify; margin-bottom: 1rem;">
+            <strong>Un llamado a la difusión institucional:</strong> Queremos aclarar que <strong>no estamos solicitando donativos individuales o aportaciones económicas a las personas</strong>. La mayor contribución que cualquier entusiasta puede hacer es utilizar, leer, interactuar y divertirse explorando esta plataforma, pero sobre todo, **compartirla**. Nuestro objetivo principal es que este proyecto llegue a los ojos de personas que forman parte de fundaciones, academias o instituciones que disponen de presupuestos asignados para apoyar investigaciones de alto impacto como esta.
+          </p>
+          <a href="https://raft.org" target="_blank" rel="noopener" class="btn btn-primary">Conocer más sobre Fundación Raft ↗</a>
         </div>
       </section>
 
@@ -567,7 +590,7 @@
       <section id="collaboration">
         <h2>Convocatoria Abierta de Colaboración Interdisciplinaria</h2>
         <p style="text-align: justify;">
-          Este proyecto nació del esfuerzo individual, pero su futuro pertenece a la comunidad global de ciencia abierta. Extendemos una cordial invitación a <strong>programadores, ingenieros de software, diseñadores UX, lingüistas, historiadores, criptógrafos, diseñadores e ilustradores</strong>, así como a cualquier apasionado que desee aportar valor al desarrollo tecnológico, al análisis crítico o a la recreación artística del Códice MS 408. ¡Toda aportación constructiva es bienvenida! Escríbenos a través del formulario; leemos personalmente cada mensaje.
+          Este proyecto nació del esfuerzo individual y apasionado de una sola persona, pero su escalamiento hacia el futuro pertenece a la comunidad global. Extendemos una cordial invitación a <strong>programadores, ingenieros de software, diseñadores UX, lingüistas, historiadores, criptógrafos, diseñadores e ilustradores</strong>, así como a cualquier apasionado que desee aportar valor al desarrollo tecnológico, al análisis crítico o a la recreación artística del Códice MS 408. ¡Toda aportación constructiva es bienvenida! Escríbenos a través del formulario; leemos personalmente cada mensaje.
         </p>
       </section>
 
@@ -741,9 +764,9 @@
       es: {
         badge: "Ciencia Abierta • CC BY-NC 4.0",
         mexicoBadge: "Innovación Científica Independiente desde México",
-        corpusTitle: "Explorador de Corpus y Validación",
-        corpusDesc: "Selecciona cualquiera de los folios principales para consultar su transcripción y traducción. El Folio 116r se encuentra traducido al 100% de sus líneas reales[span_4](start_span)[span_4](end_span).",
-        yaleBtn: "Ver Colección Yale ↗",
+        corpusTitle: "Laboratorio Interactivo de Desciframiento",
+        corpusDesc: "Selecciona cualquiera de los folios principales para consultar su transcripción y traducción en tiempo real.",
+        yaleBtn: "Ver Facsímil Original en Yale ↗",
         lblFolio: "Seleccionar Folio",
         lblMode: "Modo de Análisis",
         lblTargetLang: "Idioma de Salida",
@@ -761,9 +784,9 @@
       en: {
         badge: "Open Science • CC BY-NC 4.0",
         mexicoBadge: "Independent Scientific Innovation from Mexico",
-        corpusTitle: "Corpus & Validation Explorer",
-        corpusDesc: "Select any of the main folios to review their transcription and translation. Folio 116r is translated at 100% of its actual lines[span_5](start_span)[span_5](end_span).",
-        yaleBtn: "View Yale Collection ↗",
+        corpusTitle: "Interactive Decipherment Laboratory",
+        corpusDesc: "Select any of the main folios to review their transcription and translation in real-time.",
+        yaleBtn: "View Original Facsimile in Yale ↗",
         lblFolio: "Select Folio",
         lblMode: "Analysis Mode",
         lblTargetLang: "Output Language",
