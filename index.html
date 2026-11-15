@@ -26,8 +26,8 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg);
       color: var(--text);
-      line-height: 1.8;
-      padding: 0 1rem;
+      line-height: 1.7;
+      padding: 0 0.8rem;
       overflow-x: hidden;
     }
 
@@ -37,7 +37,7 @@
       width: 100%;
     }
 
-    /* MENÚ DE NAVEGACIÓN SUPERIOR FIJO CON DESPLEGABLES */
+    /* MENÚ DE NAVEGACIÓN SUPERIOR FIJO */
     .site-nav {
       position: sticky;
       top: 0;
@@ -52,27 +52,27 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
+      gap: 0.8rem;
       flex-wrap: wrap;
     }
 
     .brand {
       font-weight: 800;
-      font-size: 1rem;
+      font-size: 0.95rem;
       letter-spacing: 0.05em;
       color: var(--gold-light);
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
 
     .nav-controls {
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 0.6rem;
+      flex-wrap: wrap;
     }
 
-    /* CONTENEDORES DE MENÚS DESPLEGABLES */
     .dropdown-container {
       position: relative;
     }
@@ -81,15 +81,16 @@
       background: var(--surface);
       color: var(--text);
       border: 1px solid var(--gold-border);
-      padding: 0.5rem 1rem;
+      padding: 0.45rem 0.8rem;
       border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.3rem;
       transition: all 0.2s;
+      white-space: nowrap;
     }
 
     .dropdown-toggle:hover {
@@ -120,7 +121,7 @@
       color: var(--text);
       text-decoration: none;
       padding: 0.7rem 1rem;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 500;
       border-bottom: 1px solid var(--border);
       transition: background 0.2s, color 0.2s;
@@ -138,31 +139,32 @@
       color: var(--gold-light);
     }
 
-    /* DASHBOARD DE TELEMETRÍA Y RUEDA ZODIACAL */
+    /* TELEMETRÍA Y RUEDA ZODIACAL */
     .scientific-telemetry-banner {
       background: linear-gradient(135deg, #101722 0%, #080b10 100%);
       border: 1px solid var(--gold-border);
       border-radius: 20px;
       margin: 1.5rem 0 0 0;
-      padding: 1.5rem;
+      padding: 1.2rem;
       position: relative;
       overflow: hidden;
       box-shadow: 0 20px 40px rgba(0,0,0,0.7);
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.5rem;
+      gap: 1.2rem;
       align-items: center;
     }
 
     @media (min-width: 768px) {
       .scientific-telemetry-banner {
         grid-template-columns: 1fr 340px;
+        padding: 1.5rem;
       }
     }
 
     .telemetry-canvas-container {
       width: 100%;
-      height: 180px;
+      height: 160px;
       background: rgba(4, 7, 13, 0.6);
       border-radius: 12px;
       border: 1px solid var(--border);
@@ -185,26 +187,22 @@
       flex-direction: column;
       align-items: center;
       position: relative;
-      box-shadow: inset 0 0 20px rgba(217, 119, 6, 0.05);
     }
 
     .voynich-wheel-title {
       color: var(--gold-light);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       margin-bottom: 0.8rem;
       text-align: center;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
     }
 
     .wheel-svg-wrapper {
       position: relative;
-      width: 210px;
-      height: 210px;
+      width: 190px;
+      height: 190px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -223,8 +221,8 @@
 
     .wheel-center-core {
       position: absolute;
-      width: 75px;
-      height: 75px;
+      width: 70px;
+      height: 70px;
       background: radial-gradient(circle, #162030 0%, #080b10 100%);
       border: 2px solid var(--emerald);
       border-radius: 50%;
@@ -238,14 +236,13 @@
     }
 
     .core-status {
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       font-weight: 800;
       color: var(--emerald);
-      letter-spacing: 0.05em;
     }
 
     .core-corpus {
-      font-size: 0.55rem;
+      font-size: 0.5rem;
       color: var(--muted);
       font-family: monospace;
     }
@@ -253,7 +250,7 @@
     .wheel-telemetry-data {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.6rem;
+      gap: 0.5rem;
       width: 100%;
       margin-top: 0.8rem;
       font-family: monospace;
@@ -263,7 +260,7 @@
     .data-node {
       background: rgba(8, 11, 16, 0.7);
       border: 1px solid var(--border);
-      padding: 0.4rem 0.6rem;
+      padding: 0.4rem;
       border-radius: 8px;
       text-align: center;
     }
@@ -271,22 +268,22 @@
     .data-node span {
       display: block;
       color: var(--muted);
-      font-size: 0.62rem;
+      font-size: 0.58rem;
       text-transform: uppercase;
     }
 
     .data-node strong {
       color: var(--gold-light);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
     }
 
-    /* HERO BANNER CON ICONOGRAFÍA VISIBLE */
+    /* HERO BANNER */
     .hero-banner {
       background: linear-gradient(135deg, rgba(217, 119, 6, 0.15) 0%, rgba(8, 11, 16, 0.95) 50%, rgba(16, 185, 129, 0.1) 100%), url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
       border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 3.5rem 1.5rem;
-      margin-top: 2rem;
+      border-radius: 20px;
+      padding: 2.5rem 1.2rem;
+      margin-top: 1.5rem;
       position: relative;
       overflow: hidden;
       box-shadow: 0 30px 60px rgba(0,0,0,0.8);
@@ -296,7 +293,7 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(8, 11, 16, 0.91);
+      background: rgba(8, 11, 16, 0.92);
       z-index: 1;
     }
 
@@ -311,8 +308,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.6rem;
-      margin-bottom: 1.2rem;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
       flex-wrap: wrap;
     }
 
@@ -321,9 +318,9 @@
       background: rgba(217, 119, 6, 0.15);
       color: var(--gold-light);
       border: 1px solid var(--gold-border);
-      padding: 0.35rem 1rem;
+      padding: 0.3rem 0.8rem;
       border-radius: 999px;
-      font-size: 0.85rem;
+      font-size: 0.78rem;
       font-weight: 600;
     }
 
@@ -334,30 +331,25 @@
       background: rgba(16, 185, 129, 0.2);
       color: #34d399;
       border: 1px solid var(--emerald-border);
-      padding: 0.35rem 1rem;
+      padding: 0.3rem 0.8rem;
       border-radius: 999px;
-      font-size: 0.85rem;
+      font-size: 0.78rem;
       font-weight: 600;
     }
 
     h1 {
-      font-size: 2.3rem;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
       line-height: 1.2;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
       color: #ffffff;
       letter-spacing: -0.02em;
       text-align: center;
     }
 
-    @media (min-width: 768px) {
-      .hero-banner { padding: 4.5rem 2.5rem; }
-      h1 { font-size: 2.8rem; }
-    }
-
     .intro-text {
       color: var(--muted);
-      font-size: 1.02rem;
-      margin-bottom: 1.4rem;
+      font-size: 0.98rem;
+      margin-bottom: 1.2rem;
       text-align: justify;
     }
 
@@ -368,10 +360,10 @@
     .scope-callout {
       background: rgba(16, 23, 34, 0.95);
       border-left: 4px solid var(--gold);
-      padding: 1.3rem;
-      border-radius: 0 12px 12px 0;
-      margin-top: 1.6rem;
-      font-size: 0.92rem;
+      padding: 1.1rem;
+      border-radius: 0 10px 10px 0;
+      margin-top: 1.4rem;
+      font-size: 0.88rem;
       color: var(--text);
       text-align: justify;
       box-shadow: 0 8px 20px rgba(0,0,0,0.5);
@@ -382,87 +374,130 @@
     }
 
     section {
-      padding: 3.5rem 0;
+      padding: 3rem 0;
       border-bottom: 1px solid var(--border);
     }
 
     h2 {
-      font-size: 1.7rem;
-      margin-bottom: 1.2rem;
+      font-size: clamp(1.3rem, 4vw, 1.7rem);
+      line-height: 1.3;
+      margin-bottom: 1rem;
       color: var(--text);
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
+      flex-wrap: wrap;
     }
 
     h2 .section-icon {
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
       fill: var(--gold);
       flex-shrink: 0;
     }
 
     p {
       color: var(--muted);
-      margin-bottom: 1.2rem;
-      font-size: 1.02rem;
+      margin-bottom: 1.1rem;
+      font-size: 0.98rem;
       text-align: justify;
     }
 
-    /* GALERÍA DE ICONOGRAFÍA VOYNICH (NINFAS, ESTRELLAS, PLANTAS Y ZODIACO) */
+    /* NUEVA GALERÍA ICONOGRÁFICA PROFESIONAL (TARJETAS MUSEÍSTICAS CON ATMÓSFERA VISUAL) */
     .voynich-gallery-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
       margin: 1.5rem 0;
     }
 
     @media (min-width: 768px) {
       .voynich-gallery-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    .voynich-icon-card {
+    .voynich-typology-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.2rem;
-      text-align: center;
+      border-radius: 16px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 0.6rem;
-      transition: all 0.2s;
+      transition: all 0.25s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
-    .voynich-icon-card:hover {
+    .voynich-typology-card:hover {
       border-color: var(--gold);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(217, 119, 6, 0.15);
     }
 
-    .voynich-icon-card svg {
-      width: 40px;
-      height: 40px;
-      fill: var(--emerald);
+    .typology-image-wrapper {
+      width: 100%;
+      height: 180px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .voynich-icon-card span {
-      font-size: 0.8rem;
+    .typology-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.75) contrast(1.1);
+      transition: transform 0.4s ease;
+    }
+
+    .voynich-typology-card:hover .typology-image-wrapper img {
+      transform: scale(1.05);
+    }
+
+    .typology-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(8, 11, 16, 0.85);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-light);
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
       font-weight: 700;
-      color: var(--text);
-      text-transform: uppercase;
       letter-spacing: 0.05em;
+      text-transform: uppercase;
+      backdrop-filter: blur(4px);
+    }
+
+    .typology-content {
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex-grow: 1;
+    }
+
+    .typology-content h3 {
+      color: var(--text);
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .typology-content p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 0;
+      text-align: justify;
     }
 
     /* MOTOR DE TRADUCCIÓN */
     .casino-workbench {
       background: linear-gradient(145deg, #101722 0%, #0a0e15 100%);
       border: 1px solid var(--gold-border);
-      border-radius: 22px;
-      padding: 1.8rem;
-      margin-top: 2rem;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 1.4rem;
+      margin-top: 1.5rem;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.7);
       position: relative;
       overflow: hidden;
     }
@@ -477,40 +512,40 @@
     .workbench-header-tag {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
       background: rgba(217, 119, 6, 0.15);
       color: var(--gold-light);
       border: 1px solid var(--gold-border);
-      padding: 0.35rem 0.9rem;
+      padding: 0.3rem 0.8rem;
       border-radius: 999px;
-      font-size: 0.78rem;
+      font-size: 0.72rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 1.2rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 1rem;
     }
 
     .folio-display-box {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.5rem;
+      gap: 1.2rem;
       background: var(--bg);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.4rem;
-      margin-bottom: 1.5rem;
+      border-radius: 14px;
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
       align-items: center;
     }
 
     @media (min-width: 768px) {
-      .folio-display-box { grid-template-columns: 280px 1fr; padding: 1.6rem; }
+      .folio-display-box { grid-template-columns: 260px 1fr; padding: 1.5rem; }
     }
 
     .folio-thumb-container {
       width: 100%;
-      height: 220px;
+      height: 200px;
       background: var(--surface-alt);
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
       border: 1px solid var(--border);
       display: flex;
@@ -526,21 +561,21 @@
 
     .folio-preview-info h3 {
       color: var(--accent);
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
     }
 
     .folio-preview-info p {
-      font-size: 0.92rem;
-      margin-bottom: 1rem;
+      font-size: 0.88rem;
+      margin-bottom: 0.8rem;
       text-align: justify;
     }
 
     .controls-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.2rem;
-      margin-bottom: 1.5rem;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
     }
 
     @media (min-width: 768px) {
@@ -549,9 +584,9 @@
 
     .control-group label {
       display: block;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--muted);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.3rem;
       font-weight: 600;
     }
 
@@ -560,16 +595,16 @@
       background: var(--bg);
       color: var(--text);
       border: 1px solid var(--border);
-      padding: 0.8rem;
-      border-radius: 9px;
-      font-size: 0.95rem;
+      padding: 0.7rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
     }
 
     .workbench-output {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+      gap: 1.2rem;
+      margin-top: 1.2rem;
       width: 100%;
     }
 
@@ -580,29 +615,29 @@
     .output-panel {
       background: var(--bg);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.1rem;
+      border-radius: 10px;
+      padding: 1rem;
       width: 100%;
       overflow: hidden;
     }
 
     .output-panel h4 {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       color: var(--accent);
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.6rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
     .output-content {
       font-family: monospace;
-      font-size: 0.84rem;
+      font-size: 0.8rem;
       color: var(--text);
       white-space: pre-wrap;
       word-break: break-all;
       overflow-wrap: break-word;
-      min-height: 170px;
-      max-height: 350px;
+      min-height: 150px;
+      max-height: 300px;
       overflow-y: auto;
       text-align: justify;
       width: 100%;
@@ -611,36 +646,36 @@
     .support-box {
       background: linear-gradient(145deg, #101722 0%, #0a0e15 100%);
       border: 1px solid var(--gold-border);
-      border-radius: 18px;
-      padding: 2.2rem;
-      margin-top: 2rem;
+      border-radius: 16px;
+      padding: 1.8rem;
+      margin-top: 1.8rem;
       box-shadow: 0 15px 35px rgba(0,0,0,0.6);
     }
 
     .support-box h3 {
       color: var(--gold-light);
-      font-size: 1.45rem;
-      margin-bottom: 1.1rem;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
     }
 
     .table-responsive {
       width: 100%;
       overflow-x: auto;
-      margin: 1.4rem 0;
-      border-radius: 12px;
+      margin: 1.2rem 0;
+      border-radius: 10px;
       border: 1px solid var(--border);
     }
 
     .budget-table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 600px;
-      font-size: 0.92rem;
+      min-width: 580px;
+      font-size: 0.88rem;
     }
 
     .budget-table th, .budget-table td {
       border: 1px solid var(--border);
-      padding: 0.9rem 1rem;
+      padding: 0.8rem;
       text-align: justify;
     }
 
@@ -653,24 +688,24 @@
     .zenodo-section {
       background: linear-gradient(145deg, #101722 0%, #0a0e15 100%);
       border: 1px solid var(--emerald-border);
-      border-radius: 18px;
-      padding: 2.2rem;
-      margin-top: 3rem;
+      border-radius: 16px;
+      padding: 1.8rem;
+      margin-top: 2.5rem;
       box-shadow: 0 15px 35px rgba(0,0,0,0.6);
       text-align: center;
     }
 
     .zenodo-section h3 {
       color: var(--emerald);
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+      font-size: 1.35rem;
+      margin-bottom: 0.8rem;
     }
 
     .links-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.2rem;
-      margin-top: 1.5rem;
+      gap: 1rem;
+      margin-top: 1.2rem;
     }
 
     @media (min-width: 768px) {
@@ -680,8 +715,8 @@
     .link-card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.4rem;
+      border-radius: 10px;
+      padding: 1.2rem;
       transition: all 0.2s;
       text-decoration: none;
       display: block;
@@ -690,17 +725,16 @@
     .link-card:hover {
       border-color: var(--emerald);
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);
     }
 
     .link-card h4 {
       color: var(--emerald);
-      font-size: 1.05rem;
-      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
     }
 
     .link-card p {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--muted);
       margin-bottom: 0;
       text-align: justify;
@@ -709,20 +743,20 @@
     .contact-section {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 1.8rem;
-      margin-top: 2rem;
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
     }
 
     .form-group {
-      margin-bottom: 1.4rem;
+      margin-bottom: 1.2rem;
     }
 
     .form-group label {
       display: block;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--muted);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
       font-weight: 600;
     }
 
@@ -731,26 +765,26 @@
       background: var(--bg);
       color: var(--text);
       border: 1px solid var(--border);
-      padding: 0.9rem;
-      border-radius: 9px;
-      font-size: 1rem;
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
       font-family: inherit;
     }
 
     textarea.form-control {
       resize: vertical;
-      min-height: 130px;
+      min-height: 120px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.9rem 1.8rem;
-      border-radius: 10px;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
       font-weight: 600;
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 0.95rem;
       transition: all 0.2s;
       cursor: pointer;
       border: none;
@@ -774,32 +808,31 @@
       background: rgba(16, 185, 129, 0.15);
       color: var(--emerald);
       border: 1px solid rgba(16, 185, 129, 0.4);
-      padding: 1.1rem;
-      border-radius: 9px;
+      padding: 1rem;
+      border-radius: 8px;
       margin-top: 1rem;
       display: none;
       font-weight: 600;
       text-align: center;
     }
 
-    /* BOTÓN FLOTANTE PARA REGRESAR AL INICIO */
     .back-to-top {
       position: fixed;
-      bottom: 2rem;
-      right: 2rem;
+      bottom: 1.5rem;
+      right: 1.5rem;
       background: var(--gold);
       color: #080b10;
       border: none;
-      width: 45px;
-      height: 45px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 10px 25px rgba(217, 119, 6, 0.4);
+      box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
       transition: all 0.2s;
       z-index: 999;
       text-decoration: none;
@@ -811,16 +844,16 @@
     }
 
     footer {
-      padding: 2.2rem 0;
+      padding: 2rem 0;
       color: var(--muted);
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 1rem;
+      gap: 0.8rem;
       border-top: 1px solid var(--border);
-      margin-top: 3.5rem;
+      margin-top: 3rem;
     }
 
     @media (min-width: 768px) {
@@ -835,19 +868,18 @@
   <nav class="site-nav">
     <div class="container nav-inner">
       <div class="brand">
-        <svg style="width:18px;height:18px;fill:var(--gold);" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6Z"/></svg>
+        <svg style="width:16px;height:16px;fill:var(--gold);" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6Z"/></svg>
         MS 408 // DECIPHERMENT
       </div>
 
       <div class="nav-controls">
-        <!-- MENÚ DESPLEGABLE DE SECCIONES (MAPA DE SITIO) -->
         <div class="dropdown-container">
           <button class="dropdown-toggle" onclick="toggleDropdown('menuDropdown')">
             <span>Menú / Mapa de Sitio</span> ▾
           </button>
           <div class="dropdown-menu" id="menuDropdown">
             <a href="#corpus" onclick="closeAllDropdowns()">🔬 Laboratorio Interactivo</a>
-            <a href="#iconography" onclick="closeAllDropdowns()">🌿 Iconografía Voynich</a>
+            <a href="#iconography" onclick="closeAllDropdowns()">🏛️ Galería Tipológica</a>
             <a href="#roadmap" onclick="closeAllDropdowns()">📊 Alcance y Fondeo</a>
             <a href="#zenodo-repo" onclick="closeAllDropdowns()">📜 Preprint Zenodo</a>
             <a href="#collaboration" onclick="closeAllDropdowns()">🤝 Colaboración</a>
@@ -856,7 +888,6 @@
           </div>
         </div>
 
-        <!-- MENÚ DESPLEGABLE DE IDIOMA -->
         <div class="dropdown-container">
           <button class="dropdown-toggle" onclick="toggleDropdown('langDropdown')">
             <span>Language / Idioma</span> ▾
@@ -935,34 +966,61 @@
         </div>
       </div>
 
-      <!-- SECCIÓN DE ICONOGRAFÍA Y REFERENCIAS VISUALES DEL MANUSCRITO -->
+      <!-- SECCIÓN DE GALERÍA TIPOLÓGICA E ICONOGRÁFICA (RED ISEÑADA CON ESTÁNDAR MUSEÍSTICO) -->
       <section id="iconography">
         <h2>
           <svg class="section-icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6Z"/></svg>
-          Iconografía e Imágenes de Referencia del Códice
+          Galería Tipológica e Iconografía del Códice
         </h2>
-        <p>El Manuscrito Voynich destaca por su iconografía inconfundible. A continuación se presentan los elementos visuales icónicos que fundamentan la clasificación de nuestros módulos de análisis:</p>
+        <p>El Manuscrito Voynich se estructura en distintas secciones morfológicas e ilustrativas. A continuación se detallan las tipologías visuales que fundamentan la clasificación matricial de nuestro motor algorítmico:</p>
         
         <div class="voynich-gallery-grid">
-          <div class="voynich-icon-card">
-            <!-- Icono Ninfas / Balneología -->
-            <svg viewBox="0 0 24 24"><path d="M12,2C15.31,2 18,4.69 18,8C18,11.31 15.31,14 12,14C8.69,14 6,11.31 6,8C6,4.69 8.69,2 12,2M12,4C9.79,4 8,5.79 8,8C8,10.21 9.79,12 12,12C14.21,12 16,10.21 16,8C16,5.79 14.21,4 12,4M12,15C16.42,15 20,16.79 20,19V21H4V19C4,16.79 7.58,15 12,15Z"/></svg>
-            <span>Ninfas e Hidráulica</span>
+          <!-- Tarjeta 1: Herbolaria -->
+          <div class="voynich-typology-card">
+            <div class="typology-image-wrapper">
+              <span class="typology-badge">Sección I</span>
+              <img src="https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=600&q=80" alt="Herbolaria y Raíces">
+            </div>
+            <div class="typology-content">
+              <h3>Herbolaria y Taxonomía Botánica</h3>
+              <p>Folios dedicados a especímenes vegetales anómalos, raíces detalladas y hojas simétricas estudiadas bajo filtrado de jugos volátiles.</p>
+            </div>
           </div>
-          <div class="voynich-icon-card">
-            <!-- Icono Estrellas Cosmológicas -->
-            <svg viewBox="0 0 24 24"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
-            <span>Estrellas Cosmológicas</span>
+
+          <!-- Tarjeta 2: Hidráulica / Balneología -->
+          <div class="voynich-typology-card">
+            <div class="typology-image-wrapper">
+              <span class="typology-badge">Sección II</span>
+              <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=600&q=80" alt="Ninfas e Hidráulica">
+            </div>
+            <div class="typology-content">
+              <h3>Ninfas y Circuitos Hidrotermales</h3>
+              <p>Piletas interconectadas, tubos capilares y figuras femeninas inmersas en complejos sistemas de purificación de fluidos.</p>
+            </div>
           </div>
-          <div class="voynich-icon-card">
-            <!-- Icono Plantas Herbolarias -->
-            <svg viewBox="0 0 24 24"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11 2,11C2,11 4,9 7,8.5C11,7.8 14,8 17,8Z"/></svg>
-            <span>Herbolaria y Raíces</span>
+
+          <!-- Tarjeta 3: Astronomía / Cosmología -->
+          <div class="voynich-typology-card">
+            <div class="typology-image-wrapper">
+              <span class="typology-badge">Sección III</span>
+              <img src="https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?auto=format&fit=crop&w=600&q=80" alt="Estrellas Cosmológicas">
+            </div>
+            <div class="typology-content">
+              <h3>Diagramas Cosmológicos y Estelares</h3>
+              <p>Matrices circulares, pléyades y cuerpos celestes concéntricos vinculados al ciclo estacional de la savia y las mareas.</p>
+            </div>
           </div>
-          <div class="voynich-icon-card">
-            <!-- Icono Zodiacal -->
-            <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6V11H6V13H11V18H13V13H18V11H13V6H11Z"/></svg>
-            <span>Zodíaco y Constelaciones</span>
+
+          <!-- Tarjeta 4: Zodíaco y Rosetas -->
+          <div class="voynich-typology-card">
+            <div class="typology-image-wrapper">
+              <span class="typology-badge">Sección IV</span>
+              <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Zodíaco y Mapas">
+            </div>
+            <div class="typology-content">
+              <h3>Zodíaco y Cartografía de Rosetas</h3>
+              <p>Medallones astrológicos, constelaciones y el diagrama central de nueve islas que rige la topografía general del códice.</p>
+            </div>
           </div>
         </div>
       </section>
@@ -1176,7 +1234,6 @@
       </section>
     </main>
 
-    <!-- BOTÓN FLOTANTE PARA REGRESAR AL INICIO -->
     <a href="#top" class="back-to-top" title="Volver al inicio">↑</a>
 
     <footer>
@@ -1186,7 +1243,6 @@
   </div>
 
   <script>
-    // CONTROL DE MENÚS DESPLEGABLES
     function toggleDropdown(id) {
       const menu = document.getElementById(id);
       const isOpen = menu.classList.contains('show');
@@ -1205,7 +1261,6 @@
       closeAllDropdowns();
     });
 
-    // RED NEURONAL Y ESPACIO VECTORIAL
     const canvas = document.getElementById("telemetryCanvas");
     const ctx = canvas.getContext("2d");
 
