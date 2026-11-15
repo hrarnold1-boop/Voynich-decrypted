@@ -6,11 +6,11 @@
   <title>Códice MS 408 | Plataforma de Desciframiento del Manuscrito Voynich</title>
   <style>
     :root {
-      --bg: #080c14;
-      --surface: #101722;
-      --surface-alt: #16202e;
-      --border: #212d3e;
-      --text: #f0f6fc;
+      --bg: #070a12;
+      --surface: #0e1522;
+      --surface-alt: #141c2d;
+      --border: #1e293b;
+      --text: #f8fafc;
       --muted: #94a3b8;
       --accent: #38bdf8;
       --accent-hover: #7dd3fc;
@@ -32,7 +32,7 @@
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1140px;
       margin: 0 auto;
       width: 100%;
     }
@@ -64,28 +64,28 @@
     }
 
     .hero-banner {
-      background: linear-gradient(135deg, rgba(0, 104, 71, 0.3) 0%, rgba(8, 12, 20, 0.92) 50%, rgba(56, 189, 248, 0.2) 100%), url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      background: linear-gradient(135deg, rgba(0, 104, 71, 0.25) 0%, rgba(7, 10, 18, 0.94) 50%, rgba(56, 189, 248, 0.15) 100%), url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 24px;
       padding: 3.5rem 1.5rem;
       margin-top: 2rem;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.75);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.8);
     }
 
     .hero-banner::after {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(8, 12, 20, 0.88);
+      background: rgba(7, 10, 18, 0.90);
       z-index: 1;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 920px;
+      max-width: 960px;
       margin: 0 auto;
     }
 
@@ -100,10 +100,10 @@
 
     .badge {
       display: inline-block;
-      background: rgba(56, 189, 248, 0.15);
+      background: rgba(56, 189, 248, 0.12);
       color: var(--accent);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      padding: 0.35rem 0.9rem;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 0.35rem 1rem;
       border-radius: 999px;
       font-size: 0.85rem;
       font-weight: 600;
@@ -113,19 +113,19 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      background: rgba(0, 104, 71, 0.4);
+      background: rgba(0, 104, 71, 0.35);
       color: #4ade80;
-      border: 1px solid rgba(0, 104, 71, 0.7);
-      padding: 0.35rem 0.9rem;
+      border: 1px solid rgba(0, 104, 71, 0.6);
+      padding: 0.35rem 1rem;
       border-radius: 999px;
       font-size: 0.85rem;
       font-weight: 600;
     }
 
     h1 {
-      font-size: 2.2rem;
+      font-size: 2.3rem;
       line-height: 1.2;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
       color: #ffffff;
       letter-spacing: -0.02em;
       text-align: center;
@@ -133,13 +133,13 @@
 
     @media (min-width: 768px) {
       .hero-banner { padding: 4.5rem 2.5rem; }
-      h1 { font-size: 2.6rem; }
+      h1 { font-size: 2.8rem; }
     }
 
     .intro-text {
       color: var(--muted);
-      font-size: 0.98rem;
-      margin-bottom: 1.2rem;
+      font-size: 1.02rem;
+      margin-bottom: 1.4rem;
       text-align: justify;
     }
 
@@ -157,15 +157,15 @@
     }
 
     .scope-callout {
-      background: rgba(16, 23, 34, 0.96);
+      background: rgba(14, 21, 34, 0.95);
       border-left: 4px solid var(--gold);
-      padding: 1.2rem;
+      padding: 1.3rem;
       border-radius: 0 12px 12px 0;
-      margin-top: 1.5rem;
-      font-size: 0.9rem;
+      margin-top: 1.6rem;
+      font-size: 0.92rem;
       color: var(--text);
       text-align: left;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
     }
 
     .scope-callout strong {
@@ -173,12 +173,12 @@
     }
 
     section {
-      padding: 3rem 0;
+      padding: 3.5rem 0;
       border-bottom: 1px solid var(--border);
     }
 
     h2 {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       margin-bottom: 1.2rem;
       color: var(--text);
     }
@@ -186,18 +186,18 @@
     p {
       color: var(--muted);
       margin-bottom: 1.2rem;
-      font-size: 1rem;
+      font-size: 1.02rem;
       text-align: justify;
     }
 
     /* ESTILO MÓNACO / CASINO HIGH-END PARA EL MOTOR */
     .casino-workbench {
-      background: linear-gradient(145deg, #121a28 0%, #0d131f 100%);
+      background: linear-gradient(145deg, #0e1522 0%, #090e18 100%);
       border: 1px solid var(--gold-border);
-      border-radius: 20px;
-      padding: 1.5rem;
+      border-radius: 22px;
+      padding: 1.8rem;
       margin-top: 2rem;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.06);
       position: relative;
       overflow: hidden;
     }
@@ -216,13 +216,13 @@
       background: rgba(245, 158, 11, 0.15);
       color: var(--gold);
       border: 1px solid var(--gold-border);
-      padding: 0.3rem 0.8rem;
+      padding: 0.35rem 0.9rem;
       border-radius: 999px;
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
     }
 
     .folio-display-box {
@@ -231,21 +231,21 @@
       gap: 1.5rem;
       background: var(--bg);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.2rem;
+      border-radius: 16px;
+      padding: 1.4rem;
       margin-bottom: 1.5rem;
       align-items: center;
     }
 
     @media (min-width: 768px) {
-      .folio-display-box { grid-template-columns: 280px 1fr; padding: 1.5rem; }
+      .folio-display-box { grid-template-columns: 280px 1fr; padding: 1.6rem; }
     }
 
     .folio-thumb-container {
       width: 100%;
       height: 220px;
       background: var(--surface-alt);
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
       border: 1px solid var(--border);
       display: flex;
@@ -261,12 +261,12 @@
 
     .folio-preview-info h3 {
       color: var(--accent);
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       margin-bottom: 0.5rem;
     }
 
     .folio-preview-info p {
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       margin-bottom: 1rem;
       text-align: left;
     }
@@ -295,8 +295,8 @@
       background: var(--bg);
       color: var(--text);
       border: 1px solid var(--border);
-      padding: 0.75rem;
-      border-radius: 8px;
+      padding: 0.8rem;
+      border-radius: 9px;
       font-size: 0.95rem;
     }
 
@@ -315,14 +315,14 @@
     .output-panel {
       background: var(--bg);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem;
+      border-radius: 12px;
+      padding: 1.1rem;
       width: 100%;
       overflow: hidden;
     }
 
     .output-panel h4 {
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--accent);
       margin-bottom: 0.7rem;
       text-transform: uppercase;
@@ -331,12 +331,12 @@
 
     .output-content {
       font-family: monospace;
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       color: var(--text);
       white-space: pre-wrap;
       word-break: break-all;
       overflow-wrap: break-word;
-      min-height: 160px;
+      min-height: 170px;
       max-height: 350px;
       overflow-y: auto;
       text-align: left;
@@ -344,30 +344,30 @@
     }
 
     .support-box {
-      background: linear-gradient(145deg, #101722 0%, #0a0f18 100%);
+      background: linear-gradient(145deg, #0e1522 0%, #080d17 100%);
       border: 1px solid rgba(56, 189, 248, 0.35);
-      border-radius: 16px;
-      padding: 2rem;
+      border-radius: 18px;
+      padding: 2.2rem;
       margin-top: 2rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
     }
 
     .support-box h3 {
       color: var(--accent);
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
+      font-size: 1.45rem;
+      margin-bottom: 1.1rem;
     }
 
     .budget-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 1.2rem 0;
-      font-size: 0.9rem;
+      margin: 1.4rem 0;
+      font-size: 0.92rem;
     }
 
     .budget-table th, .budget-table td {
       border: 1px solid var(--border);
-      padding: 0.75rem 1rem;
+      padding: 0.8rem 1rem;
       text-align: left;
     }
 
@@ -379,8 +379,8 @@
     .contact-section {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.5rem;
+      border-radius: 18px;
+      padding: 1.8rem;
       margin-top: 2rem;
     }
 
@@ -401,23 +401,23 @@
       background: var(--bg);
       color: var(--text);
       border: 1px solid var(--border);
-      padding: 0.85rem;
-      border-radius: 8px;
+      padding: 0.9rem;
+      border-radius: 9px;
       font-size: 1rem;
       font-family: inherit;
     }
 
     textarea.form-control {
       resize: vertical;
-      min-height: 120px;
+      min-height: 130px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.85rem 1.6rem;
-      border-radius: 9px;
+      padding: 0.9rem 1.8rem;
+      border-radius: 10px;
       font-weight: 600;
       text-decoration: none;
       font-size: 1rem;
@@ -433,7 +433,7 @@
 
     .btn-primary {
       background-color: var(--accent);
-      color: #080c14;
+      color: #070a12;
     }
 
     .btn-primary:hover {
@@ -444,8 +444,8 @@
       background: rgba(63, 185, 80, 0.15);
       color: var(--success);
       border: 1px solid rgba(63, 185, 80, 0.4);
-      padding: 1rem;
-      border-radius: 8px;
+      padding: 1.1rem;
+      border-radius: 9px;
       margin-top: 1rem;
       display: none;
       font-weight: 600;
@@ -453,16 +453,16 @@
     }
 
     footer {
-      padding: 2rem 0;
+      padding: 2.2rem 0;
       color: var(--muted);
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
       gap: 1rem;
       border-top: 1px solid var(--border);
-      margin-top: 3rem;
+      margin-top: 3.5rem;
     }
 
     @media (min-width: 768px) {
@@ -492,30 +492,30 @@
           <h1>Códice MS 408: Manuscrito Voynich</h1>
           
           <p class="intro-text">
-            El <strong>Manuscrito Voynich (Códice MS 408)</strong>, datado por radiocarbono a principios del siglo XV (aprox. 1404–1438)[span_1](start_span)[span_1](end_span), ha desconcertado a historiadores, lingüistas, criptógrafos y científicos de todo el mundo desde su redescubrimiento en 1912 por el librero anticuarista Wilfrid Voynich. De los aproximadamente 272 folios originales, hoy se conservan <strong>240 folios</strong> bajo riguroso resguardo en la <a href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noopener" class="yale-link-inline">Biblioteca Beinecke de Manuscritos y Libros Raros de la Universidad de Yale</a>[span_2](start_span)[span_2](end_span). Sus enigmáticas páginas —repletas de ilustraciones botánicas inexplicables, diagramas cosmológicos radiales, secretos balneológicos y complejos tratados biológicos— resistieron durante más de un siglo los intentos de desciframiento basados en criptografía estadística tradicional y sustitución estática de caracteres.
+            Bienvenido a la experiencia definitiva de inmersión y desciframiento del <strong>Manuscrito Voynich (Códice MS 408)</strong>. Datado por radiocarbono a principios del siglo XV (aprox. 1404–1438), este códice ha desconcertado a historiadores, lingüistas, criptógrafos y científicos de todo el mundo desde su redescubrimiento en 1912 por el librero anticuarista Wilfrid Voynich. De los aproximadamente 272 folios originales, hoy se conservan <strong>240 folios</strong> bajo riguroso resguardo en la <a href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noopener" class="yale-link-inline">Biblioteca Beinecke de Manuscritos y Libros Raros de la Universidad de Yale</a>. Sus enigmáticas páginas —repletas de ilustraciones botánicas inexplicables, diagramas cosmológicos radiales, secretos balneológicos y complejos tratados biológicos— resistieron durante más de un siglo los intentos de resolución basados en criptografía estadística tradicional y sustitución estática de caracteres.
           </p>
 
           <p class="intro-text">
-            <strong>¿Cómo logramos el desciframiento y cuál es nuestro enfoque?</strong> Tras años de investigación independiente, rompimos el paradigma criptoanalítico clásico. En lugar de tratar los glifos como un alfabeto cifrado convencional, partimos del corpus de referencia internacional <strong>IVTFF (European Voynich Alphabet)</strong> desarrollado y compartido por la comunidad académica global. A partir de ahí, diseñamos una arquitectura algorítmica robusta implementada en <strong>Python</strong>, fundamentada en <strong>física matemática, análisis matricial de alta densidad y gramática de fluidos</strong>. Esto permite modelar las transiciones glíficas no como símbolos estáticos de un idioma natural convencional, sino como vectores dinámicos y coherentes de un sistema termodinámico e hidrográfico.
+            <strong>¿Cómo logramos el desciframiento y cuál es nuestro enfoque?</strong> Tras años de investigación independiente, rompimos el paradigma criptoanalítico clásico. En lugar de tratar los glifos como un alfabeto cifrado convencional, partimos del corpus de referencia internacional <strong>IVTFF (European Voynich Alphabet)</strong> desarrollado y compartido por la comunidad académica global. A partir de ahí, diseñamos una potente arquitectura de software implementada en <strong>Python</strong>, fundamentada en <strong>física matemática, análisis matricial de alta densidad y gramática de fluidos</strong>. Esto permite modelar las transiciones glíficas no como símbolos estáticos de un idioma natural convencional, sino como vectores dinámicos y coherentes de un sistema termodinámico e hidrográfico.
           </p>
 
           <p class="intro-text">
-            <strong>De la investigación individual a la plataforma interactiva:</strong> Este sitio web y la herramienta de manipulación teórica fueron construidos inicialmente como el resultado de un esfuerzo unipersonal apasionado por demostrar que el enigma tenía solución científica. Sin embargo, para llevar este descubrimiento al alcance de cualquier persona, permitir la simulación interactiva, someter el modelo a rigurosas pruebas de fiabilidad, auditorías de contradicciones y simulaciones bajo el método científico, un solo esfuerzo y tiempo personal ya no son suficientes.
+            <strong>De la investigación individual al aula interactiva global:</strong> Este sitio web y el motor de manipulación teórica nacieron como el resultado de un esfuerzo unipersonal apasionado por demostrar que el enigma tenía solución científica. Hoy, este espacio se transforma en un aula interactiva donde puedes <strong>jugar, experimentar y auditar en vivo</strong> las traducciones folio por folio.
           </p>
 
           <div class="scope-callout">
-            📜 <strong>Nota Metodológica sobre las Líneas:</strong> La plataforma permite auditar folios representativos (mostrando muestras de 4 líneas clave frente al total real registrado en el corpus IVTFF), destacando de manera estelar el <strong>Folio 116r</strong> (conocido como la "Piedra Rosetta" del códice por ser texto puro sin ilustraciones), el cual se encuentra traducido e integrado al <strong>100% de sus líneas reales</strong>[span_3](start_span)[span_3](end_span).
+            📜 <strong>Nota Metodológica sobre las Líneas:</strong> La plataforma permite auditar folios representativos (mostrando muestras de 4 líneas clave frente al total real registrado en el corpus IVTFF), destacando de manera estelar el <strong>Folio 116r</strong> (conocido como la "Piedra Rosetta" del códice por ser texto puro sin ilustraciones), el cual se encuentra traducido e integrado al <strong>100% de sus líneas reales</strong>.
           </div>
         </div>
       </div>
 
       <!-- SECCIÓN DEL MOTOR DE TRADUCCIÓN (ESTILO MÓNACO / CASINO HIGH-END) -->
       <section id="corpus">
-        <h2>Laboratorio Interactivo de Desciframiento</h2>
+        <h2>Laboratorio Interactivo y Aula de Simulación</h2>
         <p>Entra en acción. Aquí comienza la experiencia en vivo con el motor algorítmico: visualiza el facsímil digital del folio tal como se encuentra en Yale, audita su descripción original, contrasta el conteo de líneas reales frente a la muestra analizada, cambia de idioma en tiempo real o revisa el mapeo de transliteración algorítmica.</p>
 
         <div class="casino-workbench">
-          <div class="workbench-header-tag">🎰 Motor Activo // Vista Forense & Simulador</div>
+          <div class="workbench-header-tag">🎰 Motor Activo // Aula Interactiva de Traducción</div>
 
           <div class="folio-display-box">
             <div class="folio-thumb-container">
@@ -579,21 +579,21 @@
       <section id="roadmap">
         <h2>Perspectivas, Validación y Visión de Escalamiento ($25,000 USD)</h2>
         <p>
-          Para consolidar este marco de trabajo bajo el rigor de la comunidad científica internacional y expandir su impacto, nuestra hoja de ruta contempla hitos fundamentales:
+          Para someter este marco de trabajo al rigor de la comunidad científica internacional y expandir su impacto, nuestra hoja de ruta contempla:
         </p>
         <ul style="color: var(--muted); margin-left: 1.5rem; margin-bottom: 1.5rem; text-align: justify;">
           <li><strong>Carga y Despliegue Masivo de Folios Pendientes:</strong> Integración progresiva de la totalidad de los folios conservados del manuscrito.</li>
           <li><strong>Traducción de Líneas Restantes:</strong> Volcado e integración de todas las líneas de cada folio para alcanzar una cobertura del 100% en todo el corpus.</li>
           <li><strong>Reconstrucción Digital de Folios Perdidos:</strong> Uso de interpolación matricial y modelado computacional para recrear los ~32 folios desaparecidos, en colaboración con artistas e ilustradores.</li>
           <li><strong>Galería Interactiva de Alta Resolución:</strong> Herramientas didácticas para acercamientos topográficos y análisis glífico forense.</li>
-          <li><strong>Aplicación a Otros Códigos e Idiomas Sin Descifrar:</strong> Extender la metodología de gramática de fluidos y análisis matricial a otros sistemas de escritura históricos y enigmáticos de interés académico mundial.</li>
+          <li><strong>Aplicación a Otros Códigos e Idiomas Sin Descifrar:</strong> Extender la metodología de gramática de fluidos y análisis matricial a otros sistemas de escritura históricos y enigmáticos de interés académico mundial que aún no han tenido la debida maquinaria computacional implementada.</li>
           <li><strong>Formación de Recursos Humanos y Equipos Multidisciplinarios:</strong> Consolidar células de investigación coordinadas que aborden problemas abiertos con un enfoque científico riguroso.</li>
         </ul>
         
         <div class="support-box">
           <h3>Transparencia Fiscal y Fondeo Abierto a través de Fundación Raft</h3>
           <p style="text-align: justify; margin-bottom: 1rem;">
-            <strong>¿Qué es la Fundación Raft y por qué se gestiona a través de ellos?</strong> La <strong>Fundación Raft</strong> es una organización dedicada a respaldar y administrar con absoluta transparencia fiscal los recursos para proyectos tecnológicos y científicos de código abierto. Gestionar las aportaciones mediante esta entidad garantiza rendición de cuentas, cumplimiento normativo y legitimidad institucional. <em>Actualmente nos encontramos a la espera de que la Fundación Raft nos proporcione la información oficial y los datos definitivos de la cuenta para habilitarlos directamente en la plataforma.</em> Puedes consultar su portal oficial en el <a href="https://raft.foundation/" target="_blank" rel="noopener" class="yale-link-inline">sitio web de la Fundación Raft</a>[span_4](start_span)[span_4](end_span).
+            <strong>¿Qué es la Fundación Raft y por qué se gestiona a través de ellos?</strong> La <strong>Fundación Raft</strong> es una organización dedicada a respaldar y administrar con absoluta transparencia fiscal los recursos para proyectos tecnológicos y científicos de código abierto. Gestionar las aportaciones mediante esta entidad garantiza rendición de cuentas, cumplimiento normativo y legitimidad institucional[span_1](start_span)[span_1](end_span). <em>Actualmente nos encontramos a la espera de que la Fundación Raft nos proporcione la información oficial y los datos definitivos de la cuenta para habilitarlos directamente en la plataforma.</em> Puedes consultar su portal oficial en el <a href="https://raft.foundation/" target="_blank" rel="noopener" class="yale-link-inline">sitio web de la Fundación Raft</a>[span_2](start_span)[span_2](end_span).
           </p>
 
           <p style="text-align: justify; margin-bottom: 1rem;">
@@ -638,22 +638,22 @@
           </table>
 
           <p style="text-align: justify; margin-bottom: 1rem; margin-top: 1rem;">
-            <strong>Un llamado a la difusión institucional:</strong> Queremos aclarar con absoluta franqueza que <strong>no estamos solicitando donativos individuales ni aportaciones económicas a las personas</strong>. La mayor contribución que cualquier entusiasta o visitante puede hacer es utilizar, leer, interactuar y divertirse explorando esta plataforma, pero sobre todo, **compartirla**. Nuestro objetivo principal es que este proyecto llegue a los ojos de personas que forman parte de fundaciones, academias o instituciones que disponen de presupuestos asignados para apoyar investigaciones de alto impacto como esta.
+            <strong>Un llamado a la difusión y ciencia abierta:</strong> Queremos aclarar con absoluta franqueza que <strong>no estamos solicitando donativos individuales ni aportaciones económicas a las personas</strong>. La mayor contribución que cualquier entusiasta o visitante puede hacer es utilizar, leer, interactuar y divertirse explorando esta plataforma, pero sobre todo, **compartirla**. Nuestro objetivo principal es que este proyecto llegue a los ojos de personas que forman parte de fundaciones, academias o instituciones que disponen de presupuestos asignados para apoyar investigaciones de alto impacto como esta.
           </p>
         </div>
       </section>
 
-      <!-- SECCIÓN DE COLABORACIÓN ABIERTA -->
+      <!-- SECCIÓN DE COLABORACIÓN ABIERTA Y PATROCINADORES -->
       <section id="collaboration">
         <h2>Convocatoria Abierta de Colaboración Interdisciplinaria</h2>
         <p style="text-align: justify;">
-          Este proyecto nació del esfuerzo individual y apasionado de una sola persona, pero su escalamiento hacia el futuro pertenece a la comunidad global. Extendemos una cordial invitación a <strong>programadores, ingenieros de software, diseñadores UX, lingüistas, historiadores, criptógrafos, diseñadores e ilustradores</strong>, así como a cualquier apasionado que desee aportar valor al desarrollo tecnológico, al análisis crítico o a la recreación artística del Códice MS 408. ¡Toda aportación constructiva es bienvenida! Escríbenos a través del formulario; leemos personalmente cada mensaje.
+          Este proyecto nació del esfuerzo individual y apasionado de una sola persona, pero su escalamiento hacia el futuro pertenece a la comunidad global. Extendemos una cordial y abierta invitación a <strong>programadores, ingenieros de software, diseñadores UX, lingüistas, historiadores, criptógrafos, ilustradores, así como a patrocinadores, mecenas y entidades</strong> que deseen sumarse desde cualquier ángulo o lugar. Ya sea aportando talento, infraestructura, herramientas físicas o digitales, toda contribución constructiva es bienvenida para fortalecer la ciencia abierta.
         </p>
       </section>
 
       <section id="contact">
-        <h2>Contacto y Retroalimentación</h2>
-        <p>Tu opinión, feedback, propuestas de validación científica o comentarios son extremadamente valiosos para nosotros:</p>
+        <h2>Contacto, Críticas y Comentarios</h2>
+        <p>Tu opinión, feedback, propuestas de validación científica, críticas constructivas o comentarios son extremadamente valiosos para nosotros. ¡Escríbenos y leemos personalmente cada mensaje!</p>
         <div class="contact-section">
           <form id="contactForm" onsubmit="handleContact(event)">
             <div class="form-group">
@@ -806,7 +806,7 @@
       },
       "f116r": {
         title: "Folio 116r (Texto Puro - Piedra Rosetta / 100% Completo)",
-        desc: "Página final de texto puro. Este folio se incluye al 100% de su capacidad real, desplegando la totalidad de sus 28 líneas registradas en el corpus IVTFF[span_5](start_span)[span_5](end_span).",
+        desc: "Página final de texto puro. Este folio se incluye al 100% de su capacidad real, desplegando la totalidad de sus 28 líneas registradas en el corpus IVTFF.",
         thumb: "images/folio-116r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002300",
         eva: "f116r.1: daiin.chol.cth.oar.dar.shol.okaiin\nf116r.2: ody.shor.cth.dar.chol.or.shedy\nf116r.3: shol.dar.cth.daiin.oar.qokedy\nf116r.4: cth.or.shor.daiin.dar.shedy\nf116r.5: okaiin.shedy.qokedy.cth.shor\nf116r.6: chol.ody.shor.cth.oar.dar.shedy\nf116r.7: cth.dar.shol.ody.daiin.okaiin\nf116r.8: daiin.shol.cth.dar.or.oar.okaiin\nf116r.9: chol.ody.shor.cth.daiin.dar.shedy\nf116r.10: oar.cth.shol.ody.chol.okeol\nf116r.11: cth.oar.dar.shol.or.daiin.okeol\nf116r.12: ody.chol.cth.shor.dar.oar.shedy\nf116r.13: shol.dar.cth.ody.chol.qokedy\nf116r.14: dar.chol.cth.ody.shol.or.okaiin\nf116r.15: or.shor.daiin.cth.dar.chol.shedy\nf116r.16: cth.dar.shol.ody.oar.qokedy\nf116r.17: qol.shol.dar.cth.or.daiin.okaiin\nf116r.18: cth.ody.oar.shol.chol.dar.shedy\nf116r.19: shor.daiin.cth.or.oar.qokedy\nf116r.20: kooiin.cheo.pchor.otaiin.o.dain.chor.dair.shty\nf116r.21: chol.cth.ody.dar.shol.or.shor\nf116r.22: oar.or.cth.daiin.shor.qokedy\nf116r.23: dar.cth.oar.shol.chol.daiin\nf116r.24: ody.shor.or.cth.dar.shol\nf116r.25: shol.oar.cth.daiin.or.okeol\nf116r.26: shol.dar.cth.ody.oar.chol.okaiin\nf116r.27: cth.or.shor.daiin.dar.shol.shedy\nf116r.28: ody.chol.cth.oar.or.qokedy",
@@ -821,7 +821,7 @@
       es: {
         badge: "Ciencia Abierta • CC BY-NC 4.0",
         mexicoBadge: "Innovación Científica Independiente desde México",
-        corpusTitle: "Laboratorio Interactivo de Desciframiento",
+        corpusTitle: "Laboratorio Interactivo y Aula de Simulación",
         corpusDesc: "Selecciona cualquiera de los folios principales para consultar su transcripción y traducción en tiempo real.",
         yaleBtn: "Ver Facsímil Original en Yale ↗",
         lblFolio: "Seleccionar Folio",
@@ -829,7 +829,7 @@
         lblTargetLang: "Idioma de Salida",
         panelInput: "Flujo IVTFF de Referencia",
         panelResult: "Salida Decodificada en Tiempo Real",
-        contactTitle: "Contacto y Colaboraciones",
+        contactTitle: "Contacto, Críticas y Comentarios",
         lblName: "Nombre / Institución",
         lblEmail: "Correo Electrónico",
         lblMessage: "Mensaje",
@@ -841,7 +841,7 @@
       en: {
         badge: "Open Science • CC BY-NC 4.0",
         mexicoBadge: "Independent Scientific Innovation from Mexico",
-        corpusTitle: "Interactive Decipherment Laboratory",
+        corpusTitle: "Interactive Laboratory & Simulation Classroom",
         corpusDesc: "Select any of the main folios to review their transcription and translation in real-time.",
         yaleBtn: "View Original Facsimile in Yale ↗",
         lblFolio: "Select Folio",
@@ -849,7 +849,7 @@
         lblTargetLang: "Output Language",
         panelInput: "Reference IVTFF Stream",
         panelResult: "Real-Time Decoded Output",
-        contactTitle: "Contact & Collaborations",
+        contactTitle: "Contact, Reviews & Feedback",
         lblName: "Name / Institution",
         lblEmail: "Email Address",
         lblMessage: "Message",
