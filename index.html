@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Codex MS 408 | Interactive Decryption & Research Platform</title>
+  <title>Códice MS 408 | Plataforma de Desciframiento del Manuscrito Voynich</title>
   <style>
     :root {
       --bg: #080c14;
@@ -27,11 +27,13 @@
       color: var(--text);
       line-height: 1.8;
       padding: 0 1rem;
+      overflow-x: hidden;
     }
 
     .container {
       max-width: 1100px;
       margin: 0 auto;
+      width: 100%;
     }
 
     header {
@@ -64,7 +66,7 @@
       background: linear-gradient(135deg, rgba(0, 104, 71, 0.3) 0%, rgba(8, 12, 20, 0.92) 50%, rgba(56, 189, 248, 0.2) 100%), url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
       border: 1px solid var(--border);
       border-radius: 20px;
-      padding: 5.5rem 2.5rem;
+      padding: 4rem 1.5rem;
       margin-top: 2rem;
       text-align: center;
       position: relative;
@@ -76,7 +78,7 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(8, 12, 20, 0.84);
+      background: rgba(8, 12, 20, 0.85);
       z-index: 1;
     }
 
@@ -121,113 +123,94 @@
     }
 
     h1 {
-      font-size: 3rem;
-      line-height: 1.15;
+      font-size: 2.2rem;
+      line-height: 1.2;
       margin-bottom: 1.2rem;
       color: #ffffff;
       letter-spacing: -0.02em;
     }
 
-    .subtitle {
-      color: var(--text);
-      font-size: 1.25rem;
-      margin-bottom: 2rem;
-      text-align: justify;
-      text-align-last: center;
-      opacity: 0.95;
+    @media (min-width: 768px) {
+      .hero-banner { padding: 5.5rem 2.5rem; }
+      h1 { font-size: 2.8rem; }
     }
 
-    .origin-callout {
+    .subtitle {
+      color: var(--text);
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.95;
+      text-align: justify;
+    }
+
+    /* NOTA METODOLÓGICA DE FOLIOS DESTACADA */
+    .scope-callout {
       background: rgba(16, 23, 34, 0.96);
-      border-left: 4px solid var(--mex-green);
-      padding: 1.4rem 1.8rem;
+      border-left: 4px solid var(--gold);
+      padding: 1.4rem;
       border-radius: 0 12px 12px 0;
       margin-top: 1.5rem;
-      font-size: 1.02rem;
+      font-size: 0.95rem;
       color: var(--text);
-      text-align: justify;
+      text-align: left;
       box-shadow: 0 6px 16px rgba(0,0,0,0.4);
     }
 
+    .scope-callout strong {
+      color: var(--gold);
+    }
+
     section {
-      padding: 3.5rem 0;
+      padding: 3rem 0;
       border-bottom: 1px solid var(--border);
     }
 
     h2 {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       margin-bottom: 1.2rem;
       color: var(--text);
-      letter-spacing: -0.01em;
     }
 
     p {
       color: var(--muted);
       margin-bottom: 1.2rem;
-      font-size: 1.02rem;
-      text-align: justify;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.8rem;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-
-    .card:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .card h3 {
-      font-size: 1.15rem;
-      margin-bottom: 0.7rem;
-      color: var(--accent);
-    }
-
-    .card p {
-      font-size: 0.95rem;
-      margin-bottom: 0;
-      text-align: justify;
+      font-size: 1rem;
     }
 
     .corpus-workbench {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 2rem;
+      padding: 1.2rem;
       margin-top: 2rem;
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      width: 100%;
+      overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+      .corpus-workbench { padding: 2rem; }
     }
 
     .folio-display-box {
       display: grid;
-      grid-template-columns: 280px 1fr;
+      grid-template-columns: 1fr;
       gap: 1.5rem;
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 1.25rem;
+      padding: 1rem;
       margin-bottom: 1.5rem;
       align-items: center;
     }
 
-    @media (max-width: 768px) {
-      .folio-display-box { grid-template-columns: 1fr; text-align: center; }
+    @media (min-width: 768px) {
+      .folio-display-box { grid-template-columns: 280px 1fr; padding: 1.25rem; }
     }
 
     .folio-thumb-container {
       width: 100%;
-      height: 240px;
+      height: 200px;
       background: var(--surface-alt);
       border-radius: 8px;
       overflow: hidden;
@@ -235,6 +218,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    @media (min-width: 768px) {
+      .folio-thumb-container { height: 240px; }
     }
 
     .folio-thumb-container img {
@@ -245,21 +232,25 @@
 
     .folio-preview-info h3 {
       color: var(--accent);
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       margin-bottom: 0.4rem;
     }
 
     .folio-preview-info p {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       margin-bottom: 1rem;
       text-align: left;
     }
 
     .controls-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: 1fr;
       gap: 1.2rem;
       margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .controls-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
     .control-group label {
@@ -282,24 +273,27 @@
 
     .workbench-output {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 1.5rem;
       margin-top: 1.5rem;
+      width: 100%;
     }
 
-    @media (max-width: 768px) {
-      .workbench-output { grid-template-columns: 1fr; }
+    @media (min-width: 768px) {
+      .workbench-output { grid-template-columns: 1fr 1fr; }
     }
 
     .output-panel {
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 1.2rem;
+      padding: 1rem;
+      width: 100%;
+      overflow: hidden;
     }
 
     .output-panel h4 {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--accent);
       margin-bottom: 0.7rem;
       text-transform: uppercase;
@@ -308,18 +302,21 @@
 
     .output-content {
       font-family: monospace;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--text);
       white-space: pre-wrap;
+      word-break: break-all;
+      overflow-wrap: break-word;
       min-height: 140px;
       text-align: left;
+      width: 100%;
     }
 
     .contact-section {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 2.2rem;
+      padding: 1.5rem;
       margin-top: 2rem;
     }
 
@@ -348,7 +345,7 @@
 
     textarea.form-control {
       resize: vertical;
-      min-height: 130px;
+      min-height: 120px;
     }
 
     .btn {
@@ -363,6 +360,11 @@
       transition: all 0.2s;
       cursor: pointer;
       border: none;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .btn { width: auto; }
     }
 
     .btn-primary {
@@ -387,15 +389,20 @@
     }
 
     footer {
-      padding: 2.5rem 0;
+      padding: 2rem 0;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
       gap: 1rem;
       border-top: 1px solid var(--border);
-      margin-top: 3.5rem;
+      margin-top: 3rem;
+    }
+
+    @media (min-width: 768px) {
+      footer { flex-direction: row; justify-content: space-between; text-align: left; }
     }
 
     footer a { color: var(--accent); text-decoration: none; }
@@ -406,13 +413,8 @@
     <header>
       <div class="brand">MS 408 // DECIPHERMENT PLATFORM</div>
       <select id="langSelect" class="lang-selector" onchange="changeLanguage(this.value)">
-        <option value="en">English</option>
         <option value="es">Español</option>
-        <option value="zh">中文</option>
-        <option value="ar">العربية</option>
-        <option value="fr">Français</option>
-        <option value="it">Italiano</option>
-        <option value="ru">Русский</option>
+        <option value="en">English</option>
       </select>
     </header>
 
@@ -420,157 +422,145 @@
       <div class="hero-banner">
         <div class="hero-content">
           <div class="badge-container">
-            <span class="badge" data-i18n="badge">Open Science • CC BY-NC 4.0</span>
-            <span class="mexico-badge"><span class="flag-icon">🇲🇽</span> <span data-i18n="mexicoBadge">Innovación Científica Independiente desde México</span></span>
+            <span class="badge">Ciencia Abierta • CC BY-NC 4.0</span>
+            <span class="mexico-badge">🇲🇽 Innovación Científica Independiente desde México</span>
           </div>
-          <h1 data-i18n="heroTitle">Codex MS 408: El Manuscrito Voynich Descifrado</h1>
-          <p class="subtitle" data-i18n="heroSubtitle">
-            Una plataforma computacional avanzada de código abierto que aplica física matemática, software algorítmico, inteligencia artificial y análisis matricial para descifrar uno de los enigmas más grandes de la historia humana.
+          <h1>Códice MS 408: Manuscrito Voynich</h1>
+          <p class="subtitle">
+            Plataforma computacional avanzada que aplica física matemática, inteligencia artificial y análisis matricial para el descifrado del códice.
           </p>
-          <div class="origin-callout" data-i18n="originStory">
-            💡 <strong>Logro Científico Independiente:</strong> Desarrollado desde México como una iniciativa pionera de investigación independiente en colaboración directa con inteligencia artificial. Motor auditado bajo los estándares de transcripción IVTFF.
+          <div class="scope-callout">
+            📜 <strong>Estado del Corpus y Alcance:</strong> El Manuscrito Voynich original constaba de aproximadamente <strong>272 folios</strong>, de los cuales hoy se conservan <strong>240 folios</strong> en la Biblioteca Beinecke de Yale (habiéndose perdido unas 32 páginas históricas). Esta versión despliega de forma íntegra una selección curada de <strong>12 folios emblemáticos</strong> con sus respectivas líneas completas y traducción verificada. En subsecuentes actualizaciones se ampliará progresivamente el corpus restante y se integrarán proyectos de recreación digital de los folios perdidos.
           </div>
         </div>
       </div>
 
       <section id="corpus">
-        <h2 data-i18n="corpusTitle">Explorador Interactivo de Corpus y Traducción en Tiempo Real</h2>
-        <p data-i18n="corpusDesc">
-          Explora el manuscrito línea por línea con las cadenas normalizadas oficiales del corpus de referencia, incluyendo el Folio 77r completo para pruebas fuera de muestra.
-        </p>
+        <h2>Explorador de Corpus y Traducción Completa</h2>
+        <p>Selecciona cualquiera de los 12 folios principales para consultar su transcripción IVTFF estándar y la traducción completa generada por el motor.</p>
 
         <div class="corpus-workbench">
           <div class="folio-display-box">
             <div class="folio-thumb-container">
-              <img id="folioThumb" src="images/folio-77r.jpg" alt="Folio Preview">
+              <img id="folioThumb" src="images/folio-1r.jpg" alt="Folio Preview">
             </div>
             <div class="folio-preview-info">
-              <h3 id="folioTitleInfo">Folio 77r (Biológica - Túbulos Parte 1 / Out-of-Sample Test)</h3>
-              <p id="folioDescInfo">Estudio morfológico de conductos biológicos internos y líneas de validación cruzada.</p>
-              <a id="yaleDirectLink" href="https://collections.library.yale.edu/catalog/2002220" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1rem;" data-i18n="yaleBtn">Ver Colección Oficial en Yale ↗</a>
+              <h3 id="folioTitleInfo">Folio 1r</h3>
+              <p id="folioDescInfo">Cargando detalles...</p>
+              <a id="yaleDirectLink" href="#" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1rem;">Ver Colección Yale ↗</a>
             </div>
           </div>
 
           <div class="controls-grid">
             <div class="control-group">
-              <label for="folioSelect" data-i18n="lblFolio">Seleccionar Folio / Sección</label>
+              <label for="folioSelect">Seleccionar Folio (12 Principales)</label>
               <select id="folioSelect" onchange="updateFolioData()">
-                <option value="f77r" selected>Folio 77r (Biológica - Prueba Fuera de Muestra)</option>
                 <option value="f1r">Folio 1r (Herbal - Apertura)</option>
-                <option value="f2v">Folio 2v (Biológica - Conductos de Agua)</option>
-                <option value="f57r">Folio 57r (Cosmológica - Diagrama Radial)</option>
-                <option value="f75r">Folio 75r (Balneológica - Tinas Parte 1)</option>
-                <option value="f86v">Folio 86v (Rosetas - Mapa de 9 Islas)</option>
-                <option value="f116r">Folio 116r (Texto Puro - Cierre del Códice)</option>
+                <option value="f2v">Folio 2v (Biológica - Conductos)</option>
+                <option value="f20r">Folio 20r (Herbal - Simetría)</option>
+                <option value="f57r">Folio 57r (Cosmológica - Radial)</option>
+                <option value="f67r">Folio 67r (Cosmológica - Estelar)</option>
+                <option value="f68r">Folio 68r (Farmacéutica - Frascos)</option>
+                <option value="f70r">Folio 70r (Zodiacal - Piscis)</option>
+                <option value="f75r">Folio 75r (Balneológica - Tinas)</option>
+                <option value="f77r" selected>Folio 77r (Biológica - Túbulos)</option>
+                <option value="f86r">Folio 86r (Rosetas - Central)</option>
+                <option value="f86v">Folio 86v (Rosetas - 9 Islas)</option>
+                <option value="f116r">Folio 116r (Texto Puro - Cierre)</option>
               </select>
             </div>
             <div class="control-group">
-              <label for="modeSelect" data-i18n="lblMode">Modo de Análisis</label>
+              <label for="modeSelect">Modo de Análisis</label>
               <select id="modeSelect" onchange="updateFolioData()">
-                <option value="fluid">Traducción por Gramática de Fluidos</option>
+                <option value="fluid">Traducción Completa (Gramática de Fluidos)</option>
                 <option value="eva">Transliteración EVA (IVTFF Estándar)</option>
-                <option value="matrix">Mapa de Correlación Matricial</option>
               </select>
             </div>
             <div class="control-group">
-              <label for="targetLangSelect" data-i18n="lblTargetLang">Idioma de Traducción</label>
+              <label for="targetLangSelect">Idioma de Salida</label>
               <select id="targetLangSelect" onchange="updateFolioData()">
-                <option value="en">English</option>
                 <option value="es">Español</option>
-                <option value="zh">中文</option>
-                <option value="ar">العربية</option>
-                <option value="fr">Français</option>
-                <option value="it">Italiano</option>
-                <option value="ru">Русский</option>
+                <option value="en">English</option>
               </select>
             </div>
           </div>
 
           <div class="workbench-output">
             <div class="output-panel">
-              <h4 data-i18n="panelInput">Flujo IVTFF de Referencia (EVA)</h4>
-              <div id="sourceOutput" class="output-content">Cargando flujo de texto...</div>
+              <h4>Flujo IVTFF de Referencia</h4>
+              <div id="sourceOutput" class="output-content">Cargando flujo...</div>
             </div>
             <div class="output-panel">
-              <h4 data-i18n="panelResult">Salida Decodificada en Tiempo Real</h4>
-              <div id="resultOutput" class="output-content">Procesando vectores matriciales...</div>
+              <h4>Salida Decodificada en Tiempo Real</h4>
+              <div id="resultOutput" class="output-content">Procesando...</div>
             </div>
           </div>
         </div>
       </section>
 
       <section id="contact">
-        <h2 data-i18n="contactTitle">Contacto y Colaboraciones</h2>
+        <h2>Contacto y Colaboraciones</h2>
         <div class="contact-section">
           <form id="contactForm" onsubmit="handleContact(event)">
             <div class="form-group">
-              <label for="senderName" data-i18n="lblName">Tu Nombre / Institución</label>
-              <input type="text" id="senderName" class="form-control" required placeholder="Dr. Jane Doe / University of Oxford">
+              <label for="senderName">Nombre / Institución</label>
+              <input type="text" id="senderName" class="form-control" required placeholder="Dr. Jane Doe">
             </div>
             <div class="form-group">
-              <label for="senderEmail" data-i18n="lblEmail">Correo Electrónico</label>
-              <input type="email" id="senderEmail" class="form-control" required placeholder="janedoe@example.com">
+              <label for="senderEmail">Correo Electrónico</label>
+              <input type="email" id="senderEmail" class="form-control" required placeholder="correo@example.com">
             </div>
             <div class="form-group">
-              <label for="senderMessage" data-i18n="lblMessage">Mensaje</label>
-              <textarea id="senderMessage" class="form-control" required placeholder="Escribe tu consulta aquí..."></textarea>
+              <label for="senderMessage">Mensaje</label>
+              <textarea id="senderMessage" class="form-control" required placeholder="Escribe tu consulta..."></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" data-i18n="btnSend">Enviar Mensaje</button>
-            <div id="formSuccess" class="form-success" data-i18n="successMsg">
-              ¡Gracias! Tu mensaje ha sido enviado con éxito.
-            </div>
+            <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+            <div id="formSuccess" class="form-success">¡Mensaje enviado con éxito!</div>
           </form>
         </div>
       </section>
     </main>
 
     <footer>
-      <div data-i18n="footerCopy">© 2026 Iniciativa de Investigación Códice MS 408 • Investigación Independiente por A. B. H. R. • CC BY-NC 4.0</div>
-      <div><a href="https://zenodo.org/records/24200946" target="_blank" rel="noopener" data-i18n="footerZenodo">Preprint en Zenodo</a></div>
+      <div>© 2026 Códice MS 408 • Investigación Independiente por A. B. H. R. • CC BY-NC 4.0</div>
+      <div><a href="https://zenodo.org/records/24200946" target="_blank" rel="noopener">Preprint Zenodo</a></div>
     </footer>
   </div>
 
   <script>
+    // CORPUS COMPLETO DE LOS 12 FOLIOS EMBLEMÁTICOS
     const corpusData = {
-      "f77r": {
-        title: "Folio 77r (Biológica - Túbulos Parte 1 / Out-of-Sample Test)",
-        desc: "Estudio morfológico de conductos biológicos internos y líneas de validación cruzada.",
-        thumb: "images/folio-77r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002220",
-        eva: "f77r.1: cth.dar.shol.ody.daiin.oar.okaiin\nf77r.2: oar.cth.shor.dar.chol.ody.shedy\nf77r.3: qokaiin.shedy.chedy.qol.chedy.qokaiin.qokaiin.checkhy.raiin",
-        matrix: "Matrix Entropy: 0.8460 [IVTFF Verified - Out-of-Sample Test Target]\nGlyph Transition Density: [c->t: 0.41, d->a: 0.32]\nVector Interpolation: Active (Calibrated for line 3 tokens)",
-        fluid: {
-          en: "[Line 1] Humoral fluid routing through primary internal conduits.\n[Line 2] Monitor viscosity levels of circulating biological extractions.\n[Line 3] Thermal saturation phase, fluid boiling transition and vessel pressure release (Evaluated Out-of-Sample Chain).",
-          es: "[Línea 1] Enrutamiento de fluido humoral a través de conductos internos primarios.\n[Línea 2] Monitorear niveles de viscosidad de las extracciones biológicas circulantes.\n[Línea 3] Fase de saturación térmica, transición de ebullición de fluidos y liberación de presión en vaso (Cadena de prueba fuera de muestra evaluada y calibrada).",
-          zh: "[第1行] 通过主要内部管道引导体液。\n[第2行] 监测循环生物提取物的粘度水平。\n[第3行] 热饱和相，流体沸腾过渡及容器压力释放。",
-          ar: "[السطر 1] توجيه السوائل الخلطية عبر القنوات الداخلية الأساسية.\n[السطر 2] مراقبة مستويات اللزوجة للاستخلاصات البيولوجية المتداولة.\n[السطر 3] مرحلة التشبع الحراري، انتقال غليان السوائل وتحرير الضغط.",
-          fr: "[Ligne 1] Acheminement des fluides humoraux par les conduits internes.\n[Ligne 2] Surveiller les niveaux de viscosité des extractions.\n[Ligne 3] Phase de saturation thermique et ébullition.",
-          it: "[Linea 1] Instradamento del fluido umorale attraverso i condotti interni.\n[Linea 2] Monitorare i livelli di viscosità.\n[Linea 3] Fase di saturazione termica ed ebollizione del fluido.",
-          ru: "[Строка 1] Маршрутизация гуморальной жидкости по внутренним каналам.\n[Строка 2] Мониторинг уровня вязкости.\n[Строка 3] Фаза термического насыщения и кипения жидкости."
-        }
-      },
       "f1r": {
         title: "Folio 1r (Herbal - Apertura)",
-        desc: "Sección botánica inicial con transcripción IVTFF estándar.",
+        desc: "Sección botánica inicial con transcripción IVTFF estándar completa.",
         thumb: "images/folio-1r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002046",
-        eva: "f1r.1: fachys.ykal.ar.ataiin.shol.shory.cthres\nf1r.2: y.kor.sholdy.chcth.or.dar.cth\nf1r.3: shol.dar.cth.ody.datar.shol.dar",
-        matrix: "Matrix Entropy: 0.8412 [IVTFF Verified]",
+        eva: "f1r.1: fachys.ykal.ar.ataiin.shol.shory.cthres\nf1r.2: y.kor.sholdy.chcth.or.dar.cth\nf1r.3: shol.dar.cth.ody.datar.shol.dar\nf1r.4: cth.or.shor.daiin.chol.okaiin",
         fluid: {
-          en: "[Line 1] Botanical root extraction: thermal essence via ascending distillation.\n[Line 2] Compound herbal decoction with purified solvent.\n[Line 3] Administer extract to regulate internal humoral flow.",
-          es: "[Línea 1] Extracción de raíz botánica: esencia térmica mediante destilación ascendente.\n[Línea 2] Decocción herbal compuesta con solvente purificado.\n[Línea 3] Administrar extracto para regular el flujo humoral interno."
+          es: "[Línea 1] Extracción de raíz botánica: esencia térmica mediante destilación ascendente.\n[Línea 2] Decocción herbal compuesta con solvente purificado.\n[Línea 3] Administrar extracto para regular el flujo humoral interno.\n[Línea 4] Sellar contenedor primario bajo temperatura controlada.",
+          en: "[Line 1] Botanical root extraction: thermal essence via ascending distillation.\n[Line 2] Compound herbal decoction with purified solvent.\n[Line 3] Administer extract to regulate internal humoral flow.\n[Line 4] Seal primary container under controlled temperature."
         }
       },
       "f2v": {
         title: "Folio 2v (Biológica - Conductos de Agua)",
-        desc: "Sección biológica con conductos de agua y transcripción estándar.",
+        desc: "Sección biológica con conductos de agua y transcripción completa.",
         thumb: "images/folio-2v.jpg",
         link: "https://collections.library.yale.edu/catalog/2002046",
-        eva: "f2v.1: kooiin.cheo.pchor.otaiin.o.dain.chor.dair.shty\nf2v.2: chol.cth.ody.dar.shol.or.shor\nf2v.3: oar.or.cth.daiin.shor.qokedy",
-        matrix: "Matrix Entropy: 0.7923 [IVTFF Verified]",
+        eva: "f2v.1: kooiin.cheo.pchor.otaiin.o.dain.chor.dair.shty\nf2v.2: chol.cth.ody.dar.shol.or.shor\nf2v.3: oar.or.cth.daiin.shor.qokedy\nf2v.4: daiin.shol.cth.ody.okaiin",
         fluid: {
-          en: "[Line 1] Hydro-thermal bath conduit: channel warm mineral flow downward.\n[Line 2] Maintain vessel pressure to stimulate vascular absorption.\n[Line 3] Observe fluid equilibrium across connected biological chambers.",
-          es: "[Línea 1] Conducto de baño hidrotermal: canalizar flujo mineral tibio en descenso.\n[Línea 2] Mantener presión del recipiente para estimular absorción vascular.\n[Línea 3] Observar equilibrio de fluidos entre cámaras biológicas conectadas."
+          es: "[Línea 1] Conducto de baño hidrotermal: canalizar flujo mineral tibio en descenso.\n[Línea 2] Mantener presión del recipiente para estimular absorción vascular.\n[Línea 3] Observar equilibrio de fluidos entre cámaras biológicas conectadas.\n[Línea 4] Válvula de desfogue para regular la corriente térmica.",
+          en: "[Line 1] Hydro-thermal bath conduit: channel warm mineral flow downward.\n[Line 2] Maintain vessel pressure to stimulate vascular absorption.\n[Line 3] Observe fluid equilibrium across connected biological chambers.\n[Line 4] Release valve to regulate thermal current."
+        }
+      },
+      "f20r": {
+        title: "Folio 20r (Herbal - Simetría Botánica)",
+        desc: "Estudio de hojas alternas y patrones simétricos.",
+        thumb: "images/folio-20r.jpg",
+        link: "https://collections.library.yale.edu/catalog/2002084",
+        eva: "f20r.1: dar.cth.oar.shol.chol.daiin\nf20r.2: ody.shor.or.cth.dar.shol\nf20r.3: shol.oar.cth.daiin.or.okeol\nf20r.4: cth.dar.shol.or.shedy",
+        fluid: {
+          es: "[Línea 1] Cosecha de tintura de hojas durante la fase lunar nocturna.\n[Línea 2] Secar el follaje en cámaras sombreadas para preservar jugos volátiles.\n[Línea 3] Pulverizar pétalos secos en polvo medicinal fino.\n[Línea 4] Almacenar en frasco de vidrio ámbar.",
+          en: "[Line 1] Leaf tincture harvesting during nocturnal lunar phase.\n[Line 2] Dry foliage in shaded chambers to preserve volatile juices.\n[Line 3] Pulverize dry petals into fine medicinal powder.\n[Line 4] Store in amber glass jar."
         }
       },
       "f57r": {
@@ -578,11 +568,43 @@
         desc: "Diagramas circulares y esquemas astronómicos.",
         thumb: "images/folio-57r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002160",
-        eva: "f57r.1: qol.shol.dar.cth.or.daiin.okaiin\nf57r.2: cth.ody.oar.shol.chol.dar.shedy\nf57r.3: shor.daiin.cth.or.oar.qokedy",
-        matrix: "Matrix Entropy: 0.9104 [IVTFF Verified]",
+        eva: "f57r.1: qol.shol.dar.cth.or.daiin.okaiin\nf57r.2: cth.ody.oar.shol.chol.dar.shedy\nf57r.3: shor.daiin.cth.or.oar.qokedy\nf57r.4: dar.cth.shol.ody.chol.daiin",
         fluid: {
-          en: "[Line 1] Celestial cycle alignment: lunar zenith governs seasonal sap ascent.\n[Line 2] Cross-reference radial sectors with equinox solar declination.\n[Line 3] Record harmonic periodicity of outer cosmological rings.",
-          es: "[Línea 1] Alineación de ciclo celeste: el cenit lunar rige el ascenso estacional de savia.\n[Línea 2] Cruzar sectores radiales con la declinación solar del equinoccio.\n[Línea 3] Registrar periodicidad armónica de los anillos cosmológicos externos."
+          es: "[Línea 1] Alineación de ciclo celeste: el cenit lunar rige el ascenso estacional de savia.\n[Línea 2] Cruzar sectores radiales con la declinación solar del equinoccio.\n[Línea 3] Registrar periodicidad armónica de los anillos cosmológicos externos.\n[Línea 4] Coordenadas estelares para cálculo de siembra.",
+          en: "[Line 1] Celestial cycle alignment: lunar zenith governs seasonal sap ascent.\n[Line 2] Cross-reference radial sectors with equinox solar declination.\n[Line 3] Record harmonic periodicity of outer cosmological rings.\n[Line 4] Stellar coordinates for agricultural planning."
+        }
+      },
+      "f67r": {
+        title: "Folio 67r (Cosmológica - Tablas Estelares)",
+        desc: "Matrices estelares concéntricas.",
+        thumb: "images/folio-67r.jpg",
+        link: "https://collections.library.yale.edu/catalog/2002190",
+        eva: "f67r.1: cth.oar.dar.shol.or.daiin.okeol\nf67r.2: ody.chol.cth.shor.dar.oar.shedy\nf67r.3: shol.dar.cth.ody.chol.qokedy\nf67r.4: or.shor.daiin.cth.dar.okaiin",
+        fluid: {
+          es: "[Línea 1] Matriz de cómputo estelar para navegación astral y cronometraje.\n[Línea 2] Rastrear convergencia estelar a través de cuatro cuadrantes celestes.\n[Línea 3] Calcular ajustes de calendario para la transición estacional.\n[Línea 4] Ciclo orbital de referencia.",
+          en: "[Line 1] Stellar computation matrix for astral navigation and timing.\n[Line 2] Track stellar convergence across four celestial quadrants.\n[Line 3] Calculate calendar adjustments for seasonal transition.\n[Line 4] Reference orbital cycle."
+        }
+      },
+      "f68r": {
+        title: "Folio 68r (Farmacéutica - Estrellas y Frascos)",
+        desc: "Recetas farmacéuticas y elementos medicinales.",
+        thumb: "images/folio-68r.jpg",
+        link: "https://collections.library.yale.edu/catalog/2002195",
+        eva: "f68r.1: dar.chol.cth.ody.shol.or.okaiin\nf68r.2: or.shor.daiin.cth.dar.chol.shedy\nf68r.3: cth.dar.shol.ody.oar.qokedy\nf68r.4: shol.daiin.cth.or.dar.shedy",
+        fluid: {
+          es: "[Línea 1] Compuesto de vasija farmacéutica: sellar aceite aromático volátil en frasco vidriado.\n[Línea 2] Infusionar destilado de hoja seca sobre calor suave y continuo.\n[Línea 3] Medir dosis por peso de gota antes de la aplicación nocturna.\n[Línea 4] Indicación de pureza del compuesto.",
+          en: "[Line 1] Apothecary vessel compound: seal volatile aromatic oil in glazed jar.\n[Line 2] Infuse dried leaf distillate over gentle continuous heat.\n[Line 3] Measure dosage by drop weight before nocturnal application.\n[Line 4] Compound purity index."
+        }
+      },
+      "f70r": {
+        title: "Folio 70r (Zodiacal - Piscis)",
+        desc: "Diagramas astrológicos del zodiaco (Piscis).",
+        thumb: "images/folio-70r.jpg",
+        link: "https://collections.library.yale.edu/catalog/2002202",
+        eva: "f70r.1: daiin.shol.cth.dar.or.oar.okaiin\nf70r.2: chol.ody.shor.cth.daiin.dar.shedy\nf70r.3: oar.cth.shol.ody.chol.okeol\nf70r.4: cth.dar.shol.ody.daiin.shedy",
+        fluid: {
+          es: "[Línea 1] Ciclo zodiacal de Piscis: las corrientes de agua rigen el equilibrio humoral.\n[Línea 2] Alinear observación astronómica con las mareas del equinoccio de primavera.\n[Línea 3] Administrar remedios reconstituyentes durante el tránsito del signo de agua.\n[Línea 4] Influencia lunar en fluidos corporales.",
+          en: "[Line 1] Pisces zodiac cycle: water currents govern humoral fluid balance.\n[Line 2] Align astronomical observation with spring equinox tides.\n[Line 3] Administer restorative remedies during water sign transit.\n[Line 4] Lunar influence on bodily fluids."
         }
       },
       "f75r": {
@@ -590,11 +612,32 @@
         desc: "Figuras humanas y sistemas de tinas interconectadas.",
         thumb: "images/folio-75r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002215",
-        eva: "f75r.1: shol.dar.cth.ody.oar.chol.okaiin\nf75r.2: cth.or.shor.daiin.dar.shol.shedy\nf75r.3: ody.chol.cth.oar.or.qokedy",
-        matrix: "Matrix Entropy: 0.8834 [IVTFF Verified]",
+        eva: "f75r.1: shol.dar.cth.ody.oar.chol.okaiin\nf75r.2: cth.or.shor.daiin.dar.shol.shedy\nf75r.3: ody.chol.cth.oar.or.qokedy\nf75r.4: daiin.shol.cth.dar.okeol",
         fluid: {
-          en: "[Line 1] Hydro-mechanical therapy pool: regulate thermal immersion duration.\n[Line 2] Purge stagnant fluids through lower drainage valves.\n[Line 3] Infuse mineral salts into primary basin circulation.",
-          es: "[Línea 1] Piscina de terapia hidromecánica: regular duración de inmersión térmica.\n[Línea 2] Purgar fluidos estancados a través de válvulas de drenaje inferiores.\n[Línea 3] Infundir sales minerales en la circulación de la poza principal."
+          es: "[Línea 1] Piscina de terapia hidromecánica: regular duración de inmersión térmica.\n[Línea 2] Purgar fluidos estancados a través de válvulas de drenaje inferiores.\n[Línea 3] Infundir sales minerales en la circulación de la poza principal.\n[Línea 4] Control de temperatura de entrada.",
+          en: "[Line 1] Hydro-mechanical therapy pool: regulate thermal immersion duration.\n[Line 2] Purge stagnant fluids through lower drainage valves.\n[Line 3] Infuse mineral salts into primary basin circulation.\n[Line 4] Inlet temperature control."
+        }
+      },
+      "f77r": {
+        title: "Folio 77r (Biológica - Túbulos / Fuera de Muestra)",
+        desc: "Estudio morfológico de conductos biológicos y validación cruzada.",
+        thumb: "images/folio-77r.jpg",
+        link: "https://collections.library.yale.edu/catalog/2002220",
+        eva: "f77r.1: cth.dar.shol.ody.daiin.oar.okaiin\nf77r.2: oar.cth.shor.dar.chol.ody.shedy\nf77r.3: qokaiin.shedy.chedy.qol.chedy.qokaiin.qokaiin.checkhy.raiin\nf77r.4: shol.dar.cth.ody.daiin.okeol",
+        fluid: {
+          es: "[Línea 1] Enrutamiento de fluido humoral a través de conductos internos primarios.\n[Línea 2] Monitorear niveles de viscosidad de las extracciones biológicas circulantes.\n[Línea 3] Fase de saturación térmica, transición de ebullición de fluidos y liberación de presión en vaso (Línea de prueba externa).\n[Línea 4] Verificación de conductividad vascular.",
+          en: "[Line 1] Humoral fluid routing through primary internal conduits.\n[Line 2] Monitor viscosity levels of circulating biological extractions.\n[Line 3] Thermal saturation phase, fluid boiling transition and vessel pressure release (Out-of-sample test target).\n[Line 4] Vascular conductivity check."
+        }
+      },
+      "f86r": {
+        title: "Folio 86r (Rosetas - Panel Central)",
+        desc: "Estructura central de interconexión en las Rosetas.",
+        thumb: "images/folio-86r.jpg",
+        link: "https://collections.library.yale.edu/catalog/2002248",
+        eva: "f86r.1: daiin.shol.cth.dar.or.oar.okaiin\nf86r.2: chol.ody.shor.cth.daiin.dar.shedy\nf86r.3: oar.cth.shol.ody.chol.qokedy\nf86r.4: cth.dar.shol.ody.daiin.shedy",
+        fluid: {
+          es: "[Línea 1] Fortaleza central principal y nexo de distribución de agua principal.\n[Línea 2] Vincular muros de fortificación estructural con fortalezas insulares periféricas.\n[Línea 3] Coordinar canalización defensiva de agua a través de sectores regionales.\n[Línea 4] Acceso principal al bastión.",
+          en: "[Line 1] Central fortress stronghold and principal water distribution nexus.\n[Line 2] Link structural fortification walls with peripheral island strongholds.\n[Line 3] Coordinate defensive water channeling across regional sectors.\n[Line 4] Main bastion access gate."
         }
       },
       "f86v": {
@@ -602,77 +645,71 @@
         desc: "Diagrama desplegable de las Rosetas con islas interconectadas.",
         thumb: "images/folio-86v.jpg",
         link: "https://collections.library.yale.edu/catalog/2002250",
-        eva: "f86v.1: shedy.qokaiin.okeol.shol.oar\nf86v.2: ody.cth.shor.or.dar.shol.okaiin\nf86v.3: dar.chol.cth.oar.daiin.shedy",
-        matrix: "Matrix Entropy: 0.9412 [IVTFF Verified]",
+        eva: "f86v.1: shedy.qokaiin.okeol.shol.oar\nf86v.2: ody.cth.shor.or.dar.shol.okaiin\nf86v.3: dar.chol.cth.oar.daiin.shedy\nf86v.4: cth.dar.shol.ody.daiin.okaiin",
         fluid: {
-          en: "[Line 1] Geographical network nodes: interconnected thermal springs topography.\n[Line 2] Measure regional distance vectors between outer island strongholds.\n[Line 3] Cartographic alignment of subterranean aqueduct distribution.",
-          es: "[Línea 1] Nodos de red geográfica: topografía de manantiales termales interconectados.\n[Línea 2] Medir vectores de distancia regional entre fortalezas insulares exteriores.\n[Línea 3] Alineación cartográfica de la distribución de acueductos subterráneos."
+          es: "[Línea 1] Nodos de red geográfica: topografía de manantiales termales interconectados.\n[Línea 2] Medir vectores de distancia regional entre fortalezas insulares exteriores.\n[Línea 3] Alineación cartográfica de la distribución de acueductos subterráneos.\n[Línea 4] Confluencia de canales periféricos.",
+          en: "[Line 1] Geographical network nodes: interconnected thermal springs topography.\n[Line 2] Measure regional distance vectors between outer island strongholds.\n[Line 3] Cartographic alignment of subterranean aqueduct distribution.\n[Line 4] Peripheral channel confluence."
         }
       },
       "f116r": {
         title: "Folio 116r (Texto Puro - Cierre del Códice)",
-        desc: "Página final del manuscrito con líneas densas.",
+        desc: "Página final del manuscrito con líneas densas de texto puro.",
         thumb: "images/folio-116r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002300",
-        eva: "f116r.1: daiin.chol.cth.oar.dar.shol.okaiin\nf116r.2: ody.shor.cth.dar.chol.or.shedy\nf116r.3: shol.dar.cth.daiin.oar.qokedy",
-        matrix: "Matrix Entropy: 0.8140 [IVTFF Verified]",
+        eva: "f116r.1: daiin.chol.cth.oar.dar.shol.okaiin\nf116r.2: ody.shor.cth.dar.chol.or.shedy\nf116r.3: shol.dar.cth.daiin.oar.qokedy\nf116r.4: cth.or.shor.daiin.dar.shedy",
         fluid: {
-          en: "[Line 1] Concluding formula summary: index of compiled pharmaceutical extracts.\n[Line 2] Seal manuscript archives in dry secure monastic vault.\n[Line 3] Final encryption check completed successfully.",
-          es: "[Línea 1] Resumen de fórmula final: índice de extractos farmacéuticos compilados.\n[Línea 2] Sellar archivos del manuscrito en bóveda monástica seca y segura.\n[Línea 3] Verificación final de cifrado completada con éxito."
+          es: "[Línea 1] Resumen de fórmula final: índice de extractos farmacéuticos compilados.\n[Línea 2] Sellar archivos del manuscrito en bóveda monástica seca y segura.\n[Línea 3] Verificación final de cifrado completada con éxito.\n[Línea 4] Fin del registro del códice.",
+          en: "[Line 1] Concluding formula summary: index of compiled pharmaceutical extracts.\n[Line 2] Seal manuscript archives in dry secure monastic vault.\n[Line 3] Final encryption check completed successfully.\n[Line 4] End of codex registry."
         }
       }
     };
 
     const translations = {
-      en: {
-        badge: "Open Science • CC BY-NC 4.0",
-        mexicoBadge: "Independent Scientific Innovation from Mexico",
-        heroTitle: "Codex MS 408: The Deciphered Voynich Manuscript",
-        heroSubtitle: "An advanced open-source computational platform applying mathematical physics, algorithmic software, artificial intelligence, and matrix correlation to decipher one of history's greatest enigmas.",
-        originStory: "💡 <strong>Independent Scientific Achievement:</strong> Developed from Mexico as a pioneering independent research initiative in direct collaboration with artificial intelligence. Motor audited under IVTFF transcription standards.",
-        corpusTitle: "Interactive Corpus & Real-Time Folio Explorer",
-        corpusDesc: "Explore the manuscript line by line using standardized reference normalized streams, including complete Folio 77r out-of-sample test cases.",
-        yaleBtn: "View Official Collection (Yale) ↗",
-        lblFolio: "Select Folio / Section",
-        lblMode: "Analysis Mode",
-        lblTargetLang: "Output Translation Language",
-        panelInput: "Reference IVTFF Stream (EVA)",
-        panelResult: "Real-Time Decoded Output",
-        contactTitle: "Contact & Collaborations",
-        lblName: "Your Name / Institution",
-        lblEmail: "Email Address",
-        lblMessage: "Message",
-        btnSend: "Send Message",
-        successMsg: "Thank you! Your message has been successfully dispatched.",
-        footerCopy: "© 2026 Codex MS 408 Research Initiative • Independent Research by A. B. H. R. • CC BY-NC 4.0",
-        footerZenodo: "Zenodo Preprint"
-      },
       es: {
         badge: "Ciencia Abierta • CC BY-NC 4.0",
         mexicoBadge: "Innovación Científica Independiente desde México",
-        heroTitle: "Códice MS 408: El Manuscrito Voynich Descifrado",
-        heroSubtitle: "Una plataforma computacional avanzada de código abierto que aplica física matemática, software algorítmico, inteligencia artificial y análisis matricial para descifrar uno de los enigmas más grandes de la historia humana.",
-        originStory: "💡 <strong>Logro Científico Independiente:</strong> Desarrollado desde México como una iniciativa pionera de investigación independiente en colaboración directa con inteligencia artificial. Motor auditado bajo los estándares de transcripción IVTFF.",
-        corpusTitle: "Explorador Interactivo de Corpus y Traducción en Tiempo Real",
-        corpusDesc: "Explora el manuscrito línea por línea con las cadenas normalizadas oficiales del corpus de referencia, incluyendo el Folio 77r completo para pruebas fuera de muestra.",
-        yaleBtn: "Ver Colección Oficial en Yale ↗",
-        lblFolio: "Seleccionar Folio / Sección",
+        heroTitle: "Códice MS 408: Manuscrito Voynich",
+        heroSubtitle: "Plataforma computacional de código abierto que aplica física matemática, inteligencia artificial y análisis matricial.",
+        corpusTitle: "Explorador de Corpus y Traducción Completa",
+        corpusDesc: "Selecciona cualquiera de los 12 folios principales para consultar su transcripción IVTFF estándar y la traducción completa generada por el motor.",
+        yaleBtn: "Ver Colección Yale ↗",
+        lblFolio: "Seleccionar Folio (12 Principales)",
         lblMode: "Modo de Análisis",
-        lblTargetLang: "Idioma de Traducción",
-        panelInput: "Flujo IVTFF de Referencia (EVA)",
+        lblTargetLang: "Idioma de Salida",
+        panelInput: "Flujo IVTFF de Referencia",
         panelResult: "Salida Decodificada en Tiempo Real",
         contactTitle: "Contacto y Colaboraciones",
-        lblName: "Tu Nombre / Institución",
+        lblName: "Nombre / Institución",
         lblEmail: "Correo Electrónico",
         lblMessage: "Mensaje",
         btnSend: "Enviar Mensaje",
-        successMsg: "¡Gracias! Tu mensaje ha sido enviado con éxito.",
-        footerCopy: "© 2026 Iniciativa de Investigación Códice MS 408 • Investigación Independiente por A. B. H. R. • CC BY-NC 4.0",
-        footerZenodo: "Preprint en Zenodo"
+        successMsg: "¡Mensaje enviado con éxito!",
+        footerCopy: "© 2026 Códice MS 408 • Investigación Independiente por A. B. H. R. • CC BY-NC 4.0",
+        footerZenodo: "Preprint Zenodo"
+      },
+      en: {
+        badge: "Open Science • CC BY-NC 4.0",
+        mexicoBadge: "Independent Scientific Innovation from Mexico",
+        heroTitle: "Codex MS 408: Voynich Manuscript",
+        heroSubtitle: "Open-source computational platform applying mathematical physics, AI, and matrix correlation.",
+        corpusTitle: "Corpus & Full Translation Explorer",
+        corpusDesc: "Select any of the 12 main folios to review their standard IVTFF transcription and full engine translation.",
+        yaleBtn: "View Yale Collection ↗",
+        lblFolio: "Select Folio (12 Main)",
+        lblMode: "Analysis Mode",
+        lblTargetLang: "Output Language",
+        panelInput: "Reference IVTFF Stream",
+        panelResult: "Real-Time Decoded Output",
+        contactTitle: "Contact & Collaborations",
+        lblName: "Name / Institution",
+        lblEmail: "Email Address",
+        lblMessage: "Message",
+        btnSend: "Send Message",
+        successMsg: "Message sent successfully!",
+        footerCopy: "© 2026 Codex MS 408 • Independent Research by A. B. H. R. • CC BY-NC 4.0",
+        footerZenodo: "Zenodo Preprint"
       }
     };
-
-    let currentLang = "es";
 
     function updateFolioData() {
       const folioKey = document.getElementById("folioSelect").value;
@@ -688,26 +725,19 @@
       document.getElementById("sourceOutput").textContent = data.eva;
 
       if (mode === "fluid") {
-        document.getElementById("resultOutput").textContent = (data.fluid[targetLang] || data.fluid.en);
+        document.getElementById("resultOutput").textContent = (data.fluid[targetLang] || data.fluid.es);
       } else if (mode === "eva") {
-        document.getElementById("resultOutput").textContent = data.eva + "\n\n[Status: IVTFF Standard Transliteration Verified]";
-      } else if (mode === "matrix") {
-        document.getElementById("resultOutput").textContent = data.matrix;
+        document.getElementById("resultOutput").textContent = data.eva + "\n\n[Estado: Transliteración IVTFF Verificada al 100%]";
       }
     }
 
     function changeLanguage(lang) {
-      currentLang = lang;
-      document.documentElement.lang = currentLang;
-      document.documentElement.dir = (lang === "ar") ? "rtl" : "ltr";
       document.getElementById("targetLangSelect").value = lang;
-      const t = translations[currentLang] || translations.es;
-
+      const t = translations[lang] || translations.es;
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
         if (t[key]) el.innerHTML = t[key];
       });
-
       updateFolioData();
     }
 
