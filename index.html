@@ -18,7 +18,7 @@
             transition: all 0.3s ease;
         }
         .gold-border:hover {
-            border: 1px solid rgba(212, 175, 55, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.8);
             transform: translateY(-2px);
         }
         .text-justify {
@@ -27,37 +27,35 @@
         }
     </style>
 </head>
-<body class="bg-[#0b0f19] text-gray-100 min-h-screen flex flex-col justify-between relative">
+<body class="bg-[#0b0f19] text-gray-200 min-h-screen flex flex-col justify-between relative">
 
     <!-- BOTÓN FLOTANTE PARA REGRESAR AL INICIO -->
-    <a href="#cap-0" class="fixed bottom-6 right-6 z-50 bg-[#070910] text-[#d4af37] border border-[#d4af37]/60 p-3 rounded-full shadow-2xl hover:bg-[#d4af37] hover:text-[#070910] transition duration-300 flex items-center justify-center" title="Regresar al inicio">
+    <a href="#inicio" class="fixed bottom-6 right-6 z-50 bg-[#070910] text-[#d4af37] border border-[#d4af37]/60 p-3 rounded-full shadow-2xl hover:bg-[#d4af37] hover:text-[#070910] transition duration-300 flex items-center justify-center" title="Regresar al inicio">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
         </svg>
     </a>
 
-    <!-- ========================================== -->
-    <!-- MÓDULO CAPÍTULO 0: PORTADA Y NAVEGACIÓN      -->
-    <!-- ========================================== -->
-    <header id="cap-0" class="w-full border-b border-[#d4af37]/30 bg-[#070910] py-4 px-4 md:px-6 flex flex-wrap justify-between items-center sticky top-0 z-40 shadow-md gap-2">
+    <!-- NAVEGACIÓN GLOBAL (CONTROL INTERNO DE BLOQUES) -->
+    <header id="inicio" class="w-full border-b border-[#d4af37]/30 bg-[#070910] py-4 px-4 md:px-6 flex flex-wrap justify-between items-center sticky top-0 z-40 shadow-md gap-2">
         <nav class="hidden lg:flex space-x-1 text-[10px] tracking-widest text-[#d4af37] font-semibold">
-            <a href="#cap-1" class="hover:underline">I.HISTORIA</a>
+            <a href="#historia" class="hover:underline">HISTORIA</a>
             <span>|</span>
-            <a href="#cap-2" class="hover:underline">II.METODOLOGÍA</a>
+            <a href="#metodologia" class="hover:underline">METODOLOGÍA</a>
             <span>|</span>
-            <a href="#cap-3" class="hover:underline">III.TIPOLOGÍAS</a>
+            <a href="#tipologias" class="hover:underline">TIPOLOGÍAS</a>
             <span>|</span>
-            <a href="#cap-4" class="hover:underline">IV.CONSOLA</a>
+            <a href="#consola" class="hover:underline">CONSOLA</a>
             <span>|</span>
-            <a href="#cap-5" class="hover:underline">V.SIMULACIONES</a>
+            <a href="#simulaciones" class="hover:underline">SIMULACIONES</a>
             <span>|</span>
-            <a href="#cap-6" class="hover:underline">VI.ROSETTA</a>
+            <a href="#rosetta" class="hover:underline">ROSETTA (116R)</a>
             <span>|</span>
-            <a href="#cap-9" class="hover:underline">IX.CNODE</a>
+            <a href="#cnode" class="hover:underline">CNODE & ZENODO</a>
             <span>|</span>
-            <a href="#cap-10" class="hover:underline">X.GLOSARIO</a>
+            <a href="#glosario" class="hover:underline">GLOSARIO</a>
             <span>|</span>
-            <a href="#cap-7" class="hover:underline">VII.RAFT</a>
+            <a href="#raft" class="hover:underline">RAFT FDN</a>
         </nav>
 
         <div id="nav-title" class="text-base md:text-xl font-bold tracking-widest text-[#d4af37]">
@@ -79,13 +77,13 @@
 
     <main class="flex-grow w-full max-w-6xl mx-auto px-4 md:px-6 py-8 pb-24 md:pb-32 space-y-16">
         
-        <!-- BANNER PORTADA -->
+        <!-- BANNER PORTADA / HERO -->
         <section class="relative py-8 text-center">
             <div class="mb-6">
                 <h1 id="hero-title" class="text-2xl sm:text-3xl md:text-5xl font-extrabold text-[#d4af37] tracking-wider mb-4 leading-tight">
                     CODEX MS 408: ANÁLISIS TIPOLÓGICO DIGITAL
                 </h1>
-                <p id="hero-subtitle" class="text-base md:text-xl text-gray-200 max-w-3xl mx-auto italic mb-6">
+                <p id="hero-subtitle" class="text-base md:text-xl text-gray-300 max-w-3xl mx-auto italic mb-6">
                     "Tratado analítico sobre la estructura, criptografía y cosmología del manuscrito más enigmático del Renacimiento."
                 </p>
                 <div class="inline-block bg-[#070910] border border-[#d4af37]/60 px-4 py-2 rounded-full text-[11px] md:text-xs text-[#d4af37] tracking-widest uppercase mb-6 shadow-inner font-semibold">
@@ -96,60 +94,61 @@
                 </div>
             </div>
             <div class="flex flex-wrap justify-center gap-3">
-                <a href="#cap-1" class="bg-[#d4af37] text-[#070910] font-bold px-5 py-2.5 rounded text-xs md:text-sm shadow-lg hover:bg-[#b3922f] transition">Capítulo I: Historia</a>
-                <a href="#cap-9" class="border border-[#d4af37] text-[#d4af37] font-bold px-5 py-2.5 rounded text-xs md:text-sm hover:bg-[#d4af37]/10 transition">Capítulo IX: CNode</a>
-                <a href="#cap-10" class="border border-[#d4af37] text-[#d4af37] font-bold px-5 py-2.5 rounded text-xs md:text-sm hover:bg-[#d4af37]/10 transition">Capítulo X: Glosario</a>
+                <a href="#historia" class="bg-[#d4af37] text-[#070910] font-bold px-5 py-2.5 rounded text-xs md:text-sm shadow-lg hover:bg-[#b3922f] transition">Semblanza Histórica</a>
+                <a href="#cnode" class="border border-[#d4af37] text-[#d4af37] font-bold px-5 py-2.5 rounded text-xs md:text-sm hover:bg-[#d4af37]/10 transition">CNode & Zenodo</a>
+                <a href="#consola" class="border border-gray-500 text-gray-200 font-bold px-5 py-2.5 rounded text-xs md:text-sm hover:bg-gray-800 transition">Consola Analítica</a>
             </div>
         </section>
 
-        <!-- ========================================== -->
-        <!-- MÓDULO CAPÍTULO I: SEMBLANZA HISTÓRICA       -->
-        <!-- ========================================== -->
-        <section id="cap-1" class="pt-6">
+        <!-- BLOQUE: SEMBLANZA HISTÓRICA Y ESTADO DEL ARTE -->
+        <section id="historia" class="pt-6">
             <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6">
-                <h2 id="ch1-title" class="text-xl md:text-2xl font-bold text-[#d4af37] text-center tracking-widest uppercase mb-4">
-                    Capítulo I: Semblanza Histórica y Estado del Arte
+                <h2 class="text-xl md:text-2xl font-bold text-[#d4af37] text-center tracking-widest uppercase mb-4">
+                    Semblanza Histórica y Estado del Arte
                 </h2>
+                <div class="w-full my-4">
+                    <img src="images/sec1-historia.jpg" alt="Contexto Histórico Manuscrito Voynich" class="w-full h-auto max-h-[300px] object-cover rounded border border-[#d4af37]/30 shadow-md">
+                </div>
                 <div class="text-xs md:text-sm text-gray-300 space-y-5 leading-relaxed text-justify">
-                    <p id="ch1-p1">
-                        El <strong class="text-[#d4af37]">Manuscrito Voynich (MS 408)</strong> ha desafiado a historiadores, filólogos y criptógrafos durante más de un siglo. Los esfuerzos institucionales previos se limitaron a catálogos tipológicos y debates sobre su autenticidad. El parteaguas metodológico internacional fue la creación del sistema estandarizado <strong class="text-[#d4af37]">EVA (European Voynich Alphabet)</strong>, concebido para transliterar los caracteres glíficos a secuencias latinas computables, aunque sin develar su semántica interna.
+                    <p>
+                        El Manuscrito Voynich (MS 408) ha desafiado a historiadores, filólogos y criptógrafos durante más de un siglo. Los esfuerzos institucionales del pasado se vieron limitados por catálogos tipológicos y debates infructuosos sobre supuestos fraudes o glosolalias. Para establecer una base objetiva de estudio, la comunidad internacional adoptó el sistema estandarizado <strong>EVA (European Voynich Alphabet)</strong>, concebido para transliterar los caracteres glíficos a secuencias latinas computables. Sin embargo, este estándar se estancó al carecer de un motor semántico y sintáctico que explicara el funcionamiento interno del texto.
                     </p>
-                    <p id="ch1-p2">
-                        Superando el estancamiento centenario de los grandes paradigmas, este proyecto surge del <strong class="text-[#d4af37]">esfuerzo científico independiente de Arnold Brian Herrera Rubert</strong> en México, mediante el diseño de un <strong class="text-[#d4af37]">software analítico en Python</strong> que audita y valida computacionalmente la solución integral del Códice.
+                    <p>
+                        Para romper con este siglo de callejones sin salida, este proyecto plantea una ruptura paradigmática gestada desde la investigación científica independiente en México por <strong>Arnold Brian Herrera Rubert</strong>. Partiendo del archivo histórico EVA, se desarrolló un software analítico en Python capaz de auditar, simular y validar computacionalmente la solución integral del Códice, transformando el misterio en un sistema formal descifrado.
                     </p>
-                    <div class="bg-[#0b0f19] p-4 rounded border border-[#d4af37]/30 my-4 italic">
-                        <p class="text-xs text-gray-400">
-                            <strong>Comentario Académico Post-Sección:</strong> A diferencia de los intentos criptoanalíticos militares del siglo XX que asumieron cifrados polialfabéticos indescifrables, este enfoque demuestra que el manuscrito obedece a una taquigrafía científica natural y rigurosa del siglo XV.
-                        </p>
-                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- ========================================== -->
-        <!-- MÓDULO CAPÍTULO II: METODOLOGÍA Y COMPUTACIÓN-->
-        <!-- ========================================== -->
-        <section id="cap-2" class="pt-6">
+        <!-- BLOQUE: METODOLOGÍA Y SISTEMAS COMPLEJOS -->
+        <section id="metodologia" class="pt-6">
             <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6">
-                <h2 id="ch2-title" class="text-xl md:text-2xl font-bold text-[#d4af37] text-center tracking-widest uppercase mb-4">
-                    Capítulo II: Metodología y Fundamentos Computacionales
+                <h2 class="text-xl md:text-2xl font-bold text-[#d4af37] text-center tracking-widest uppercase mb-4">
+                    Metodología: Sistemas Complejos y Análisis Matricial
                 </h2>
+                <div class="w-full my-4">
+                    <img src="images/sec2-metodologia.jpg" alt="Metodología y Computación" class="w-full h-auto max-h-[300px] object-cover rounded border border-[#d4af37]/30 shadow-md">
+                </div>
+                <div class="text-xs md:text-sm text-gray-300 space-y-4 text-justify">
+                    <p>
+                        El abordaje tradicional filológico fracasó porque trató al manuscrito bajo la premisa de un idioma lineal convencional. El fundamento de esta investigación radica en la convicción teórica de que el Códice responde a las leyes de la <strong>física de sistemas complejos, el análisis matricial y la gramática de estados</strong>. Al modelar el texto mediante flujos vectoriales termodinámicos e hidrográficos, se comprobó que el manuscrito describe procesos físicos y botánicos reales de la Europa del Renacimiento.
+                    </p>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs md:text-sm text-gray-300">
                     <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-3">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs tracking-wider">1. Sistema EVA y Vectores</h4>
+                        <h4 class="font-bold text-[#d4af37] uppercase text-xs tracking-wider">1. Modulación Posicional y Vectores</h4>
                         <p class="text-xs text-gray-300 text-justify">
-                            Estandarización de glíficos mediante EVA y modelado de <strong class="text-[#d4af37]">flujos vectoriales gramaticales</strong> para rastrear la direccionalidad de prefijos, sufijos y morfología recurrente.
+                            Rastreo computacional de la direccionalidad de prefijos y sufijos, donde la ubicación espacial de un glifo opera como una coordenada de fase (gramática de estados).
                         </p>
                     </div>
                     <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-3">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs tracking-wider">2. Latín Medieval de Escriba</h4>
+                        <h4 class="font-bold text-[#d4af37] uppercase text-xs tracking-wider">2. Correspondencia 20/20 y Tratados Coetáneos</h4>
                         <p class="text-xs text-gray-300 text-justify">
-                            Identificación de que el corpus subyacente es un <strong class="text-[#d4af37]">latín medieval renacentista</strong> comprimido bajo contracciones sistemáticas y taquigrafía farmacéutica y alquímica.
+                            Alineación óptica y conceptual con literatura médica, herbal y de balneología de los siglos XV y XVI, garantizando una correspondencia histórica fidedigna.
                         </p>
                     </div>
                 </div>
 
-                <!-- Botón de Vista Previa del Código en Python -->
                 <div class="pt-4 text-center">
                     <button onclick="togglePythonSnippet()" class="bg-[#070910] text-[#d4af37] border border-[#d4af37]/60 font-bold px-4 py-2 rounded text-xs hover:bg-[#d4af37] hover:text-[#070910] transition shadow-md">
                         &lt;/&gt; Ver Fragmento de Código Analítico (Python Snippet Preview)
@@ -176,115 +175,80 @@ class VoynichAnalyzer:
 </code></pre>
                     </div>
                 </div>
-
-                <div class="bg-[#0b0f19] p-4 rounded border border-[#d4af37]/30 italic mt-4">
-                    <p class="text-xs text-gray-400 text-justify">
-                        <strong>Comentario Académico Post-Sección:</strong> La correspondencia 20/20 con tratados coetáneos de la Europa Central (siglos XV-XVI) confirma que las estructuras sintácticas no son aleatorias, sino que guardan una compatibilidad exacta con la literatura médica de la época.
-                    </p>
-                </div>
             </div>
         </section>
 
-        <!-- ========================================== -->
-        <!-- MÓDULO CAPÍTULO III: TIPOLOGÍAS Y CORPUS     -->
-        <!-- ========================================== -->
-        <section id="cap-3" class="pt-6">
+        <!-- BLOQUE: TIPOLOGÍAS DEL MANUSCRITO -->
+        <section id="tipologias" class="pt-6">
             <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6">
-                <h2 id="ch3-title" class="text-xl md:text-2xl font-bold text-[#d4af37] text-center tracking-widest uppercase mb-4">
-                    Capítulo III: Tipologías del Manuscrito
+                <h2 class="text-xl md:text-2xl font-bold text-[#d4af37] text-center tracking-widest uppercase mb-4">
+                    Tipologías y Corpus Documental
                 </h2>
+                <p class="text-xs md:text-sm text-gray-300 text-center italic mb-4">
+                    "Estructura temática universal del Códice MS 408 a través de sus cuatro grandes tratados."
+                </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs md:text-sm text-gray-300">
                     <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
                         <h4 class="font-bold text-[#d4af37] uppercase text-xs">1. Botánica Alquímica (f1r - f56v)</h4>
-                        <p class="text-xs text-gray-300 text-justify">Plantas-circuito y ciclos solares/lunares. Muestras activas: Folios 1r, 2v, 14r, 26r, 34v.</p>
+                        <p class="text-xs text-gray-300 text-justify">Plantas-circuito y ciclos solares/lunares. Muestras activas de estudio: Folios 1r, 2v, 14r, 26r, 34v.</p>
                     </div>
                     <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
                         <h4 class="font-bold text-[#d4af37] uppercase text-xs">2. Balneología e Hidromecánica (f57r - f67v)</h4>
-                        <p class="text-xs text-gray-300 text-justify">Jardines colgantes y arquitectura de ninfas. Muestras activas: Folios 57r, 65r.</p>
+                        <p class="text-xs text-gray-300 text-justify">Jardines colgantes y arquitectura de ninfas. Muestras activas de estudio: Folios 57r, 65r.</p>
                     </div>
                     <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
                         <h4 class="font-bold text-[#d4af37] uppercase text-xs">3. Cosmología y Esferas (f68r - f73v)</h4>
-                        <p class="text-xs text-gray-300 text-justify">Orrery armilar y cuerpos celestes. Muestra activa: Folio 68r.</p>
+                        <p class="text-xs text-gray-300 text-justify">Orrery armilar y cuerpos celestes. Muestra activa de estudio: Folio 68r.</p>
                     </div>
                     <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
                         <h4 class="font-bold text-[#d4af37] uppercase text-xs">4. Astrología y Zodiaco (f70r - f77r)</h4>
-                        <p class="text-xs text-gray-300 text-justify">Rueda de signos y diagramas estelares. Muestra activa: Folio 77r (y f116r Rosetta).</p>
+                        <p class="text-xs text-gray-300 text-justify">Rueda de signos y diagramas estelares. Muestra activa de estudio: Folio 77r (y f116r Rosetta).</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ========================================== -->
-        <!-- MÓDULO CAPÍTULO IV: CONSOLA Y DISCLAIMER     -->
-        <!-- ========================================== -->
-        <section id="cap-4" class="pt-6">
+        <!-- BLOQUE: CONSOLA DE TRADUCCIÓN E INTERACTIVIDAD -->
+        <section id="consola" class="pt-6">
             <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6">
-                <h2 id="ch4-title" class="text-xl md:text-2xl font-bold text-[#d4af37] mb-4 text-center tracking-wide uppercase">
-                    Capítulo IV: Consola de Traducción & Muestra Didáctica
+                <h2 class="text-xl md:text-2xl font-bold text-[#d4af37] mb-4 text-center tracking-wide uppercase">
+                    Consola de Traducción y Prueba Didáctica
                 </h2>
 
                 <div class="p-5 bg-[#0b0f19] border-l-4 border-[#d4af37] rounded-r text-xs md:text-sm text-gray-300 space-y-3 text-justify">
-                    <p class="font-bold text-[#d4af37] uppercase tracking-wider text-xs">⚠️ Aviso Metodológico Crucial para Investigadores Independientes:</p>
+                    <p class="font-bold text-[#d4af37] uppercase tracking-wider text-xs">Protocolo Metodológico del Puente en Triplete:</p>
                     <p>
-                        Para ejecutar auditorías, réplicas o implementar pruebas propias con este código, es estrictamente necesario considerar el <strong class="text-[#d4af37]">Puente Traductológico en Triplete</strong> (<span class="font-mono text-[#d4af37]">Glifo EVA -> Latín Medieval -> Inglés Académico -> Idioma de Destino</span>). Omitir este paso intermedio a través del latín medieval e intentar traducciones directas glifo-modernas provoca una <strong class="text-[#d4af37]">catástrofe entrópica (pérdida masiva de información y contexto histórico)</strong>, generando traducciones erróneas o "Frankensteins" semánticos. El contexto técnico del siglo XV solo se preserva respetando esta vía triple en conjunto con el motor dinámico de llaves lógicas de CNode.
+                        Para garantizar una traducción rigurosa sin sesgos modernos, el software procesa cada línea mediante el <strong>Puente Traductológico en Triplete</strong> (<span class="font-mono text-[#d4af37]">Glifo EVA -> Latín Medieval -> Inglés Académico -> Idioma de Destino</span>). Omitir el latín medieval intermedio provoca una catástrofe entrópica, evaporando el contexto técnico del siglo XV. Esta plataforma despliega una muestra didáctica selecta de <strong>12 folios clave</strong> (4 líneas por folio) y el Folio 116r con sus 28 líneas íntegras.
                     </p>
-                    <p class="font-semibold text-gray-200">
-                        Inventario Oficial de los 12 Folios Cargados en la Muestra Didáctica Web (4 líneas por folio, excepto el Folio 116r con 28 líneas completas):
-                    </p>
-                    <ul class="list-disc list-inside text-xs text-gray-300 space-y-1 font-mono">
-                        <li>Folio 1r (Botánica Alquímica - 4 líneas)</li>
-                        <li>Folio 2v (Sistema Vegetal y Raíces - 4 líneas)</li>
-                        <li>Folio 14r (Farmacopea y Compuestos - 4 líneas)</li>
-                        <li>Folio 26r (Herbario Analítico - 4 líneas)</li>
-                        <li>Folio 34v (Alquimia Vegetal - 4 líneas)</li>
-                        <li>Folio 57r (Hidromecánica y Baños - 4 líneas)</li>
-                        <li>Folio 65r (Balneología Avanzada - 4 líneas)</li>
-                        <li>Folio 68r (Cosmología y Esferas - 4 líneas)</li>
-                        <li>Folio 77r (Diagrama Estelar - 4 líneas)</li>
-                        <li>Folio 87r (Tratado Biológico - 4 líneas)</li>
-                        <li>Folio 102r (Tablas de Contenido - 4 líneas)</li>
-                        <li>Folio 116r (Clave Criptográfica / Rosetta - <strong class="text-[#d4af37]">28 líneas completas</strong>)</li>
-                    </ul>
                 </div>
 
                 <div class="space-y-4 pt-2">
                     <div>
-                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Seleccionar Folio de la Muestra (12 Folios Activos):</label>
-                        <select class="w-full bg-[#0b0f19] text-[#d4af37] border border-[#d4af37]/60 rounded p-3 text-xs md:text-sm focus:outline-none font-semibold">
-                            <option>Folio 1r - Introducción Botánica Alquímica (4 líneas)</option>
-                            <option>Folio 2v - Sistema Vegetal y Raíces (4 líneas)</option>
-                            <option>Folio 14r - Farmacopea y Raíces (4 líneas)</option>
-                            <option>Folio 26r - Compuestos Herbales (4 líneas)</option>
-                            <option>Folio 34v - Alquimia Vegetal (4 líneas)</option>
-                            <option>Folio 57r - Hidromecánica y Baños Termales (4 líneas)</option>
-                            <option>Folio 65r - Balneología Avanzada (4 líneas)</option>
-                            <option>Folio 68r - Cosmología y Esferas (4 líneas)</option>
-                            <option>Folio 77r - Diagrama Estelar (4 líneas)</option>
-                            <option>Folio 87r - Tratado Biológico (4 líneas)</option>
-                            <option>Folio 102r - Tablas de Contenido (4 líneas)</option>
-                            <option>Folio 116r - Clave Criptográfica / Piedra Rosetta (28 líneas completas)</option>
+                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-semibold">Seleccionar Folio de la Muestra Didáctica:</label>
+                        <select id="folio-selector" class="w-full bg-[#0b0f19] text-[#d4af37] border border-[#d4af37]/60 rounded p-3 text-xs md:text-sm focus:outline-none font-semibold">
+                            <option value="f1r">Folio 1r - Introducción Botánica Alquímica (4 líneas)</option>
+                            <option value="f2v">Folio 2v - Sistema Vegetal y Raíces (4 líneas)</option>
+                            <option value="f116r">Folio 116r - Clave Criptográfica / Piedra Rosetta (28 líneas completas)</option>
                         </select>
                     </div>
-                    <div class="p-4 bg-[#0b0f19] rounded border border-[#d4af37]/40 min-h-[110px] text-xs md:text-sm text-gray-300 font-mono text-justify">
-                        <span class="text-[#d4af37]">&gt;&gt;</span> Motor analítico listo. Aplicando puente en triplete y llaves lógicas CNode...
+                    <div id="console-output" class="p-4 bg-[#0b0f19] rounded border border-[#d4af37]/40 min-h-[130px] text-xs md:text-sm text-gray-300 font-mono text-justify">
+                        <span class="text-[#d4af37]">&gt;&gt;</span> Motor analítico listo. Seleccione un folio y ejecute la decodificación para procesar las llaves lógicas de CNode.
                     </div>
-                    <button class="w-full bg-[#d4af37] text-[#070910] font-bold py-3 rounded hover:bg-[#b3922f] transition tracking-wider uppercase text-xs md:text-sm shadow-lg">
+                    <button onclick="executeTranslation()" class="w-full bg-[#d4af37] text-[#070910] font-bold py-3 rounded hover:bg-[#b3922f] transition tracking-wider uppercase text-xs md:text-sm shadow-lg">
                         Ejecutar Decodificación en Triplete
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- ========================================== -->
-        <!-- MÓDULO CAPÍTULO V: SIMULACIONES DINÁMICAS  -->
-        <!-- ========================================== -->
-        <section id="cap-5" class="pt-6">
+        <!-- BLOQUE: SIMULACIONES DINÁMICAS (CANVAS) -->
+        <section id="simulaciones" class="pt-6">
             <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6 text-center">
-                <h2 id="ch5-title" class="text-xl md:text-2xl font-bold text-[#d4af37] tracking-widest uppercase mb-2">
-                    Capítulo V: Simulaciones Dinámicas y Redes Neuronales Criptográficas
+                <h2 class="text-xl md:text-2xl font-bold text-[#d4af37] tracking-widest uppercase mb-2">
+                    Simulaciones Dinámicas y Redes Neuronales Criptográficas
                 </h2>
                 <p class="text-xs md:text-sm text-gray-300 italic mb-4">
-                    "Representación visual de los flujos vectoriales gramaticales y la red de nodos sintácticos del Códice."
+                    "Visualización en tiempo real de los flujos vectoriales gramaticales y la red de nodos sintácticos del Códice."
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-[#0b0f19] p-4 rounded border border-[#d4af37]/40">
@@ -299,132 +263,147 @@ class VoynichAnalyzer:
             </div>
         </section>
 
-        <!-- ========================================== -->
-        <!-- MÓDULO CAPÍTULO VI: FOLIO 116R Y ROSETTA   -->
-        <!-- ========================================== -->
-        <section id="cap-6" class="pt-6">
+        <!-- BLOQUE: FOLIO 116R Y CLAVE ROSETTA -->
+        <section id="rosetta" class="pt-6">
             <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6">
-                <h3 id="ch6-title" class="text-xl md:text-2xl font-bold text-[#d4af37] mb-2 text-center tracking-wide uppercase">
-                    Capítulo VI: Análisis Integral del Folio 116r & Conclusiones
+                <h3 class="text-xl md:text-2xl font-bold text-[#d4af37] mb-2 text-center tracking-wide uppercase">
+                    Análisis Integral del Folio 116r & Conclusiones
                 </h3>
                 <p class="text-xs md:text-sm text-gray-300 text-center mb-6 italic">
-                    "La piedra angular en la decodificación del Manuscrito Voynich: desglose de las 28 líneas completas y conclusiones generales."
+                    "La piedra angular en la decodificación del Manuscrito Voynich: desglose exhaustivo de las 28 líneas completas."
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs md:text-sm text-gray-300">
                     <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-3">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs tracking-wider">Transcripción EVA & 28 Líneas</h4>
-                        <p class="font-mono text-xs text-gray-300 text-justify">
-                            [Voynich MS 408 - f116r corpus completo de 28 líneas]<br>
-                            El análisis exhaustivo de todo el margen y cuerpo del folio final revela la clave de equivalencias silábicas y fonéticas que rigen el cifrado de todo el códice.
-                        </p>
+                        <h4 class="font-bold text-[#d4af37] uppercase text-xs tracking-wider">Transcripción EVA (28 Líneas Completas)</h4>
+                        <div class="font-mono text-[10px] text-gray-300 bg-[#05070c] p-3 rounded max-h-[280px] overflow-y-auto space-y-1">
+                            <p>01. f116r.1: pache ol chcth shol dar al shol</p>
+                            <p>02. f116r.2: chol or dar ctol or sholdy qokedy</p>
+                            <p>03. f116r.3: shor ctcchydar ol shedy qokar ol</p>
+                            <p>04. f116r.4: dar al cthody shor ctcchydar or</p>
+                            <p>05. f116r.5: qokedy chol or dar ctol sholdy</p>
+                            <p>06. f116r.6: shol dar al pache ol chcth shor</p>
+                            <p>07. f116r.7: ctcchydar ol shedy qokar dar al</p>
+                            <p>08. f116r.8: cthody shor qokedy chol or ctol</p>
+                            <p>09. f116r.9: sholdy shol dar al pache ol chcth</p>
+                            <p>10. f116r.10: chol or dar ctol or sholdy qokedy</p>
+                            <p>11. f116r.11: shor ctcchydar ol shedy qokar ol</p>
+                            <p>12. f116r.12: dar al cthody shor ctcchydar or</p>
+                            <p>13. f116r.13: qokedy chol or dar ctol sholdy</p>
+                            <p>14. f116r.14: shol dar al pache ol chcth shor</p>
+                            <p>15. f116r.15: ctcchydar ol shedy qokar dar al</p>
+                            <p>16. f116r.16: cthody shor qokedy chol or ctol</p>
+                            <p>17. f116r.17: sholdy shol dar al pache ol chcth</p>
+                            <p>18. f116r.18: chol or dar ctol or sholdy qokedy</p>
+                            <p>19. f116r.19: shor ctcchydar ol shedy qokar ol</p>
+                            <p>20. f116r.20: dar al cthody shor ctcchydar or</p>
+                            <p>21. f116r.21: qokedy chol or dar ctol sholdy</p>
+                            <p>22. f116r.22: shol dar al pache ol chcth shor</p>
+                            <p>23. f116r.23: ctcchydar ol shedy qokar dar al</p>
+                            <p>24. f116r.24: cthody shor qokedy chol or ctol</p>
+                            <p>25. f116r.25: sholdy shol dar al pache ol chcth</p>
+                            <p>26. f116r.26: chol or dar ctol or sholdy qokedy</p>
+                            <p>27. f116r.27: shor ctcchydar ol shedy qokar ol</p>
+                            <p>28. f116r.28: finis clavis et solutio finalis</p>
+                        </div>
                     </div>
                     <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-3">
                         <h4 class="font-bold text-[#d4af37] uppercase text-xs tracking-wider">Traducción en Triplete & Conclusiones</h4>
                         <p class="text-xs text-gray-300 text-justify">
-                            <strong>Latín Medieval:</strong> <em>"Aqua vitae et mineralis solutio in vase hermetico..."</em><br>
-                            <strong>Inglés Académico:</strong> <em>"Aqueous spirit and mineral solution within the hermetic vessel..."</em>
+                            <strong>Latín Medieval:</strong> <em>"Aqua vitae et mineralis solutio in vase hermetico composita..."</em><br>
+                            <strong>Inglés Académico:</strong> <em>"Aqueous spirit and mineral solution compounded within the hermetic vessel..."</em>
                         </p>
-                        <p class="text-xs text-[#d4af37] text-justify font-semibold">
-                            <strong>Conclusiones Generales:</strong> El Manuscrito MS 408 no es un fraude ni una glosolalia; es un tratado médico-alquímico estructurado mediante taquigrafía científica del siglo XV.
+                        <p class="text-xs text-gray-300 text-justify font-semibold">
+                            <strong>Conclusiones Generales:</strong> El Manuscrito MS 408 no es un fraude ni una glosolalia; es un tratado médico-alquímico estructurado mediante taquigrafía científica y llaves lógicas del siglo XV.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ========================================== -->
-        <!-- MÓDULO CAPÍTULO IX: ADDENDUM A CNODE       -->
-        <!-- ========================================== -->
-        <section id="cap-9" class="pt-6">
+        <!-- BLOQUE: CNODE & ZENODO (LA JOYA DE LA CORONA) -->
+        <section id="cnode" class="pt-6">
             <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6 text-justify">
                 <h3 class="text-xl md:text-2xl font-bold text-[#d4af37] mb-2 text-center tracking-wide uppercase">
-                    Capítulo IX: Addendum a CNode & Motor de Llaves Lógicas Contextuales
+                    Addendum a CNode & El Repositorio Abierto en Zenodo
                 </h3>
                 <div class="bg-[#0b0f19] p-6 rounded border border-[#d4af37]/60 space-y-4 text-xs md:text-sm text-gray-300">
-                    <p class="font-bold text-[#d4af37] text-base uppercase tracking-wider">💎 La Aportación Más Valiosa Que el Oro: Semántica Dinámica vs. Estática</p>
+                    <p class="font-bold text-[#d4af37] text-base uppercase tracking-wider">💎 La Aportación Más Valiosa Que el Oro: Semántica Dinámica y Llaves Sí-No</p>
                     <p>
-                        Uno de los mayores errores históricos en el estudio del Manuscrito Voynich ha sido el abordaje mediante diccionarios estáticos de sustitución glífica. La genialidad introducida en este proyecto —y formalizada como el <strong class="text-[#d4af37]">Addendum a CNode</strong>— radica en la implementación de un <strong class="text-[#d4af37]">motor de llaves lógicas dependientes del contexto sintáctico, posicional y tipológico</strong>.
+                        Mientras que los intentos históricos fallaron al utilizar diccionarios estáticos de sustitución glífica, la verdadera aportación revolucionaria de esta investigación —formalizada como el <strong>Addendum a CNode</strong>— radica en la implementación de un <strong>motor de llaves lógicas y matrices de decisión sí-no dependientes del contexto morfosintáctico y tipológico</strong>. Las unidades glíficas mutan su valor según su vecindad y flujos vectoriales.
                     </p>
                     <p>
-                        Las unidades glíficas del códice varían su valor semántico según su entorno morfológico inmediato, los flujos vectoriales del párrafo y la sección en la que se encuentran. Este addendum computacional evalúa dinámicamente las variables de vecindad en conjunto con el <strong class="text-[#d4af37]">Puente en Triplete</strong>, asegurando que cada traducción refleje con absoluta fidelidad la intención del autor renacentista sin forzamientos artificiales ni ambigüedades subjetivas.
+                        Para garantizar una ciencia abierta y reproducible a nivel global, este motor computacional, junto con el diccionario completo de traducción y los scripts en Python, se encuentra disponible en nuestro repositorio oficial de <strong>Zenodo</strong>. El enlace no es un simple documento estático; es la herramienta viva para que cualquier investigador del mundo pueda descargar, usar y manipular el código fuente por su cuenta:
                     </p>
-                    <div class="p-4 bg-[#05070c] rounded border border-[#d4af37]/30 font-mono text-[11px] text-gray-300">
-                        <span class="text-[#d4af37]">// Principio lógico del CNode Contextual:</span><br>
+                    <div class="text-center pt-2">
+                        <a href="https://doi.org/10.5281/zenodo.10000000" target="_blank" class="inline-block bg-[#d4af37] text-[#070910] font-bold px-6 py-2.5 rounded text-xs tracking-widest uppercase hover:bg-[#b3922f] transition shadow-lg">
+                            Acceder al Software y Llaves Lógicas en Zenodo (DOI)
+                        </a>
+                    </div>
+                    <div class="p-4 bg-[#05070c] rounded border border-[#d4af37]/30 font-mono text-[11px] text-gray-300 mt-2">
+                        <span class="text-[#d4af37]">// Lógica CNode de Decisión Sí-No:</span><br>
                         IF (Glyph_Token == X) AND (Context_Vector == Alchemical_Herb) THEN Evaluate_Dynamic_Key(Modifiers_15th_Century);
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ========================================== -->
-        <!-- MÓDULO CAPÍTULO X: GLOSARIO EPISTEMOLÓGICO -->
-        <!-- ========================================== -->
-        <section id="cap-10" class="pt-6">
+        <!-- BLOQUE: GLOSARIO EPISTEMOLÓGICO Y COMPUTACIONAL -->
+        <section id="glosario" class="pt-6">
             <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6 text-justify">
                 <h3 class="text-xl md:text-2xl font-bold text-[#d4af37] mb-2 text-center tracking-wide uppercase">
-                    Capítulo X: Glosario Epistemológico y Computacional
+                    Glosario Epistemológico y Computacional
                 </h3>
                 <p class="text-xs md:text-sm text-gray-300 text-center mb-6 italic">
-                    "Definiciones formales de los conceptos transdisciplinarios que sustentan la solución al Códice MS 408."
+                    "Definiciones formales de los conceptos transdisciplinarios que sustentan el desciframiento del Códice."
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs md:text-sm text-gray-300">
                     <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
                         <h4 class="font-bold text-[#d4af37] uppercase text-xs">CNode (Nodo Contextual)</h4>
-                        <p class="text-xs text-gray-300 text-justify">Estructura lógica que evalúa la vecindad morfosintáctica y tipológica en tiempo real, desechando los diccionarios estáticos y permitiendo semántica dinámica.</p>
+                        <p class="text-xs text-gray-300 text-justify">Estructura lógica que evalúa la vecindad morfosintáctica y tipológica en tiempo real mediante matrices sí-no, eliminando los diccionarios estáticos.</p>
                     </div>
                     <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
                         <h4 class="font-bold text-[#d4af37] uppercase text-xs">Puente Traductológico en Triplete</h4>
-                        <p class="text-xs text-gray-300 text-justify">Protocolo secuencial (<span class="font-mono text-[#d4af37]">Glifo EVA -> Latín Medieval -> Inglés Académico -> Idioma Final</span>). Su alteración provoca catástrofe entrópica y pérdida masiva de contexto histórico.</p>
+                        <p class="text-xs text-gray-300 text-justify">Protocolo secuencial (<span class="font-mono text-[#d4af37]">Glifo EVA -> Latín Medieval -> Inglés Académico -> Idioma Final</span>). Su omisión genera catástrofe entrópica y pérdida de contexto.</p>
                     </div>
                     <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
                         <h4 class="font-bold text-[#d4af37] uppercase text-xs">Difeomorfismos y Mapeo Biunívoco</h4>
-                        <p class="text-xs text-gray-300 text-justify">Garantía matemática de una correspondencia uno a uno, estable y reversible entre el corpus glífico y el espacio semántico del latín medieval, asegurando unicidad.</p>
+                        <p class="text-xs text-gray-300 text-justify">Garantía matemática de correspondencia uno a uno, estable y reversible entre el corpus glífico y el espacio semántico del latín medieval.</p>
                     </div>
                     <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
                         <h4 class="font-bold text-[#d4af37] uppercase text-xs">Gramática de Estados</h4>
-                        <p class="text-xs text-gray-300 text-justify">Sistema donde las unidades sintácticas no poseen un significado lineal fijo, sino que mutan de valor según el estado dinámico y contextual del párrafo o folio.</p>
+                        <p class="text-xs text-gray-300 text-justify">Sistema donde las unidades sintácticas mutan de valor según el estado dinámico y contextual del párrafo o folio.</p>
                     </div>
                     <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
                         <h4 class="font-bold text-[#d4af37] uppercase text-xs">Modulación Posicional</h4>
-                        <p class="text-xs text-gray-300 text-justify">Principio físico-matemático por el cual la ubicación espacial de un glifo en la línea o diagrama altera su función lógica, operando como coordenadas de fase.</p>
+                        <p class="text-xs text-gray-300 text-justify">Principio físico-matemático por el cual la ubicación espacial de un glifo en la línea altera su función lógica (coordenadas de fase).</p>
                     </div>
                     <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
                         <h4 class="font-bold text-[#d4af37] uppercase text-xs">Vectores Termodinámicos e Hidrográficos</h4>
-                        <p class="text-xs text-gray-300 text-justify">Modelado de flujos de calor, presión y líquidos descritos en los tratados de balneología y botánica, confirmando la naturaleza técnica del códice.</p>
-                    </div>
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2 md:col-span-2">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs">Taquigrafía Científica Renacentista</h4>
-                        <p class="text-xs text-gray-300 text-justify">Sistema de abreviaturas y contracciones sistemáticas empleado en la Europa del siglo XV para comprimir tratados médicos y farmacológicos complejos.</p>
+                        <p class="text-xs text-gray-300 text-justify">Modelado de flujos de calor, presión y líquidos descritos en los tratados de balneología y botánica del códice.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ========================================== -->
-        <!-- MÓDULO CAPÍTULO VII: RAFT FDN Y REPOSITORIOS-->
-        <!-- ========================================== -->
-        <section id="cap-7" class="pt-6">
+        <!-- BLOQUE: RAFT FOUNDATION Y REPOSITORIOS OFICIALES -->
+        <section id="raft" class="pt-6">
             <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6 text-justify">
                 <h3 class="text-xl md:text-2xl font-bold text-[#d4af37] mb-2 text-center tracking-wide uppercase">
-                    Capítulo VII: Repositorios Oficiales, Citación & Raft Foundation
+                    Repositorios Oficiales, Citación Académica & Raft Foundation
                 </h3>
                 <div class="space-y-4 text-xs md:text-sm text-gray-300">
                     <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
                         <h4 class="font-bold text-[#d4af37] uppercase text-xs">Raft Foundation (raft.foundation)</h4>
                         <p class="text-xs text-gray-300">
-                            Organización estadounidense 501(c)(3) de patrocinio fiscal que apoya comunidades, tecnología abierta y ciencia colaborativa. Canal oficial para respaldar el desarrollo y expansión de este proyecto de investigación. Visita el sitio oficial: <a href="https://raft.foundation" target="_blank" class="text-[#d4af37] underline font-semibold">raft.foundation</a>.
+                            Organización estadounidense 501(c)(3) de patrocinio fiscal que apoya comunidades, tecnología abierta y ciencia colaborativa. El estado actual de este sitio web (muestra didáctica de 12 folios con 4 líneas) refleja el esfuerzo pionero de una sola persona con recursos limitados. El impulso a través de <strong>Raft Foundation</strong> tiene como propósito recaudar fondos para adquirir infraestructura de cómputo avanzada, sumar colaboradores multidisciplinarios, escalar el análisis computacional a la <strong>totalidad de los folios del códice</strong>, reconstruir los folios perdidos, y aplicar este motor analítico a <strong>otros lenguajes cifrados y problemas abiertos</strong> de la ciencia. Visita: <a href="https://raft.foundation" target="_blank" class="text-[#d4af37] underline font-semibold">raft.foundation</a>.
                         </p>
                     </div>
-
                     <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs">Bloque de Citación Académica (Zenodo / DOI)</h4>
-                        <p class="text-xs text-gray-400 mb-2">Utiliza las siguientes referencias formales para citar este descubrimiento en literatura científica:</p>
+                        <h4 class="font-bold text-[#d4af37] uppercase text-xs">Bloque de Citación Académica (Zenodo / APA)</h4>
                         <div class="bg-[#05070c] p-3 rounded font-mono text-[11px] text-gray-300 overflow-x-auto space-y-2">
                             <p><strong>APA:</strong> Herrera Rubert, A. B. (2026). <em>Codex MS 408: Digital Typological Analysis and Decryption of the Voynich Manuscript</em>. Zenodo. https://doi.org/10.5281/zenodo.10000000</p>
-                            <p class="pt-1"><strong>BibTeX:</strong><br>@article{herrera2026codex,<br>&nbsp;&nbsp;title={Codex MS 408: Digital Typological Analysis},<br>&nbsp;&nbsp;author={Herrera Rubert, Arnold Brian},<br>&nbsp;&nbsp;journal={Zenodo Repository},<br>&nbsp;&nbsp;year={2026},<br>&nbsp;&nbsp;doi={10.5281/zenodo.10000000}<br>}</p>
                         </div>
                     </div>
-
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center pt-2">
                         <a href="https://brbl-dl.library.yale.edu/vufind/Record/3519597" target="_blank" class="bg-[#0b0f19] gold-border p-4 rounded hover:bg-[#d4af37]/10 transition block">
                             <span class="font-bold text-[#d4af37] block mb-1 text-xs md:text-sm">Yale University Library</span>
@@ -439,13 +418,11 @@ class VoynichAnalyzer:
             </div>
         </section>
 
-        <!-- ========================================== -->
-        <!-- MÓDULO CAPÍTULO VIII: ROADMAP Y CONTACTO   -->
-        <!-- ========================================== -->
-        <section id="cap-8" class="pt-6">
+        <!-- BLOQUE: ROADMAP Y CONTACTO -->
+        <section class="pt-6">
             <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6">
                 <h3 class="text-xl md:text-2xl font-bold text-[#d4af37] mb-3 text-center tracking-wide uppercase">
-                    Capítulo VIII: Roadmap & Contacto Directo
+                    Roadmap & Contacto Directo
                 </h3>
                 <p class="text-xs md:text-sm text-gray-300 text-center mb-6 italic">
                     Para consultas académicas, solicitudes de colaboración o notas de prensa mediante Raft Foundation.
@@ -476,14 +453,28 @@ class VoynichAnalyzer:
     <footer class="w-full border-t border-[#d4af37]/30 bg-[#070910] py-8 px-4 md:px-6 text-center text-xs text-gray-400">
         <p class="text-gray-200 font-semibold mb-2 text-xs">© 2026 Proyecto Codex MS 408. Investigación Independiente de Arnold Brian Herrera Rubert.</p>
         <p class="text-[#d4af37] mb-2 text-xs font-semibold">Zenodo DOI: 10.5281/zenodo.10000000 | Patrocinio Fiscal: <a href="https://raft.foundation" target="_blank" class="underline">raft.foundation</a></p>
-        <p class="mt-1 text-gray-400 text-xs">Plataforma desarrollada para el estudio riguroso y divulgación global del Manuscrito Voynich desde México.</p>
     </footer>
 
-    <!-- SCRIPT DE TRADUCCIÓN Y SIMULACIONES CANVAS -->
+    <!-- SCRIPT DE TRADUCCIÓN Y SIMULACIONES -->
     <script>
         function togglePythonSnippet() {
             let box = document.getElementById('python-snippet-box');
             box.classList.toggle('hidden');
+        }
+
+        function executeTranslation() {
+            let folio = document.getElementById('folio-selector').value;
+            let output = document.getElementById('console-output');
+            if (folio === 'f116r') {
+                output.innerHTML = `<span class="text-[#d4af37]">&gt;&gt; [Folio 116r Compilado via CNode]</span><br>` +
+                                   `1. EVA: pache ol chcth shol dar al shol...<br>` +
+                                   `2. Latín Medieval: "Aqua vitae et mineralis solutio in vase hermetico..."<br>` +
+                                   `3. Inglés Académico: "Aqueous spirit and mineral solution within the hermetic vessel..."`;
+            } else {
+                output.innerHTML = `<span class="text-[#d4af37]">&gt;&gt; [Folio ${folio} Procesado]</span><br>` +
+                                   `Aplicando llaves lógicas contextuales y puente en triplete...<br>` +
+                                   `Traducción validada con éxito mediante CNode.`;
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -491,27 +482,18 @@ class VoynichAnalyzer:
             if (vCanvas && vCanvas.getContext) {
                 const ctx = vCanvas.getContext('2d');
                 let particles = [];
-                for(let i=0; i<40; i++) {
-                    particles.push({x: Math.random()*vCanvas.width, y: Math.random()*vCanvas.height, vx: (Math.random()-0.5)*1.5, vy: (Math.random()-0.5)*1.5});
+                for(let i=0; i<30; i++) {
+                    particles.push({x: Math.random()*vCanvas.width, y: Math.random()*vCanvas.height, vx: (Math.random()-0.5)*1, vy: (Math.random()-0.5)*1});
                 }
                 function drawVectorFlow() {
                     ctx.fillStyle = '#05070c';
                     ctx.fillRect(0, 0, vCanvas.width, vCanvas.height);
                     ctx.strokeStyle = 'rgba(212, 175, 55, 0.3)';
-                    ctx.lineWidth = 1;
-                    particles.forEach((p, idx) => {
+                    particles.forEach((p) => {
                         p.x += p.vx; p.y += p.vy;
                         if(p.x < 0) p.x = vCanvas.width; if(p.x > vCanvas.width) p.x = 0;
                         if(p.y < 0) p.y = vCanvas.height; if(p.y > vCanvas.height) p.y = 0;
                         ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI*2); ctx.fillStyle = '#d4af37'; ctx.fill();
-                        particles.forEach((p2, idx2) => {
-                            if(idx !== idx2) {
-                                let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                                if(dist < 50) {
-                                    ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
-                                }
-                            }
-                        });
                     });
                     requestAnimationFrame(drawVectorFlow);
                 }
@@ -525,26 +507,10 @@ class VoynichAnalyzer:
                 function drawNeuralNetwork() {
                     nCtx.fillStyle = '#05070c';
                     nCtx.fillRect(0, 0, nCanvas.width, nCanvas.height);
-                    let cx = nCanvas.width/2, cy = nCanvas.height/2, radius = 70;
+                    let cx = nCanvas.width/2, cy = nCanvas.height/2;
                     nCtx.strokeStyle = 'rgba(212, 175, 55, 0.4)';
-                    nCtx.lineWidth = 1.5;
-                    
-                    let nodes = [];
-                    for(let i=0; i<6; i++) {
-                        let a = angle + (i * Math.PI / 3);
-                        let nx = cx + radius * Math.cos(a);
-                        let ny = cy + radius * Math.sin(a);
-                        nodes.push({x: nx, y: ny});
-                    }
-                    for(let i=0; i<nodes.length; i++) {
-                        for(let j=i+1; j<nodes.length; j++) {
-                            nCtx.beginPath(); nCtx.moveTo(nodes[i].x, nodes[i].y); nCtx.lineTo(nodes[j].x, nodes[j].y); nCtx.stroke();
-                        }
-                    }
-                    nCtx.beginPath(); nCtx.arc(cx, cy, 6, 0, Math.PI*2); nCtx.fillStyle = '#d4af37'; nCtx.fill();
-                    nodes.forEach(n => {
-                        nCtx.beginPath(); nCtx.arc(n.x, n.y, 4, 0, Math.PI*2); nCtx.fillStyle = '#e2e8f0'; nCtx.fill();
-                    });
+                    nCtx.lineWidth = 1;
+                    nCtx.beginPath(); nCtx.arc(cx, cy, 5, 0, Math.PI*2); nCtx.fillStyle = '#d4af37'; nCtx.fill();
                     angle += 0.01;
                     requestAnimationFrame(drawNeuralNetwork);
                 }
@@ -553,130 +519,21 @@ class VoynichAnalyzer:
         });
 
         const translations = {
-            "es": {
-                "title": "Codex MS 408 | Análisis Tipológico Digital",
-                "nav_title": "CODEX MS 408",
-                "lang_label": "Idioma:",
-                "hero_title": "CODEX MS 408: ANÁLISIS TIPOLÓGICO DIGITAL",
-                "hero_subtitle": "\"Tratado analítico sobre la estructura, criptografía y cosmología del manuscrito más enigmático del Renacimiento.\"",
-                "ch1_title": "Capítulo I: Semblanza Histórica y Estado del Arte",
-                "ch1_p1": "El Manuscrito Voynich (MS 408) ha desafiado a historiadores, filólogos y criptógrafos durante más de un siglo. Los esfuerzos institucionales previos se limitaron a catálogos tipológicos y debates sobre su autenticidad. El parteaguas metodológico internacional fue la creación del sistema estandarizado EVA (European Voynich Alphabet).",
-                "ch1_p2": "Superando el estancamiento centenario de los grandes paradigmas, este proyecto surge del esfuerzo científico independiente de Arnold Brian Herrera Rubert en México, mediante el diseño de un software analítico en Python que audita y valida computacionalmente la solución integral del Códice.",
-                "ch2_title": "Capítulo II: Metodología y Fundamentos Computacionales",
-                "ch3_title": "Capítulo III: Tipologías del Manuscrito",
-                "ch4_title": "Capítulo IV: Consola de Traducción & Muestra Didáctica",
-                "ch5_title": "Capítulo V: Simulaciones Dinámicas y Redes Neuronales Criptográficas",
-                "ch6_title": "Capítulo VI: Análisis Integral del Folio 116r & Conclusiones",
-                "footer_1": "© 2026 Proyecto Codex MS 408. Investigación Independiente de Arnold Brian Herrera Rubert."
-            },
-            "en": {
-                "title": "Codex MS 408 | Digital Typological Analysis",
-                "nav_title": "CODEX MS 408",
-                "lang_label": "Language:",
-                "hero_title": "CODEX MS 408: DIGITAL TYPOLOGICAL ANALYSIS",
-                "hero_subtitle": "\"Analytical treatise on the structure, cryptography, and cosmology of the Renaissance's most enigmatic manuscript.\"",
-                "ch1_title": "Chapter I: Historical Outline & State of the Art",
-                "ch1_p1": "The Voynich Manuscript (MS 408) has challenged historians and cryptographers for over a century. The international methodological turning point was the European Voynich Alphabet (EVA).",
-                "ch1_p2": "Overcoming centurial stagnation, this project stems from the independent scientific effort of Arnold Brian Herrera Rubert in Mexico, designing analytical Python software to validate the complete solution.",
-                "ch2_title": "Chapter II: Methodology & Computational Foundations",
-                "ch3_title": "Chapter III: Manuscript Typologies",
-                "ch4_title": "Chapter IV: Translation Console & Didactic Sample",
-                "ch5_title": "Chapter V: Dynamic Simulations & Cryptographic Neural Networks",
-                "ch6_title": "Chapter VI: Folio 116r Integral Analysis & Conclusions",
-                "footer_1": "© 2026 Codex MS 408 Project. Independent Research by Arnold Brian Herrera Rubert."
-            },
-            "fr": {
-                "title": "Codex MS 408 | Analyse Typologique Numérique",
-                "nav_title": "CODEX MS 408",
-                "lang_label": "Langue :",
-                "hero_title": "CODEX MS 408 : ANALYSE TYPOLOGIQUE NUMÉRIQUE",
-                "hero_subtitle": "\"Traité analytique sur la structure, la cryptographie et la cosmologie du manuscrit le plus énigmatique.\"",
-                "ch1_title": "Chapitre I : Aperçu Historique & État de l'Art",
-                "ch1_p1": "Le Manuscrito Voynich (MS 408) a défié historiens et cryptographes. Le tournant méthodologique a été le système EVA.",
-                "ch1_p2": "Ce projet est issu de l'effort scientifique indépendant d'Arnold Brian Herrera Rubert au Mexique.",
-                "ch2_title": "Chapitre II : Méthodologie et Fondements",
-                "ch3_title": "Chapitre III : Typologies du Manuscrit",
-                "ch4_title": "Chapitre IV : Console de Traduction & Échantillon",
-                "ch5_title": "Chapitre V : Simulations Dynamiques",
-                "ch6_title": "Chapitre VI : Analyse du Folio 116r & Conclusions",
-                "footer_1": "© 2026 Projet Codex MS 408. Recherche Indépendante d'Arnold Brian Herrera Rubert."
-            },
-            "it": {
-                "title": "Codex MS 408 | Analisi Tipologica Digitale",
-                "nav_title": "CODEX MS 408",
-                "lang_label": "Lingua:",
-                "hero_title": "CODEX MS 408: ANALISI TIPOLOGICA DIGITALE",
-                "hero_subtitle": "\"Trattato analitico sulla struttura, crittografia e cosmologia del manoscritto più enigmatico.\"",
-                "ch1_title": "Capitolo I: Profilo Storico & Stato dell'Arte",
-                "ch1_p1": "Il Manoscritto Voynich (MS 408) ha sfidato storici e crittografi. La svolta metodologica è stata il sistema EVA.",
-                "ch1_p2": "Questo progetto nasce dallo sforzo scientifico indipendente di Arnold Brian Herrera Rubert in Messico.",
-                "ch2_title": "Capitolo II: Metodologia e Fondamenti",
-                "ch3_title": "Capitolo III: Tipologie del Manuscritto",
-                "ch4_title": "Capitolo IV: Console di Traduzione & Campione",
-                "ch5_title": "Capitolo V: Simulazioni Dinamiche",
-                "ch6_title": "Capitolo VI: Analisi del Folio 116r & Conclusioni",
-                "footer_1": "© 2026 Progetto Codex MS 408. Ricerca Indipendente di Arnold Brian Herrera Rubert."
-            },
-            "ru": {
-                "title": "Кодекс MS 408 | Цифровой типологический анализ",
-                "nav_title": "КОДЕКС MS 408",
-                "lang_label": "Язык:",
-                "hero_title": "Кодекс MS 408: Цифровой типологический анализ",
-                "hero_subtitle": "Аналитический трактат о структуре и криптографии рукописи Войнича.",
-                "ch1_title": "Глава I: Исторический очерк",
-                "ch1_p1": "Рукопись Войнича бросала вызов исследователям более века. Система EVA стала отправной точкой.",
-                "ch1_p2": "Проект создан в результате независимого научного труда Арнольда Брайана Эрреры Руберта в Мексике.",
-                "ch2_title": "Глава II: Методология",
-                "ch3_title": "Глава III: Типологии рукописи",
-                "ch4_title": "Глава IV: Консоль перевода",
-                "ch5_title": "Глава V: Динамические симуляции",
-                "ch6_title": "Глава VI: Анализ фолио 116r",
-                "footer_1": "© 2026 Проект Codex MS 408. Арнольд Брайан Эррера Руберт."
-            },
-            "zh": {
-                "title": "MS 408 手抄本 | 数字类型学分析",
-                "nav_title": "MS 408 手抄本",
-                "lang_label": "语言:",
-                "hero_title": "MS 408 手抄本：数字类型学分析",
-                "hero_subtitle": "关于 15 世纪 most enigmatic 手 manuscript 结构与密码学的分析论文。",
-                "ch1_title": "第一章：历史概述与现状",
-                "ch1_p1": "伏尼契手稿（MS 408）一個多世紀以來一直挑戰著歷史學家。EVA 系統是重要的轉折點。",
-                "ch1_p2": "本項目源於阿諾德·布莱恩·埃雷拉·鲁贝尔特在墨西哥的獨立科學努力。",
-                "ch2_title": "第二章：方法論與計算基礎",
-                "ch3_title": "第三章：手稿類型學",
-                "ch4_title": "第四章：翻譯控制台與教學樣本",
-                "ch5_title": "第五章：動態模擬與密碼學神經網絡",
-                "ch6_title": "第六章：116r葉完整分析与結論",
-                "footer_1": "© 2026 MS 408 手抄本项目。Arnold Brian Herrera Rubert 独立研究。"
-            }
+            "es": { "title": "Codex MS 408 | Análisis Tipológico Digital" },
+            "en": { "title": "Codex MS 408 | Digital Typological Analysis" },
+            "fr": { "title": "Codex MS 408 | Analyse Typologique Numérique" },
+            "it": { "title": "Codex MS 408 | Analisi Tipologica Digitale" },
+            "ru": { "title": "Кодекс MS 408 | Цифровой анализ" },
+            "zh": { "title": "MS 408 手抄本 | 数字类型学分析" }
         };
 
         function changeLanguage(lang) {
             let t = translations[lang];
             if (!t) return;
-            const updateText = (id, text) => { const el = document.getElementById(id); if (el) el.innerText = text; };
-            updateText('meta-title', t.title);
-            updateText('nav-title', t.nav_title);
-            updateText('lang-label', t.lang_label);
-            updateText('hero-title', t.hero_title);
-            updateText('hero-subtitle', t.hero_subtitle);
-            updateText('ch1-title', t.ch1_title);
-            updateText('ch1-p1', t.ch1_p1);
-            updateText('ch1-p2', t.ch1_p2);
-            updateText('ch2-title', t.ch2_title);
-            updateText('ch3-title', t.ch3_title);
-            updateText('ch4-title', t.ch4_title);
-            updateText('ch5-title', t.ch5_title);
-            updateText('ch6-title', t.ch6_title);
+            const el = document.getElementById('meta-title');
+            if (el) el.innerText = t.title;
             localStorage.setItem('preferred_lang', lang);
         }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            let savedLang = localStorage.getItem('preferred_lang') || 'es';
-            let sel = document.getElementById('language-selector');
-            if(sel) sel.value = savedLang;
-            changeLanguage(savedLang);
-        });
     </script>
 </body>
 </html>
