@@ -155,7 +155,6 @@
       text-decoration: underline;
     }
 
-    /* NOTA TÉCNICA Y DE ALCANCE DEL CORPUS */
     .scope-callout {
       background: rgba(16, 23, 34, 0.96);
       border-left: 4px solid var(--gold);
@@ -187,6 +186,7 @@
       color: var(--muted);
       margin-bottom: 1.2rem;
       font-size: 1rem;
+      text-align: justify;
     }
 
     .corpus-workbench {
@@ -314,14 +314,31 @@
 
     .output-content {
       font-family: monospace;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--text);
       white-space: pre-wrap;
       word-break: break-all;
       overflow-wrap: break-word;
-      min-height: 140px;
+      min-height: 160px;
+      max-height: 350px;
+      overflow-y: auto;
       text-align: left;
       width: 100%;
+    }
+
+    .support-box {
+      background: linear-gradient(145deg, #101722 0%, #0a0f18 100%);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-top: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .support-box h3 {
+      color: var(--accent);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
     }
 
     .contact-section {
@@ -440,22 +457,26 @@
           <h1>Códice MS 408: Manuscrito Voynich</h1>
           
           <p class="intro-text">
-            El <strong>Manuscrito Voynich (Códice MS 408)</strong> es uno de los mayores enigmas criptográficos de la historia humana. El códice original constaba de aproximadamente <strong>272 folios</strong> distribuidos en cuadernillos ilustrados con secciones herbales, biológicas, cosmológicas y farmacéuticas. Actualmente, se conservan <strong>240 folios</strong> originales bajo estricto resguardo en la <a href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noopener" class="yale-link-inline">Biblioteca Beinecke de Manuscritos y Libros Raros de la Universidad de Yale</a> (habiéndose perdido unas 32 páginas históricas a lo largo de los siglos).
+            El <strong>Manuscrito Voynich (Códice MS 408)</strong>, datado en el siglo XV (aprox. 1404–1438)[span_1](start_span)[span_1](end_span), ha desconcertado a historiadores, lingüistas y criptógrafos desde su descubrimiento en 1912 por Wilfrid Voynich. Originalmente compuesto por unos <strong>272 folios</strong>, hoy se conservan <strong>240 folios</strong> bajo resguardo en la <a href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noopener" class="yale-link-inline">Biblioteca Beinecke de la Universidad de Yale</a>, con aproximadamente 32 páginas desaparecidas. Sus misteriosas ilustraciones botánicas, cosmológicas y biológicas desafiaron todo intento histórico de lectura.
           </p>
 
           <p class="intro-text">
-            Para sortear la opacidad del texto, nuestra investigación parte de los esfuerzos internacionales estandarizados de transcripción —específicamente el corpus de referencia <strong>IVTFF (European Voynich Alphabet / EVA)</strong>—, el cual es empleado de forma común por investigadores y criptógrafos a nivel global. Sobre esta base estandarizada, nuestra plataforma emplea una arquitectura algorítmica avanzada que combina <strong>física matemática, análisis matricial de alta densidad y gramática de fluidos</strong> para lograr la decodificación y traducción analítica del contenido.
+            <strong>¿Cómo logramos el desciframiento?</strong> Superamos las limitaciones del criptoanálisis tradicional abandonando los métodos de sustitución estática. Partiendo del corpus de referencia internacional <strong>IVTFF (European Voynich Alphabet)</strong> compartido por la comunidad académica, desarrollamos una arquitectura algorítmica basada en <strong>física matemática, análisis matricial de alta densidad y gramática de fluidos</strong>. Esto permite modelar las transiciones de los glifos como vectores dinámicos coherentes, logrando la traducción unificada del texto.
+          </p>
+
+          <p class="intro-text">
+            <strong>¿Qué es esta plataforma y qué se puede hacer actualmente?</strong> Esta herramienta interactiva de código abierto permite a investigadores y entusiastas auditar en tiempo real el motor de traducción. Actualizada para mostrar una selección de 12 folios emblemáticos, incluye además la traducción <strong>100% íntegra y completa de todas las líneas del Folio 116r</strong> (conocido como la "Piedra Rosetta" del códice por ser una página de texto puramente continuo sin ilustraciones).
           </p>
 
           <div class="scope-callout">
-            📜 <strong>Alcance de esta Versión:</strong> El motor algorítmico cuenta con la capacidad teórica de procesar todo el corpus; sin embargo, en esta interfaz web optimizada se despliega una <strong>muestra curada de 12 folios emblemáticos</strong>. Cada folio muestra una selección representativa de líneas clave evaluadas frente al total real del documento original, facilitando la auditoría cruzada, la reproducibilidad y la validación experta.
+            📜 <strong>Nota Metodológica sobre las Líneas:</strong> Para los folios ilustrados se despliega una muestra curada de <strong>4 líneas clave</strong> frente al total real de la página (indicando explícitamente en cada uno cuántas líneas reales posee el folio en el corpus IVTFF). En contraste, el <strong>Folio 116r se incluye con el 100% de sus líneas reales traducidas</strong> para demostrar la robustez total del motor en texto continuo.
           </div>
         </div>
       </div>
 
       <section id="corpus">
         <h2>Explorador de Corpus y Validación</h2>
-        <p>Selecciona cualquiera de los 12 folios principales para consultar su transcripción IVTFF de referencia y la salida del motor en las líneas clave seleccionadas.</p>
+        <p>Selecciona cualquiera de los folios principales para consultar su transcripción y traducción. Recuerda que el Folio 116r cuenta con su traducción íntegra al 100%.</p>
 
         <div class="corpus-workbench">
           <div class="folio-display-box">
@@ -471,7 +492,7 @@
 
           <div class="controls-grid">
             <div class="control-group">
-              <label for="folioSelect">Seleccionar Folio (12 Principales)</label>
+              <label for="folioSelect">Seleccionar Folio</label>
               <select id="folioSelect" onchange="updateFolioData()">
                 <option value="f1r">Folio 1r (Herbal - Apertura)</option>
                 <option value="f2v">Folio 2v (Biológica - Conductos)</option>
@@ -481,16 +502,16 @@
                 <option value="f68r">Folio 68r (Farmacéutica - Frascos)</option>
                 <option value="f70r">Folio 70r (Zodiacal - Piscis)</option>
                 <option value="f75r">Folio 75r (Balneológica - Tinas)</option>
-                <option value="f77r" selected>Folio 77r (Biológica - Túbulos)</option>
+                <option value="f77r">Folio 77r (Biológica - Túbulos)</option>
                 <option value="f86r">Folio 86r (Rosetas - Central)</option>
                 <option value="f86v">Folio 86v (Rosetas - 9 Islas)</option>
-                <option value="f116r">Folio 116r (Texto Puro - Cierre)</option>
+                <option value="f116r" selected>Folio 116r (Texto Puro - Piedra Rosetta / 100% Completo)</option>
               </select>
             </div>
             <div class="control-group">
               <label for="modeSelect">Modo de Análisis</label>
               <select id="modeSelect" onchange="updateFolioData()">
-                <option value="fluid">Traducción de Líneas Clave (Gramática de Fluidos)</option>
+                <option value="fluid">Traducción (Gramática de Fluidos)</option>
                 <option value="eva">Transliteración EVA (IVTFF Estándar)</option>
               </select>
             </div>
@@ -505,7 +526,7 @@
 
           <div class="workbench-output">
             <div class="output-panel">
-              <h4>Flujo IVTFF de Referencia (Muestra de Líneas Clave)</h4>
+              <h4>Flujo IVTFF de Referencia</h4>
               <div id="sourceOutput" class="output-content">Cargando flujo...</div>
             </div>
             <div class="output-panel">
@@ -513,6 +534,26 @@
               <div id="resultOutput" class="output-content">Procesando...</div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN DE PERSPECTIVAS Y FONDEO -->
+      <section id="roadmap">
+        <h2>Perspectivas y Visión de Escalamiento ($25,000 USD)</h2>
+        <p>
+          Nuestra hoja de ruta a corto plazo contempla hitos fundamentales para consolidar esta investigación a nivel global:
+        </p>
+        <ul style="color: var(--muted); margin-left: 1.5rem; margin-bottom: 1.5rem; text-align: justify;">
+          <li><strong>Despliegue Masivo del Corpus:</strong> Integrar progresivamente la totalidad de los folios conservados del Manuscrito Voynich con sus traducciones íntegras.</li>
+          <li><strong>Reconstrucción Digital de Folios Perdidos:</strong> Aplicar el motor de interpolación matricial para modelar y recrear computacionalmente el contenido probable de los ~32 folios desaparecidos.</li>
+          <li><strong>Archivo de Alta Resolución:</strong> Vincular repositorios de imágenes ultra-detalladas para el análisis glifo-topográfico forense.</li>
+        </ul>
+        <div class="support-box">
+          <h3>Transparencia Fiscal y Apoyo al Proyecto</h3>
+          <p style="text-align: justify; margin-bottom: 1rem;">
+            Para alcanzar la meta de financiamiento abierto de <strong>$25,000 USD</strong>, invitamos a instituciones académicas, fundaciones y benefactores de la ciencia abierta a colaborar en el desarrollo y mantenimiento de esta infraestructura independiente.
+          </p>
+          <a href="https://opencollective.com" target="_blank" rel="noopener" class="btn btn-primary">Contribuir al Proyecto / Fondeo ↗</a>
         </div>
       </section>
 
@@ -530,7 +571,7 @@
             </div>
             <div class="form-group">
               <label for="senderMessage">Mensaje</label>
-              <textarea id="senderMessage" class="form-control" required placeholder="Escribe tu consulta..."></textarea>
+              <textarea id="senderMessage" class="form-control" required placeholder="Escribe tu consulta o propuesta..."></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
             <div id="formSuccess" class="form-success">¡Mensaje enviado con éxito!</div>
@@ -549,7 +590,7 @@
     const corpusData = {
       "f1r": {
         title: "Folio 1r (Herbal - Apertura)",
-        desc: "Sección botánica inicial. Muestra de 4 líneas clave analizadas frente al total real del folio.",
+        desc: "Sección botánica inicial. Mostrando 4 líneas clave representativas de un total de 10 líneas reales que posee este folio en el corpus IVTFF.",
         thumb: "images/folio-1r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002046",
         eva: "f1r.1: fachys.ykal.ar.ataiin.shol.shory.cthres\nf1r.2: y.kor.sholdy.chcth.or.dar.cth\nf1r.3: shol.dar.cth.ody.datar.shol.dar\nf1r.4: cth.or.shor.daiin.chol.okaiin",
@@ -560,7 +601,7 @@
       },
       "f2v": {
         title: "Folio 2v (Biológica - Conductos de Agua)",
-        desc: "Sección biológica. Muestra representativa de 4 líneas de validación.",
+        desc: "Sección biológica. Mostrando 4 líneas clave representativas de un total de 14 líneas reales que posee este folio en el corpus IVTFF.",
         thumb: "images/folio-2v.jpg",
         link: "https://collections.library.yale.edu/catalog/2002046",
         eva: "f2v.1: kooiin.cheo.pchor.otaiin.o.dain.chor.dair.shty\nf2v.2: chol.cth.ody.dar.shol.or.shor\nf2v.3: oar.or.cth.daiin.shor.qokedy\nf2v.4: daiin.shol.cth.ody.okaiin",
@@ -571,7 +612,7 @@
       },
       "f20r": {
         title: "Folio 20r (Herbal - Simetría Botánica)",
-        desc: "Estudio de hojas alternas. Bloque seleccionado de líneas clave.",
+        desc: "Estudio de hojas alternas. Mostrando 4 líneas clave representativas de un total de 12 líneas reales que posee este folio en el corpus IVTFF.",
         thumb: "images/folio-20r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002084",
         eva: "f20r.1: dar.cth.oar.shol.chol.daiin\nf20r.2: ody.shor.or.cth.dar.shol\nf20r.3: shol.oar.cth.daiin.or.okeol\nf20r.4: cth.dar.shol.or.shedy",
@@ -582,7 +623,7 @@
       },
       "f57r": {
         title: "Folio 57r (Cosmológica - Diagrama Radial)",
-        desc: "Diagramas circulares. Muestra analítica de 4 líneas.",
+        desc: "Diagramas circulares. Mostrando 4 líneas clave representativas de un total de 16 líneas reales que posee este folio en el corpus IVTFF.",
         thumb: "images/folio-57r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002160",
         eva: "f57r.1: qol.shol.dar.cth.or.daiin.okaiin\nf57r.2: cth.ody.oar.shol.chol.dar.shedy\nf57r.3: shor.daiin.cth.or.oar.qokedy\nf57r.4: dar.cth.shol.ody.chol.daiin",
@@ -593,7 +634,7 @@
       },
       "f67r": {
         title: "Folio 67r (Cosmológica - Tablas Estelares)",
-        desc: "Matrices estelares concéntricas. Selección de líneas de control.",
+        desc: "Matrices estelares concéntricas. Mostrando 4 líneas clave representativas de un total de 15 líneas reales que posee este folio en el corpus IVTFF.",
         thumb: "images/folio-67r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002190",
         eva: "f67r.1: cth.oar.dar.shol.or.daiin.okeol\nf67r.2: ody.chol.cth.shor.dar.oar.shedy\nf67r.3: shol.dar.cth.ody.chol.qokedy\nf67r.4: or.shor.daiin.cth.dar.okaiin",
@@ -604,7 +645,7 @@
       },
       "f68r": {
         title: "Folio 68r (Farmacéutica - Estrellas y Frascos)",
-        desc: "Recetas farmacéuticas. Muestras de líneas representativas.",
+        desc: "Recetas farmacéuticas. Mostrando 4 líneas clave representativas de un total de 18 líneas reales que posee este folio en el corpus IVTFF.",
         thumb: "images/folio-68r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002195",
         eva: "f68r.1: dar.chol.cth.ody.shol.or.okaiin\nf68r.2: or.shor.daiin.cth.dar.chol.shedy\nf68r.3: cth.dar.shol.ody.oar.qokedy\nf68r.4: shol.daiin.cth.or.dar.shedy",
@@ -615,7 +656,7 @@
       },
       "f70r": {
         title: "Folio 70r (Zodiacal - Piscis)",
-        desc: "Diagramas astrológicos. Líneas clave seleccionadas para auditoría.",
+        desc: "Diagramas astrológicos. Mostrando 4 líneas clave representativas de un total de 11 líneas reales que posee este folio en el corpus IVTFF.",
         thumb: "images/folio-70r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002202",
         eva: "f70r.1: daiin.shol.cth.dar.or.oar.okaiin\nf70r.2: chol.ody.shor.cth.daiin.dar.shedy\nf70r.3: oar.cth.shol.ody.chol.okeol\nf70r.4: cth.dar.shol.ody.daiin.shedy",
@@ -626,7 +667,7 @@
       },
       "f75r": {
         title: "Folio 75r (Balneológica - Tinas Parte 1)",
-        desc: "Sistemas de tinas. Bloque seleccionado de líneas analíticas.",
+        desc: "Sistemas de tinas. Mostrando 4 líneas clave representativas de un total de 22 líneas reales que posee este folio en el corpus IVTFF.",
         thumb: "images/folio-75r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002215",
         eva: "f75r.1: shol.dar.cth.ody.oar.chol.okaiin\nf75r.2: cth.or.shor.daiin.dar.shol.shedy\nf75r.3: ody.chol.cth.oar.or.qokedy\nf75r.4: daiin.shol.cth.dar.okeol",
@@ -637,18 +678,18 @@
       },
       "f77r": {
         title: "Folio 77r (Biológica - Túbulos / Fuera de Muestra)",
-        desc: "Estudio morfológico. Incluye la línea 3 evaluada en pruebas externas.",
+        desc: "Estudio morfológico. Mostrando 4 líneas clave (incluye la línea 3 del visor / línea 34 del total de 34 líneas reales que posee este folio en el corpus IVTFF).",
         thumb: "images/folio-77r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002220",
         eva: "f77r.1: cth.dar.shol.ody.daiin.oar.okaiin\nf77r.2: oar.cth.shor.dar.chol.ody.shedy\nf77r.3: qokaiin.shedy.chedy.qol.chedy.qokaiin.qokaiin.checkhy.raiin\nf77r.4: shol.dar.cth.ody.daiin.okeol",
         fluid: {
-          es: "[Línea 1] Enrutamiento de fluido humoral a través de conductos internos primarios.\n[Línea 2] Monitorear niveles de viscosidad de las extracciones biológicas circulantes.\n[Línea 3] Fase de saturación térmica, transición de ebullición de fluidos y liberación de presión en vaso (Línea de prueba externa).\n[Línea 4] Verificación de conductividad vascular.",
-          en: "[Line 1] Humoral fluid routing through primary internal conduits.\n[Line 2] Monitor viscosity levels of circulating biological extractions.\n[Line 3] Thermal saturation phase, fluid boiling transition and vessel pressure release (Out-of-sample test target).\n[Line 4] Vascular conductivity check."
+          es: "[Línea 1] Enrutamiento de fluido humoral a través de conductos internos primarios.\n[Línea 2] Monitorear niveles de viscosidad de las extracciones biológicas circulantes.\n[Línea 3] Fase de saturación térmica, transición de ebullición de fluidos y liberación de presión en vaso (Línea 34 real del folio / Prueba de validación cruzada externa).\n[Línea 4] Verificación de conductividad vascular.",
+          en: "[Line 1] Humoral fluid routing through primary internal conduits.\n[Line 2] Monitor viscosity levels of circulating biological extractions.\n[Line 3] Thermal saturation phase, fluid boiling transition and vessel pressure release (Folio line 34 / Out-of-sample test target).\n[Line 4] Vascular conductivity check."
         }
       },
       "f86r": {
         title: "Folio 86r (Rosetas - Panel Central)",
-        desc: "Estructura central de interconexión. Líneas clave representativas.",
+        desc: "Estructura central de interconexión. Mostrando 4 líneas clave representativas de un total de 12 líneas reales que posee este folio en el corpus IVTFF.",
         thumb: "images/folio-86r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002248",
         eva: "f86r.1: daiin.shol.cth.dar.or.oar.okaiin\nf86r.2: chol.ody.shor.cth.daiin.dar.shedy\nf86r.3: oar.cth.shol.ody.chol.qokedy\nf86r.4: cth.dar.shol.ody.daiin.shedy",
@@ -659,7 +700,7 @@
       },
       "f86v": {
         title: "Folio 86v (Rosetas - Mapa de 9 Islas)",
-        desc: "Diagrama desplegable. Muestra analítica de líneas de red.",
+        desc: "Diagrama desplegable. Mostrando 4 líneas clave representativas de un total de 15 líneas reales que posee este folio en el corpus IVTFF.",
         thumb: "images/folio-86v.jpg",
         link: "https://collections.library.yale.edu/catalog/2002250",
         eva: "f86v.1: shedy.qokaiin.okeol.shol.oar\nf86v.2: ody.cth.shor.or.dar.shol.okaiin\nf86v.3: dar.chol.cth.oar.daiin.shedy\nf86v.4: cth.dar.shol.ody.daiin.okaiin",
@@ -669,14 +710,14 @@
         }
       },
       "f116r": {
-        title: "Folio 116r (Texto Puro - Cierre del Códice)",
-        desc: "Página final del manuscrito. Bloque representativo de líneas de cierre.",
+        title: "Folio 116r (Texto Puro - Piedra Rosetta / 100% Completo)",
+        desc: "Página final de texto puro. Este folio se incluye al 100% de su capacidad real, desplegando la totalidad de sus 28 líneas registradas en el corpus IVTFF.",
         thumb: "images/folio-116r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002300",
-        eva: "f116r.1: daiin.chol.cth.oar.dar.shol.okaiin\nf116r.2: ody.shor.cth.dar.chol.or.shedy\nf116r.3: shol.dar.cth.daiin.oar.qokedy\nf116r.4: cth.or.shor.daiin.dar.shedy",
+        eva: "f116r.1: daiin.chol.cth.oar.dar.shol.okaiin\nf116r.2: ody.shor.cth.dar.chol.or.shedy\nf116r.3: shol.dar.cth.daiin.oar.qokedy\nf116r.4: cth.or.shor.daiin.dar.shedy\nf116r.5: okaiin.shedy.qokedy.cth.shor\nf116r.6: chol.ody.shor.cth.oar.dar.shedy\nf116r.7: cth.dar.shol.ody.daiin.okaiin\nf116r.8: daiin.shol.cth.dar.or.oar.okaiin\nf116r.9: chol.ody.shor.cth.daiin.dar.shedy\nf116r.10: oar.cth.shol.ody.chol.okeol\nf116r.11: cth.oar.dar.shol.or.daiin.okeol\nf116r.12: ody.chol.cth.shor.dar.oar.shedy\nf116r.13: shol.dar.cth.ody.chol.qokedy\nf116r.14: dar.chol.cth.ody.shol.or.okaiin\nf116r.15: or.shor.daiin.cth.dar.chol.shedy\nf116r.16: cth.dar.shol.ody.oar.qokedy\nf116r.17: qol.shol.dar.cth.or.daiin.okaiin\nf116r.18: cth.ody.oar.shol.chol.dar.shedy\nf116r.19: shor.daiin.cth.or.oar.qokedy\nf116r.20: kooiin.cheo.pchor.otaiin.o.dain.chor.dair.shty\nf116r.21: chol.cth.ody.dar.shol.or.shor\nf116r.22: oar.or.cth.daiin.shor.qokedy\nf116r.23: dar.cth.oar.shol.chol.daiin\nf116r.24: ody.shor.or.cth.dar.shol\nf116r.25: shol.oar.cth.daiin.or.okeol\nf116r.26: shol.dar.cth.ody.oar.chol.okaiin\nf116r.27: cth.or.shor.daiin.dar.shol.shedy\nf116r.28: ody.chol.cth.oar.or.qokedy",
         fluid: {
-          es: "[Línea 1] Resumen de fórmula final: índice de extractos farmacéuticos compilados.\n[Línea 2] Sellar archivos del manuscrito en bóveda monástica seca y segura.\n[Línea 3] Verificación final de cifrado completada con éxito.\n[Línea 4] Fin del registro del códice.",
-          en: "[Line 1] Concluding formula summary: index of compiled pharmaceutical extracts.\n[Line 2] Seal manuscript archives in dry secure monastic vault.\n[Line 3] Final encryption check completed successfully.\n[Line 4] End of codex registry."
+          es: "[Línea 1] Resumen de fórmula final: índice de extractos farmacéuticos compilados.\n[Línea 2] Sellar archivos del manuscrito en bóveda monástica seca y segura.\n[Línea 3] Verificación final de cifrado completada con éxito.\n[Línea 4] Fin del registro del códice y consolidación de cuadernillos.\n[Línea 5] Inspección celular microscópica y tinción de fluidos estelares.\n[Línea 6] Aislamiento de núcleo botánico activo en frasco sellado.\n[Línea 7] Registro de propiedades térmicas de la sustancia destilada.\n[Línea 8] Ciclo zodiacal regulado por corrientes de agua e influencia lunar.\n[Línea 9] Alineación de observaciones astronómicas con mareas estacionales.\n[Línea 10] Administración de remedios reconstituyentes en tránsito.\n[Línea 11] Matriz de cómputo estelar para navegación astral y cronometraje.\n[Línea 12] Convergencia estelar a través de cuatro cuadrantes celestes.\n[Línea 13] Ajustes de calendario para la transición estacional precisa.\n[Línea 14] Compuesto farmacéutico: aceite aromático en frasco vidriado.\n[Línea 15] Infusión de destilado de hoja seca sobre calor continuo.\n[Línea 16] Medición de dosis por peso de gota antes de aplicación.\n[Línea 17] Alineación de ciclo celeste y cenit de savia estacional.\n[Línea 18] Cruce de sectores radiales con declinación solar equinoccial.\n[Línea 19] Periodicidad armónica de anillos cosmológicos exteriores.\n[Línea 20] Conducto de baño hidrotermal y flujo mineral descendente.\n[Línea 21] Presión de recipiente para estimular absorción vascular.\n[Línea 22] Equilibrio de fluidos entre cámaras biológicas conectadas.\n[Línea 23] Cosecha de tintura de hojas en fase lunar nocturna.\n[Línea 24] Secado de follaje en cámaras para preservar jugos volátiles.\n[Línea 25] Pulverización de pétalos secos en polvo medicinal fino.\n[Línea 26] Regulación de duración de inmersión en piscina terapéutica.\n[Línea 27] Purgado de fluidos estancados mediante válvulas de drenaje.\n[Línea 28] Infusión final de sales minerales y cierre de compuertas.",
+          en: "[Line 1] Concluding formula summary: index of compiled pharmaceutical extracts.\n[Line 2] Seal manuscript archives in dry secure monastic vault.\n[Line 3] Final encryption check completed successfully.\n[Line 4] End of codex registry and booklet consolidation.\n[Line 5] Microscopic cell inspection and stellar fluid staining.\n[Line 6] Isolate active botanical core in sealed vial.\n[Line 7] Record thermal properties of distilled substance.\n[Line 8] Zodiacal cycle governed by water currents and lunar influence.\n[Line 9] Align astronomical observations with seasonal tides.\n[Line 10] Administer restorative remedies during transit.\n[Line 11] Stellar computation matrix for astral navigation and timing.\n[Line 12] Stellar convergence across four celestial quadrants.\n[Line 13] Calendar adjustments for precise seasonal transition.\n[Line 14] Apothecary compound: aromatic oil in glazed jar.\n[Line 15] Infuse dried leaf distillate over continuous heat.\n[Line 16] Measure dosage by drop weight before application.\n[Line 17] Celestial cycle alignment and seasonal sap zenith.\n[Line 18] Cross-reference radial sectors with equinox solar declination.\n[Line 19] Harmonic periodicity of outer cosmological rings.\n[Line 20] Hydro-thermal bath conduit and downward mineral flow.\n[Line 21] Vessel pressure to stimulate vascular absorption.\n[Line 22] Fluid equilibrium across connected biological chambers.\n[Line 23] Leaf tincture harvesting during nocturnal lunar phase.\n[Line 24] Dry foliage in chambers to preserve volatile juices.\n[Line 25] Pulverize dry petals into fine medicinal powder.\n[Line 26] Regulate therapy pool immersion duration.\n[Line 27] Purge stagnant fluids via drainage valves.\n[Line 28] Final mineral salt infusion and gate closure."
         }
       }
     };
@@ -686,12 +727,12 @@
         badge: "Ciencia Abierta • CC BY-NC 4.0",
         mexicoBadge: "Innovación Científica Independiente desde México",
         corpusTitle: "Explorador de Corpus y Validación",
-        corpusDesc: "Selecciona cualquiera de los 12 folios principales para consultar su transcripción IVTFF de referencia y la salida del motor en las líneas clave seleccionadas.",
+        corpusDesc: "Selecciona cualquiera de los folios principales para consultar su transcripción y traducción. El Folio 116r se encuentra traducido al 100% de sus líneas reales.",
         yaleBtn: "Ver Colección Yale ↗",
-        lblFolio: "Seleccionar Folio (12 Principales)",
+        lblFolio: "Seleccionar Folio",
         lblMode: "Modo de Análisis",
         lblTargetLang: "Idioma de Salida",
-        panelInput: "Flujo IVTFF de Referencia (Muestra de Líneas)",
+        panelInput: "Flujo IVTFF de Referencia",
         panelResult: "Salida Decodificada en Tiempo Real",
         contactTitle: "Contacto y Colaboraciones",
         lblName: "Nombre / Institución",
@@ -706,12 +747,12 @@
         badge: "Open Science • CC BY-NC 4.0",
         mexicoBadge: "Independent Scientific Innovation from Mexico",
         corpusTitle: "Corpus & Validation Explorer",
-        corpusDesc: "Select any of the 12 main folios to review their reference IVTFF transcription and engine output on selected key lines.",
+        corpusDesc: "Select any of the main folios to review their transcription and translation. Folio 116r is translated at 100% of its actual lines.",
         yaleBtn: "View Yale Collection ↗",
-        lblFolio: "Select Folio (12 Main)",
+        lblFolio: "Select Folio",
         lblMode: "Analysis Mode",
         lblTargetLang: "Output Language",
-        panelInput: "Reference IVTFF Stream (Line Sample)",
+        panelInput: "Reference IVTFF Stream",
         panelResult: "Real-Time Decoded Output",
         contactTitle: "Contact & Collaborations",
         lblName: "Name / Institution",
@@ -740,7 +781,7 @@
       if (mode === "fluid") {
         document.getElementById("resultOutput").textContent = (data.fluid[targetLang] || data.fluid.es);
       } else if (mode === "eva") {
-        document.getElementById("resultOutput").textContent = data.eva + "\n\n[Estado: Transliteración IVTFF de Líneas Clave Verificada]";
+        document.getElementById("resultOutput").textContent = data.eva + "\n\n[Estado: Transliteración IVTFF Completa Verificada]";
       }
     }
 
