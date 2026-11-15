@@ -6,20 +6,18 @@
   <title>Códice MS 408 | Plataforma de Desciframiento del Manuscrito Voynich</title>
   <style>
     :root {
-      --bg: #070a12;
-      --surface: #0e1522;
-      --surface-alt: #141c2d;
-      --border: #1e293b;
-      --text: #f8fafc;
+      --bg: #080b10;
+      --surface: #101722;
+      --surface-alt: #162030;
+      --border: #243044;
+      --text: #f1f5f9;
       --muted: #94a3b8;
       --accent: #38bdf8;
-      --accent-hover: #7dd3fc;
-      --success: #10b981;
       --emerald: #10b981;
       --emerald-border: rgba(16, 185, 129, 0.4);
-      --violet: #a78bfa;
-      --violet-border: rgba(167, 139, 250, 0.4);
-      --mex-green: #006847;
+      --gold: #d97706;
+      --gold-light: #fbbf24;
+      --gold-border: rgba(217, 119, 6, 0.4);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
@@ -39,67 +37,111 @@
       width: 100%;
     }
 
-    /* MENÚ DE NAVEGACIÓN FIJO SUPERIOR */
+    /* MENÚ DE NAVEGACIÓN SUPERIOR FIJO CON DESPLEGABLES */
     .site-nav {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(7, 10, 18, 0.92);
+      background: rgba(8, 11, 16, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0.8rem 0;
+    }
+
+    .nav-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
       gap: 1rem;
+      flex-wrap: wrap;
     }
 
     .brand {
       font-weight: 800;
-      font-size: 1.05rem;
+      font-size: 1rem;
       letter-spacing: 0.05em;
-      color: var(--emerald);
+      color: var(--gold-light);
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.5rem;
     }
 
-    .nav-links {
+    .nav-controls {
       display: flex;
-      gap: 1.2rem;
-      list-style: none;
       align-items: center;
-      flex-wrap: wrap;
+      gap: 0.8rem;
     }
 
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: color 0.2s;
+    /* CONTENEDORES DE MENÚS DESPLEGABLES */
+    .dropdown-container {
+      position: relative;
     }
 
-    .nav-links a:hover {
-      color: var(--violet);
-    }
-
-    .lang-selector {
+    .dropdown-toggle {
       background: var(--surface);
       color: var(--text);
-      border: 1px solid var(--border);
-      padding: 0.4rem 0.8rem;
+      border: 1px solid var(--gold-border);
+      padding: 0.5rem 1rem;
       border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
       font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
     }
 
-    /* DASHBOARD DE TELEMETRÍA CON RUEDA ZODIACAL VOYNICH */
+    .dropdown-toggle:hover {
+      border-color: var(--gold);
+      background: var(--surface-alt);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      background: var(--surface);
+      border: 1px solid var(--gold-border);
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+      min-width: 220px;
+      display: none;
+      flex-direction: column;
+      z-index: 1100;
+      overflow: hidden;
+    }
+
+    .dropdown-menu.show {
+      display: flex;
+    }
+
+    .dropdown-menu a {
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.7rem 1rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dropdown-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu a:hover {
+      background: var(--surface-alt);
+      color: var(--gold-light);
+    }
+
+    /* DASHBOARD DE TELEMETRÍA Y RUEDA ZODIACAL */
     .scientific-telemetry-banner {
-      background: linear-gradient(135deg, #0b111e 0%, #060912 100%);
-      border: 1px solid rgba(167, 139, 250, 0.3);
+      background: linear-gradient(135deg, #101722 0%, #080b10 100%);
+      border: 1px solid var(--gold-border);
       border-radius: 20px;
       margin: 1.5rem 0 0 0;
       padding: 1.5rem;
@@ -135,19 +177,19 @@
     }
 
     .voynich-wheel-infographic {
-      background: rgba(14, 21, 34, 0.85);
-      border: 1px solid var(--violet-border);
+      background: rgba(16, 23, 34, 0.9);
+      border: 1px solid var(--gold-border);
       padding: 1.2rem;
       border-radius: 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
       position: relative;
-      box-shadow: inset 0 0 20px rgba(167, 139, 250, 0.05);
+      box-shadow: inset 0 0 20px rgba(217, 119, 6, 0.05);
     }
 
     .voynich-wheel-title {
-      color: var(--violet);
+      color: var(--gold-light);
       font-size: 0.82rem;
       font-weight: 700;
       text-transform: uppercase;
@@ -183,7 +225,7 @@
       position: absolute;
       width: 75px;
       height: 75px;
-      background: radial-gradient(circle, #141c2d 0%, #070a12 100%);
+      background: radial-gradient(circle, #162030 0%, #080b10 100%);
       border: 2px solid var(--emerald);
       border-radius: 50%;
       display: flex;
@@ -219,7 +261,7 @@
     }
 
     .data-node {
-      background: rgba(7, 10, 18, 0.7);
+      background: rgba(8, 11, 16, 0.7);
       border: 1px solid var(--border);
       padding: 0.4rem 0.6rem;
       border-radius: 8px;
@@ -234,12 +276,13 @@
     }
 
     .data-node strong {
-      color: var(--violet);
+      color: var(--gold-light);
       font-size: 0.78rem;
     }
 
+    /* HERO BANNER CON ICONOGRAFÍA VISIBLE */
     .hero-banner {
-      background: linear-gradient(135deg, rgba(0, 104, 71, 0.25) 0%, rgba(7, 10, 18, 0.94) 50%, rgba(56, 189, 248, 0.15) 100%), url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0.15) 0%, rgba(8, 11, 16, 0.95) 50%, rgba(16, 185, 129, 0.1) 100%), url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
       border: 1px solid var(--border);
       border-radius: 24px;
       padding: 3.5rem 1.5rem;
@@ -253,7 +296,7 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(7, 10, 18, 0.90);
+      background: rgba(8, 11, 16, 0.91);
       z-index: 1;
     }
 
@@ -275,9 +318,9 @@
 
     .badge {
       display: inline-block;
-      background: rgba(56, 189, 248, 0.12);
-      color: var(--accent);
-      border: 1px solid rgba(56, 189, 248, 0.3);
+      background: rgba(217, 119, 6, 0.15);
+      color: var(--gold-light);
+      border: 1px solid var(--gold-border);
       padding: 0.35rem 1rem;
       border-radius: 999px;
       font-size: 0.85rem;
@@ -288,9 +331,9 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      background: rgba(0, 104, 71, 0.35);
-      color: #4ade80;
-      border: 1px solid rgba(0, 104, 71, 0.6);
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid var(--emerald-border);
       padding: 0.35rem 1rem;
       border-radius: 999px;
       font-size: 0.85rem;
@@ -322,18 +365,9 @@
       color: var(--text);
     }
 
-    .yale-link-inline {
-      color: var(--emerald);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .yale-link-inline:hover {
-      text-decoration: underline;
-    }
-
     .scope-callout {
-      background: rgba(14, 21, 34, 0.95);
-      border-left: 4px solid var(--violet);
+      background: rgba(16, 23, 34, 0.95);
+      border-left: 4px solid var(--gold);
       padding: 1.3rem;
       border-radius: 0 12px 12px 0;
       margin-top: 1.6rem;
@@ -344,7 +378,7 @@
     }
 
     .scope-callout strong {
-      color: var(--violet);
+      color: var(--gold-light);
     }
 
     section {
@@ -358,13 +392,14 @@
       color: var(--text);
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
     }
 
-    h2::before {
-      content: '✦';
-      color: var(--violet);
-      font-size: 1.2rem;
+    h2 .section-icon {
+      width: 28px;
+      height: 28px;
+      fill: var(--gold);
+      flex-shrink: 0;
     }
 
     p {
@@ -374,10 +409,56 @@
       text-align: justify;
     }
 
-    /* ESTILO MÓNACO / CASINO HIGH-END PARA EL MOTOR */
+    /* GALERÍA DE ICONOGRAFÍA VOYNICH (NINFAS, ESTRELLAS, PLANTAS Y ZODIACO) */
+    .voynich-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    @media (min-width: 768px) {
+      .voynich-gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .voynich-icon-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.2s;
+    }
+
+    .voynich-icon-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .voynich-icon-card svg {
+      width: 40px;
+      height: 40px;
+      fill: var(--emerald);
+    }
+
+    .voynich-icon-card span {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* MOTOR DE TRADUCCIÓN */
     .casino-workbench {
-      background: linear-gradient(145deg, #0e1522 0%, #090e18 100%);
-      border: 1px solid var(--violet-border);
+      background: linear-gradient(145deg, #101722 0%, #0a0e15 100%);
+      border: 1px solid var(--gold-border);
       border-radius: 22px;
       padding: 1.8rem;
       margin-top: 2rem;
@@ -390,16 +471,16 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, var(--violet), var(--emerald), var(--violet));
+      background: linear-gradient(90deg, var(--gold), var(--emerald), var(--gold));
     }
 
     .workbench-header-tag {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(167, 139, 250, 0.15);
-      color: var(--violet);
-      border: 1px solid var(--violet-border);
+      background: rgba(217, 119, 6, 0.15);
+      color: var(--gold-light);
+      border: 1px solid var(--gold-border);
       padding: 0.35rem 0.9rem;
       border-radius: 999px;
       font-size: 0.78rem;
@@ -528,8 +609,8 @@
     }
 
     .support-box {
-      background: linear-gradient(145deg, #0e1522 0%, #080d17 100%);
-      border: 1px solid rgba(167, 139, 250, 0.35);
+      background: linear-gradient(145deg, #101722 0%, #0a0e15 100%);
+      border: 1px solid var(--gold-border);
       border-radius: 18px;
       padding: 2.2rem;
       margin-top: 2rem;
@@ -537,7 +618,7 @@
     }
 
     .support-box h3 {
-      color: var(--violet);
+      color: var(--gold-light);
       font-size: 1.45rem;
       margin-bottom: 1.1rem;
     }
@@ -565,13 +646,13 @@
 
     .budget-table th {
       background: var(--surface-alt);
-      color: var(--violet);
+      color: var(--gold-light);
       text-align: left;
     }
 
     .zenodo-section {
-      background: linear-gradient(145deg, #0e1522 0%, #090e18 100%);
-      border: 1px solid rgba(16, 185, 129, 0.3);
+      background: linear-gradient(145deg, #101722 0%, #0a0e15 100%);
+      border: 1px solid var(--emerald-border);
       border-radius: 18px;
       padding: 2.2rem;
       margin-top: 3rem;
@@ -682,7 +763,7 @@
 
     .btn-primary {
       background-color: var(--emerald);
-      color: #070a12;
+      color: #080b10;
     }
 
     .btn-primary:hover {
@@ -701,13 +782,13 @@
       text-align: center;
     }
 
-    /* BOTÓN FLOTANTE "VOLVER ARRIBA" */
+    /* BOTÓN FLOTANTE PARA REGRESAR AL INICIO */
     .back-to-top {
       position: fixed;
       bottom: 2rem;
       right: 2rem;
-      background: var(--violet);
-      color: #070a12;
+      background: var(--gold);
+      color: #080b10;
       border: none;
       width: 45px;
       height: 45px;
@@ -718,7 +799,7 @@
       font-size: 1.2rem;
       font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 10px 25px rgba(167, 139, 250, 0.4);
+      box-shadow: 0 10px 25px rgba(217, 119, 6, 0.4);
       transition: all 0.2s;
       z-index: 999;
       text-decoration: none;
@@ -746,31 +827,51 @@
       footer { flex-direction: row; justify-content: space-between; text-align: left; }
     }
 
-    footer a { color: var(--emerald); text-decoration: none; }
+    footer a { color: var(--gold-light); text-decoration: none; }
   </style>
 </head>
 <body id="top">
-  <!-- MENÚ DE NAVEGACIÓN FIJO SUPERIOR -->
+  <!-- MENÚ DE NAVEGACIÓN SUPERIOR CON DESPLEGABLES -->
   <nav class="site-nav">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-      <div class="brand">✦ MS 408 // DECIPHERMENT</div>
-      <ul class="nav-links">
-        <li><a href="#corpus">Laboratorio</a></li>
-        <li><a href="#roadmap">Alcance y Fondeo</a></li>
-        <li><a href="#zenodo-repo">Zenodo</a></li>
-        <li><a href="#collaboration">Colaboración</a></li>
-        <li><a href="#contact">Contacto</a></li>
-        <li><a href="#related-sites">Enlaces</a></li>
-      </ul>
-      <select id="langSelect" class="lang-selector" onchange="changeLanguage(this.value)">
-        <option value="es">Español</option>
-        <option value="en">English</option>
-      </select>
+    <div class="container nav-inner">
+      <div class="brand">
+        <svg style="width:18px;height:18px;fill:var(--gold);" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6Z"/></svg>
+        MS 408 // DECIPHERMENT
+      </div>
+
+      <div class="nav-controls">
+        <!-- MENÚ DESPLEGABLE DE SECCIONES (MAPA DE SITIO) -->
+        <div class="dropdown-container">
+          <button class="dropdown-toggle" onclick="toggleDropdown('menuDropdown')">
+            <span>Menú / Mapa de Sitio</span> ▾
+          </button>
+          <div class="dropdown-menu" id="menuDropdown">
+            <a href="#corpus" onclick="closeAllDropdowns()">🔬 Laboratorio Interactivo</a>
+            <a href="#iconography" onclick="closeAllDropdowns()">🌿 Iconografía Voynich</a>
+            <a href="#roadmap" onclick="closeAllDropdowns()">📊 Alcance y Fondeo</a>
+            <a href="#zenodo-repo" onclick="closeAllDropdowns()">📜 Preprint Zenodo</a>
+            <a href="#collaboration" onclick="closeAllDropdowns()">🤝 Colaboración</a>
+            <a href="#contact" onclick="closeAllDropdowns()">✉️ Contacto y Feedback</a>
+            <a href="#related-sites" onclick="closeAllDropdowns()">🌐 Enlaces Académicos</a>
+          </div>
+        </div>
+
+        <!-- MENÚ DESPLEGABLE DE IDIOMA -->
+        <div class="dropdown-container">
+          <button class="dropdown-toggle" onclick="toggleDropdown('langDropdown')">
+            <span>Language / Idioma</span> ▾
+          </button>
+          <div class="dropdown-menu" id="langDropdown">
+            <a href="#" onclick="changeLanguage('es'); closeAllDropdowns();">🇪🇸 Español (ES)</a>
+            <a href="#" onclick="changeLanguage('en'); closeAllDropdowns();">🇬🇧 English (EN)</a>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
 
   <div class="container">
-    <!-- DASHBOARD CON RED NEURONAL E INFOGRAFÍA TIPO RUEDA ZODIACAL VOYNICH -->
+    <!-- DASHBOARD DE TELEMETRÍA Y RUEDA ZODIACAL -->
     <div class="scientific-telemetry-banner">
       <div class="telemetry-canvas-container">
         <canvas id="telemetryCanvas" title="Red Neuronal y Espacio Vectorial Activo"></canvas>
@@ -780,20 +881,17 @@
         <div class="voynich-wheel-title">✦ Wheel of MS 408 // Telemetry ✦</div>
         <div class="wheel-svg-wrapper">
           <svg viewBox="0 0 200 200">
-            <!-- Anillo Exterior Decorativo con Estilo Voynich -->
             <circle cx="100" cy="100" r="94" fill="none" stroke="#10b981" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.7"/>
-            <circle cx="100" cy="100" r="86" fill="none" stroke="#a78bfa" stroke-width="1" opacity="0.4"/>
+            <circle cx="100" cy="100" r="86" fill="none" stroke="#d97706" stroke-width="1" opacity="0.4"/>
             <circle cx="100" cy="100" r="70" fill="none" stroke="#10b981" stroke-width="2" opacity="0.6"/>
-            <!-- Radios / Cuadrantes Estelares -->
             <line x1="100" y1="14" x2="100" y2="186" stroke="#10b981" stroke-width="1" opacity="0.4"/>
             <line x1="14" y1="100" x2="186" y2="100" stroke="#10b981" stroke-width="1" opacity="0.4"/>
-            <line x1="39" y1="39" x2="161" y2="161" stroke="#a78bfa" stroke-width="0.8" opacity="0.3"/>
-            <line x1="39" y1="161" x2="161" y2="39" stroke="#a78bfa" stroke-width="0.8" opacity="0.3"/>
-            <!-- Puntos Estelares y Glifos Periféricos -->
-            <circle cx="100" cy="14" r="3" fill="#a78bfa"/>
-            <circle cx="186" cy="100" r="3" fill="#a78bfa"/>
-            <circle cx="100" cy="186" r="3" fill="#a78bfa"/>
-            <circle cx="14" cy="100" r="3" fill="#a78bfa"/>
+            <line x1="39" y1="39" x2="161" y2="161" stroke="#d97706" stroke-width="0.8" opacity="0.3"/>
+            <line x1="39" y1="161" x2="161" y2="39" stroke="#d97706" stroke-width="0.8" opacity="0.3"/>
+            <circle cx="100" cy="14" r="3" fill="#d97706"/>
+            <circle cx="186" cy="100" r="3" fill="#d97706"/>
+            <circle cx="100" cy="186" r="3" fill="#d97706"/>
+            <circle cx="14" cy="100" r="3" fill="#d97706"/>
           </svg>
           <div class="wheel-center-core">
             <span class="core-status">ONLINE</span>
@@ -824,27 +922,58 @@
           <h1>Códice MS 408: Manuscrito Voynich</h1>
           
           <p class="intro-text">
-            Bienvenido a la experiencia definitiva de inmersión y desciframiento del <strong>Manuscrito Voynich (Códice MS 408)</strong>. Datado por radiocarbono a principios del siglo XV (aprox. 1404–1438), este códice ha desconcertado a historiadores, lingüistas, criptógrafos y científicos de todo el mundo desde su redescubrimiento en 1912 por el librero anticuarista Wilfrid Voynich. De los aproximadamente 272 folios originales, hoy se conservan <strong>240 folios</strong> bajo riguroso resguardo en la Biblioteca Beinecke de Manuscritos y Libros Raros de la Universidad de Yale. Sus enigmáticas páginas —repletas de ilustraciones botánicas inexplicables, diagramas cosmológicos radiales, secretos balneológicos y complejos tratados biológicos— resistieron durante más de un siglo los intentos de resolución basados en criptografía estadística tradicional y sustitución estática de caracteres.
+            Bienvenido a la experiencia definitiva de inmersión y desciframiento del <strong>Manuscrito Voynich (Códice MS 408)</strong>. Datado por radiocarbono a principios del siglo XV (aprox. 1404–1438), este códice ha desconcertado a historiadores, lingüistas y científicos desde su redescubrimiento en 1912 por Wilfrid Voynich. De los aproximadamente 272 folios originales, hoy se conservan <strong>240 folios</strong> en la Biblioteca Beinecke de la Universidad de Yale. Sus enigmáticas páginas —repletas de ilustraciones botánicas, diagramas cosmológicos y secretos balneológicos— resistieron durante más de un siglo los intentos de resolución por criptografía estadística tradicional.
           </p>
 
           <p class="intro-text">
-            <strong>¿Cómo logramos el desciframiento y cuál es nuestro enfoque?</strong> Tras años de investigación independiente, rompimos el paradigma criptoanalítico clásico. En lugar de tratar los glifos como un alfabeto cifrado convencional, partimos del corpus de referencia internacional <strong>IVTFF (European Voynich Alphabet)</strong> desarrollado y compartido por la comunidad académica global. A partir de ahí, diseñamos una potente arquitectura de software implementada en <strong>Python</strong>, fundamentada en <strong>física matemática, análisis matricial de alta densidad y gramática de fluidos</strong>. Esto permite modelar las transiciones glíficas no como símbolos estáticos de un idioma natural convencional, sino como vectores dinámicos y coherentes de un sistema termodinámico e hidrográfico.
-          </p>
-
-          <p class="intro-text">
-            <strong>De la investigación individual al aula interactiva global:</strong> Este sitio web y el motor de manipulación teórica nacieron como el resultado de un esfuerzo unipersonal apasionado por demostrar que el enigma tenía solución científica. Hoy, este espacio se transforma en un aula interactiva donde puedes <strong>jugar, experimentar y auditar en vivo</strong> las traducciones folio por folio.
+            <strong>¿Cómo logramos el desciframiento?</strong> Rompimos el paradigma criptoanalítico clásico partiendo del corpus de referencia internacional <strong>IVTFF</strong> y diseñando una arquitectura de software en <strong>Python</strong> fundamentada en <strong>física matemática, análisis matricial y gramática de fluidos</strong>, modelando las transiciones glíficas como vectores termodinámicos e hidrográficos.
           </p>
 
           <div class="scope-callout">
-            📜 <strong>Nota Metodológica sobre las Líneas:</strong> La plataforma permite auditar folios representativos (mostrando muestras de 4 líneas clave frente al total real registrado en el corpus IVTFF), destacando de manera estelar el <strong>Folio 116r</strong> (conocido como la "Piedra Rosetta" del códice por ser texto puro sin ilustraciones), el cual se encuentra traducido e integrado al <strong>100% de sus líneas reales</strong>.
+            📜 <strong>Nota Metodológica:</strong> La plataforma permite auditar folios representativos (muestras de 4 líneas clave frente al total real), destacando de manera estelar el <strong>Folio 116r</strong> ("Piedra Rosetta" del códice), traducido e integrado al <strong>100% de sus líneas reales</strong>.
           </div>
         </div>
       </div>
 
+      <!-- SECCIÓN DE ICONOGRAFÍA Y REFERENCIAS VISUALES DEL MANUSCRITO -->
+      <section id="iconography">
+        <h2>
+          <svg class="section-icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6Z"/></svg>
+          Iconografía e Imágenes de Referencia del Códice
+        </h2>
+        <p>El Manuscrito Voynich destaca por su iconografía inconfundible. A continuación se presentan los elementos visuales icónicos que fundamentan la clasificación de nuestros módulos de análisis:</p>
+        
+        <div class="voynich-gallery-grid">
+          <div class="voynich-icon-card">
+            <!-- Icono Ninfas / Balneología -->
+            <svg viewBox="0 0 24 24"><path d="M12,2C15.31,2 18,4.69 18,8C18,11.31 15.31,14 12,14C8.69,14 6,11.31 6,8C6,4.69 8.69,2 12,2M12,4C9.79,4 8,5.79 8,8C8,10.21 9.79,12 12,12C14.21,12 16,10.21 16,8C16,5.79 14.21,4 12,4M12,15C16.42,15 20,16.79 20,19V21H4V19C4,16.79 7.58,15 12,15Z"/></svg>
+            <span>Ninfas e Hidráulica</span>
+          </div>
+          <div class="voynich-icon-card">
+            <!-- Icono Estrellas Cosmológicas -->
+            <svg viewBox="0 0 24 24"><path d="M12,2L15.09,8.26L22,9.27L17,14.14L18.18,21.02L12,17.77L5.82,21.02L7,14.14L2,9.27L8.91,8.26L12,2Z"/></svg>
+            <span>Estrellas Cosmológicas</span>
+          </div>
+          <div class="voynich-icon-card">
+            <!-- Icono Plantas Herbolarias -->
+            <svg viewBox="0 0 24 24"><path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11 2,11C2,11 4,9 7,8.5C11,7.8 14,8 17,8Z"/></svg>
+            <span>Herbolaria y Raíces</span>
+          </div>
+          <div class="voynich-icon-card">
+            <!-- Icono Zodiacal -->
+            <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6V11H6V13H11V18H13V13H18V11H13V6H11Z"/></svg>
+            <span>Zodíaco y Constelaciones</span>
+          </div>
+        </div>
+      </section>
+
       <!-- SECCIÓN DEL MOTOR DE TRADUCCIÓN -->
       <section id="corpus">
-        <h2>Laboratorio Interactivo y Aula de Simulación</h2>
-        <p>Entra en acción. Aquí comienza la experiencia en vivo con el motor algorítmico: visualiza el facsímil digital del folio tal como se encuentra en Yale, audita su descripción original, contrasta el conteo de líneas reales frente a la muestra analizada, cambia de idioma en tiempo real o revisa el mapeo de transliteración algorítmica.</p>
+        <h2>
+          <svg class="section-icon" viewBox="0 0 24 24"><path d="M19,3H5C3.89,3 3,3.89 3,5V19C3,20.1 3.89,21 5,21H19C20.1,21 21,20.1 21,19V5C21,3.89 20.1,3 19,3M19,5V19H5V5H19Z"/></svg>
+          Laboratorio Interactivo y Aula de Simulación
+        </h2>
+        <p>Entra en acción. Aquí comienza la experiencia en vivo con el motor algorítmico: visualiza el facsímil digital del folio en Yale, audita su descripción, contrasta el conteo de líneas reales frente a la muestra analizada y cambia de idioma en tiempo real.</p>
 
         <div class="casino-workbench">
           <div class="workbench-header-tag">🎰 Motor Activo // Aula Interactiva de Traducción</div>
@@ -909,33 +1038,23 @@
 
       <!-- SECCIÓN DE PERSPECTIVAS, ALCANCE Y FONDEO -->
       <section id="roadmap">
-        <h2>Perspectivas, Alcance Metodológico y Fondeo ($25,000 USD)</h2>
-        <p>
-          Para someter este marco de trabajo al rigor de la comunidad científica internacional y expandir su impacto, nuestra hoja de ruta contempla:
-        </p>
+        <h2>
+          <svg class="section-icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6V11H6V13H11V18H13V13H18V11H13V6H11Z"/></svg>
+          Perspectivas, Alcance Metodológico y Fondeo ($25,000 USD)
+        </h2>
+        <p>Para someter este marco de trabajo al rigor de la comunidad científica internacional, nuestra hoja de ruta contempla:</p>
         <ul style="color: var(--muted); margin-left: 1.5rem; margin-bottom: 1.5rem; text-align: justify;">
-          <li><strong>Carga y Despliegue Masivo de Folios Pendientes:</strong> Integración progresiva de la totalidad de los folios conservados del manuscrito.</li>
-          <li><strong>Traducción de Líneas Restantes:</strong> Volcado e integración de todas las líneas de cada folio para alcanzar una cobertura del 100% en todo el corpus.</li>
-          <li><strong>Reconstrucción Digital de Folios Perdidos:</strong> Uso de interpolación matricial y modelado computacional para recrear los ~32 folios desaparecidos, en colaboración con artistas e ilustradores.</li>
-          <li><strong>Galería Interactiva de Alta Resolución:</strong> Herramientas didácticas para acercamientos topográficos y análisis glífico forense.</li>
-          <li><strong>Aplicación a Otros Códigos e Idiomas Sin Descifrar:</strong> Extender la metodología de gramática de fluidos y análisis matricial a otros sistemas de escritura históricos y enigmáticos de interés académico mundial que aún no han tenido la debida maquinaria computacional implementada.</li>
-          <li><strong>Formación de Recursos Humanos y Equipos Multidisciplinarios:</strong> Consolidar células de investigación coordinadas que aborden problemas abiertos con un enfoque científico riguroso.</li>
+          <li><strong>Carga y Despliegue Masivo:</strong> Integración progresiva de la totalidad de los folios conservados.</li>
+          <li><strong>Traducción de Líneas Restantes:</strong> Volcado de todas las líneas para alcanzar cobertura del 100%.</li>
+          <li><strong>Reconstrucción Digital de Folios Perdidos:</strong> Uso de interpolación matricial para recrear los ~32 folios desaparecidos.</li>
+          <li><strong>Aplicación a Otros Códigos:</strong> Extender la metodología a otros sistemas de escritura históricos sin descifrar.</li>
+          <li><strong>Formación de Equipos:</strong> Consolidar células de investigación interdisciplinarias.</li>
         </ul>
 
-        <div class="scope-callout" style="border-left-color: var(--emerald); margin-bottom: 2rem;">
-          🔬 <strong>Nota Aclaratoria sobre el Alcance y Próximos Pasos:</strong> Este sitio web y el aula interactiva constituyen un <strong>primer y segundo paso crucial</strong> para acercar la teoría y el software a la comunidad. Su finalidad es recibir retroalimentación, probar el modelo en entornos públicos, someterlo a validación abierta y encontrar posibles refutaciones, acercando el trabajo tanto al público general como a la comunidad especializada que lleva años investigando este manuscrito. Sin embargo, queremos recalcar de forma categórica que <strong>esta plataforma de ninguna manera pretende ser una demostración definitiva o una solución absoluta al 100%</strong> de los problemas planteados, como lamentablemente se anuncia de forma sensacionalista casi cada semana en diversos foros. 
-          <br><br>
-          A partir de estos momentos, el autor concentrará sus esfuerzos individuales en llevar este trabajo hacia instancias de revisión más formales y especializadas —incluyendo la revisión por pares (peer review) y la publicación en revistas científicas indexadas— para presentar formalmente esta aportación ante la comunidad científica como una solución rigurosa y probada (respaldada por una herramienta computacional útil para validación, educación y entretenimiento), permitiendo que el proyecto crezca de forma óptima, eficiente y respaldada sólidamente por infraestructura de hardware real.
-        </div>
-        
         <div class="support-box">
-          <h3>Transparencia Fiscal y Fondeo Abierto a través de Fundación Raft</h3>
+          <h3>Transparencia Fiscal y Fondeo a través de Fundación Raft</h3>
           <p style="text-align: justify; margin-bottom: 1rem;">
-            <strong>¿Qué es la Fundación Raft y por qué se gestiona a través de ellos?</strong> La Fundación Raft es una organización dedicada a respaldar y administrar con absoluta transparencia fiscal los recursos para proyectos tecnológicos y científicos de código abierto. Gestionar las aportaciones mediante esta entidad garantiza rendición de cuentas, cumplimiento normativo y legitimidad institucional. <em>Actualmente nos encontramos a la espera de que la Fundación Raft nos proporcione la información oficial y los datos definitivos de la cuenta para habilitarlos directamente en la plataforma.</em> Puedes consultar su portal oficial en el sitio web de la Fundación Raft.
-          </p>
-
-          <p style="text-align: justify; margin-bottom: 1rem;">
-            <strong>¿En qué se empleará el recurso presupuestal ($25,000 USD)?</strong> El desglose financiero y operativo se distribuye de manera transparente en los siguientes rubros estratégicos:
+            La Fundación Raft administra con absoluta transparencia fiscal los recursos para proyectos de código abierto. <em>Actualmente nos encontramos a la espera de que la Fundación Raft nos proporcione los datos definitivos de la cuenta.</em>
           </p>
 
           <div class="table-responsive">
@@ -950,62 +1069,64 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>Hardware y Estaciones de Trabajo</strong></td>
+                  <td><strong>Hardware y Estaciones</strong></td>
                   <td>$8,750 USD</td>
                   <td>35%</td>
-                  <td>Adquisición de GPUs dedicadas al cálculo matricial, estaciones de trabajo multinúcleo y sistemas de almacenamiento masivo en terabytes SSD NVMe para indexar imágenes y bases de datos locales.</td>
+                  <td>GPUs dedicadas al cálculo matricial y almacenamiento masivo SSD NVMe.</td>
                 </tr>
                 <tr>
-                  <td><strong>Talento Humano Permanente</strong></td>
+                  <td><strong>Talento Humano</strong></td>
                   <td>$10,000 USD</td>
                   <td>40%</td>
-                  <td>Sueldos y honorarios para ingenieros de software, desarrolladores, community managers y formación de recursos humanos especializados encargados del soporte y operación continua.</td>
+                  <td>Sueldos para ingenieros de software e investigadores especializados.</td>
                 </tr>
                 <tr>
-                  <td><strong>Servidores y Base de Datos Local</strong></td>
+                  <td><strong>Servidores Cloud</strong></td>
                   <td>$3,750 USD</td>
                   <td>15%</td>
-                  <td>Infraestructura en la nube, servidores de alta disponibilidad para soportar consultas simultáneas masivas, despliegue de base de datos local y pago de dominios/SSL.</td>
+                  <td>Infraestructura de alta disponibilidad para consultas simultáneas.</td>
                 </tr>
                 <tr>
                   <td><strong>Comisiones e Impuestos</strong></td>
                   <td>$2,500 USD</td>
                   <td>10%</td>
-                  <td>Pasarelas de pago, comisiones transaccionales, contabilidad y cumplimiento fiscal gestionado a través de la Fundación Raft.</td>
+                  <td>Pasarelas de pago y cumplimiento fiscal vía Fundación Raft.</td>
                 </tr>
               </tbody>
             </table>
           </div>
-
-          <p style="text-align: justify; margin-bottom: 1rem; margin-top: 1rem;">
-            <strong>Un llamado a la difusión y ciencia abierta:</strong> Queremos aclarar con absoluta franqueza que <strong>no estamos solicitando donativos individuales ni aportaciones económicas a las personas</strong>. La mayor contribución que cualquier entusiasta o visitante puede hacer es utilizar, leer, interactuar y divertirse explorando esta plataforma, pero sobre todo, compartirla. Nuestro objetivo principal es que este proyecto llegue a los ojos de personas que forman parte de fundaciones, academias o instituciones que disponen de presupuestos asignados para apoyar investigaciones de alto impacto como esta.
-          </p>
         </div>
       </section>
 
-      <!-- SECCIÓN DEDICADA A ZENODO -->
+      <!-- SECCIÓN DE ZENODO -->
       <section id="zenodo-repo">
         <div class="zenodo-section">
           <h3>Preprint Oficial y Código Fuente en Zenodo</h3>
           <p style="text-align: justify; margin-bottom: 1.5rem;">
-            Para fomentar la ciencia abierta y la verificabilidad internacional, Zenodo (el repositorio de confianza impulsado por el CERN y OpenAIRE) aloja de manera pública nuestro preprint oficial y la carpeta integral con el software de análisis computacional. Todo el código fuente, scripts de Python, matrices y datos complementarios están disponibles para que cualquier investigador, académico o entusiasta pueda examinarlos, descargarlos y utilizarlos libremente para sus propias implementaciones y validaciones bajo los términos de la licencia CC BY-NC 4.0.
+            Zenodo (respaldado por CERN y OpenAIRE) aloja de manera pública nuestro preprint oficial y la carpeta integral con el software de análisis computacional bajo licencia CC BY-NC 4.0.
           </p>
           <a href="https://zenodo.org/records/24200946" target="_blank" rel="noopener" class="btn btn-primary">Acceder al Preprint y Repositorio en Zenodo ↗</a>
         </div>
       </section>
 
-      <!-- SECCIÓN DE COLABORACIÓN ABIERTA -->
+      <!-- SECCIÓN DE COLABORACIÓN -->
       <section id="collaboration">
-        <h2>Convocatoria Abierta de Colaboración Interdisciplinaria</h2>
+        <h2>
+          <svg class="section-icon" viewBox="0 0 24 24"><path d="M16,13C15.71,13 15.38,13 15.03,13.05C16.19,13.89 17,15 17,16.5V19H23V16.5C23,14.17 18.33,13 16,13M8,13C5.67,13 1,14.17 1,16.5V19H15V16.5C1,14.17 10.33,13 8,13M8,11A3,3 0 0,0 11,8A3,3 0 0,0 8,5A3,3 0 0,0 5,8A3,3 0 0,0 8,11M16,11A3,3 0 0,0 19,8A3,3 0 0,0 16,5A3,3 0 0,0 13,8A3,3 0 0,0 16,11Z"/></svg>
+          Convocatoria Abierta de Colaboración
+        </h2>
         <p style="text-align: justify;">
-          Este proyecto nació del esfuerzo individual y apasionado de una sola persona, pero su escalamiento hacia el futuro pertenece a la comunidad global. Extendemos una cordial y abierta invitación a <strong>programadores, ingenieros de software, diseñadores UX, lingüistas, historiadores, criptógrafos, ilustradores, así como a patrocinadores, mecenas y entidades</strong> que deseen sumarse desde cualquier ángulo o lugar. Ya sea aportando talento, infraestructura, herramientas físicas o digitales, toda contribución constructiva es bienvenida para fortalecer la ciencia abierta.
+          Extendemos una cordial invitación a programadores, lingüistas, historiadores, criptógrafos y mecenas que deseen sumarse para fortalecer la ciencia abierta.
         </p>
       </section>
 
       <!-- SECCIÓN DE CONTACTO -->
       <section id="contact">
-        <h2>Contacto, Críticas y Comentarios</h2>
-        <p>Tu opinión, feedback, propuestas de validación científica, críticas constructivas o comentarios son extremadamente valiosos para nosotros. ¡Escríbenos y leemos personalmente cada mensaje!</p>
+        <h2>
+          <svg class="section-icon" viewBox="0 0 24 24"><path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18C2,19.1 2.89,20 4,20H20C21.1,20 22,19.1 22,18V6C22,4.89 21.1,4 20,4Z"/></svg>
+          Contacto, Críticas y Comentarios
+        </h2>
+        <p>Tu opinión, feedback y propuestas de validación científica son extremadamente valiosas. ¡Escríbenos!</p>
         <div class="contact-section">
           <form id="contactForm" onsubmit="handleContact(event)">
             <div class="form-group">
@@ -1018,7 +1139,7 @@
             </div>
             <div class="form-group">
               <label for="senderMessage">Mensaje / Propuesta de Colaboración</label>
-              <textarea id="senderMessage" class="form-control" required placeholder="Escribe tu consulta, comentario o aportación..."></textarea>
+              <textarea id="senderMessage" class="form-control" required placeholder="Escribe tu consulta o aportación..."></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
             <div id="formSuccess" class="form-success">¡Mensaje enviado con éxito! Agradecemos profundamente tu retroalimentación.</div>
@@ -1028,25 +1149,28 @@
 
       <!-- SECCIÓN DE SITIOS RELACIONADOS -->
       <section id="related-sites">
-        <h2>Sitios Relacionados e Interés Académico</h2>
-        <p>Explora fuentes primarias, repositorios internacionales y foros de discusión especializados donde la comunidad global analiza y debate los avances sobre el Manuscrito Voynich:</p>
+        <h2>
+          <svg class="section-icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M11,6V11H6V13H11V18H13V13H18V11H13V6H11Z"/></svg>
+          Sitios Relacionados e Interés Académico
+        </h2>
+        <p>Explora repositorios y foros globales sobre el Manuscrito Voynich:</p>
         
         <div class="links-grid">
           <a href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noopener" class="link-card">
-            <h4>Biblioteca Beinecke (Universidad de Yale)</h4>
-            <p>Resguardo oficial del Códice MS 408 y visor digital de facsímiles en alta resolución para investigación forense.</p>
+            <h4>Biblioteca Beinecke (Yale)</h4>
+            <p>Resguardo oficial del Códice MS 408 y visor digital en alta resolución.</p>
           </a>
           <a href="https://www.reddit.com/r/voynich/" target="_blank" rel="noopener" class="link-card">
             <h4>Comunidad r/Voynich (Reddit)</h4>
-            <p>Foro internacional de discusión donde investigadores independientes y entusiastas debaten teorías y análisis.</p>
+            <p>Foro internacional de discusión de investigadores independientes.</p>
           </a>
           <a href="https://news.ycombinator.com/" target="_blank" rel="noopener" class="link-card">
             <h4>Hacker News</h4>
-            <p>Portal de tecnología y ciencia donde se discuten implementaciones algorítmicas y arquitecturas de software.</p>
+            <p>Portal donde se discuten implementaciones algorítmicas.</p>
           </a>
           <a href="https://boingboing.net/" target="_blank" rel="noopener" class="link-card">
             <h4>Boing Boing</h4>
-            <p>Plataforma de cultura digital y misterios históricos que destaca hallazgos independientes de gran impacto.</p>
+            <p>Cultura digital y misterios históricos de gran impacto.</p>
           </a>
         </div>
       </section>
@@ -1062,6 +1186,25 @@
   </div>
 
   <script>
+    // CONTROL DE MENÚS DESPLEGABLES
+    function toggleDropdown(id) {
+      const menu = document.getElementById(id);
+      const isOpen = menu.classList.contains('show');
+      closeAllDropdowns();
+      if (!isOpen) {
+        menu.classList.add('show');
+      }
+      event.stopPropagation();
+    }
+
+    function closeAllDropdowns() {
+      document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('show'));
+    }
+
+    window.addEventListener('click', () => {
+      closeAllDropdowns();
+    });
+
     // RED NEURONAL Y ESPACIO VECTORIAL
     const canvas = document.getElementById("telemetryCanvas");
     const ctx = canvas.getContext("2d");
@@ -1087,7 +1230,6 @@
 
     function animateTelemetry() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
       ctx.strokeStyle = "rgba(56, 189, 248, 0.12)";
       ctx.lineWidth = 0.8;
 
@@ -1114,7 +1256,7 @@
       nodes.forEach(n => {
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-        ctx.fillStyle = n.active ? "rgba(56, 189, 248, 0.9)" : "rgba(167, 139, 250, 0.7)";
+        ctx.fillStyle = n.active ? "rgba(56, 189, 248, 0.9)" : "rgba(217, 119, 6, 0.7)";
         ctx.fill();
       });
 
@@ -1125,7 +1267,7 @@
     const corpusData = {
       "f1r": {
         title: "Folio 1r (Herbal - Apertura)",
-        desc: "Sección botánica inicial. Mostrando 4 líneas clave representativas de un total de 10 líneas reales que posee este folio.",
+        desc: "Sección botánica inicial. Mostrando 4 líneas clave representativas de un total de 10 líneas reales.",
         thumb: "images/folio-1r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002046",
         eva: "f1r.1: fachys.ykal.ar.ataiin.shol.shory.cthres\nf1r.2: y.kor.sholdy.chcth.or.dar.cth\nf1r.3: shol.dar.cth.ody.datar.shol.dar\nf1r.4: cth.or.shor.daiin.chol.okaiin",
@@ -1136,7 +1278,7 @@
       },
       "f2v": {
         title: "Folio 2v (Biológica - Conductos de Agua)",
-        desc: "Sección biológica. Mostrando 4 líneas clave representativas de un total de 14 líneas reales que posee este folio.",
+        desc: "Sección biológica. Mostrando 4 líneas clave representativas de un total de 14 líneas reales.",
         thumb: "images/folio-2v.jpg",
         link: "https://collections.library.yale.edu/catalog/2002046",
         eva: "f2v.1: kooiin.cheo.pchor.otaiin.o.dain.chor.dair.shty\nf2v.2: chol.cth.ody.dar.shol.or.shor\nf2v.3: oar.or.cth.daiin.shor.qokedy\nf2v.4: daiin.shol.cth.ody.okaiin",
@@ -1147,7 +1289,7 @@
       },
       "f20r": {
         title: "Folio 20r (Herbal - Simetría Botánica)",
-        desc: "Estudio de hojas alternas. Mostrando 4 líneas clave representativas de un total de 12 líneas reales que posee este folio.",
+        desc: "Estudio de hojas alternas. Mostrando 4 líneas clave representativas de un total de 12 líneas reales.",
         thumb: "images/folio-20r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002084",
         eva: "f20r.1: dar.cth.oar.shol.chol.daiin\nf20r.2: ody.shor.or.cth.dar.shol\nf20r.3: shol.oar.cth.daiin.or.okeol\nf20r.4: cth.dar.shol.or.shedy",
@@ -1158,7 +1300,7 @@
       },
       "f57r": {
         title: "Folio 57r (Cosmológica - Diagrama Radial)",
-        desc: "Diagramas circulares. Mostrando 4 líneas clave representativas de un total de 16 líneas reales que posee este folio.",
+        desc: "Diagramas circulares. Mostrando 4 líneas clave representativas de un total de 16 líneas reales.",
         thumb: "images/folio-57r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002160",
         eva: "f57r.1: qol.shol.dar.cth.or.daiin.okaiin\nf57r.2: cth.ody.oar.shol.chol.dar.shedy\nf57r.3: shor.daiin.cth.or.oar.qokedy\nf57r.4: dar.cth.shol.ody.chol.daiin",
@@ -1169,7 +1311,7 @@
       },
       "f67r": {
         title: "Folio 67r (Cosmológica - Tablas Estelares)",
-        desc: "Matrices estelares concéntricas. Mostrando 4 líneas clave representativas de un total de 15 líneas reales que posee este folio.",
+        desc: "Matrices estelares concéntricas. Mostrando 4 líneas clave representativas de un total de 15 líneas reales.",
         thumb: "images/folio-67r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002190",
         eva: "f67r.1: cth.oar.dar.shol.or.daiin.okeol\nf67r.2: ody.chol.cth.shor.dar.oar.shedy\nf67r.3: shol.dar.cth.ody.chol.qokedy\nf67r.4: or.shor.daiin.cth.dar.okaiin",
@@ -1180,7 +1322,7 @@
       },
       "f68r": {
         title: "Folio 68r (Farmacéutica - Estrellas y Frascos)",
-        desc: "Recetas farmacéuticas. Mostrando 4 líneas clave representativas de un total de 18 líneas reales que posee este folio.",
+        desc: "Recetas farmacéuticas. Mostrando 4 líneas clave representativas de un total de 18 líneas reales.",
         thumb: "images/folio-68r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002195",
         eva: "f68r.1: dar.chol.cth.ody.shol.or.okaiin\nf68r.2: or.shor.daiin.cth.dar.chol.shedy\nf68r.3: cth.dar.shol.ody.oar.qokedy\nf68r.4: shol.daiin.cth.or.dar.shedy",
@@ -1191,7 +1333,7 @@
       },
       "f70r": {
         title: "Folio 70r (Zodiacal - Piscis)",
-        desc: "Diagramas astrológicos. Mostrando 4 líneas clave representativas de un total de 11 líneas reales que posee este folio.",
+        desc: "Diagramas astrológicos. Mostrando 4 líneas clave representativas de un total de 11 líneas reales.",
         thumb: "images/folio-70r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002202",
         eva: "f70r.1: daiin.shol.cth.dar.or.oar.okaiin\nf70r.2: chol.ody.shor.cth.daiin.dar.shedy\nf70r.3: oar.cth.shol.ody.chol.okeol\nf70r.4: cth.dar.shol.ody.daiin.shedy",
@@ -1202,7 +1344,7 @@
       },
       "f75r": {
         title: "Folio 75r (Balneológica - Tinas Parte 1)",
-        desc: "Sistemas de tinas. Mostrando 4 líneas clave representativas de un total de 22 líneas reales que posee este folio.",
+        desc: "Sistemas de tinas. Mostrando 4 líneas clave representativas de un total de 22 líneas reales.",
         thumb: "images/folio-75r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002215",
         eva: "f75r.1: shol.dar.cth.ody.oar.chol.okaiin\nf75r.2: cth.or.shor.daiin.dar.shol.shedy\nf75r.3: ody.chol.cth.oar.or.qokedy\nf75r.4: daiin.shol.cth.dar.okeol",
@@ -1213,7 +1355,7 @@
       },
       "f77r": {
         title: "Folio 77r (Biológica - Túbulos / Fuera de Muestra)",
-        desc: "Estudio morfológico. Mostrando 4 líneas clave (incluye la línea 3 del visor / línea 34 del total de 34 líneas reales).",
+        desc: "Estudio morfológico. Mostrando 4 líneas clave (incluye la línea 3 del visor / línea 34 del total real).",
         thumb: "images/folio-77r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002220",
         eva: "f77r.1: cth.dar.shol.ody.daiin.oar.okaiin\nf77r.2: oar.cth.shor.dar.chol.ody.shedy\nf77r.3: qokaiin.shedy.chedy.qol.chedy.qokaiin.qokaiin.checkhy.raiin\nf77r.4: shol.dar.cth.ody.daiin.okeol",
@@ -1224,7 +1366,7 @@
       },
       "f86r": {
         title: "Folio 86r (Rosetas - Panel Central)",
-        desc: "Estructura central de interconexión. Mostrando 4 líneas clave representativas de un total de 12 líneas reales que posee este folio.",
+        desc: "Estructura central de interconexión. Mostrando 4 líneas clave representativas de un total de 12 líneas reales.",
         thumb: "images/folio-86r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002248",
         eva: "f86r.1: daiin.shol.cth.dar.or.oar.okaiin\nf86r.2: chol.ody.shor.cth.daiin.dar.shedy\nf86r.3: oar.cth.shol.ody.chol.qokedy\nf86r.4: cth.dar.shol.ody.daiin.shedy",
@@ -1235,7 +1377,7 @@
       },
       "f86v": {
         title: "Folio 86v (Rosetas - Mapa de 9 Islas)",
-        desc: "Diagrama desplegable. Mostrando 4 líneas clave representativas de un total de 15 líneas reales que posee este folio.",
+        desc: "Diagrama desplegable. Mostrando 4 líneas clave representativas de un total de 15 líneas reales.",
         thumb: "images/folio-86v.jpg",
         link: "https://collections.library.yale.edu/catalog/2002250",
         eva: "f86v.1: shedy.qokaiin.okeol.shol.oar\nf86v.2: ody.cth.shor.or.dar.shol.okaiin\nf86v.3: dar.chol.cth.oar.daiin.shedy\nf86v.4: cth.dar.shol.ody.daiin.okaiin",
@@ -1246,7 +1388,7 @@
       },
       "f116r": {
         title: "Folio 116r (Texto Puro - Piedra Rosetta / 100% Completo)",
-        desc: "Página final de texto puro. Este folio se incluye al 100% de su capacidad real, desplegando la totalidad de sus 28 líneas registradas en el corpus IVTFF.",
+        desc: "Página final de texto puro. Este folio se incluye al 100% de su capacidad real, desplegando la totalidad de sus 28 líneas registradas.",
         thumb: "images/folio-116r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002300",
         eva: "f116r.1: daiin.chol.cth.oar.dar.shol.okaiin\nf116r.2: ody.shor.cth.dar.chol.or.shedy\nf116r.3: shol.dar.cth.daiin.oar.qokedy\nf116r.4: cth.or.shor.daiin.dar.shedy\nf116r.5: okaiin.shedy.qokedy.cth.shor\nf116r.6: chol.ody.shor.cth.oar.dar.shedy\nf116r.7: cth.dar.shol.ody.daiin.okaiin\nf116r.8: daiin.shol.cth.dar.or.oar.okaiin\nf116r.9: chol.ody.shor.cth.daiin.dar.shedy\nf116r.10: oar.cth.shol.ody.chol.okeol\nf116r.11: cth.oar.dar.shol.or.daiin.okeol\nf116r.12: ody.chol.cth.shor.dar.oar.shedy\nf116r.13: shol.dar.cth.ody.chol.qokedy\nf116r.14: dar.chol.cth.ody.shol.or.okaiin\nf116r.15: or.shor.daiin.cth.dar.chol.shedy\nf116r.16: cth.dar.shol.ody.oar.qokedy\nf116r.17: qol.shol.dar.cth.or.daiin.okaiin\nf116r.18: cth.ody.oar.shol.chol.dar.shedy\nf116r.19: shor.daiin.cth.or.oar.qokedy\nf116r.20: kooiin.cheo.pchor.otaiin.o.dain.chor.dair.shty\nf116r.21: chol.cth.ody.dar.shol.or.shor\nf116r.22: oar.or.cth.daiin.shor.qokedy\nf116r.23: dar.cth.oar.shol.chol.daiin\nf116r.24: ody.shor.or.cth.dar.shol\nf116r.25: shol.oar.cth.daiin.or.okeol\nf116r.26: shol.dar.cth.ody.oar.chol.okaiin\nf116r.27: cth.or.shor.daiin.dar.shol.shedy\nf116r.28: ody.chol.cth.oar.or.qokedy",
@@ -1254,49 +1396,6 @@
           es: "[Línea 1] Resumen de fórmula final: índice de extractos farmacéuticos compilados.\n[Línea 2] Sellar archivos del manuscrito en bóveda monástica seca y segura.\n[Línea 3] Verificación final de cifrado completada con éxito.\n[Línea 4] Fin del registro del códice y consolidación de cuadernillos.\n[Línea 5] Inspección celular microscópica y tinción de fluidos estelares.\n[Línea 6] Aislamiento de núcleo botánico activo en frasco sellado.\n[Línea 7] Registro de propiedades térmicas de la sustancia destilada.\n[Línea 8] Ciclo zodiacal regulado por corrientes de agua e influencia lunar.\n[Línea 9] Alineación de observaciones astronómicas con mareas estacionales.\n[Línea 10] Administración de remedios reconstituyentes en tránsito.\n[Línea 11] Matriz de cómputo estelar para navegación astral y cronometraje.\n[Línea 12] Convergencia estelar a través de cuatro cuadrantes celestes.\n[Línea 13] Ajustes de calendario para la transición estacional precisa.\n[Línea 14] Compuesto farmacéutico: aceite aromático en frasco vidriado.\n[Línea 15] Infusión de destilado de hoja seca sobre calor continuo.\n[Línea 16] Medición de dosis por peso de gota antes de aplicación.\n[Línea 17] Alineación de ciclo celeste y cenit de savia estacional.\n[Línea 18] Cruce de sectores radiales con declinación solar equinoccial.\n[Línea 19] Periodicidad armónica de anillos cosmológicos exteriores.\n[Línea 20] Conducto de baño hidrotermal y flujo mineral descendente.\n[Línea 21] Presión de recipiente para estimular absorción vascular.\n[Línea 22] Equilibrio de fluidos entre cámaras biológicas conectadas.\n[Línea 23] Cosecha de tintura de hojas en fase lunar nocturna.\n[Línea 24] Secado de follaje en cámaras para preservar jugos volátiles.\n[Línea 25] Pulverización de pétalos secos en polvo medicinal fino.\n[Línea 26] Regulación de duración de inmersión en piscina terapéutica.\n[Línea 27] Purgado de fluidos estancados mediante válvulas de drenaje.\n[Línea 28] Infusión final de sales minerales y cierre de compuertas.",
           en: "[Line 1] Concluding formula summary: index of compiled pharmaceutical extracts.\n[Line 2] Seal manuscript archives in dry secure monastic vault.\n[Line 3] Final encryption check completed successfully.\n[Line 4] End of codex registry and booklet consolidation.\n[Line 5] Microscopic cell inspection and stellar fluid staining.\n[Line 6] Isolate active botanical core in sealed vial.\n[Line 7] Record thermal properties of distilled substance.\n[Line 8] Zodiacal cycle governed by water currents and lunar influence.\n[Line 9] Align astronomical observations with seasonal tides.\n[Line 10] Administer restorative remedies during transit.\n[Line 11] Stellar computation matrix for astral navigation and timing.\n[Line 12] Stellar convergence across four celestial quadrants.\n[Line 13] Calendar adjustments for precise seasonal transition.\n[Line 14] Apothecary compound: aromatic oil in glazed jar.\n[Line 15] Infuse dried leaf distillate over continuous heat.\n[Line 16] Measure dosage by drop weight before application.\n[Line 17] Celestial cycle alignment and seasonal sap zenith.\n[Line 18] Cross-reference radial sectors with equinox solar declination.\n[Line 19] Harmonic periodicity of outer cosmological rings.\n[Line 20] Hydro-thermal bath conduit and downward mineral flow.\n[Line 21] Vessel pressure to stimulate vascular absorption.\n[Line 22] Fluid equilibrium across connected biological chambers.\n[Line 23] Leaf tincture harvesting during nocturnal lunar phase.\n[Line 24] Dry foliage in chambers to preserve volatile juices.\n[Line 25] Pulverize dry petals into fine medicinal powder.\n[Line 26] Regulate therapy pool immersion duration.\n[Line 27] Purge stagnant fluids via drainage valves.\n[Line 28] Final mineral salt infusion and gate closure."
         }
-      }
-    };
-
-    const translations = {
-      es: {
-        badge: "Ciencia Abierta • CC BY-NC 4.0",
-        mexicoBadge: "Innovación Científica Independiente desde México",
-        corpusTitle: "Laboratorio Interactivo y Aula de Simulación",
-        corpusDesc: "Selecciona cualquiera de los folios principales para consultar su transcripción y traducción en tiempo real.",
-        yaleBtn: "Ver Facsímil Original en Yale ↗",
-        lblFolio: "Seleccionar Folio",
-        lblMode: "Modo de Análisis",
-        lblTargetLang: "Idioma de Salida",
-        panelInput: "Flujo IVTFF de Referencia",
-        panelResult: "Salida Decodificada en Tiempo Real",
-        contactTitle: "Contacto, Críticas y Comentarios",
-        lblName: "Nombre / Institución",
-        lblEmail: "Correo Electrónico",
-        lblMessage: "Mensaje",
-        btnSend: "Enviar Mensaje",
-        successMsg: "¡Mensaje enviado con éxito!",
-        footerCopy: "© 2026 Códice MS 408 • Investigación Independiente por A. B. H. R. • CC BY-NC 4.0",
-        footerZenodo: "Preprint Zenodo"
-      },
-      en: {
-        badge: "Open Science • CC BY-NC 4.0",
-        mexicoBadge: "Independent Scientific Innovation from Mexico",
-        corpusTitle: "Interactive Laboratory & Simulation Classroom",
-        corpusDesc: "Select any of the main folios to review their transcription and translation in real-time.",
-        yaleBtn: "View Original Facsimile in Yale ↗",
-        lblFolio: "Select Folio",
-        lblMode: "Analysis Mode",
-        lblTargetLang: "Output Language",
-        panelInput: "Reference IVTFF Stream",
-        panelResult: "Real-Time Decoded Output",
-        contactTitle: "Contact, Reviews & Feedback",
-        lblName: "Name / Institution",
-        lblEmail: "Email Address",
-        lblMessage: "Message",
-        btnSend: "Send Message",
-        successMsg: "Message sent successfully!",
-        footerCopy: "© 2026 Codex MS 408 • Independent Research by A. B. H. R. • CC BY-NC 4.0",
-        footerZenodo: "Zenodo Preprint"
       }
     };
 
@@ -1325,11 +1424,6 @@
 
     function changeLanguage(lang) {
       document.getElementById("targetLangSelect").value = lang;
-      const t = translations[lang] || translations.es;
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        if (t[key]) el.innerHTML = t[key];
-      });
       updateFolioData();
     }
 
@@ -1340,7 +1434,7 @@
       setTimeout(() => { document.getElementById("formSuccess").style.display = "none"; }, 5000);
     }
 
-    changeLanguage("es");
+    updateFolioData();
   </script>
 </body>
 </html>
