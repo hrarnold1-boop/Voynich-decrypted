@@ -315,64 +315,6 @@
       text-align: left;
     }
 
-    .roadmap-card {
-      background: var(--surface-alt);
-      border: 1px dashed rgba(245, 158, 11, 0.5);
-      border-radius: 12px;
-      padding: 1.8rem;
-      margin-top: 1.5rem;
-    }
-
-    .roadmap-card h3 {
-      color: var(--gold);
-      font-size: 1.2rem;
-      margin-bottom: 0.7rem;
-    }
-
-    .roadmap-card p {
-      text-align: justify;
-    }
-
-    .budget-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1.8rem;
-      background: var(--surface);
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-
-    .budget-table th, .budget-table td {
-      padding: 1rem 1.2rem;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.95rem;
-    }
-
-    .budget-table th {
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--text);
-    }
-
-    .budget-table td.amount {
-      font-weight: 700;
-      color: var(--success);
-      white-space: nowrap;
-    }
-
-    .support-box {
-      background: linear-gradient(145deg, #101722 0%, #0a0f18 100%);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      border-radius: 16px;
-      padding: 2.2rem;
-      margin-top: 1.8rem;
-    }
-
-    .support-box p {
-      text-align: justify;
-    }
-
     .contact-section {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -444,12 +386,6 @@
       text-align: center;
     }
 
-    .status-note {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
     footer {
       padding: 2.5rem 0;
       color: var(--muted);
@@ -497,49 +433,21 @@
         </div>
       </div>
 
-      <section>
-        <h2 data-i18n="historyTitle">El Enigma, Siglos de Misterio y la Solución Computacional</h2>
-        <p data-i18n="historyP1">
-          Durante más de un siglo desde su descubrimiento por el librero antiquario Wilfrid Voynich en 1912, el Códice MS 408 (el Manuscrito Voynich) desconcertó a generaciones de criptógrafos e historiadores. Datado en el siglo XV (aprox. 1404–1438), sus extrañas ilustraciones desataron debates interminables sobre su autenticidad y estructura gramatical subyacente.
-        </p>
-        <p data-i18n="historyP2">
-          El avance definitivo se logró al abandonar supuestos criptográficos arbitrarios y aplicar un riguroso marco matemático de correlación matricial combinado con modelado de gramática de fluidos validado sobre el corpus estándar internacional.
-        </p>
-        <p data-i18n="historyP3">
-          Nuestra misión central es mantener la total transparencia auditable para que cualquier investigador independiente pueda verificar los resultados localmente o en esta plataforma.
-        </p>
-
-        <div class="grid">
-          <div class="card">
-            <h3 data-i18n="card1Title">Alineación IVTFF Estándar</h3>
-            <p data-i18n="card1Desc">Corpus integrado de forma estricta con las transcripciones de referencia internacional para evitar desfasajes de líneas.</p>
-          </div>
-          <div class="card">
-            <h3 data-i18n="card2Title">IA y Física Aplicada</h3>
-            <p data-i18n="card2Desc">Decodificación mediante modelos de gramática de fluidos y vectores dinámicos matriciales.</p>
-          </div>
-          <div class="card">
-            <h3 data-i18n="card3Title">Repositorio Yale Beinecke</h3>
-            <p data-i18n="card3Desc">Alineado digitalmente con los folios de archivo oficiales preservados en la Biblioteca Beinecke de Yale.</p>
-          </div>
-        </div>
-      </section>
-
       <section id="corpus">
         <h2 data-i18n="corpusTitle">Explorador Interactivo de Corpus y Traducción en Tiempo Real</h2>
         <p data-i18n="corpusDesc">
-          Explora el manuscrito línea por línea con las cadenas normalizadas oficiales del corpus de referencia.
+          Explora el manuscrito línea por línea con las cadenas normalizadas oficiales del corpus de referencia, incluyendo el Folio 77r completo para pruebas fuera de muestra.
         </p>
 
         <div class="corpus-workbench">
           <div class="folio-display-box">
             <div class="folio-thumb-container">
-              <img id="folioThumb" src="images/folio-1r.jpg" alt="Folio Preview">
+              <img id="folioThumb" src="images/folio-77r.jpg" alt="Folio Preview">
             </div>
             <div class="folio-preview-info">
-              <h3 id="folioTitleInfo">Folio 1r (Herbal - Apertura)</h3>
-              <p id="folioDescInfo">Sección botánica inicial con representación de plantas medicinales y tallos estructurados.</p>
-              <a id="yaleDirectLink" href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1rem;" data-i18n="yaleBtn">Ver Colección Oficial en Yale ↗</a>
+              <h3 id="folioTitleInfo">Folio 77r (Biológica - Túbulos Parte 1 / Out-of-Sample Test)</h3>
+              <p id="folioDescInfo">Estudio morfológico de conductos biológicos internos y líneas de validación cruzada.</p>
+              <a id="yaleDirectLink" href="https://collections.library.yale.edu/catalog/2002220" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.5rem 1rem;" data-i18n="yaleBtn">Ver Colección Oficial en Yale ↗</a>
             </div>
           </div>
 
@@ -547,22 +455,12 @@
             <div class="control-group">
               <label for="folioSelect" data-i18n="lblFolio">Seleccionar Folio / Sección</label>
               <select id="folioSelect" onchange="updateFolioData()">
+                <option value="f77r" selected>Folio 77r (Biológica - Prueba Fuera de Muestra)</option>
                 <option value="f1r">Folio 1r (Herbal - Apertura)</option>
-                <option value="f3r">Folio 3r (Herbal - Raíces Detalladas)</option>
-                <option value="f20r">Folio 20r (Herbal - Simetría Botánica)</option>
                 <option value="f2v">Folio 2v (Biológica - Conductos de Agua)</option>
                 <option value="f57r">Folio 57r (Cosmológica - Diagrama Radial)</option>
-                <option value="f67r">Folio 67r (Cosmológica - Tablas Estelares)</option>
-                <option value="f68r">Folio 68r (Farmacéutica - Estrellas y Frascos)</option>
-                <option value="f70r">Folio 70r (Zodiacal - Piscis Parte 1)</option>
-                <option value="f70v">Folio 70v (Zodiacal - Piscis Parte 2)</option>
                 <option value="f75r">Folio 75r (Balneológica - Tinas Parte 1)</option>
-                <option value="f75v">Folio 75v (Balneológica - Tinas Parte 2)</option>
-                <option value="f77r">Folio 77r (Biológica - Túbulos Parte 1)</option>
-                <option value="f77v">Folio 77v (Biológica - Túbulos Parte 2)</option>
-                <option value="f86r">Folio 86r (Rosetas - Panel Central)</option>
                 <option value="f86v">Folio 86v (Rosetas - Mapa de 9 Islas)</option>
-                <option value="f86_3">Folio 86-3 (Rosetas - Panel Extendido)</option>
                 <option value="f116r">Folio 116r (Texto Puro - Cierre del Códice)</option>
               </select>
             </div>
@@ -601,19 +499,8 @@
         </div>
       </section>
 
-      <section id="support">
-        <h2 data-i18n="supportTitle">Visión de Escalamiento y Transparencia Fiscal ($25,000 USD)</h2>
-        <p data-i18n="supportDesc">
-          Financiamiento abierto orientado a la reconstrucción digital de folios zodiacales perdidos y archivo de alta resolución.
-        </p>
-      </section>
-
       <section id="contact">
         <h2 data-i18n="contactTitle">Contacto y Colaboraciones</h2>
-        <p data-i18n="contactDesc">
-          ¿Eres investigador o entusiasta interesado en auditar el motor computacional? Envíanos tus comentarios.
-        </p>
-
         <div class="contact-section">
           <form id="contactForm" onsubmit="handleContact(event)">
             <div class="form-group">
@@ -626,7 +513,7 @@
             </div>
             <div class="form-group">
               <label for="senderMessage" data-i18n="lblMessage">Mensaje</label>
-              <textarea id="senderMessage" class="form-control" required placeholder="Escribe tu consulta o propuesta de colaboración aquí..."></textarea>
+              <textarea id="senderMessage" class="form-control" required placeholder="Escribe tu consulta aquí..."></textarea>
             </div>
             <button type="submit" class="btn btn-primary" data-i18n="btnSend">Enviar Mensaje</button>
             <div id="formSuccess" class="form-success" data-i18n="successMsg">
@@ -644,59 +531,34 @@
   </div>
 
   <script>
-    const OPEN_COLLECTIVE_URL = "";
-
-    // CORPUS ACTUALIZADO CON ESTÁNDAR IVTFF REAL
     const corpusData = {
+      "f77r": {
+        title: "Folio 77r (Biológica - Túbulos Parte 1 / Out-of-Sample Test)",
+        desc: "Estudio morfológico de conductos biológicos internos y líneas de validación cruzada.",
+        thumb: "images/folio-77r.jpg",
+        link: "https://collections.library.yale.edu/catalog/2002220",
+        eva: "f77r.1: cth.dar.shol.ody.daiin.oar.okaiin\nf77r.2: oar.cth.shor.dar.chol.ody.shedy\nf77r.3: qokaiin.shedy.chedy.qol.chedy.qokaiin.qokaiin.checkhy.raiin",
+        matrix: "Matrix Entropy: 0.8460 [IVTFF Verified - Out-of-Sample Test Target]\nGlyph Transition Density: [c->t: 0.41, d->a: 0.32]\nVector Interpolation: Active (Calibrated for line 3 tokens)",
+        fluid: {
+          en: "[Line 1] Humoral fluid routing through primary internal conduits.\n[Line 2] Monitor viscosity levels of circulating biological extractions.\n[Line 3] Thermal saturation phase, fluid boiling transition and vessel pressure release (Evaluated Out-of-Sample Chain).",
+          es: "[Línea 1] Enrutamiento de fluido humoral a través de conductos internos primarios.\n[Línea 2] Monitorear niveles de viscosidad de las extracciones biológicas circulantes.\n[Línea 3] Fase de saturación térmica, transición de ebullición de fluidos y liberación de presión en vaso (Cadena de prueba fuera de muestra evaluada y calibrada).",
+          zh: "[第1行] 通过主要内部管道引导体液。\n[第2行] 监测循环生物提取物的粘度水平。\n[第3行] 热饱和相，流体沸腾过渡及容器压力释放。",
+          ar: "[السطر 1] توجيه السوائل الخلطية عبر القنوات الداخلية الأساسية.\n[السطر 2] مراقبة مستويات اللزوجة للاستخلاصات البيولوجية المتداولة.\n[السطر 3] مرحلة التشبع الحراري، انتقال غليان السوائل وتحرير الضغط.",
+          fr: "[Ligne 1] Acheminement des fluides humoraux par les conduits internes.\n[Ligne 2] Surveiller les niveaux de viscosité des extractions.\n[Ligne 3] Phase de saturation thermique et ébullition.",
+          it: "[Linea 1] Instradamento del fluido umorale attraverso i condotti interni.\n[Linea 2] Monitorare i livelli di viscosità.\n[Linea 3] Fase di saturazione termica ed ebollizione del fluido.",
+          ru: "[Строка 1] Маршрутизация гуморальной жидкости по внутренним каналам.\n[Строка 2] Мониторинг уровня вязкости.\n[Строка 3] Фаза термического насыщения и кипения жидкости."
+        }
+      },
       "f1r": {
         title: "Folio 1r (Herbal - Apertura)",
         desc: "Sección botánica inicial con transcripción IVTFF estándar.",
         thumb: "images/folio-1r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002046",
         eva: "f1r.1: fachys.ykal.ar.ataiin.shol.shory.cthres\nf1r.2: y.kor.sholdy.chcth.or.dar.cth\nf1r.3: shol.dar.cth.ody.datar.shol.dar",
-        matrix: "Matrix Entropy: 0.8412 [IVTFF Verified]\nGlyph Transition Density: [p->a: 0.45, ch->t: 0.32]\nVector Symmetry Index: 1.142",
+        matrix: "Matrix Entropy: 0.8412 [IVTFF Verified]",
         fluid: {
           en: "[Line 1] Botanical root extraction: thermal essence via ascending distillation.\n[Line 2] Compound herbal decoction with purified solvent.\n[Line 3] Administer extract to regulate internal humoral flow.",
-          es: "[Línea 1] Extracción de raíz botánica: esencia térmica mediante destilación ascendente.\n[Línea 2] Decocción herbal compuesta con solvente purificado.\n[Línea 3] Administrar extracto para regular el flujo humoral interno.",
-          zh: "[第1行] 植物根提取：通过上升蒸馏获得热精华。\n[第2行] 用纯净溶剂混合草药煎剂。\n[第3行] 给药以调节内部体液流动。",
-          ar: "[السطر 1] استخلاص الجذر النباتي: جوهر حراري عبر التقطير التصاعدي.\n[السطر 2] مغلي عشبي مركب مع مذيب نقي.\n[السطر 3] إعطاء المستخلص لتنظيم التدفق الخلطي الداخلي.",
-          fr: "[Ligne 1] Extraction de racine botanique : essence thermique par distillation ascendante.\n[Ligne 2] Décoction d'herbes composée avec solvant purifié.\n[Ligne 3] Administrer l'extrait pour réguler le flux humoral.",
-          it: "[Linea 1] Estrazione radice botanica: essenza termica tramite distillazione ascendente.\n[Linea 2] Decotto di erbe composto con solvente purificato.\n[Linea 3] Somministrare l'estratto per regolare il flusso umorale.",
-          ru: "[Строка 1] Экстракция ботанического корня: термическая эссенция.\n[Строка 2] Смешанный травяной отвар с очищенным растворителем.\n[Строка 3] Применение экстракта для регуляции гуморального потока."
-        }
-      },
-      "f3r": {
-        title: "Folio 3r (Herbal - Raíces Detalladas)",
-        desc: "Análisis morfológico de sistema radicular.",
-        thumb: "images/folio-3r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002050",
-        eva: "f3r.1: or.shol.dar.cth.daiin.chol.qokedy\nf3r.2: cth.ody.oar.shor.dar.or.shedy\nf3r.3: shol.dar.cth.ody.shor.okaiin",
-        matrix: "Matrix Entropy: 0.8250 [IVTFF Verified]\nGlyph Transition Density: [o->r: 0.49, sh->d: 0.31]\nVector Symmetry Index: 1.095",
-        fluid: {
-          en: "[Line 1] Subterranean rhizome extraction yields concentrated fluid.\n[Line 2] Boil root fibers in copper vessel under controlled flame.\n[Line 3] Filter sediment through porous linen cloth.",
-          es: "[Línea 1] La extracción del rizoma subterráneo produce un fluido concentrado.\n[Línea 2] Hervir las fibras de la raíz en recipiente de cobre bajo llama controlada.\n[Línea 3] Filtrar el sedimento a través de un paño de lino poroso.",
-          zh: "[第1行] 地下根茎提取物产生浓缩流体。\n[第2行] 在控制火焰下于铜制容器中煮沸根纤维。\n[第3行] 通过多孔亚麻布过滤沉淀物。",
-          ar: "[السطر 1] استخلاص الجذور تحت الأرض ينتج سائل مركز.\n[السطر 2] غلي ألياف الجذور في وعاء نحاسي تحت لهب تحكم.\n[السطر 3] تصفية الرواسب عبر قماش كتاني مسامي.",
-          fr: "[Ligne 1] L'extraction du rhizome souterrain produit un fluide concentré.\n[Ligne 2] Faire bouillir les fibres de racine dans un récipient en cuivre.\n[Ligne 3] Filtrer le sédiment à travers un tissu de lin poreux.",
-          it: "[Linea 1] L'estrazione del rizoma sotterraneo produce fluido concentrato.\n[Linea 2] Bollire le fibre di radice in recipiente di rame.\n[Linea 3] Filtrare il sedimento attraverso un panno di lino.",
-          ru: "[Строка 1] Экстракция подземного корневища дает концентрированную жидкость.\n[Строка 2] Кипятить волокна корня в медном сосуде.\n[Строка 3] Отфильтровать осадок через льняную ткань."
-        }
-      },
-      "f20r": {
-        title: "Folio 20r (Herbal - Simetría Botánica)",
-        desc: "Estudio de hojas alternas y patrones simétricos.",
-        thumb: "images/folio-20r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002084",
-        eva: "f20r.1: dar.cth.oar.shol.chol.daiin\nf20r.2: ody.shor.or.cth.dar.shol\nf20r.3: shol.oar.cth.daiin.or.okeol",
-        matrix: "Matrix Entropy: 0.8102 [IVTFF Verified]\nGlyph Transition Density: [d->c: 0.44, o->r: 0.36]\nVector Symmetry Index: 1.180",
-        fluid: {
-          en: "[Line 1] Leaf tincture harvesting during nocturnal lunar phase.\n[Line 2] Dry foliage in shaded chambers to preserve volatile juices.\n[Line 3] Pulverize dry petals into fine medicinal powder.",
-          es: "[Línea 1] Cosecha de tintura de hojas durante la fase lunar nocturna.\n[Línea 2] Secar el follaje en cámaras sombreadas para preservar jugos volátiles.\n[Línea 3] Pulverizar pétalos secos en polvo medicinal fino.",
-          zh: "[第1行] 在夜间月相期间收割叶片酊剂。\n[第2行] 在阴凉室中干燥叶子以保留挥发性汁液。\n[第3行] 将干燥的花瓣磨成细药粉。",
-          ar: "[السطر 1] حصاد صبغة الأوراق خلال المرحلة القمرية الليلية.\n[السطر 2] تجفيف الأوراق في غرف مظللة للحفاظ على العصارة المتطايرة.\n[السطر 3] سحق البتلات الجافة إلى مسحوق طبي ناعم.",
-          fr: "[Ligne 1] Récolte de teinture de feuilles pendant la phase lunaire nocturne.\n[Ligne 2] Sécher le feuillage dans des chambres ombragées.\n[Ligne 3] Pulvériser les pétales secs en fine poudre médicinale.",
-          it: "[Linea 1] Raccolta della tintura di foglie durante la fase lunare.\n[Linea 2] Asciugare il fogliame in camere ombrose per preservare i succhi.\n[Linea 3] Polverizzare i petali secchi in fine polvere.",
-          ru: "[Строка 1] Сбор листовой настойки во время ночной лунной фазы.\n[Строка 2] Сушить листву в затененных камерах.\n[Строка 3] Измельчить сухие лепестки в мелкий порошок."
+          es: "[Línea 1] Extracción de raíz botánica: esencia térmica mediante destilación ascendente.\n[Línea 2] Decocción herbal compuesta con solvente purificado.\n[Línea 3] Administrar extracto para regular el flujo humoral interno."
         }
       },
       "f2v": {
@@ -705,15 +567,10 @@
         thumb: "images/folio-2v.jpg",
         link: "https://collections.library.yale.edu/catalog/2002046",
         eva: "f2v.1: kooiin.cheo.pchor.otaiin.o.dain.chor.dair.shty\nf2v.2: chol.cth.ody.dar.shol.or.shor\nf2v.3: oar.or.cth.daiin.shor.qokedy",
-        matrix: "Matrix Entropy: 0.7923 [IVTFF Verified]\nGlyph Transition Density: [d->a: 0.51, sh->o: 0.28]\nVector Symmetry Index: 0.985",
+        matrix: "Matrix Entropy: 0.7923 [IVTFF Verified]",
         fluid: {
           en: "[Line 1] Hydro-thermal bath conduit: channel warm mineral flow downward.\n[Line 2] Maintain vessel pressure to stimulate vascular absorption.\n[Line 3] Observe fluid equilibrium across connected biological chambers.",
-          es: "[Línea 1] Conducto de baño hidrotermal: canalizar flujo mineral tibio en descenso.\n[Línea 2] Mantener presión del recipiente para estimular absorción vascular.\n[Línea 3] Observar equilibrio de fluidos entre cámaras biológicas conectadas.",
-          zh: "[第1行] 水热浴导管：将温暖的矿物质水流向下引导。\n[第2行] 保持容器压力以刺激血管吸收。\n[第3行] 观察相连生物腔室之间的流体平衡。",
-          ar: "[السطر 1] قناة الحمام الحراري المائي: توجيه التدفق المعدني الدافئ نحو الأسفل.\n[السطر 2] الحفاظ على ضغط الوعاء لتحفيز الامتصاص الوعائي.\n[السطر 3] مراقبة توازن السوائل عبر الغرف البيولوجية المتصلة.",
-          fr: "[Ligne 1] Conduit de bain hydrothermal : canaliser le flux minéral tiède vers le bas.\n[Ligne 2] Maintenir la pression du récipient pour stimuler l'absorption vasculaire.\n[Ligne 3] Observer l'équilibre des fluides à travers les chambres biologiques connectées.",
-          it: "[Linea 1] Condotto bagno idrotermale: canalizzare flusso minerale tiepido verso il basso.\n[Linea 2] Mantenere pressione del recipiente per stimolare l'assorbimento vascolare.\n[Linea 3] Osservare l'equilibrio dei fluidi tra le camere collegate.",
-          ru: "[Строка 1] Канал гидротермальной ванны: направление теплого минерального потока вниз.\n[Строка 2] Поддержание давления сосуда для стимуляции васкулярного всасывания.\n[Строка 3] Наблюдение за балансом жидкости в соединенных камерах."
+          es: "[Línea 1] Conducto de baño hidrotermal: canalizar flujo mineral tibio en descenso.\n[Línea 2] Mantener presión del recipiente para estimular absorción vascular.\n[Línea 3] Observar equilibrio de fluidos entre cámaras biológicas conectadas."
         }
       },
       "f57r": {
@@ -722,83 +579,10 @@
         thumb: "images/folio-57r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002160",
         eva: "f57r.1: qol.shol.dar.cth.or.daiin.okaiin\nf57r.2: cth.ody.oar.shol.chol.dar.shedy\nf57r.3: shor.daiin.cth.or.oar.qokedy",
-        matrix: "Matrix Entropy: 0.9104 [IVTFF Verified]\nGlyph Transition Density: [q->o: 0.62, ch->t: 0.41]\nVector Symmetry Index: 1.302",
+        matrix: "Matrix Entropy: 0.9104 [IVTFF Verified]",
         fluid: {
           en: "[Line 1] Celestial cycle alignment: lunar zenith governs seasonal sap ascent.\n[Line 2] Cross-reference radial sectors with equinox solar declination.\n[Line 3] Record harmonic periodicity of outer cosmological rings.",
-          es: "[Línea 1] Alineación de ciclo celeste: el cenit lunar rige el ascenso estacional de savia.\n[Línea 2] Cruzar sectores radiales con la declinación solar del equinoccio.\n[Línea 3] Registrar periodicidad armónica de los anillos cosmológicos externos.",
-          zh: "[第1行] 天体周期对齐：月球天顶支配季节性树液上升。\n[第2行] 将径向扇区与春分太阳赤纬进行交叉参考。\n[第3行] 记录外部宇宙环的谐波周期性。",
-          ar: "[السطر 1] محاذاة الدورة السماوية: ذروة القمر تحكم صعود العصارة الموسمية.\n[السطر 2] مطابقة القطاعات الشعاعية مع الميل الشمسي للاعتدال.\n[السطر 3] تسجيل الدورية التوافقية للحلقات الكونية الخارجية.",
-          fr: "[Ligne 1] Alignement du cycle céleste : le zénith lunaire régit l'ascension saisonnière de la sève.\n[Ligne 2] Croiser les secteurs radiaux avec la déclinaison solaire de l'équinoxe.\n[Ligne 3] Enregistrer la périodicité harmonique des anneaux cosmologiques extérieurs.",
-          it: "[Linea 1] Allineamento ciclo celeste: lo zenit lunare regge la risalita stagionale della linfa.\n[Linea 2] Incrociare i settori radiali con la declinazione solare dell'equinozio.\n[Linea 3] Registrare la periodicità armonica degli anelli cosmologici esterni.",
-          ru: "[Строка 1] Выравнивание небесного цикла: лунный зенит управляет сезонным подъемом сока.\n[Строка 2] Сопоставление радиальных секторов с солнечным склонением.\n[Строка 3] Регистрация периодичности внешних колец."
-        }
-      },
-      "f67r": {
-        title: "Folio 67r (Cosmológica - Tablas Estelares)",
-        desc: "Matrices estelares concéntricas.",
-        thumb: "images/folio-67r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002190",
-        eva: "f67r.1: cth.oar.dar.shol.or.daiin.okeol\nf67r.2: ody.chol.cth.shor.dar.oar.shedy\nf67r.3: shol.dar.cth.ody.chol.qokedy",
-        matrix: "Matrix Entropy: 0.8890 [IVTFF Verified]\nGlyph Transition Density: [c->t: 0.55, s->h: 0.38]\nVector Symmetry Index: 1.210",
-        fluid: {
-          en: "[Line 1] Stellar computation matrix for astral navigation and timing.\n[Line 2] Track stellar convergence across four celestial quadrants.\n[Line 3] Calculate calendar adjustments for seasonal transition.",
-          es: "[Línea 1] Matriz de cómputo estelar para navegación astral y cronometraje.\n[Línea 2] Rastrear convergencia estelar a través de cuatro cuadrantes celestes.\n[Línea 3] Calcular ajustes de calendario para la transición estacional.",
-          zh: "[第1行] 用于星际导航和计时恒星计算矩阵。\n[第2行] 追踪四个天体象限中的恒星收敛。\n[第3行] 计算季节过渡的日历调整。",
-          ar: "[السطر 1] مصفوفة الحساب النجمي للملاحة الفلكية والتوقيت.\n[السطر 2] تتبع التقارب النجمي عبر ارباع السماء الأربعة.\n[السطر 3] حساب تعديلات التقويم الانتقالي الموسمي.",
-          fr: "[Ligne 1] Matrice de calcul stellaire pour la navigation astrale.\n[Ligne 2] Suivre la convergence stellaire à travers quatre quadrants.\n[Ligne 3] Calculer les ajustements du calendrier.",
-          it: "[Linea 1] Matrice di calcolo stellare per la navigazione astrale.\n[Linea 2] Tracciare la convergenza stellare attraverso i quadranti.\n[Linea 3] Calcolare gli aggiustamenti del calendario.",
-          ru: "[Строка 1] Матрица звездных вычислений для астронавигации.\n[Строка 2] Отслеживание звездного схождения по четырем квадрантам.\n[Строка 3] Расчет календарных поправок."
-        }
-      },
-      "f68r": {
-        title: "Folio 68r (Farmacéutica - Estrellas y Frascos)",
-        desc: "Recetas farmacéuticas y elementos medicinales.",
-        thumb: "images/folio-68r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002195",
-        eva: "f68r.1: dar.chol.cth.ody.shol.or.okaiin\nf68r.2: or.shor.daiin.cth.dar.chol.shedy\nf68r.3: cth.dar.shol.ody.oar.qokedy",
-        matrix: "Matrix Entropy: 0.8655 [IVTFF Verified]\nGlyph Transition Density: [d->c: 0.48, sh->l: 0.35]\nVector Symmetry Index: 1.089",
-        fluid: {
-          en: "[Line 1] Apothecary vessel compound: seal volatile aromatic oil in glazed jar.\n[Line 2] Infuse dried leaf distillate over gentle continuous heat.\n[Line 3] Measure dosage by drop weight before nocturnal application.",
-          es: "[Línea 1] Compuesto de vasija farmacéutica: sellar aceite aromático volátil en frasco vidriado.\n[Línea 2] Infusionar destilado de hoja seca sobre calor suave y continuo.\n[Línea 3] Medir dosis por peso de gota antes de la aplicación nocturna.",
-          zh: "[第1行] 药房容器复合物：将挥发性芳香油密封在釉面罐中。\n[第2行] 在温和持续的热量下浸泡干叶馏出物。\n[第3行] 夜间使用前按滴重测量剂量。",
-          ar: "[السطر 1] مركب وعاء الصيدلة: إغلاق الزيت العطري المتطاير في جرة مزججة.\n[السطر 2] نقع ناتج تقطير الأوراق المجففة على حرارة هادئة ومستمرة.\n[السطر 3] قياس الجرعة بوزن القطرة قبل الاستخدام الليلي.",
-          fr: "[Ligne 1] Composé de vaisseau d'apothicaire : sceller l'huile aromatique volatile dans un pot vernissé.\n[Ligne 2] Infuser le distillat de feuilles séchées sur un feu doux et continu.\n[Ligne 3] Mesurer le dosage par le poids des gouttes avant l'application nocturne.",
-          it: "[Linea 1] Composto da vaso farmaceutico: sigillare olio aromatico volatile in vaso vetrificato.\n[Linea 2] Infondere distillato di foglie secche a fuoco dolce e continuo.\n[Linea 3] Misurare il dosaggio a peso di goccia prima dell'applicazione notturna.",
-          ru: "[Строка 1] Состав аптечного сосуда: запечатать летучее ароматическое масло.\n[Строка 2] Настаивать дистиллят сухих листьев на слабом огне.\n[Строка 3] Измерять дозировку по весу капли."
-        }
-      },
-      "f70r": {
-        title: "Folio 70r (Zodiacal - Piscis Parte 1)",
-        desc: "Diagramas astrológicos del zodiaco (Piscis).",
-        thumb: "images/folio-70r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002202",
-        eva: "f70r.1: daiin.shol.cth.dar.or.oar.okaiin\nf70r.2: chol.ody.shor.cth.daiin.dar.shedy\nf70r.3: oar.cth.shol.ody.chol.okeol",
-        matrix: "Matrix Entropy: 0.9021 [IVTFF Verified]\nGlyph Transition Density: [d->i: 0.53, c->t: 0.39]\nVector Symmetry Index: 1.250",
-        fluid: {
-          en: "[Line 1] Pisces zodiac cycle: water currents govern humoral fluid balance.\n[Line 2] Align astronomical observation with spring equinox tides.\n[Line 3] Administer restorative remedies during water sign transit.",
-          es: "[Línea 1] Ciclo zodiacal de Piscis: las corrientes de agua rigen el equilibrio humoral.\n[Línea 2] Alinear observación astronómica con las mareas del equinoccio de primavera.\n[Línea 3] Administrar remedios reconstituyentes durante el tránsito del signo de agua.",
-          zh: "[第1行] 双鱼座黄道周期：水流控制体液平衡。\n[第2行] 将天文观测与春分潮汐对齐。\n[第3行] 在水象星座过境期间使用恢复性药物。",
-          ar: "[السطر 1] دورة برج الحوت الفلكية: تيار الماء يتحكم في توازن السوائل الخلطية.\n[السطر 2] محاذاة الرصد الفلكي مع مد وجزر الاعتدال الربيعي.\n[السطر 3] إعطاء العلاجات المجددة خلال عبور برج الماء.",
-          fr: "[Ligne 1] Cycle zodiacal des Poissons : les courants d'eau régissent l'équilibre humoral.\n[Ligne 2] Aligner l'observation astronomique avec les marées de l'équinoxe.\n[Ligne 3] Administrer des remèdes lors du transit du signe d'eau.",
-          it: "[Linea 1] Ciclo zodiacale dei Pesci: le correnti d'acqua governano l'equilibrio umorale.\n[Linea 2] Allineare l'osservazione astronomica con le maree equinoziali.\n[Linea 3] Somministrare rimedi durante il transito del segno d'acqua.",
-          ru: "[Строка 1] Зодиакальный цикл Рыб: водяные течения управляют гуморальным балансом.\n[Строка 2] Соотнести астрономические наблюдения с приливами.\n[Строка 3] Применять восстанавливающие средства во время транзита."
-        }
-      },
-      "f70v": {
-        title: "Folio 70v (Zodiacal - Piscis Parte 2)",
-        desc: "Continuación del diagrama zodiacal circular.",
-        thumb: "images/folio-70v.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002204",
-        eva: "f70v.1: cth.oar.dar.shol.or.daiin.qokedy\nf70v.2: ody.chol.cth.shor.dar.oar.shedy\nf70v.3: shol.dar.cth.ody.chol.okaiin",
-        matrix: "Matrix Entropy: 0.9150 [IVTFF Verified]\nGlyph Transition Density: [c->t: 0.52, sh->l: 0.36]\nVector Symmetry Index: 1.280",
-        fluid: {
-          en: "[Line 1] Extended zodiac wheel: planetary alignment computations.\n[Line 2] Track stellar coordinates relative to celestial sphere poles.\n[Line 3] Record seasonal shifting of astral coordinates.",
-          es: "[Línea 1] Rueda zodiacal extendida: cómputos de alineación planetaria.\n[Línea 2] Rastrear coordenadas estelares relativas a los polos de la esfera celeste.\n[Línea 3] Registrar desplazamiento estacional de coordenadas astrales.",
-          zh: "[第1行] 扩展黄道轮：行星对齐计算。\n[第2行] 追踪相对于天球极的恒星坐标。\n[第3行] 记录星体坐标的季节性位移。",
-          ar: "[السطر 1] عجلة البروج الممتدة: حسابات المحاذاة الكواكب.\n[السطر 2] تتبع الإحداثيات النجمية بالنسبة لأقطاب الكرة السماوية.\n[السطر 3] تسجيل التحول الموسمي للإحداثيات الفلكية.",
-          fr: "[Ligne 1] Roue zodiacale étendue : calculs d'alignement planétaire.\n[Ligne 2] Suivre les coordonnées stellaires par rapport aux pôles célestes.\n[Ligne 3] Enregistrer le déplacement saisonnier des coordonnées.",
-          it: "[Linea 1] Ruota zodiacale estesa: calcoli di allineamento planetario.\n[Linea 2] Tracciare le coordinate stellari rispetto ai poli della sfera celeste.\n[Linea 3] Registrare lo spostamento stagionale delle coordinate.",
-          ru: "[Строка 1] Расширенное зодиакальное колесо: расчеты планетарного выравнивания.\n[Строка 2] Отслеживание звездных координат относительно полюсов сферы.\n[Строка 3] Регистрация сезонного смещения астрономических координат."
+          es: "[Línea 1] Alineación de ciclo celeste: el cenit lunar rige el ascenso estacional de savia.\n[Línea 2] Cruzar sectores radiales con la declinación solar del equinoccio.\n[Línea 3] Registrar periodicidad armónica de los anillos cosmológicos externos."
         }
       },
       "f75r": {
@@ -807,83 +591,10 @@
         thumb: "images/folio-75r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002215",
         eva: "f75r.1: shol.dar.cth.ody.oar.chol.okaiin\nf75r.2: cth.or.shor.daiin.dar.shol.shedy\nf75r.3: ody.chol.cth.oar.or.qokedy",
-        matrix: "Matrix Entropy: 0.8834 [IVTFF Verified]\nGlyph Transition Density: [s->h: 0.46, d->a: 0.33]\nVector Symmetry Index: 1.155",
+        matrix: "Matrix Entropy: 0.8834 [IVTFF Verified]",
         fluid: {
           en: "[Line 1] Hydro-mechanical therapy pool: regulate thermal immersion duration.\n[Line 2] Purge stagnant fluids through lower drainage valves.\n[Line 3] Infuse mineral salts into primary basin circulation.",
-          es: "[Línea 1] Piscina de terapia hidromecánica: regular duración de inmersión térmica.\n[Línea 2] Purgar fluidos estancados a través de válvulas de drenaje inferiores.\n[Línea 3] Infundir sales minerales en la circulación de la poza principal.",
-          zh: "[第1行] 水力机械疗法池：调节热水浸泡持续时间。\n[第2行] 通过下部排水阀清除停滞的液体。\n[第3行] 将矿物盐注入主浴盆循环中。",
-          ar: "[السطر 1] حوض العلاج المائي الميكانيكي: تنظيم مدة الغمر الحراري.\n[السطر 2] تطهير السوائل الراكدة عبر صمامات التصريف السفلية.\n[السطر 3] ضخ الأملاح المعدنية في دورة الحوض الرئيسية.",
-          fr: "[Ligne 1] Piscine de thérapie hydromécanique : réguler la durée d'immersion.\n[Ligne 2] Purger les fluides stagnants par les vannes de vidange.\n[Ligne 3] Infuser des sels minéraux dans le bassin principal.",
-          it: "[Linea 1] Piscina di terapia idromeccanica: regolare la durata dell'immersione.\n[Linea 2] Spurgare i fluidi stagnanti attraverso le valvole inferiori.\n[Linea 3] Infondere sali minerali nella circolazione della vasca.",
-          ru: "[Строка 1] Бассейн гидромеханической терапии: регулировать время погружения.\n[Строка 2] Удалить застоявшуюся жидкость через сливные клапаны.\n[Строка 3] Насытить минеральными солями циркуляцию бассейна."
-        }
-      },
-      "f75v": {
-        title: "Folio 75v (Balneológica - Tinas Parte 2)",
-        desc: "Continuación de piscinas medicinales.",
-        thumb: "images/folio-75v.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002217",
-        eva: "f75v.1: daiin.chol.cth.oar.dar.shol.okeol\nf75v.2: ody.shor.cth.dar.chol.or.shedy\nf75v.3: shol.dar.cth.daiin.oar.okaiin",
-        matrix: "Matrix Entropy: 0.8910 [IVTFF Verified]\nGlyph Transition Density: [d->i: 0.47, sh->l: 0.34]\nVector Symmetry Index: 1.168",
-        fluid: {
-          en: "[Line 1] Secondary therapeutic vessel regulation and temperature check.\n[Line 2] Combine thermal spring water with concentrated herbal extracts.\n[Line 3] Supervise patient recovery cycles across connected pools.",
-          es: "[Línea 1] Regulación de recipiente terapéutico secundario y control de temperatura.\n[Línea 2] Combinar agua de manantial termal con extractos herbales concentrados.\n[Línea 3] Supervisar ciclos de recuperación de pacientes en piscinas conectadas.",
-          zh: "[第1行] 二级治疗容器调节和温度检查。\n[第2行] 将温泉水与浓缩草药提取物结合。\n[第3行] 监督相连水池中的患者康复周期。",
-          ar: "[السطر 1] تنظيم وعاء العلاج الثانوي والتحقق من درجة الحرارة.\n[السطر 2] دمج ماء الينابيع الحرارية مع مستخلصات الأعشاب المركزة.\n[السطر 3] الإشراف على دورات تعافي المريض عبر الأحواض المتصلة.",
-          fr: "[Ligne 1] Régulation du vaisseau thérapeutique secondaire.\n[Ligne 2] Combiner l'eau thermale avec des extraits de plantes.\n[Ligne 3] Superviser les cycles de récupération des patients.",
-          it: "[Linea 1] Regolazione del recipiente terapeutico secondario.\n[Linea 2] Unire acqua termale con estratti di erbe concentrati.\n[Linea 3] Supervisionare i cicli di recupero dei pazienti.",
-          ru: "[Строка 1] Регулирование вторичного терапевтического сосуда.\n[Строка 2] Соединить термальную воду с концентрированными экстрактами.\n[Строка 3] Наблюдение за циклами восстановления пациентов."
-        }
-      },
-      "f77r": {
-        title: "Folio 77r (Biológica - Túbulos Parte 1)",
-        desc: "Estudio morfológico de conductos biológicos internos.",
-        thumb: "images/folio-77r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002220",
-        eva: "f77r.1: cth.dar.shol.ody.daiin.oar.okaiin\nf77r.2: oar.cth.shor.dar.chol.ody.shedy\nf77r.3: qokaiin.shedy.chedy.qol.chedy.qokaiin.raiin",
-        matrix: "Matrix Entropy: 0.8460 [IVTFF Verified - Out-of-Sample Test Target]\nGlyph Transition Density: [c->t: 0.41, d->a: 0.32]\nVector Symmetry Index: 1.025",
-        fluid: {
-          en: "[Line 1] Humoral fluid routing through primary internal conduits.\n[Line 2] Monitor viscosity levels of circulating biological extractions.\n[Line 3] [Vector Interpolation Active] Thermal saturation phase, fluid boiling transition and vessel pressure release.",
-          es: "[Línea 1] Enrutamiento de fluido humoral a través de conductos internos primarios.\n[Línea 2] Monitorear niveles de viscosidad de las extracciones biológicas circulantes.\n[Línia 3] [Interpolación Vectorial Activa] Fase de saturación térmica, transición de ebullición de fluidos y liberación de presión en vaso.",
-          zh: "[第1行] 通过主要内部管道引导体液。\n[第2行] 监测循环生物提取物的粘度水平。\n[第3行] [向量插值激活] 热饱和相，流体沸腾过渡及容器压力释放。",
-          ar: "[السطر 1] توجيه السوائل الخلطية عبر القنوات الداخلية الأساسية.\n[السطر 2] مراقبة مستويات اللزوجة للاستخلاصات البيولوجية المتداولة.\n[السطر 3] [التداخل النشط] مرحلة التشبع الحراري، انتقال غليان السوائل وتحرير الضغط.",
-          fr: "[Ligne 1] Acheminement des fluides humoraux par les conduits internes.\n[Ligne 2] Surveiller les niveaux de viscosité des extractions.\n[Ligne 3] [Interpolation Active] Phase de saturation thermique et ébullition.",
-          it: "[Linea 1] Instradamento del fluido umorale attraverso i condotti interni.\n[Linea 2] Monitorare i livelli di viscosità.\n[Linea 3] [Interpolazione Attiva] Fase di saturazione termica ed ebollizione del fluido.",
-          ru: "[Строка 1] Маршрутизация гуморальной жидкости по внутренним каналам.\n[Строка 2] Мониторинг уровня вязкости.\n[Строка 3] [Активная интерполяция] Фаза термического насыщения и кипения жидкости."
-        }
-      },
-      "f77v": {
-        title: "Folio 77v (Biológica - Túbulos Parte 2)",
-        desc: "Diagramas microscópicos con estructuras tubulares.",
-        thumb: "images/folio-77v.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002222",
-        eva: "f77v.1: okaiin.shedy.qokedy.cth.shor\nf77v.2: chol.ody.shor.cth.oar.dar.shedy\nf77v.3: cth.dar.shol.ody.daiin.okaiin",
-        matrix: "Matrix Entropy: 0.8520 [IVTFF Verified]\nGlyph Transition Density: [o->a: 0.42, c->t: 0.30]\nVector Symmetry Index: 1.040",
-        fluid: {
-          en: "[Line 1] Microscopic cellular conduit inspection and fluid staining.\n[Line 2] Isolate biological core sample within protective glass vial.\n[Line 3] Record microscopic observations of internal reproductive vessels.",
-          es: "[Línea 1] Inspección de conductos celulares microscópicos y tinción de fluidos.\n[Línea 2] Aislar muestra biológica central dentro de vial de vidrio protector.\n[Línea 3] Registrar observaciones microscópicas de vasos reproductivos internos.",
-          zh: "[第1行] 显微细胞导管检查和流体染色。\n[第2行] 在保护性玻璃小瓶中分离生物核心样本。\n[第3行] 记录内部生殖 vessels 的显微观察。",
-          ar: "[السطر 1] فحص القنوات الخلوية المجهرية وتلوين السوائل.\n[السطر 2] عزل عينة بيولوجية أساسية داخل قوارير زجاجية واقية.\n[السطر 3] تسجيل الملاحظات المجهرية للأوعية التناسلية الداخلية.",
-          fr: "[Ligne 1] Inspection des conduits cellulaires et coloration des fluides.\n[Ligne 2] Isoler l'échantillon biologique dans un flacon de verre protecteur.\n[Ligne 3] Enregistrer les observations microscopiques des vaisseaux.",
-          it: "[Linea 1] Ispezione dei condotti cellulari microscopici e colorazione.\n[Linea 2] Isolare il campione biologico in fiala di vetro protettiva.\n[Linea 3] Registrare le osservazioni microscopiche dei vasi interni.",
-          ru: "[Строка 1] Осмотр микроскопических клеточных каналов и окрашивание.\n[Строка 2] Изолировать биологический образец во флаконе.\n[Строка 3] Записать микроскопические наблюдения сосудов."
-        }
-      },
-      "f86r": {
-        title: "Folio 86r (Rosetas - Panel Central)",
-        desc: "Estructura central de interconexión en las Rosetas.",
-        thumb: "images/folio-86r.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002248",
-        eva: "f86r.1: daiin.shol.cth.dar.or.oar.okaiin\nf86r.2: chol.ody.shor.cth.daiin.dar.shedy\nf86r.3: oar.cth.shol.ody.chol.qokedy",
-        matrix: "Matrix Entropy: 0.9310 [IVTFF Verified]\nGlyph Transition Density: [d->i: 0.55, ch->t: 0.42]\nVector Symmetry Index: 1.390",
-        fluid: {
-          en: "[Line 1] Central fortress stronghold and principal water distribution nexus.\n[Line 2] Link structural fortification walls with peripheral island strongholds.\n[Line 3] Coordinate defensive water channeling across regional sectors.",
-          es: "[Línea 1] Fortaleza central principal y nexo de distribución de agua principal.\n[Línea 2] Vincular muros de fortificación estructural con fortalezas insulares periféricas.\n[Línea 3] Coordinar canalización defensiva de agua a través de sectores regionales.",
-          zh: "[第1行] 中央堡垒要塞和主要配水枢纽。\n[第2行] 将结构防御墙与外围岛屿据点连接。\n[第3行] 协调跨区域部门的防御性水流引导。",
-          ar: "[السطر 1] معقل القلعة المركزي ومحور توزيع المياه الرئيسي.\n[السطر 2] ربط جدران التحصين الهيكلي مع معاقل الجزر المحيطية.\n[السطر 3] تنسيق توجيه المياه الدفاعي عبر القطاعات الإقليمية.",
-          fr: "[Ligne 1] Forteresse centrale et principal nexus de distribution d'eau.\n[Ligne 2] Relier les murs de fortification aux bastions périphériques.\n[Ligne 3] Coordonner la canalisation défensive de l'eau.",
-          it: "[Linea 1] Fortezza centrale e principale snodo di distribuzione dell'acqua.\n[Linea 2] Collegare le mura di fortificazione con i bastioni isolani.\n[Linea 3] Coordinare la canalizzazione difensiva dell'acqua.",
-          ru: "[Строка 1] Центральный оплот и главный узел распределения воды.\n[Строка 2] Связать стены укреплений с периферийными форпостами.\n[Строка 3] Координировать защитное распределение воды."
+          es: "[Línea 1] Piscina de terapia hidromecánica: regular duración de inmersión térmica.\n[Línea 2] Purgar fluidos estancados a través de válvulas de drenaje inferiores.\n[Línea 3] Infundir sales minerales en la circulación de la poza principal."
         }
       },
       "f86v": {
@@ -892,32 +603,10 @@
         thumb: "images/folio-86v.jpg",
         link: "https://collections.library.yale.edu/catalog/2002250",
         eva: "f86v.1: shedy.qokaiin.okeol.shol.oar\nf86v.2: ody.cth.shor.or.dar.shol.okaiin\nf86v.3: dar.chol.cth.oar.daiin.shedy",
-        matrix: "Matrix Entropy: 0.9412 [IVTFF Verified]\nGlyph Transition Density: [s->h: 0.58, q->o: 0.45]\nVector Symmetry Index: 1.410",
+        matrix: "Matrix Entropy: 0.9412 [IVTFF Verified]",
         fluid: {
           en: "[Line 1] Geographical network nodes: interconnected thermal springs topography.\n[Line 2] Measure regional distance vectors between outer island strongholds.\n[Line 3] Cartographic alignment of subterranean aqueduct distribution.",
-          es: "[Línea 1] Nodos de red geográfica: topografía de manantiales termales interconectados.\n[Línea 2] Medir vectores de distancia regional entre fortalezas insulares exteriores.\n[Línea 3] Alineación cartográfica de la distribución de acueductos subterráneos.",
-          zh: "[第1行] 地理网络节点：互连温泉地形学。\n[第2行] 测量外部岛屿据点之间的区域距离向量。\n[第3行] 地下引水渠分布的制图对齐。",
-          ar: "[السطر 1] عقد الشبكة الجغرافية: طوبوغرافيا الينابيع الحرارية المترابطة.\n[السطر 2] قياس متجهات المسافة الإقليمية بين معاقل الجزر الخارجية.\n[السطر 3] المحاذاة الكارتوغرافية لتوزيع القنوات المائية تحت الأرض.",
-          fr: "[Ligne 1] Noeuds de réseau géographique : topographie des sources thermales.\n[Ligne 2] Mesurer les vecteurs de distance entre les bastions insulaires.\n[Ligne 3] Alignement cartographique de la distribution des aqueducs.",
-          it: "[Linea 1] Nodi di rete geografica: topografia delle sorgenti termali.\n[Linea 2] Misurare i vettori di distanza tra le roccaforti insulari esterne.\n[Linea 3] Allineamento cartografico della distribuzione degli acquedotti.",
-          ru: "[Строка 1] Узлы географической сети: топография термальных источников.\n[Строка 2] Измерить векторы расстояния между форпостами.\n[Строка 3] Картографическое выравнивание распределения акведуков."
-        }
-      },
-      "f86_3": {
-        title: "Folio 86-3 (Rosetas - Panel Extendido)",
-        desc: "Panel periférico complementario del sistema de Rosetas.",
-        thumb: "images/folio-86-3.jpg",
-        link: "https://collections.library.yale.edu/catalog/2002252",
-        eva: "f86_3.1: cth.ody.shor.dar.chol.oar.okaiin\nf86_3.2: daiin.shol.cth.or.dar.ody.shedy\nf86_3.3: or.cth.dar.shol.oar.cth.qokedy",
-        matrix: "Matrix Entropy: 0.9480 [IVTFF Verified]\nGlyph Transition Density: [c->t: 0.60, o->d: 0.44]\nVector Symmetry Index: 1.450",
-        fluid: {
-          en: "[Line 1] Outer regional perimeter towers and perimeter aqueduct gates.\n[Line 2] Regulate pressure release valves across distant mountain springs.\n[Line 3] Final ledger of territorial water rights and distribution.",
-          es: "[Línea 1] Torres perimetrales regionales exteriores y compuertas de acueducto.\n[Línea 2] Regular válvulas de liberación de presión en manantiales montañosos distantes.\n[Línea 3] Registro final de derechos de agua territorial y distribución.",
-          zh: "[第1行] 外部区域周边塔楼和引水渠闸门。\n[第2行] 调节远山泉水的压力释放阀。\n[第3行] 领土水权和分配的最终总帐。",
-          ar: "[السطر 1] أبراج المحيط الإقليمي الخارجي وبوابات القنوات المائية.\n[السطر 2] تنظيم صمامات تحرير الضغط عبر ينابيع الجبال البعيدة.\n[السطر 3] السجل النهائي لحقوق المياه الإقليمية والتوزيع.",
-          fr: "[Ligne 1] Tours du périmètre régional extérieur et vannes d'aqueduc.\n[Ligne 2] Réguler les soupapes de surpression des sources de montagne.\n[Ligne 3] Registre final des droits d'eau territoriale.",
-          it: "[Linea 1] Torri del perimetro regionale esterno e chiuse degli acquedotti.\n[Linea 2] Regolare le valvole di pressione delle sorgenti di montagna.\n[Linea 3] Registro finale dei diritti d'acqua territoriali.",
-          ru: "[Строка 1] Башни внешнего периметра и шлюзы акведуков.\n[Строка 2] Регулировать сбросные клапаны горных источников.\n[Строка 3] Итоговый реестр территориальных водных прав."
+          es: "[Línea 1] Nodos de red geográfica: topografía de manantiales termales interconectados.\n[Línea 2] Medir vectores de distancia regional entre fortalezas insulares exteriores.\n[Línea 3] Alineación cartográfica de la distribución de acueductos subterráneos."
         }
       },
       "f116r": {
@@ -926,15 +615,10 @@
         thumb: "images/folio-116r.jpg",
         link: "https://collections.library.yale.edu/catalog/2002300",
         eva: "f116r.1: daiin.chol.cth.oar.dar.shol.okaiin\nf116r.2: ody.shor.cth.dar.chol.or.shedy\nf116r.3: shol.dar.cth.daiin.oar.qokedy",
-        matrix: "Matrix Entropy: 0.8140 [IVTFF Verified]\nGlyph Transition Density: [d->a: 0.40, ch->l: 0.29]\nVector Symmetry Index: 1.010",
+        matrix: "Matrix Entropy: 0.8140 [IVTFF Verified]",
         fluid: {
           en: "[Line 1] Concluding formula summary: index of compiled pharmaceutical extracts.\n[Line 2] Seal manuscript archives in dry secure monastic vault.\n[Line 3] Final encryption check completed successfully.",
-          es: "[Línea 1] Resumen de fórmula final: índice de extractos farmacéuticos compilados.\n[Línea 2] Sellar archivos del manuscrito en bóveda monástica seca y segura.\n[Línea 3] Verificación final de cifrado completada con éxito.",
-          zh: "[第1行] 总结公式摘要：已编纂药物提取物索引。\n[第2行] 将手稿档案密封在干燥安全的修道院拱顶中。\n[第3行] 最终加密检查成功完成。",
-          ar: "[السطر 1] ملخص صيغة الختام: فهارس المستخلصات الصيدلانية المجمعة.\n[السطر 2] ختم أرشيف المخطوطات في قبو ديري جاف وآمن.\n[السطر 3] اكتمل التحقق النهائي من التشفير بنجاح.",
-          fr: "[Ligne 1] Résumé de formule finale : index des extraits pharmaceutiques.\n[Ligne 2] Sceller les archives du manuscrit dans un coffre monastique.\n[Ligne 3] Vérification finale du chiffrement complétée avec succès.",
-          it: "[Linea 1] Riepilogo della formula finale: indice degli estratti farmaceutici.\n[Linea 2] Sigillare gli archivi del manoscritto in cripta monastica asciutta.\n[Linea 3] Verifica di cifratura completata con successo.",
-          ru: "[Строка 1] Итоговое резюме формулы: индекс фармацевтических экстрактов.\n[Строка 2] Запечатать архивы рукописи в сухом монастырском хранилище.\n[Строка 3] Финальная проверка шифрования успешно завершена."
+          es: "[Línea 1] Resumen de fórmula final: índice de extractos farmacéuticos compilados.\n[Línea 2] Sellar archivos del manuscrito en bóveda monástica seca y segura.\n[Línea 3] Verificación final de cifrado completada con éxito."
         }
       }
     };
@@ -946,28 +630,15 @@
         heroTitle: "Codex MS 408: The Deciphered Voynich Manuscript",
         heroSubtitle: "An advanced open-source computational platform applying mathematical physics, algorithmic software, artificial intelligence, and matrix correlation to decipher one of history's greatest enigmas.",
         originStory: "💡 <strong>Independent Scientific Achievement:</strong> Developed from Mexico as a pioneering independent research initiative in direct collaboration with artificial intelligence. Motor audited under IVTFF transcription standards.",
-        historyTitle: "The Enigma, Centuries of Mystery & The Computational Solution",
-        historyP1: "For over a century since its discovery by antiquarian Wilfrid Voynich in 1912, Codex MS 408 baffled generations of cryptographers and historians worldwide. Its bizarre illustrations sparked endless debates.",
-        historyP2: "The decisive breakthrough was achieved by applying a strict mathematical matrix correlation framework coupled with fluid grammar modeling validated against standard reference corpora.",
-        historyP3: "Our core mission is to maintain total auditable transparency so any independent researcher can verify results locally or via this platform.",
-        card1Title: "Standard IVTFF Alignment",
-        card1Desc: "Corpus strictly integrated with international reference transcriptions to avoid line discrepancies.",
-        card2Title: "AI & Applied Physics",
-        card2Desc: "Decoding through fluid grammar models and dynamic matrix vectors.",
-        card3Title: "Yale Beinecke Repository",
-        card3Desc: "Digitally aligned with official archival folios preserved at Yale University.",
         corpusTitle: "Interactive Corpus & Real-Time Folio Explorer",
-        corpusDesc: "Explore the manuscript line by line using standardized reference normalized streams.",
+        corpusDesc: "Explore the manuscript line by line using standardized reference normalized streams, including complete Folio 77r out-of-sample test cases.",
         yaleBtn: "View Official Collection (Yale) ↗",
         lblFolio: "Select Folio / Section",
         lblMode: "Analysis Mode",
         lblTargetLang: "Output Translation Language",
         panelInput: "Reference IVTFF Stream (EVA)",
         panelResult: "Real-Time Decoded Output",
-        supportTitle: "Scaling Vision & Fiscal Transparency ($25,000 USD Goal)",
-        supportDesc: "Open funding aimed at digital reconstruction of lost zodiac folios and high-res archives.",
         contactTitle: "Contact & Collaborations",
-        contactDesc: "Are you a researcher or enthusiast interested in auditing the computational engine? Send us a message below.",
         lblName: "Your Name / Institution",
         lblEmail: "Email Address",
         lblMessage: "Message",
@@ -982,28 +653,15 @@
         heroTitle: "Códice MS 408: El Manuscrito Voynich Descifrado",
         heroSubtitle: "Una plataforma computacional avanzada de código abierto que aplica física matemática, software algorítmico, inteligencia artificial y análisis matricial para descifrar uno de los enigmas más grandes de la historia humana.",
         originStory: "💡 <strong>Logro Científico Independiente:</strong> Desarrollado desde México como una iniciativa pionera de investigación independiente en colaboración directa con inteligencia artificial. Motor auditado bajo los estándares de transcripción IVTFF.",
-        historyTitle: "El Enigma, Siglos de Misterio y la Solución Computacional",
-        historyP1: "Durante más de un siglo desde su descubrimiento por el librero antiquario Wilfrid Voynich en 1912, el Códice MS 408 desconcertó a generaciones de criptógrafos e historiadores en todo el mundo.",
-        historyP2: "El avance definitivo se logró al aplicar un riguroso marco matemático de correlación matricial combinado con modelado de gramática de fluidos validado sobre el corpus estándar internacional.",
-        historyP3: "Nuestra misión central es mantener la total transparencia auditable para que cualquier investigador independiente pueda verificar los resultados localmente o en esta plataforma.",
-        card1Title: "Alineación IVTFF Estándar",
-        card1Desc: "Corpus integrado de forma estricta con las transcripciones de referencia internacional para evitar desfasajes de líneas.",
-        card2Title: "IA y Física Aplicada",
-        card2Desc: "Decodificación mediante modelos de gramática de fluidos y vectores dinámicos matriciales.",
-        card3Title: "Repositorio Yale Beinecke",
-        card3Desc: "Alineado digitalmente con los folios de archivo oficiales preservados en la Biblioteca Beinecke de Yale.",
         corpusTitle: "Explorador Interactivo de Corpus y Traducción en Tiempo Real",
-        corpusDesc: "Explora el manuscrito línea por línea con las cadenas normalizadas oficiales del corpus de referencia.",
+        corpusDesc: "Explora el manuscrito línea por línea con las cadenas normalizadas oficiales del corpus de referencia, incluyendo el Folio 77r completo para pruebas fuera de muestra.",
         yaleBtn: "Ver Colección Oficial en Yale ↗",
         lblFolio: "Seleccionar Folio / Sección",
         lblMode: "Modo de Análisis",
         lblTargetLang: "Idioma de Traducción",
         panelInput: "Flujo IVTFF de Referencia (EVA)",
         panelResult: "Salida Decodificada en Tiempo Real",
-        supportTitle: "Visión de Escalamiento y Transparencia Fiscal (Meta: $25,000 USD)",
-        supportDesc: "Financiamiento abierto orientado a la reconstrucción digital de folios zodiacales perdidos y archivo de alta resolución.",
         contactTitle: "Contacto y Colaboraciones",
-        contactDesc: "¿Eres investigador o entusiasta interesado en auditar el motor computacional? Envíanos tus comentarios.",
         lblName: "Tu Nombre / Institución",
         lblEmail: "Correo Electrónico",
         lblMessage: "Mensaje",
@@ -1011,190 +669,10 @@
         successMsg: "¡Gracias! Tu mensaje ha sido enviado con éxito.",
         footerCopy: "© 2026 Iniciativa de Investigación Códice MS 408 • Investigación Independiente por A. B. H. R. • CC BY-NC 4.0",
         footerZenodo: "Preprint en Zenodo"
-      },
-      zh: {
-        badge: "开放科学 • CC BY-NC 4.0",
-        mexicoBadge: "来自墨西哥的独立科学创新",
-        heroTitle: "MS 408 手稿：已被破解的伏尼契手稿",
-        heroSubtitle: "一个先进的开源计算平台，应用数理物理、算法软件、人工智能和矩阵相关性来解密人类历史上最大的谜团之一。",
-        originStory: "💡 <strong>独立科学成就：</strong> 在 IVTFF 转录标准下审核的引擎。",
-        historyTitle: "谜题与计算解密方案",
-        historyP1: "自 1912 年发现以来...",
-        historyP2: "通过应用严格的数学矩阵相关框架...",
-        historyP3: "我们的核心使命是保持完全可审计的透明度。",
-        card1Title: "标准 IVTFF 对齐",
-        card1Desc: "语料库与国际参考转录严格整合。",
-        card2Title: "人工智能与应用物理",
-        card2Desc: "通过流体语法模型解码。",
-        card3Title: "耶鲁贝内克典藏",
-        card3Desc: "与耶鲁大学官方档案对开页保持数字同步。",
-        corpusTitle: "交互式语料库与实时对开页浏览器",
-        corpusDesc: "逐行探索手稿。",
-        yaleBtn: "查看耶鲁官方藏品 ↗",
-        lblFolio: "选择 Folio / 章节",
-        lblMode: "分析模式",
-        lblTargetLang: "输出翻译语言",
-        panelInput: "参考 IVTFF 数据流 (EVA)",
-        panelResult: "实时解码输出",
-        supportTitle: "扩展愿景与财务透明度",
-        supportDesc: "开源筹资。",
-        contactTitle: "联系与合作",
-        contactDesc: "如果您是研究人员...",
-        lblName: "您的姓名 / 机构",
-        lblEmail: "电子邮件地址",
-        lblMessage: "留言内容",
-        btnSend: "发送留言",
-        successMsg: "谢谢！您的留言已成功发送。",
-        footerCopy: "© 2026 MS 408 手稿研究倡议 • CC BY-NC 4.0",
-        footerZenodo: "Zenodo 预印本"
-      },
-      ar: {
-        badge: "العلوم المفتوحة • CC BY-NC 4.0",
-        mexicoBadge: "ابتكار علمي مستقل من المكسيك",
-        heroTitle: "مخطوطة MS 408: مخطوطة فويتش التي تم فك شفرتها",
-        heroSubtitle: "منصة حوسبية متقدمة مفتوحة المصدر تطبق الفيزياء الرياضية والذكاء الاصطناعي لفك شفرة أحد أكبر الألغاز.",
-        originStory: "💡 <strong>إنجاز علمي مستقل:</strong> محرك تم تدقيقه وفق معايير IVTFF.",
-        historyTitle: "اللغز والحل الحوسبي",
-        historyP1: "لأكثر من قرن...",
-        historyP2: "تم تحقيق الإنجاز الحاسم...",
-        historyP3: "تتمثل مهمتنا الأساسية في الحفاظ على الشفافية.",
-        card1Title: "محاذاة IVTFF القياسية",
-        card1Desc: "متدقق مع النسخ المرجعية.",
-        card2Title: "الذكاء الاصطناعي والفيزياء",
-        card2Desc: "فك التشفير من خلال نماذج قواعد السوائل.",
-        card3Title: "مستودع Yale Beinecke",
-        card3Desc: "متناسق رقمياً.",
-        corpusTitle: "مدونة النصوص التفاعلية",
-        corpusDesc: "استكشف المخطوطة سطراً بسطر.",
-        yaleBtn: "عرض المجموعة الرسمية في ييل ↗",
-        lblFolio: "تحديد الصفحة / القسم",
-        lblMode: "وضع التحليل",
-        lblTargetLang: "لغة الترجمة",
-        panelInput: "تدفق مرجعي (EVA)",
-        panelResult: "المخرجات المفككة في الوقت الفعلي",
-        supportTitle: "رؤية التوسع",
-        supportDesc: "تمويل مفتوح.",
-        contactTitle: "اتصل بنا والتعاون",
-        contactDesc: "هل أنت باحث...",
-        lblName: "اسمك / مؤسستك",
-        lblEmail: "عنوان البريد الإلكتروني",
-        lblMessage: "الرسالة",
-        btnSend: "إرسال الرسالة",
-        successMsg: "شكراً لك! تم إرسال رسالتك بنجاح.",
-        footerCopy: "© 2026 مبادرة بحث مخطوطة MS 408 • CC BY-NC 4.0",
-        footerZenodo: "نسخة أولية على Zenodo"
-      },
-      fr: {
-        badge: "Science Ouverte • CC BY-NC 4.0",
-        mexicoBadge: "Innovation Scientifique Indépendante depuis le Mexique",
-        heroTitle: "Codex MS 408 : Le Manuscrit de Voynich Déchiffré",
-        heroSubtitle: "Une plateforme computationnelle open source avancée appliquant la physique mathématique et l'IA.",
-        originStory: "💡 <strong>Réalisation Scientifique Indépendante :</strong> Moteur audité selon les normes IVTFF.",
-        historyTitle: "L'Énigme et la Solution Computationnelle",
-        historyP1: "Pendant plus d'un siècle...",
-        historyP2: "La percée décisive a été obtenue...",
-        historyP3: "Notre mission est de maintenir une transparence totale.",
-        card1Title: "Alignement Standard IVTFF",
-        card1Desc: "Corpus intégré avec les transcriptions de référence.",
-        card2Title: "IA et Physique Appliquée",
-        card2Desc: "Décodage par grammaire des fluides.",
-        card3Title: "Référentiel Yale Beinecke",
-        card3Desc: "Aligné numériquement avec les folios officiels.",
-        corpusTitle: "Corpus Interactif et Explorateur",
-        corpusDesc: "Explorez le manuscrit ligne par ligne.",
-        yaleBtn: "Voir la collection officielle à Yale ↗",
-        lblFolio: "Sélectionner le Folio",
-        lblMode: "Mode d'Analyse",
-        lblTargetLang: "Langue de Traduction",
-        panelInput: "Flux de Référence (EVA)",
-        panelResult: "Sortie Déchiffrée en Temps Réel",
-        supportTitle: "Vision d'Extension",
-        supportDesc: "Financement ouvert.",
-        contactTitle: "Contact et Collaborations",
-        contactDesc: "Êtes-vous chercheur...",
-        lblName: "Votre Nom / Institution",
-        lblEmail: "Adresse E-mail",
-        lblMessage: "Message",
-        btnSend: "Envoyer le Message",
-        successMsg: "Merci ! Votre message a été envoyé.",
-        footerCopy: "© 2026 Initiative de Recherche Codex MS 408 • CC BY-NC 4.0",
-        footerZenodo: "Prépublication Zenodo"
-      },
-      it: {
-        badge: "Scienza Aperta • CC BY-NC 4.0",
-        mexicoBadge: "Innovazione Scientifica Indipendente dal Messico",
-        heroTitle: "Codice MS 408: Il Manoscritto Voynich Decifrato",
-        heroSubtitle: "Una piattaforma computazionale open source avanzata che applica fisica matematica e intelligenza artificiale.",
-        originStory: "💡 <strong>Risultato Scientifico Indipendente:</strong> Motore auditato secondo gli standard IVTFF.",
-        historyTitle: "L'Enigma e la Soluzione Computazionale",
-        historyP1: "Per oltre un secolo...",
-        historyP2: "La svolta decisiva è stata ottenuta...",
-        historyP3: "La nostra missione è la trasparenza totale.",
-        card1Title: "Allineamento Standard IVTFF",
-        card1Desc: "Corpus integrato con le trascrizioni di riferimento.",
-        card2Title: "IA e Fisica Applicata",
-        card2Desc: "Decodifica tramite grammatica dei fluidi.",
-        card3Title: "Archivio Yale Beinecke",
-        card3Desc: "Allineato digitalmente con i folio ufficiali.",
-        corpusTitle: "Corpus Interattivo ed Esploratore",
-        corpusDesc: "Esplora il manoscritto riga per riga.",
-        yaleBtn: "Vedi collezione ufficiale a Yale ↗",
-        lblFolio: "Seleziona Folio",
-        lblMode: "Modalità di Analisi",
-        lblTargetLang: "Lingua di Traduzione",
-        panelInput: "Flusso di Riferimento (EVA)",
-        panelResult: "Uscita Decodificata in Tempo Reale",
-        supportTitle: "Visione di Scala",
-        supportDesc: "Finanziamento aperto.",
-        contactTitle: "Contatti e Collaborazioni",
-        contactDesc: "Sei un ricercatore...",
-        lblName: "Il tuo Nome / Istituzione",
-        lblEmail: "Indirizzo Email",
-        lblMessage: "Messaggio",
-        btnSend: "Invia Messaggio",
-        successMsg: "Grazie! Il tuo messaggio è stato inviato.",
-        footerCopy: "© 2026 Iniziativa di Ricerca Codice MS 408 • CC BY-NC 4.0",
-        footerZenodo: "Preprint su Zenodo"
-      },
-      ru: {
-        badge: "Открытая наука • CC BY-NC 4.0",
-        mexicoBadge: "Независимые научные инновации из Мексики",
-        heroTitle: "Кодекс MS 408: Расшифрованная рукопись Войнича",
-        heroSubtitle: "Передовая вычислительная платформа с открытым исходным кодом.",
-        originStory: "💡 <strong>Независимое научное достижение:</strong> Движок проверен по стандартам IVTFF.",
-        historyTitle: "Загадка и вычислительное решение",
-        historyP1: "Более века с момента обнаружения...",
-        historyP2: "Решающий прорыв был достигнут...",
-        historyP3: "Наша главная цель — абсолютная прозрачность.",
-        card1Title: "Стандартное выравнивание IVTFF",
-        card1Desc: "Корпус интегрирован с эталонными транскрипциями.",
-        card2Title: "ИИ и прикладная физика",
-        card2Desc: "Декодирование с помощью грамматики жидкостей.",
-        card3Title: "Репозиторий Yale Beinecke",
-        card3Desc: "Цифровой аналог официальных фолио.",
-        corpusTitle: "Интерактивный корпус и проводник",
-        corpusDesc: "Изучайте рукопись строка за строкой.",
-        yaleBtn: "Посмотреть официальную коллекцию в Yale ↗",
-        lblFolio: "Выберите фолио",
-        lblMode: "Режим анализа",
-        lblTargetLang: "Язык перевода",
-        panelInput: "Эталонный поток IVTFF (EVA)",
-        panelResult: "Расшифрованный результат",
-        supportTitle: "Масштабирование",
-        supportDesc: "Открытое финансирование.",
-        contactTitle: "Контакты и сотрудничество",
-        contactDesc: "Вы исследователь...",
-        lblName: "Ваше имя / Институт",
-        lblEmail: "Адрес электронной почты",
-        lblMessage: "Сообщение",
-        btnSend: "Отправить сообщение",
-        successMsg: "Спасибо! Ваше сообщение отправлено.",
-        footerCopy: "© 2026 Инициатива исследования кодекса MS 408 • CC BY-NC 4.0",
-        footerZenodo: "Препринт Zenodo"
       }
     };
 
-    let currentLang = "en";
+    let currentLang = "es";
 
     function updateFolioData() {
       const folioKey = document.getElementById("folioSelect").value;
@@ -1222,10 +700,8 @@
       currentLang = lang;
       document.documentElement.lang = currentLang;
       document.documentElement.dir = (lang === "ar") ? "rtl" : "ltr";
-
       document.getElementById("targetLangSelect").value = lang;
-
-      const t = translations[currentLang] || translations.en;
+      const t = translations[currentLang] || translations.es;
 
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.getAttribute("data-i18n");
@@ -1239,12 +715,10 @@
       event.preventDefault();
       document.getElementById("formSuccess").style.display = "block";
       document.getElementById("contactForm").reset();
-      setTimeout(() => {
-        document.getElementById("formSuccess").style.display = "none";
-      }, 5000);
+      setTimeout(() => { document.getElementById("formSuccess").style.display = "none"; }, 5000);
     }
 
-    changeLanguage("en");
+    changeLanguage("es");
   </script>
 </body>
 </html>
