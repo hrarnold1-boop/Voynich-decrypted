@@ -63,6 +63,24 @@
       font-size: 0.9rem;
     }
 
+    /* BANNER GRÁFICO CIENTÍFICO DINÁMICO (UBICADO AL INICIO) */
+    .scientific-canvas-banner {
+      background: var(--surface);
+      border: 1px solid var(--gold-border);
+      border-radius: 18px;
+      margin: 1.5rem 0 0 0;
+      padding: 1rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    }
+    .scientific-canvas-banner canvas {
+      display: block;
+      width: 100%;
+      height: 160px;
+      border-radius: 10px;
+    }
+
     .hero-banner {
       background: linear-gradient(135deg, rgba(0, 104, 71, 0.25) 0%, rgba(7, 10, 18, 0.94) 50%, rgba(56, 189, 248, 0.15) 100%), url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
       border: 1px solid var(--border);
@@ -188,24 +206,6 @@
       margin-bottom: 1.2rem;
       font-size: 1.02rem;
       text-align: justify;
-    }
-
-    /* BANNER GRÁFICO CIENTÍFICO (CEREZA DEL PASTEL) */
-    .scientific-canvas-banner {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      margin: 2rem 0;
-      padding: 1rem;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    .scientific-canvas-banner canvas {
-      display: block;
-      width: 100%;
-      height: 120px;
-      border-radius: 8px;
     }
 
     /* ESTILO MÓNACO / CASINO HIGH-END PARA EL MOTOR */
@@ -419,7 +419,7 @@
       margin-bottom: 1rem;
     }
 
-    /* SECCIÓN DE SITIOS RELACIONADOS */
+    /* SECCIÓN DE SITIOS RELACIONADOS (HASTA EL FONDO) */
     .links-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -566,6 +566,11 @@
       </select>
     </header>
 
+    <!-- BANNER GRÁFICO CIENTÍFICO DINÁMICO (COLOCADO JUSTO AL INICIO) -->
+    <div class="scientific-canvas-banner">
+      <canvas id="scientificCanvas" title="Simulación Dinámica de Vectores Matriciales y Gramática de Fluidos"></canvas>
+    </div>
+
     <main>
       <div class="hero-banner">
         <div class="hero-content">
@@ -576,7 +581,7 @@
           <h1>Códice MS 408: Manuscrito Voynich</h1>
           
           <p class="intro-text">
-            Bienvenido a la experiencia definitiva de inmersión y desciframiento del <strong>Manuscrito Voynich (Códice MS 408)</strong>. Datado por radiocarbono a principios del siglo XV (aprox. 1404–1438), este códice ha desconcertado a historiadores, lingüistas, criptógrafos y científicos de todo el mundo desde su redescubrimiento en 1912 por el librero anticuarista Wilfrid Voynich. De los aproximadamente 272 folios originales, hoy se conservan <strong>240 folios</strong> bajo riguroso resguardo en la <a href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noopener" class="yale-link-inline">Biblioteca Beinecke de Manuscritos y Libros Raros de la Universidad de Yale</a>. Sus enigmáticas páginas —repletas de ilustraciones botánicas inexplicables, diagramas cosmológicos radiales, secretos balneológicos y complejos tratados biológicos— resistieron durante más de un siglo los intentos de resolución basados en criptografía estadística tradicional y sustitución estática de caracteres.
+            Bienvenido a la experiencia definitiva de inmersión y desciframiento del <strong>Manuscrito Voynich (Códice MS 408)</strong>. Datado por radiocarbono a principios del siglo XV (aprox. 1404–1438), este códice ha desconcertado a historiadores, lingüistas, criptógrafos y científicos de todo el mundo desde su redescubrimiento en 1912 por el librero anticuarista Wilfrid Voynich. De los aproximadamente 272 folios originales, hoy se conservan <strong>240 folios</strong> bajo riguroso resguardo en la <a href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noopener" class="yale-link-inline">Biblioteca Beinecke de Manuscritos y Libros Raros de la Universidad de Yale</a>[span_0](start_span)[span_0](end_span). Sus enigmáticas páginas —repletas de ilustraciones botánicas inexplicables, diagramas cosmológicos radiales, secretos balneológicos y complejos tratados biológicos— resistieron durante más de un siglo los intentos de resolución basados en criptografía estadística tradicional y sustitución estática de caracteres.
           </p>
 
           <p class="intro-text">
@@ -591,11 +596,6 @@
             📜 <strong>Nota Metodológica sobre las Líneas:</strong> La plataforma permite auditar folios representativos (mostrando muestras de 4 líneas clave frente al total real registrado en el corpus IVTFF), destacando de manera estelar el <strong>Folio 116r</strong> (conocido como la "Piedra Rosetta" del códice por ser texto puro sin ilustraciones), el cual se encuentra traducido e integrado al <strong>100% de sus líneas reales</strong>.
           </div>
         </div>
-      </div>
-
-      <!-- BANNER GRÁFICO CIENTÍFICO (CEREZA DEL PASTEL) -->
-      <div class="scientific-canvas-banner">
-        <canvas id="scientificCanvas" title="Simulación Dinámica de Vectores Matriciales y Gramática de Fluidos"></canvas>
       </div>
 
       <!-- SECCIÓN DEL MOTOR DE TRADUCCIÓN (ESTILO MÓNACO / CASINO HIGH-END) -->
@@ -688,7 +688,7 @@
         <div class="support-box">
           <h3>Transparencia Fiscal y Fondeo Abierto a través de Fundación Raft</h3>
           <p style="text-align: justify; margin-bottom: 1rem;">
-            <strong>¿Qué es la Fundación Raft y por qué se gestiona a través de ellos?</strong> La <strong>Fundación Raft</strong> es una organización dedicada a respaldar y administrar con absoluta transparencia fiscal los recursos para proyectos tecnológicos y científicos de código abierto[span_0](start_span)[span_0](end_span). Gestionar las aportaciones mediante esta entidad garantiza rendición de cuentas, cumplimiento normativo y legitimidad institucional[span_1](start_span)[span_1](end_span). <em>Actualmente nos encontramos a la espera de que la Fundación Raft nos proporcione la información oficial y los datos definitivos de la cuenta para habilitarlos directamente en la plataforma.</em> Puedes consultar su portal oficial en el <a href="https://raft.foundation/" target="_blank" rel="noopener" class="yale-link-inline">sitio web de la Fundación Raft</a>[span_2](start_span)[span_2](end_span).
+            <strong>¿Qué es la Fundación Raft y por qué se gestiona a través de ellos?</strong> La Fundación Raft es una organización dedicada a respaldar y administrar con absoluta transparencia fiscal los recursos para proyectos tecnológicos y científicos de código abierto[span_1](start_span)[span_1](end_span). Gestionar las aportaciones mediante esta entidad garantiza rendición de cuentas, cumplimiento normativo y legitimidad institucional[span_2](start_span)[span_2](end_span). <em>Actualmente nos encontramos a la espera de que la Fundación Raft nos proporcione la información oficial y los datos definitivos de la cuenta para habilitarlos directamente en la plataforma.</em> Puedes consultar su portal oficial en el <a href="https://raft.foundation/" target="_blank" rel="noopener" class="yale-link-inline">sitio web de la Fundación Raft</a>[span_3](start_span)[span_3](end_span).
           </p>
 
           <p style="text-align: justify; margin-bottom: 1rem;">
@@ -736,7 +736,7 @@
           </div>
 
           <p style="text-align: justify; margin-bottom: 1rem; margin-top: 1rem;">
-            <strong>Un llamado a la difusión y ciencia abierta:</strong> Queremos aclarar con absoluta franqueza que <strong>no estamos solicitando donativos individuales ni aportaciones económicas a las personas</strong>. La mayor contribución que cualquier entusiasta o visitante puede hacer es utilizar, leer, interactuar y divertirse explorando esta plataforma, pero sobre todo, **compartirla**. Nuestro objetivo principal es que este proyecto llegue a los ojos de personas que forman parte de fundaciones, academias o instituciones que disponen de presupuestos asignados para apoyar investigaciones de alto impacto como esta.
+            <strong>Un llamado a la difusión y ciencia abierta:</strong> Queremos aclarar con absoluta franqueza que <strong>no estamos solicitando donativos individuales ni aportaciones económicas a las personas</strong>. La mayor contribución que cualquier entusiasta o visitante puede hacer es utilizar, leer, interactuar y divertirse explorando esta plataforma, pero sobre todo, <strong>compartirla</strong>. Nuestro objetivo principal es que este proyecto llegue a los ojos de personas que forman parte de fundaciones, academias o instituciones que disponen de presupuestos asignados para apoyar investigaciones de alto impacto como esta.
           </p>
         </div>
       </section>
@@ -749,31 +749,6 @@
             Para fomentar la ciencia abierta y la verificabilidad internacional, <strong>Zenodo</strong> (el repositorio de confianza impulsado por el CERN y OpenAIRE) aloja de manera pública nuestro preprint oficial y la carpeta integral con el software de análisis computacional. Todo el código fuente, scripts de Python, matrices y datos complementarios están disponibles para que cualquier investigador, académico o entusiasta pueda examinarlos, descargarlos y utilizarlos libremente para sus propias implementaciones y validaciones bajo los términos de la licencia CC BY-NC 4.0.
           </p>
           <a href="https://zenodo.org/records/24200946" target="_blank" rel="noopener" class="btn btn-primary">Acceder al Preprint y Repositorio en Zenodo ↗</a>
-        </div>
-      </section>
-
-      <!-- SECCIÓN DE SITIOS RELACIONADOS E INTERÉS -->
-      <section id="related-sites">
-        <h2>Sitios Relacionados e Interés Académico</h2>
-        <p>Explora fuentes primarias, repositorios internacionales y foros de discusión especializados donde la comunidad global analiza y debate los avances sobre el Manuscrito Voynich:</p>
-        
-        <div class="links-grid">
-          <a href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noopener" class="link-card">
-            <h4>Biblioteca Beinecke (Universidad de Yale)</h4>
-            <p>Resguardo oficial del Códice MS 408 y visor digital de facsímiles en alta resolución para investigación forense.</p>
-          </a>
-          <a href="https://www.reddit.com/r/voynich/" target="_blank" rel="noopener" class="link-card">
-            <h4>Comunidad r/Voynich (Reddit)</h4>
-            <p>Foro internacional de discusión donde investigadores independientes y entusiastas debaten teorías y análisis.</p>
-          </a>
-          <a href="https://news.ycombinator.com/" target="_blank" rel="noopener" class="link-card">
-            <h4>Hacker News</h4>
-            <p>Portal de tecnología y ciencia donde se discuten implementaciones algorítmicas y arquitecturas de software.</p>
-          </a>
-          <a href="https://boingboing.net/" target="_blank" rel="noopener" class="link-card">
-            <h4>Boing Boing</h4>
-            <p>Plataforma de cultura digital y misterios históricos que destaca hallazgos independientes de gran impacto.</p>
-          </a>
         </div>
       </section>
 
@@ -807,6 +782,31 @@
           </form>
         </div>
       </section>
+
+      <!-- SECCIÓN DE SITIOS RELACIONADOS E INTERÉS (UBICADA HASTA EL FONDO ABSOLUTO) -->
+      <section id="related-sites">
+        <h2>Sitios Relacionados e Interés Académico</h2>
+        <p>Explora fuentes primarias, repositorios internacionales y foros de discusión especializados donde la comunidad global analiza y debate los avances sobre el Manuscrito Voynich:</p>
+        
+        <div class="links-grid">
+          <a href="https://collections.library.yale.edu/catalog/2002046" target="_blank" rel="noopener" class="link-card">
+            <h4>Biblioteca Beinecke (Universidad de Yale)</h4>
+            <p>Resguardo oficial del Códice MS 408 y visor digital de facsímiles en alta resolución para investigación forense.</p>
+          </a>
+          <a href="https://www.reddit.com/r/voynich/" target="_blank" rel="noopener" class="link-card">
+            <h4>Comunidad r/Voynich (Reddit)</h4>
+            <p>Foro internacional de discusión donde investigadores independientes y entusiastas debaten teorías y análisis.</p>
+          </a>
+          <a href="https://news.ycombinator.com/" target="_blank" rel="noopener" class="link-card">
+            <h4>Hacker News</h4>
+            <p>Portal de tecnología y ciencia donde se discuten implementaciones algorítmicas y arquitecturas de software.</p>
+          </a>
+          <a href="https://boingboing.net/" target="_blank" rel="noopener" class="link-card">
+            <h4>Boing Boing</h4>
+            <p>Plataforma de cultura digital y misterios históricos que destaca hallazgos independientes de gran impacto.</p>
+          </a>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -816,7 +816,7 @@
   </div>
 
   <script>
-    // SCRIPT PARA EL CANVAS CIENTÍFICO DINÁMICO (CEREZA DEL PASTEL)
+    // SCRIPT PARA EL CANVAS CIENTÍFICO AVANZADO CON PALABRAS FLOTANTES DINÁMICAS
     const canvas = document.getElementById("scientificCanvas");
     const ctx = canvas.getContext("2d");
 
@@ -828,19 +828,33 @@
     resizeCanvas();
 
     let particles = [];
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 50; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8,
+        vx: (Math.random() - 0.5) * 0.7,
+        vy: (Math.random() - 0.5) * 0.7,
         radius: Math.random() * 2 + 1
       });
     }
 
+    const floatingWords = [
+      { text: "VOYNICH", x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: 0.4, vy: 0.2, alpha: 0.8 },
+      { text: "SOLVED", x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: -0.3, vy: 0.3, alpha: 0.7 },
+      { text: "DECRYPTED", x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: 0.2, vy: -0.4, alpha: 0.75 },
+      { text: "DECODED", x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: -0.4, vy: -0.2, alpha: 0.65 },
+      { text: "DONE", x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: 0.3, vy: 0.3, alpha: 0.85 },
+      { text: "MATRIX", x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: -0.2, vy: 0.4, alpha: 0.7 },
+      { text: "ANALYSIS", x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: 0.3, vy: -0.3, alpha: 0.8 },
+      { text: "COMPLEX", x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: -0.3, vy: -0.3, alpha: 0.7 },
+      { text: "FLUID", x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: 0.4, vy: -0.2, alpha: 0.75 }
+    ];
+
     function animateScientificCanvas() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "rgba(56, 189, 248, 0.25)";
+      
+      // Dibujar líneas y partículas de la matriz
+      ctx.fillStyle = "rgba(56, 189, 248, 0.3)";
       ctx.strokeStyle = "rgba(245, 158, 11, 0.15)";
 
       particles.forEach((p, index) => {
@@ -857,7 +871,7 @@
         for (let j = index + 1; j < particles.length; j++) {
           let p2 = particles[j];
           let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-          if (dist < 90) {
+          if (dist < 85) {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
@@ -865,6 +879,23 @@
           }
         }
       });
+
+      // Dibujar palabras flotantes científicas y culturales
+      ctx.font = "bold 13px monospace";
+      floatingWords.forEach(w => {
+        w.x += w.vx;
+        w.y += w.vy;
+
+        if (w.x < 30 || w.x > canvas.width - 90) w.vx *= -1;
+        if (w.y < 20 || w.y > canvas.height - 10) w.vy *= -1;
+
+        ctx.fillStyle = `rgba(56, 189, 248, ${w.alpha})`;
+        ctx.shadowColor = "rgba(56, 189, 248, 0.8)";
+        ctx.shadowBlur = 8;
+        ctx.fillText(w.text, w.x, w.y);
+        ctx.shadowBlur = 0;
+      });
+
       requestAnimationFrame(animateScientificCanvas);
     }
     animateScientificCanvas();
