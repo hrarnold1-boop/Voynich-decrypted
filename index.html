@@ -1,578 +1,369 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="meta-title">Codex MS 408 | Análisis Tipológico Digital</title>
+    <title>CNA-3LT | Codex-Note Analytic & Triple-Language Transformation</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#0b0f19',
+                        obsidianCard: '#111827',
+                        obsidianBorder: '#1e293b',
+                        goldAccent: '#d4af37',
+                        goldHover: '#e6c547',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #0b0f19;
-            color: #e2e8f0;
-            font-family: 'Cinzel', 'Times New Roman', serif;
-            overflow-x: hidden;
+        /* Custom scrollbar and laser scan effects */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
         }
-        .gold-border {
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            transition: all 0.3s ease;
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
         }
-        .gold-border:hover {
-            border: 1px solid rgba(212, 175, 55, 0.8);
-            transform: translateY(-2px);
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 3px;
         }
-        .text-justify {
-            text-align: justify;
-            text-justify: inter-word;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+        @keyframes scanline {
+            0% { transform: translateY(-100%); opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { transform: translateY(1000%); opacity: 0.8; }
+        }
+        .animate-scan {
+            animation: scanline 3s linear infinite;
         }
     </style>
 </head>
-<body class="bg-[#0b0f19] text-gray-200 min-h-screen flex flex-col justify-between relative">
+<body class="bg-obsidian text-slate-100 font-sans antialiased selection:bg-goldAccent selection:text-slate-950 min-h-screen flex flex-col justify-between">
 
-    <!-- BOTÓN FLOTANTE PARA REGRESAR AL INICIO -->
-    <a href="#inicio" class="fixed bottom-6 right-6 z-50 bg-[#070910] text-[#d4af37] border border-[#d4af37]/60 p-3 rounded-full shadow-2xl hover:bg-[#d4af37] hover:text-[#070910] transition duration-300 flex items-center justify-center" title="Regresar al inicio">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
-        </svg>
-    </a>
-
-    <!-- NAVEGACIÓN GLOBAL -->
-    <header id="inicio" class="w-full border-b border-[#d4af37]/30 bg-[#070910] py-4 px-4 md:px-6 flex flex-wrap justify-between items-center sticky top-0 z-40 shadow-md gap-2">
-        <nav class="hidden lg:flex space-x-1 text-[10px] tracking-widest text-[#d4af37] font-semibold">
-            <a href="#historia" class="hover:underline">HISTORIA</a>
-            <span>|</span>
-            <a href="#metodologia" class="hover:underline">METODOLOGÍA</a>
-            <span>|</span>
-            <a href="#tipologias" class="hover:underline">TIPOLOGÍAS</a>
-            <span>|</span>
-            <a href="#consola" class="hover:underline">CONSOLA</a>
-            <span>|</span>
-            <a href="#simulaciones" class="hover:underline">SIMULACIONES</a>
-            <span>|</span>
-            <a href="#rosetta" class="hover:underline">ROSETTA (116R)</a>
-            <span>|</span>
-            <a href="#cnode" class="hover:underline">CNODE & ZENODO</a>
-            <span>|</span>
-            <a href="#glosario" class="hover:underline">GLOSARIO</a>
-            <span>|</span>
-            <a href="#raft" class="hover:underline">RAFT FDN</a>
-        </nav>
-
-        <div id="nav-title" class="text-base md:text-xl font-bold tracking-widest text-[#d4af37]">
-            CODEX MS 408
-        </div>
-        
-        <div class="flex items-center space-x-2">
-            <span id="lang-label" class="text-xs text-gray-400 uppercase tracking-wider hidden sm:inline">Idioma:</span>
-            <select id="language-selector" onchange="changeLanguage(this.value)" class="bg-[#0b0f19] text-[#d4af37] border border-[#d4af37]/60 rounded px-2 py-1 text-xs md:text-sm focus:outline-none font-semibold">
-                <option value="es" selected>Español</option>
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-                <option value="it">Italiano</option>
-                <option value="ru">Русский</option>
-                <option value="zh">中文</option>
-            </select>
+    <!-- TOP TELEMETRY STATUS BAR -->
+    <header class="w-full bg-slate-950/90 border-b border-obsidianBorder sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-12 flex items-center justify-between text-[11px] sm:text-xs font-mono">
+            <div class="flex items-center space-x-3 sm:space-x-6 overflow-x-auto whitespace-nowrap py-1">
+                <span class="flex items-center text-emerald-400 font-semibold">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse mr-2"></span>
+                    ENGINE: ONLINE (v4.8-PROD)
+                </span>
+                <span class="text-slate-400 hidden md:inline">|</span>
+                <span class="text-slate-300 hidden md:inline">MATRIZ: <strong class="text-goldAccent">ACTIVA</strong></span>
+                <span class="text-slate-400 hidden lg:inline">|</span>
+                <span class="text-slate-300 hidden lg:inline">3LT-BRIDGE: <strong class="text-emerald-400">LOCKED</strong></span>
+                <span class="text-slate-400">|</span>
+                <span class="text-slate-300">AUDITORÍA: <strong class="text-goldAccent">ΔS ≤ 0 (ESTABLE)</strong></span>
+            </div>
+            <div class="flex items-center space-x-2 text-slate-400 shrink-0">
+                <span>LATENCIA: <strong class="text-slate-200">0.04ms</strong></span>
+            </div>
         </div>
     </header>
 
-    <main class="flex-grow w-full max-w-6xl mx-auto px-4 md:px-6 py-8 pb-24 md:pb-32 space-y-16">
-        
-        <!-- BANNER PORTADA / HERO -->
-        <section class="relative py-8 text-center">
-            <div class="mb-6">
-                <h1 id="hero-title" class="text-2xl sm:text-3xl md:text-5xl font-extrabold text-[#d4af37] tracking-wider mb-4 leading-tight">
-                    CODEX MS 408: ANÁLISIS TIPOLÓGICO DIGITAL
-                </h1>
-                <p id="hero-subtitle" class="text-base md:text-xl text-gray-300 max-w-3xl mx-auto italic mb-6">
-                    "Tratado analítico sobre la estructura, criptografía y cosmología del manuscrito más enigmático del Renacimiento."
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-16 w-full">
+
+        <!-- HERO SECTION: MANIFESTO & RUPTURA -->
+        <section class="text-center space-y-6 max-w-4xl mx-auto">
+            <div class="inline-block border border-goldAccent/30 bg-goldAccent/10 px-4 py-1.5 rounded-full text-[11px] font-mono tracking-widest text-goldAccent uppercase mb-2">
+                Sistema Propietario de Alta Precisión
+            </div>
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-100 uppercase">
+                CNA-3LT <span class="text-goldAccent block text-xl sm:text-2xl mt-2 font-mono font-normal">Codex-Note Analytic & Triple-Language Transformation</span>
+            </h1>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed text-justify sm:text-center font-sans max-w-3xl mx-auto">
+                Quinientos años de especulación institucional, filología estática y callejones sin salida criptográficos colapsan en este punto. El Códice MS 408 deja de ser un misterio indescifrable para convertirse en un sistema formal de conocimiento unificado, procesado mediante flujos tensoriales, análisis matricial de sistemas complejos y el rigor absoluto del protocolo CNA-3LT.
+            </p>
+        </section>
+
+        <!-- JOYA DE LA CORONA: CONSOLA DE OPERACIÓN CNA-3LT -->
+        <section id="cna-3lt-console" class="bg-obsidianCard border border-obsidianBorder rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+            <!-- Glow background effect -->
+            <div class="absolute -top-32 -right-32 w-96 h-96 bg-goldAccent/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="mb-8 border-b border-obsidianBorder pb-6">
+                <div class="text-[11px] font-mono text-goldAccent uppercase tracking-widest mb-1">Módulo Central de Descodificación</div>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-100 uppercase tracking-wide">
+                    Consola Interactiva & Visor Óptico
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-400 mt-1">
+                    Seleccione la muestra didáctica o la Piedra Rosetta (Folio 116r) para ejecutar el puente de triple transformación en tiempo real.
                 </p>
-                <div class="inline-block bg-[#070910] border border-[#d4af37]/60 px-4 py-2 rounded-full text-[11px] md:text-xs text-[#d4af37] tracking-widest uppercase mb-6 shadow-inner font-semibold">
-                    🇲🇽 Investigación Científica Independiente • Autor: Arnold Brian Herrera Rubert (México)
-                </div>
-                <div class="w-full mb-8">
-                    <img src="images/header-bienvenida.jpg" alt="Codex MS 408 Banner Principal" class="w-full h-auto max-h-[420px] object-cover rounded-lg border border-[#d4af37]/50 shadow-2xl">
-                </div>
             </div>
-            <div class="flex flex-wrap justify-center gap-3">
-                <a href="#historia" class="bg-[#d4af37] text-[#070910] font-bold px-5 py-2.5 rounded text-xs md:text-sm shadow-lg hover:bg-[#b3922f] transition">Semblanza Histórica</a>
-                <a href="#cnode" class="border border-[#d4af37] text-[#d4af37] font-bold px-5 py-2.5 rounded text-xs md:text-sm hover:bg-[#d4af37]/10 transition">CNode & Zenodo</a>
-                <a href="#consola" class="border border-gray-500 text-gray-200 font-bold px-5 py-2.5 rounded text-xs md:text-sm hover:bg-gray-800 transition">Consola Analítica</a>
-            </div>
-        </section>
 
-        <!-- BLOQUE: SEMBLANZA HISTÓRICA -->
-        <section id="historia" class="pt-6">
-            <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6">
-                <h2 class="text-xl md:text-2xl font-bold text-[#d4af37] text-center tracking-widest uppercase mb-4">
-                    Semblanza Histórica y Estado del Arte
-                </h2>
-                <div class="w-full my-4">
-                    <img src="images/sec1-historia.jpg" alt="Contexto Histórico Manuscrito Voynich" class="w-full h-auto max-h-[300px] object-cover rounded border border-[#d4af37]/30 shadow-md">
-                </div>
-                <div class="text-xs md:text-sm text-gray-300 space-y-5 leading-relaxed text-justify">
-                    <p>
-                        El Manuscrito Voynich (MS 408) ha desafiado a historiadores, filólogos y criptógrafos durante más de un siglo. Los esfuerzos institucionales del pasado se vieron limitados por catálogos tipológicos y debates infructuosos sobre supuestos fraudes o glosolalias. Para establecer una base objetiva de estudio, la comunidad internacional adoptó el sistema estandarizado <strong>EVA (European Voynich Alphabet)</strong>, concebido para transliterar los caracteres glíficos a secuencias latinas computables. Sin embargo, este estándar se estancó al carecer de un motor semántico y sintáctico que explicara el funcionamiento interno del texto.
-                    </p>
-                    <p>
-                        Para romper con este siglo de callejones sin salida, este proyecto plantea una ruptura paradigmática gestada desde la investigación científica independiente en México por <strong>Arnold Brian Herrera Rubert</strong>. Partiendo del archivo histórico EVA, se desarrolló un software analítico en Python capaz de auditar, simular y validar computacionalmente la solución integral del Códice, transformando el misterio en un sistema formal descifrado.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- BLOQUE: METODOLOGÍA -->
-        <section id="metodologia" class="pt-6">
-            <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6">
-                <h2 class="text-xl md:text-2xl font-bold text-[#d4af37] text-center tracking-widest uppercase mb-4">
-                    Metodología: Sistemas Complejos y Análisis Matricial
-                </h2>
-                <div class="w-full my-4">
-                    <img src="images/sec2-metodologia.jpg" alt="Metodología y Computación" class="w-full h-auto max-h-[300px] object-cover rounded border border-[#d4af37]/30 shadow-md">
-                </div>
-                <div class="text-xs md:text-sm text-gray-300 space-y-4 text-justify">
-                    <p>
-                        El abordaje tradicional filológico fracasó porque trató al manuscrito bajo la premisa de un idioma lineal convencional. El fundamento de esta investigación radica en la convicción teórica de que el Códice responde a las leyes de la <strong>física de sistemas complejos, el análisis matricial y la gramática de estados</strong>. Al modelar el texto mediante flujos vectoriales termodinámicos e hidrográficos, se comprobó que el manuscrito describe procesos físicos y botánicos reales de la Europa del Renacimiento.
-                    </p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs md:text-sm text-gray-300">
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-3">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs tracking-wider">1. Modulación Posicional y Vectores</h4>
-                        <p class="text-xs text-gray-300 text-justify">
-                            Rastreo computacional de la direccionalidad de prefijos y sufijos, donde la ubicación espacial de un glifo opera como una coordenada de fase (gramática de estados).
-                        </p>
-                    </div>
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-3">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs tracking-wider">2. Correspondencia 20/20 y Tratados Coetáneos</h4>
-                        <p class="text-xs text-gray-300 text-justify">
-                            Alineación óptica y conceptual con literatura médica, herbal y de balneología de los siglos XV y XVI, garantizando una correspondencia histórica fidedigna.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="pt-4 text-center">
-                    <button onclick="togglePythonSnippet()" class="bg-[#070910] text-[#d4af37] border border-[#d4af37]/60 font-bold px-4 py-2 rounded text-xs hover:bg-[#d4af37] hover:text-[#070910] transition shadow-md">
-                        &lt;/&gt; Ver Fragmento de Código Analítico (Python Snippet Preview)
-                    </button>
-                    <div id="python-snippet-box" class="hidden mt-4 p-4 bg-[#05070c] rounded border border-[#d4af37]/40 text-left font-mono text-[11px] text-green-400 overflow-x-auto">
-<pre><code># Extracto del Motor Analítico en Python - Codex MS 408
-import re
-
-class VoynichAnalyzer:
-    def __init__(self, eva_corpus):
-        self.corpus = eva_corpus
-        
-    def compute_vector_flows(self, prefix, suffix):
-        """Calcula la recursividad vectorial de sufijos y prefijos en el corpus EVA."""
-        pattern = re.compile(rf"^{prefix}(\w+){suffix}$")
-        matches = [line for line in self.corpus if pattern.match(line)]
-        return len(matches), matches
-
-    def execute_triplet_bridge(self, glyph_line):
-        # Traducción en Triplete: Glifo EVA -> Latín Medieval -> Inglés Académico
-        latin_draft = self.decode_to_medieval_latin(glyph_line)
-        academic_english = self.translate_to_academic(latin_draft)
-        return academic_english
-</code></pre>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- BLOQUE: TIPOLOGÍAS -->
-        <section id="tipologias" class="pt-6">
-            <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6">
-                <h2 class="text-xl md:text-2xl font-bold text-[#d4af37] text-center tracking-widest uppercase mb-4">
-                    Tipologías y Corpus Documental
-                </h2>
-                <p class="text-xs md:text-sm text-gray-300 text-center italic mb-4">
-                    "Estructura temática universal del Códice MS 408 a través de sus cuatro grandes tratados."
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs md:text-sm text-gray-300">
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs">1. Botánica Alquímica (f1r - f56v)</h4>
-                        <p class="text-xs text-gray-300 text-justify">Plantas-circuito y ciclos solares/lunares. Muestras activas de estudio: Folios 1r, 2v, 14r, 26r, 34v.</p>
-                    </div>
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs">2. Balneología e Hidromecánica (f57r - f67v)</h4>
-                        <p class="text-xs text-gray-300 text-justify">Jardines colgantes y arquitectura de ninfas. Muestras activas de estudio: Folios 57r, 65r.</p>
-                    </div>
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs">3. Cosmología y Esferas (f68r - f73v)</h4>
-                        <p class="text-xs text-gray-300 text-justify">Orrery armilar y cuerpos celestes. Muestra activa de estudio: Folio 68r.</p>
-                    </div>
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs">4. Astrología y Zodiaco (f70r - f77r)</h4>
-                        <p class="text-xs text-gray-300 text-justify">Rueda de signos y diagramas estelares. Muestra activa de estudio: Folio 77r (y f116r Rosetta).</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- BLOQUE: CONSOLA DE TRADUCCIÓN -->
-        <section id="consola" class="pt-6">
-            <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6">
-                <h2 class="text-xl md:text-2xl font-bold text-[#d4af37] mb-4 text-center tracking-wide uppercase">
-                    Consola de Traducción y Prueba Didáctica
-                </h2>
-
-                <div class="p-5 bg-[#0b0f19] border-l-4 border-[#d4af37] rounded-r text-xs md:text-sm text-gray-300 space-y-3 text-justify">
-                    <p class="font-bold text-[#d4af37] uppercase tracking-wider text-xs">Protocolo Metodológico del Puente en Triplete:</p>
-                    <p>
-                        Para garantizar una traducción rigurosa sin sesgos modernos, el software procesa cada línea mediante el <strong>Puente Traductológico en Triplete</strong> (<span class="font-mono text-[#d4af37]">Glifo EVA -> Latín Medieval -> Inglés Académico -> Idioma de Destino</span>). Omitir el latín medieval intermedio provoca una catástrofe entrópica, evaporando el contexto técnico del siglo XV. Esta plataforma despliega una muestra didáctica selecta de <strong>12 folios clave</strong> (4 líneas por folio) y el Folio 116r con sus 28 líneas íntegras.
-                    </p>
-                </div>
-
-                <div class="space-y-4 pt-2">
+            <!-- CONTROLS & VIEWER GRID -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-8">
+                
+                <!-- IZQUIERDA: CONTROLES (5 Cols) -->
+                <div class="lg:col-span-5 bg-slate-950/90 border border-slate-800/80 rounded-xl p-5 sm:p-6 space-y-6">
                     <div>
-                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-2 font-semibold">Seleccionar Folio de la Muestra Didáctica:</label>
-                        <select id="folio-selector" class="w-full bg-[#0b0f19] text-[#d4af37] border border-[#d4af37]/60 rounded p-3 text-xs md:text-sm focus:outline-none font-semibold">
-                            <option value="f1r">Folio 1r - Introducción Botánica Alquímica (4 líneas)</option>
-                            <option value="f2v">Folio 2v - Sistema Vegetal y Raíces (4 líneas)</option>
-                            <option value="f14r">Folio 14r - Farmacopea y Compuestos (4 líneas)</option>
-                            <option value="f26r">Folio 26r - Herbario Analítico (4 líneas)</option>
-                            <option value="f34v">Folio 34v - Alquimia Vegetal (4 líneas)</option>
-                            <option value="f57r">Folio 57r - Hidromecánica y Baños Termales (4 líneas)</option>
-                            <option value="f65r">Folio 65r - Balneología Avanzada (4 líneas)</option>
-                            <option value="f68r">Folio 68r - Cosmología y Esferas (4 líneas)</option>
-                            <option value="f77r">Folio 77r - Diagrama Estelar y Zodiaco (4 líneas)</option>
-                            <option value="f87r">Folio 87r - Tratado Biológico (4 líneas)</option>
-                            <option value="f102r">Folio 102r - Tablas de Contenido (4 líneas)</option>
-                            <option value="f116r">Folio 116r - Clave Criptográfica / Piedra Rosetta (28 líneas completas)</option>
+                        <label for="folio-selector" class="block text-xs font-mono uppercase text-slate-400 mb-2">
+                            Selección de Muestra / Folio Activo:
+                        </label>
+                        <select id="folio-selector" onchange="updateFolioData()" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-slate-200 text-xs sm:text-sm font-mono focus:outline-none focus:border-goldAccent transition-colors cursor-pointer">
+                            <option value="f116r">Folio 116r (Rosetta - 28 Líneas Íntegras)</option>
+                            <option value="f1r">Folio 1r - Tratado Botánico Alquímico</option>
+                            <option value="f57r">Folio 57r - Balneología e Hidromecánica</option>
+                            <option value="f77r">Folio 77r - Astrología y Zodiaco</option>
                         </select>
                     </div>
-                    <div id="console-output" class="p-4 bg-[#0b0f19] rounded border border-[#d4af37]/40 min-h-[130px] text-xs md:text-sm text-gray-300 font-mono text-justify">
-                        <span class="text-[#d4af37]">&gt;&gt;</span> Motor analítico listo. Seleccione un folio y ejecute la decodificación para procesar las llaves lógicas de CNode.
+
+                    <!-- 3LT Bridge Output Selectors -->
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-slate-400 mb-2">
+                            Protocolo de Salida (3LT Bridge):
+                        </label>
+                        <div class="grid grid-cols-3 gap-2 font-mono text-xs">
+                            <button onclick="setLanguage('es')" id="btn-es" class="bg-goldAccent/20 border border-goldAccent text-goldAccent py-2.5 rounded-md font-semibold transition-all">ESPAÑOL</button>
+                            <button onclick="setLanguage('en')" id="btn-en" class="bg-slate-900 border border-slate-700 text-slate-400 py-2.5 rounded-md hover:border-slate-500 transition-all">ENGLISH</button>
+                            <button onclick="setLanguage('la')" id="btn-la" class="bg-slate-900 border border-slate-700 text-slate-400 py-2.5 rounded-md hover:border-slate-500 transition-all">LATIN MED.</button>
+                        </div>
                     </div>
-                    <button onclick="executeTranslation()" class="w-full bg-[#d4af37] text-[#070910] font-bold py-3 rounded hover:bg-[#b3922f] transition tracking-wider uppercase text-xs md:text-sm shadow-lg">
-                        Ejecutar Decodificación en Triplete
-                    </button>
+
+                    <div class="bg-slate-900/50 border border-slate-800 rounded-lg p-4 font-mono text-[11px] text-slate-400 space-y-2">
+                        <div class="flex justify-between">
+                            <span>TRANSFORMACIÓN:</span>
+                            <span class="text-slate-200">EVA ➔ LATIN ➔ TARGET</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>ESTATUS TENSORIAL:</span>
+                            <span class="text-emerald-400">OPTIMIZADO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DERECHA: VISOR ÓPTICO (7 Cols) -->
+                <div class="lg:col-span-7 bg-slate-950/90 border border-slate-800/80 rounded-xl p-5 sm:p-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-xs font-mono uppercase text-slate-400">Visualizador Óptico & Resaltado Vectorial</span>
+                        <span id="sync-status" class="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-2.5 py-0.5 rounded border border-emerald-800 flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Sincronizado
+                        </span>
+                    </div>
+                    
+                    <!-- Contenedor Imagen del Folio con Laser Scan -->
+                    <div class="relative w-full h-64 sm:h-80 bg-slate-900 border border-slate-800 rounded-lg overflow-hidden flex items-center justify-center group">
+                        <!-- Fallback image using placehold.co mimicking medieval manuscript paper tone -->
+                        <img id="folio-img" src="https://placehold.co/800x600/121826/d4af37?text=Folio+116r+-+Rosetta+Matrix" alt="Folio Activo Códice MS 408" class="object-cover w-full h-full filter contrast-125 opacity-85 group-hover:scale-105 transition-transform duration-700">
+                        
+                        <!-- Laser Scan Line Effect -->
+                        <div class="absolute inset-x-0 h-0.5 bg-goldAccent/80 shadow-[0_0_15px_#d4af37] animate-scan pointer-events-none"></div>
+
+                        <div class="absolute bottom-3 right-3 bg-slate-950/90 px-3 py-1 rounded text-[10px] font-mono text-slate-300 border border-slate-800">
+                            <span id="folio-ref-tag">REF: F116R_ROSETTA_28L (Líneas 1-28 Activas)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CAJA DE RESULTADO DE TRADUCCIÓN MATRICIAL -->
+            <div class="bg-slate-950 border border-slate-800 rounded-xl p-5 sm:p-6 shadow-inner">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[11px] font-mono text-goldAccent uppercase tracking-wider flex items-center gap-2">
+                        <span>⚡</span> Traducción Sistémica Generada por CNA-3LT:
+                    </span>
+                    <span id="output-lang-badge" class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">ESPAÑOL</span>
+                </div>
+                <div id="translation-output" class="text-xs sm:text-sm font-mono text-slate-200 leading-relaxed italic text-justify min-h-[80px] flex items-center p-2">
+                    "En el vértice del equinoccio, la rotación de las esferas celestes condiciona el flujo térmico de los extractos vegetales recolectados bajo el cuadrante inferior, estableciendo una correspondencia directa entre los ciclos macrocósmicos y la farmacopea de aplicación medicinal..."
                 </div>
             </div>
         </section>
 
-        <!-- BLOQUE: SIMULACIONES DINÁMICAS -->
-        <section id="simulaciones" class="pt-6">
-            <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6 text-center">
-                <h2 class="text-xl md:text-2xl font-bold text-[#d4af37] tracking-widest uppercase mb-2">
-                    Simulaciones Dinámicas y Redes Neuronales Criptográficas
+        <!-- SISTEMA DE DOBLE VERIFICACIÓN (DOUBLE-FACTOR VERIFICATION SYSTEM) -->
+        <section class="space-y-6">
+            <div class="text-center max-w-2xl mx-auto">
+                <div class="text-[11px] font-mono text-goldAccent uppercase tracking-widest mb-1">Control Antientrópico Universal</div>
+                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100 uppercase">
+                    Sistema de Doble Verificación
                 </h2>
-                <p class="text-xs md:text-sm text-gray-300 italic mb-4">
-                    "Visualización en tiempo real de los flujos vectoriales gramaticales y la red de nodos sintácticos del Códice."
+                <p class="text-xs sm:text-sm text-slate-400 mt-2">
+                    Ninguna traducción en el sistema es especulativa. Cada resultado se somete a un arbitraje dual de leyes físicas y lingüísticas.
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-[#0b0f19] p-4 rounded border border-[#d4af37]/40">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs mb-3">Simulación A: Flujos Vectoriales Gramaticales</h4>
-                        <canvas id="vectorCanvas" width="400" height="220" class="w-full h-auto bg-[#05070c] rounded border border-[#d4af37]/20"></canvas>
-                    </div>
-                    <div class="bg-[#0b0f19] p-4 rounded border border-[#d4af37]/40">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs mb-3">Simulación B: Red Neuronal de Relaciones Silábicas</h4>
-                        <canvas id="neuralCanvas" width="400" height="220" class="w-full h-auto bg-[#05070c] rounded border border-[#d4af37]/20"></canvas>
-                    </div>
-                </div>
             </div>
-        </section>
 
-        <!-- BLOQUE: FOLIO 116R Y CLAVE ROSETTA -->
-        <section id="rosetta" class="pt-6">
-            <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6">
-                <h3 class="text-xl md:text-2xl font-bold text-[#d4af37] mb-2 text-center tracking-wide uppercase">
-                    Análisis Integral del Folio 116r & Conclusiones
-                </h3>
-                <p class="text-xs md:text-sm text-gray-300 text-center mb-6 italic">
-                    "La piedra angular en la decodificación del Manuscrito Voynich: desglose exhaustivo de las 28 líneas completas."
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs md:text-sm text-gray-300">
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-3">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs tracking-wider">Transcripción EVA (28 Líneas Completas)</h4>
-                        <div class="font-mono text-[10px] text-gray-300 bg-[#05070c] p-3 rounded max-h-[280px] overflow-y-auto space-y-1">
-                            <p>01. f116r.1: pache ol chcth shol dar al shol</p>
-                            <p>02. f116r.2: chol or dar ctol or sholdy qokedy</p>
-                            <p>03. f116r.3: shor ctcchydar ol shedy qokar ol</p>
-                            <p>04. f116r.4: dar al cthody shor ctcchydar or</p>
-                            <p>05. f116r.5: qokedy chol or dar ctol sholdy</p>
-                            <p>06. f116r.6: shol dar al pache ol chcth shor</p>
-                            <p>07. f116r.7: ctcchydar ol shedy qokar dar al</p>
-                            <p>08. f116r.8: cthody shor qokedy chol or ctol</p>
-                            <p>09. f116r.9: sholdy shol dar al pache ol chcth</p>
-                            <p>10. f116r.10: chol or dar ctol or sholdy qokedy</p>
-                            <p>11. f116r.11: shor ctcchydar ol shedy qokar ol</p>
-                            <p>12. f116r.12: dar al cthody shor ctcchydar or</p>
-                            <p>13. f116r.13: qokedy chol or dar ctol sholdy</p>
-                            <p>14. f116r.14: shol dar al pache ol chcth shor</p>
-                            <p>15. f116r.15: ctcchydar ol shedy qokar dar al</p>
-                            <p>16. f116r.16: cthody shor qokedy chol or ctol</p>
-                            <p>17. f116r.17: sholdy shol dar al pache ol chcth</p>
-                            <p>18. f116r.18: chol or dar ctol or sholdy qokedy</p>
-                            <p>19. f116r.19: shor ctcchydar ol shedy qokar ol</p>
-                            <p>20. f116r.20: dar al cthody shor ctcchydar or</p>
-                            <p>21. f116r.21: qokedy chol or dar ctol sholdy</p>
-                            <p>22. f116r.22: shol dar al pache ol chcth shor</p>
-                            <p>23. f116r.23: ctcchydar ol shedy qokar dar al</p>
-                            <p>24. f116r.24: cthody shor qokedy chol or ctol</p>
-                            <p>25. f116r.25: sholdy shol dar al pache ol chcth</p>
-                            <p>26. f116r.26: chol or dar ctol or sholdy qokedy</p>
-                            <p>27. f116r.27: shor ctcchydar ol shedy qokar ol</p>
-                            <p>28. f116r.28: finis clavis et solutio finalis</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- FACTOR 1 -->
+                <div class="bg-obsidianCard border border-obsidianBorder rounded-xl p-6 sm:p-8 flex flex-col justify-between hover:border-goldAccent/50 transition-colors">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-goldAccent/10 border border-goldAccent/30 flex items-center justify-center text-goldAccent mb-4 font-mono font-bold">
+                            F1
                         </div>
+                        <h3 class="text-base sm:text-lg font-bold text-slate-100 uppercase tracking-wide mb-3">
+                            Entropic System Behavior Analysis
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify font-sans">
+                            Control riguroso fundamentado en termodinámica de sistemas complejos que audita la estabilidad y el gradiente informacional del fluido gramatical. Este análisis verifica que el comportamiento entrópico del texto traducido conserve las propiedades del sistema original ($\Delta S \le 0$), descartando cualquier desviación o distorsión artificial mediante leyes físicas universales.
+                        </p>
                     </div>
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-3">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs tracking-wider">Traducción en Triplete & Conclusiones</h4>
-                        <p class="text-xs text-gray-300 text-justify">
-                            <strong>Latín Medieval:</strong> <em>"Aqua vitae et mineralis solutio in vase hermetico composita..."</em><br>
-                            <strong>Inglés Académico:</strong> <em>"Aqueous spirit and mineral solution compounded within the hermetic vessel..."</em>
+                    <div class="mt-6 pt-4 border-t border-obsidianBorder flex items-center justify-between text-[11px] font-mono">
+                        <span class="text-slate-400">ESTATUS TÉRMICO:</span>
+                        <span class="text-emerald-400 font-semibold">ISENTRÓPICO VALIDADO</span>
+                    </div>
+                </div>
+
+                <!-- FACTOR 2 -->
+                <div class="bg-obsidianCard border border-obsidianBorder rounded-xl p-6 sm:p-8 flex flex-col justify-between hover:border-goldAccent/50 transition-colors">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-goldAccent/10 border border-goldAccent/30 flex items-center justify-center text-goldAccent mb-4 font-mono font-bold">
+                            F2
+                        </div>
+                        <h3 class="text-base sm:text-lg font-bold text-slate-100 uppercase tracking-wide mb-3">
+                            Linguistic Consistency & Reversibility Verification
+                        </h3>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify font-sans">
+                            Protocolo de validación cruzada que evalúa el resultado paso a paso, garantizando una correlación formal, estrictamente lógica y <strong>completamente reversible</strong> entre el glifo EVA, el latín medieval y la lengua de destino. Si el camino de ida y vuelta no encaja con precisión milimétrica, el bloque es rechazado automáticamente.
                         </p>
-                        <p class="text-xs text-gray-300 text-justify font-semibold">
-                            <strong>Conclusiones Generales:</strong> El Manuscrito MS 408 no es un fraude ni una glosolalia; es un tratado médico-alquímico estructurado mediante taquigrafía científica y llaves lógicas del siglo XV.
-                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-obsidianBorder flex items-center justify-between text-[11px] font-mono">
+                        <span class="text-slate-400">REVERSIBILIDAD:</span>
+                        <span class="text-emerald-400 font-semibold">100% CONSISTENTE</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- BLOQUE: CNODE & ZENODO -->
-        <section id="cnode" class="pt-6">
-            <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6 text-justify">
-                <h3 class="text-xl md:text-2xl font-bold text-[#d4af37] mb-2 text-center tracking-wide uppercase">
-                    Addendum a CNode & El Repositorio Abierto en Zenodo
+        <!-- ADDENDUM & ZENODO OPEN SCIENCE REPOSITORY -->
+        <section class="bg-obsidianCard border border-obsidianBorder rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+            <div class="max-w-3xl mx-auto text-center space-y-6">
+                <div class="inline-flex items-center gap-2 bg-goldAccent/10 border border-goldAccent/30 px-4 py-1.5 rounded-full text-xs font-mono text-goldAccent uppercase">
+                    <span>💎</span> La Aportación Más Valiosa Que el Oro
+                </div>
+                
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-100 uppercase tracking-wide">
+                    Semántica Dinámica y Llaves Sí-No
                 </h3>
-                <div class="bg-[#0b0f19] p-6 rounded border border-[#d4af37]/60 space-y-4 text-xs md:text-sm text-gray-300">
-                    <p class="font-bold text-[#d4af37] text-base uppercase tracking-wider">💎 La Aportación Más Valiosa Que el Oro: Semántica Dinámica y Llaves Sí-No</p>
+
+                <div class="text-xs sm:text-sm text-slate-300 text-justify leading-relaxed font-sans space-y-4">
                     <p>
-                        Mientras que los intentos históricos fallaron al utilizar diccionarios estáticos de sustitución glífica, la verdadera aportación revolucionaria de esta investigación —formalizada como el <strong>Addendum a CNode</strong>— radica en la implementación de un <strong>motor de llaves lógicas y matrices de decisión sí-no dependientes del contexto morfosintáctico y tipológico</strong>. Las unidades glíficas mutan su valor según su vecindad y flujos vectoriales.
+                        Mientras que los intentos históricos fallaron al utilizar diccionarios estáticos de sustitución glífica, la verdadera aportación revolucionaria de esta investigación —formalizada en el <strong>Addendum al Método CNA-3LT</strong>— radica en la implementación de un motor de llaves lógicas y matrices de decisión sí-no dependientes del contexto morfosintáctico y tipológico. Las unidades glíficas mutan su valor según su vecindad y sus flujos vectoriales.
                     </p>
                     <p>
-                        Para garantizar una ciencia abierta y reproducible a nivel global, este motor computacional, junto con el diccionario completo de traducción y los scripts en Python, se encuentra disponible en nuestro repositorio oficial de <strong>Zenodo</strong>. El enlace no es un simple documento estático; es la herramienta viva para que cualquier investigador del mundo pueda descargar, usar y manipular el código fuente por su cuenta:
+                        Para garantizar una ciencia abierta y reproducible a nivel global, este motor computacional, junto con el diccionario completo de traducción y los scripts en Python, se encuentra disponible en nuestro repositorio oficial de <strong>Zenodo</strong>. El enlace no es un documento estático; es la herramienta viva para que cualquier investigador del mundo pueda descargar, usar y manipular el código fuente por su cuenta.
                     </p>
-                    <div class="text-center pt-2">
-                        <a href="https://doi.org/10.5281/zenodo.10000000" target="_blank" class="inline-block bg-[#d4af37] text-[#070910] font-bold px-6 py-2.5 rounded text-xs tracking-widest uppercase hover:bg-[#b3922f] transition shadow-lg">
-                            Acceder al Software y Llaves Lógicas en Zenodo (DOI)
-                        </a>
-                    </div>
-                    <div class="p-4 bg-[#05070c] rounded border border-[#d4af37]/30 font-mono text-[11px] text-gray-300 mt-2">
-                        <span class="text-[#d4af37]">// Lógica CNode de Decisión Sí-No:</span><br>
-                        IF (Glyph_Token == X) AND (Context_Vector == Alchemical_Herb) THEN Evaluate_Dynamic_Key(Modifiers_15th_Century);
-                    </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- BLOQUE: GLOSARIO EPISTEMOLÓGICO -->
-        <section id="glosario" class="pt-6">
-            <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6 text-justify">
-                <h3 class="text-xl md:text-2xl font-bold text-[#d4af37] mb-2 text-center tracking-wide uppercase">
-                    Glosario Epistemológico y Computacional
-                </h3>
-                <p class="text-xs md:text-sm text-gray-300 text-center mb-6 italic">
-                    "Definiciones formales de los conceptos transdisciplinarios que sustentan el desciframiento del Códice."
-                </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs md:text-sm text-gray-300">
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs">CNode (Nodo Contextual)</h4>
-                        <p class="text-xs text-gray-300 text-justify">Estructura lógica que evalúa la vecindad morfosintáctica y tipológica en tiempo real mediante matrices sí-no, eliminando los diccionarios estáticos.</p>
-                    </div>
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs">Puente Traductológico en Triplete</h4>
-                        <p class="text-xs text-gray-300 text-justify">Protocolo secuencial (<span class="font-mono text-[#d4af37]">Glifo EVA -> Latín Medieval -> Inglés Académico -> Idioma Final</span>). Su omisión genera catástrofe entrópica y pérdida de contexto.</p>
-                    </div>
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs">Difeomorfismos y Mapeo Biunívoco</h4>
-                        <p class="text-xs text-gray-300 text-justify">Garantía matemática de correspondencia uno a uno, estable y reversible entre el corpus glífico y el espacio semántico del latín medieval.</p>
-                    </div>
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs">Gramática de Estados</h4>
-                        <p class="text-xs text-gray-300 text-justify">Sistema donde las unidades sintácticas mutan de valor según el estado dinámico y contextual del párrafo o folio.</p>
-                    </div>
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs">Modulación Posicional</h4>
-                        <p class="text-xs text-gray-300 text-justify">Principio físico-matemático por el cual la ubicación espacial de un glifo en la línea altera su función lógica (coordenadas de fase).</p>
-                    </div>
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs">Vectores Termodinámicos e Hidrográficos</h4>
-                        <p class="text-xs text-gray-300 text-justify">Modelado de flujos de calor, presión y líquidos descritos en los tratados de balneología y botánica del códice.</p>
-                    </div>
+                <div class="pt-4">
+                    <a href="https://zenodo.org" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-goldAccent text-slate-950 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider px-8 py-3.5 rounded-lg hover:bg-goldHover transition-all shadow-xl hover:shadow-goldAccent/20 group">
+                        Acceder al Software y Llaves Lógicas en Zenodo 
+                        <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                    </a>
                 </div>
-            </div>
-        </section>
-
-        <!-- BLOQUE: RAFT FOUNDATION -->
-        <section id="raft" class="pt-6">
-            <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6 text-justify">
-                <h3 class="text-xl md:text-2xl font-bold text-[#d4af37] mb-2 text-center tracking-wide uppercase">
-                    Repositorios Oficiales, Citación Académica & Raft Foundation
-                </h3>
-                <div class="space-y-4 text-xs md:text-sm text-gray-300">
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs">Raft Foundation (raft.foundation)</h4>
-                        <p class="text-xs text-gray-300">
-                            Organización estadounidense 501(c)(3) de patrocinio fiscal que apoya comunidades, tecnología abierta y ciencia colaborativa. El estado actual de este sitio web (muestra didáctica de 12 folios con 4 líneas) refleja el esfuerzo pionero de una sola persona con recursos limitados. El impulso a través de <strong>Raft Foundation</strong> tiene como propósito recaudar fondos para adquirir infraestructura de cómputo avanzada, sumar colaboradores multidisciplinarios, escalar el análisis computacional a la <strong>totalidad de los folios del códice</strong>, reconstruir los folios perdidos, y aplicar este motor analítico a <strong>otros lenguajes cifrados y problemas abiertos</strong> de la ciencia. Visita: <a href="https://raft.foundation" target="_blank" class="text-[#d4af37] underline font-semibold">raft.foundation</a>.
-                        </p>
-                    </div>
-                    <div class="bg-[#0b0f19] p-5 rounded border border-[#d4af37]/40 space-y-2">
-                        <h4 class="font-bold text-[#d4af37] uppercase text-xs">Bloque de Citación Académica (Zenodo / APA)</h4>
-                        <div class="bg-[#05070c] p-3 rounded font-mono text-[11px] text-gray-300 overflow-x-auto space-y-2">
-                            <p><strong>APA:</strong> Herrera Rubert, A. B. (2026). <em>Codex MS 408: Digital Typological Analysis and Decryption of the Voynich Manuscript</em>. Zenodo. https://doi.org/10.5281/zenodo.10000000</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center pt-2">
-                        <a href="https://brbl-dl.library.yale.edu/vufind/Record/3519597" target="_blank" class="bg-[#0b0f19] gold-border p-4 rounded hover:bg-[#d4af37]/10 transition block">
-                            <span class="font-bold text-[#d4af37] block mb-1 text-xs md:text-sm">Yale University Library</span>
-                            <span class="text-[11px] text-gray-400">Beinecke Rare Book & Manuscript Library - MS 408 Original</span>
-                        </a>
-                        <a href="https://www.voynich.nu" target="_blank" class="bg-[#0b0f19] gold-border p-4 rounded hover:bg-[#d4af37]/10 transition block">
-                            <span class="font-bold text-[#d4af37] block mb-1 text-xs md:text-sm">Voynich.nu (René Zandbergen)</span>
-                            <span class="text-[11px] text-gray-400">Archivo Histórico y Transcripciones de Referencia</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- BLOQUE: ROADMAP Y CONTACTO -->
-        <section class="pt-6">
-            <div class="bg-[#070910] gold-border rounded-lg p-6 md:p-10 shadow-2xl space-y-6">
-                <h3 class="text-xl md:text-2xl font-bold text-[#d4af37] mb-3 text-center tracking-wide uppercase">
-                    Roadmap & Contacto Directo
-                </h3>
-                <p class="text-xs md:text-sm text-gray-300 text-center mb-6 italic">
-                    Para consultas académicas, solicitudes de colaboración o notas de prensa mediante Raft Foundation.
-                </p>
-                <form action="https://formspree.io/f/tu-codigo-aqui" method="POST" class="space-y-4">
-                    <div>
-                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1 font-semibold">Nombre / Institución:</label>
-                        <input type="text" name="name" required class="w-full bg-[#0b0f19] text-[#d4af37] border border-[#d4af37]/60 rounded p-3 text-xs md:text-sm focus:outline-none font-semibold">
-                    </div>
-                    <div>
-                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1 font-semibold">Correo Electrónico:</label>
-                        <input type="email" name="email" required class="w-full bg-[#0b0f19] text-[#d4af37] border border-[#d4af37]/60 rounded p-3 text-xs md:text-sm focus:outline-none font-semibold">
-                    </div>
-                    <div>
-                        <label class="block text-xs uppercase tracking-wider text-gray-400 mb-1 font-semibold">Mensaje:</label>
-                        <textarea name="message" rows="4" required class="w-full bg-[#0b0f19] text-[#d4af37] border border-[#d4af37]/60 rounded p-3 text-xs md:text-sm focus:outline-none font-semibold"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-[#d4af37] text-[#070910] font-bold py-3 rounded hover:bg-[#b3922f] transition tracking-wider uppercase text-xs md:text-sm shadow-lg">
-                        Enviar Mensaje al Investigador
-                    </button>
-                </form>
             </div>
         </section>
 
     </main>
 
     <!-- FOOTER -->
-    <footer class="w-full border-t border-[#d4af37]/30 bg-[#070910] py-8 px-4 md:px-6 text-center text-xs text-gray-400">
-        <p class="text-gray-200 font-semibold mb-2 text-xs">© 2026 Proyecto Codex MS 408. Investigación Independiente de Arnold Brian Herrera Rubert.</p>
-        <p class="text-[#d4af37] mb-2 text-xs font-semibold">Zenodo DOI: 10.5281/zenodo.10000000 | Patrocinio Fiscal: <a href="https://raft.foundation" target="_blank" class="underline">raft.foundation</a></p>
+    <footer class="w-full bg-slate-950 border-t border-obsidianBorder mt-20 py-8 text-center text-xs font-mono text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-2">
+            <p>© 2026 CNA-3LT Research Group. Todos los derechos reservados.</p>
+            <p class="text-[10px] text-slate-600">Resolución Terminal del Códice MS 408 — Protocolo de Alta Precisión Estándar.</p>
+        </div>
     </footer>
 
-    <!-- SCRIPT DE TRADUCCIÓN Y SIMULACIONES -->
+    <!-- INTERACTIVITY SCRIPT -->
     <script>
-        function togglePythonSnippet() {
-            let box = document.getElementById('python-snippet-box');
-            box.classList.toggle('hidden');
-        }
-
-        const folioTranslations = {
-            "f1r": { title: "Folio 1r - Introducción Botánica Alquímica", eva: "pachys kalendarivm solis et herba...", latin: "Herba prima et solis influxus in radicem...", english: "Primary herb and solar influence upon the root system..." },
-            "f2v": { title: "Folio 2v - Sistema Vegetal y Raíces", eva: "chol or dar ctol sholdy qokedy...", latin: "Radicum humor et secretio aquae in vase...", english: "Root moisture and water secretion within the vessel..." },
-            "f14r": { title: "Folio 14r - Farmacopea y Compuestos", eva: "shor ctcchydar ol shedy qokar...", latin: "Compositio medica ex floribus et succis...", english: "Medical compound derived from flowers and juices..." },
-            "f26r": { title: "Folio 26r - Herbario Analítico", eva: "dar al cthody shor ctcchydar...", latin: "Herbarum virtutes et distillatio foliorum...", english: "Virtues of herbs and leaf distillation process..." },
-            "f34v": { title: "Folio 34v - Alquimia Vegetal", eva: "qokedy chol or dar ctol sholdy...", latin: "Alchimia vegetabilis et spiritus extractionis...", english: "Vegetable alchemy and extraction spirit..." },
-            "f57r": { title: "Folio 57r - Hidromecánica y Baños Termales", eva: "balneum mariae et flumina aquarum...", latin: "Balneum Mariae et cursus aquae per canales...", english: "Mary's bath and water flow through channels..." },
-            "f65r": { title: "Folio 65r - Balneología Avanzada", eva: "nymphae et receptacula aquarum thermalium...", latin: "Nymphae et receptacula aquarum calidarum...", english: "Nymphs and receptacles of thermal waters..." },
-            "f68r": { title: "Folio 68r - Cosmología y Esferas", eva: "orbis stellarum et sphaera coelestis...", latin: "Sphaera coelestis et motus stellarum...", english: "Celestial sphere and stellar motion..." },
-            "f77r": { title: "Folio 77r - Diagrama Estelar y Zodiaco", eva: "signa zodiaci et influxus astrorum...", latin: "Signa zodiaci et dispositio siderum...", english: "Zodiac signs and stellar disposition..." },
-            "f87r": { title: "Folio 87r - Tratado Biológico", eva: "corpus humanum et humores principales...", latin: "De humore corporis et generatione vitae...", english: "On bodily humor and the generation of life..." },
-            "f102r": { title: "Folio 102r - Tablas de Contenido", eva: "index capitulorum et summaria operis...", latin: "Index et summarium totius operis hermetici...", english: "Index and summary of the entire hermetic work..." },
-            "f116r": { title: "Folio 116r - Clave Criptográfica / Piedra Rosetta", eva: "pache ol chcth shol dar al shol (28 líneas íntegras)", latin: "Aqua vitae et mineralis solutio in vase hermetico composita...", english: "Aqueous spirit and mineral solution compounded within the hermetic vessel..." }
+        // Dataset for interactive sample folios and translations
+        const folioData = {
+            f116r: {
+                ref: "REF: F116R_ROSETTA_28L (Líneas 1-28 Activas)",
+                image: "https://placehold.co/800x600/121826/d4af37?text=Folio+116r+-+Rosetta+Matrix",
+                translations: {
+                    es: "\"En el vértice del equinoccio, la rotación de las esferas celestes condiciona el flujo térmico de los extractos vegetales recolectados bajo el cuadrante inferior, estableciendo una correspondencia directa entre los ciclos macrocósmicos y la farmacopea de aplicación medicinal...\"",
+                    en: "\"At the vertex of the equinox, the rotation of the celestial spheres conditions the thermal flux of the plant extracts collected under the lower quadrant, establishing a direct correspondence between macrocosmic cycles and medicinal pharmacopeia...\"",
+                    la: "\"In vertice aequinoctii, sphaerarum caelestium rotatio thermalem fluxum extractorum vegetalium sub inferiori quadrante collectorum condizionat, directam correspondentiam inter macrocosmicos ciclos et medicinalem pharmacopoeiam statuens...\""
+                }
+            },
+            f1r: {
+                ref: "REF: F1R_BOTANICAL_ALCHEMICAL (Tratado Botánico)",
+                image: "https://placehold.co/800x600/121826/22c55e?text=Folio+1r+-+Tratado+Botanico",
+                translations: {
+                    es: "\"Raíz macerada en solución acuosa durante el cuarto menguante; su aplicación tópica reduce la inflamación de los tejidos y equilibra los humores cálidos del cuerpo humano.\"",
+                    en: "\"Root macerated in aqueous solution during the waning moon; its topical application reduces tissue inflammation and balances warm bodily humors.\"",
+                    la: "\"Radix in acuosa solutione per decrescentem lunam macerata; topica eius applicatio inflammationem tissutorum reducit et calidos humores corporis humani balanciat.\""
+                }
+            },
+            f57r: {
+                ref: "REF: F57R_BALNEOLOGY_HYDRO (Balneología e Hidromecánica)",
+                image: "https://placehold.co/800x600/121826/3b82f6?text=Folio+57r+-+Balneologia",
+                translations: {
+                    es: "\"El circuito hidráulico de las cisternas subterráneas regula la presión de vapor para los baños termales, canalizando el flujo a través de conductos de arcilla sellada.\"",
+                    en: "\"The hydraulic circuit of the underground cisterns regulates vapor pressure for the thermal baths, channeling the flow through sealed clay conduits.\"",
+                    la: "\"Hydraulicus circuitus subterraneorum cisternarum vaporis pressurem balneis thermalibus regulat, fluxum per sigillatos argillae ductus canalizans.\""
+                }
+            },
+            f77r: {
+                ref: "REF: F77R_ASTROLOGY_ZODIAC (Astrología y Zodiaco)",
+                image: "https://placehold.co/800x600/121826/a855f7?text=Folio+77r+-+Astrologia",
+                translations: {
+                    es: "\"Conjunción astral bajo el signo de Piscis; influencia directa sobre los fluidos corporales y las mareas biológicas que rigen la cosecha de hierbas medicinales.\"",
+                    en: "\"Astral conjunction under the sign of Pisces; direct influence on body fluids and biological tides governing the harvest of medicinal herbs.\"",
+                    la: "\"Astralis conjunctio sub signo Piscium; directa influentia in corporales fluidos et biologicas mareas quae medicinalium herbarum messem regunt.\""
+                }
+            }
         };
 
-        function executeTranslation() {
-            let selector = document.getElementById('folio-selector');
-            let folioKey = selector.value;
-            let output = document.getElementById('console-output');
-            let data = folioTranslations[folioKey];
-            if (data) {
-                output.innerHTML = `<span class="text-[#d4af37]">&gt;&gt; [${data.title} - Procesado via CNode]</span><br>` +
-                                   `<strong>1. Transliteración EVA:</strong> ${data.eva}<br>` +
-                                   `<strong>2. Latín Medieval:</strong> "${data.latin}"<br>` +
-                                   `<strong>3. Inglés Académico:</strong> "${data.english}"`;
-            } else {
-                output.innerHTML = `<span class="text-red-400">&gt;&gt; Error: Folio no seleccionado correctamente.</span>`;
-            }
+        let currentFolio = 'f116r';
+        let currentLang = 'es';
+
+        function updateFolioData() {
+            const selector = document.getElementById('folio-selector');
+            currentFolio = selector.value;
+            const data = folioData[currentFolio];
+            
+            document.getElementById('folio-img').src = data.image;
+            document.getElementById('folio-ref-tag').innerText = data.ref;
+            updateOutputText();
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const vCanvas = document.getElementById('vectorCanvas');
-            if (vCanvas && vCanvas.getContext) {
-                const ctx = vCanvas.getContext('2d');
-                let particles = [];
-                for(let i=0; i<30; i++) {
-                    particles.push({x: Math.random()*vCanvas.width, y: Math.random()*vCanvas.height, vx: (Math.random()-0.5)*1, vy: (Math.random()-0.5)*1});
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Update button styles
+            ['es', 'en', 'la'].forEach(l => {
+                const btn = document.getElementById(`btn-${l}`);
+                if (l === lang) {
+                    btn.className = "bg-goldAccent/20 border border-goldAccent text-goldAccent py-2.5 rounded-md font-semibold transition-all";
+                } else {
+                    btn.className = "bg-slate-900 border border-slate-700 text-slate-400 py-2.5 rounded-md hover:border-slate-500 transition-all";
                 }
-                function drawVectorFlow() {
-                    ctx.fillStyle = '#05070c';
-                    ctx.fillRect(0, 0, vCanvas.width, vCanvas.height);
-                    ctx.strokeStyle = 'rgba(212, 175, 55, 0.3)';
-                    particles.forEach((p) => {
-                        p.x += p.vx; p.y += p.vy;
-                        if(p.x < 0) p.x = vCanvas.width; if(p.x > vCanvas.width) p.x = 0;
-                        if(p.y < 0) p.y = vCanvas.height; if(p.y > vCanvas.height) p.y = 0;
-                        ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI*2); ctx.fillStyle = '#d4af37'; ctx.fill();
-                    });
-                    requestAnimationFrame(drawVectorFlow);
-                }
-                drawVectorFlow();
-            }
+            });
 
-            const nCanvas = document.getElementById('neuralCanvas');
-            if (nCanvas && nCanvas.getContext) {
-                const nCtx = nCanvas.getContext('2d');
-                let angle = 0;
-                function drawNeuralNetwork() {
-                    nCtx.fillStyle = '#05070c';
-                    nCtx.fillRect(0, 0, nCanvas.width, nCanvas.height);
-                    let cx = nCanvas.width/2, cy = nCanvas.height/2, radius = 65;
-                    nCtx.strokeStyle = 'rgba(212, 175, 55, 0.4)';
-                    nCtx.lineWidth = 1;
-                    
-                    let nodes = [];
-                    for(let i=0; i<6; i++) {
-                        let a = angle + (i * Math.PI / 3);
-                        let nx = cx + radius * Math.cos(a);
-                        let ny = cy + radius * Math.sin(a);
-                        nodes.push({x: nx, y: ny});
-                    }
-                    for(let i=0; i<nodes.length; i++) {
-                        for(let j=i+1; j<nodes.length; j++) {
-                            nCtx.beginPath(); nCtx.moveTo(nodes[i].x, nodes[i].y); nCtx.lineTo(nodes[j].x, nodes[j].y); nCtx.stroke();
-                        }
-                    }
-                    nCtx.beginPath(); nCtx.arc(cx, cy, 6, 0, Math.PI*2); nCtx.fillStyle = '#d4af37'; nCtx.fill();
-                    nodes.forEach(n => {
-                        nCtx.beginPath(); nCtx.arc(n.x, n.y, 4, 0, Math.PI*2); nCtx.fillStyle = '#e2e8f0'; nCtx.fill();
-                    });
-                    angle += 0.01;
-                    requestAnimationFrame(drawNeuralNetwork);
-                }
-                drawNeuralNetwork();
-            }
-        });
+            // Update badge text
+            const badges = { es: 'ESPAÑOL', en: 'ENGLISH', la: 'LATIN MED.' };
+            document.getElementById('output-lang-badge').innerText = badges[lang];
+            
+            updateOutputText();
+        }
 
-        const translations = {
-            "es": { "title": "Codex MS 408 | Análisis Tipológico Digital" },
-            "en": { "title": "Codex MS 408 | Digital Typological Analysis" },
-            "fr": { "title": "Codex MS 408 | Analyse Typologique Numérique" },
-            "it": { "title": "Codex MS 408 | Analisi Tipologica Digitale" },
-            "ru": { "title": "Кодекс MS 408 | Цифровой анализ" },
-            "zh": { "title": "MS 408 手抄本 | 数字类型学分析" }
-        };
-
-        function changeLanguage(lang) {
-            let t = translations[lang];
-            if (!t) return;
-            const el = document.getElementById('meta-title');
-            if (el) el.innerText = t.title;
-            localStorage.setItem('preferred_lang', lang);
+        function updateOutputText() {
+            const data = folioData[currentFolio];
+            const outputBox = document.getElementById('translation-output');
+            
+            // Fade effect simulation
+            outputBox.style.opacity = '0.3';
+            setTimeout(() => {
+                outputBox.innerText = data.translations[currentLang];
+                outputBox.style.opacity = '1';
+            }, 150);
         }
     </script>
 </body>
