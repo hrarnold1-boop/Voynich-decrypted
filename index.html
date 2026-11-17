@@ -418,31 +418,78 @@ function setLang(l){
   document.querySelectorAll('.p-btn').forEach(b=>{
     b.classList.toggle('active', b.getAttribute('data-lang')===l);
   });
-  updateWorkspace();
-}
+  
+ /* VARIABLES PARA EL PAGINADOR DE LÍNEAS (ESTILO LECTOR PDF) */
+
+  let currentLinePage = 0;
+const linesPerPage = 6;
 
 function updateWorkspace(){
-  document.getElementById('fTitle').innerText=activeFolio.t;
-  document.getElementById('evaHead').innerText=activeFolio.eh;
-  document.getElementById('evaTxt').innerText=activeFolio.eva;
+  document.getElementById('fTitle').innerText = activeFolio.t;
+  document.getElementById('evaHead').innerText = activeFolio.eh;
   
-  let mainText = activeFolio.es;
-  if(currentLang==='en') mainText=activeFolio.en;
-  if(currentLang==='la') mainText=activeFolio.la;
-  // Si se navegara en otros idiomas globales, adaptamos dinámicamente
-  document.getElementById('outTxt').innerText=mainText;
-  document.getElementById('lLabel').innerText=currentLang.toUpperCase()+' // 3LT BRIDGE';
-  
-  document.getElementById('tripLa').innerText=activeFolio.la;
-  document.getElementById('tripEn').innerText=activeFolio.en;
-  document.getElementById('cVec').innerText='VECTOR: F'+activeFolio.id.toUpperCase()+' // SYNC';
-  document.getElementById('cFrq').innerText='FRECUENCIA: '+activeFolio.frq;
-  document.getElementById('cohVal').innerText=activeFolio.coh;
+  if(activeFolio.lines && Array.isArray(activeFolio.lines)){
+    document.getElementById('evaTxt').innerText = activeFolio.lines.map(l => l.eva).join('\n');
+    
+    const translatedLines = activeFolio.lines.map(l => {
+      if(currentLang === 'en') return l.en;
+      if(currentLang === 'la') return l.la;
+      return l.es;
+    });
+
+    const totalPages = Math.ceil(translatedLines.length / linesPerPage);
+    if(currentLinePage >= totalPages) currentLinePage = 0;
+    
+    const startIdx = currentLinePage * linesPerPage;
+    const endIdx = startIdx + linesPerPage;
+    const pageLines = translatedLines.slice(startIdx, endIdx);
+
+    let htmlOutput = `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; font-size:12px; color:var(--cyan); border-bottom:1px solid var(--b2); padding-bottom:6px;" class="mono">
+      <span>PÁGINA ${currentLinePage + 1} DE ${totalPages} (${translatedLines.length} LÍNEAS TOTALES)</span>
+      <div style="display:flex; gap:6px;">
+        <button type="button" onclick="changeLinePage(-1)" class="m-pill" ${currentLinePage === 0 ? 'style="opacity:0.4;cursor:not-allowed"' : ''}>← ANTERIOR</button>
+        <button type="button" onclick="changeLinePage(1)" class="m-pill" ${currentLinePage >= totalPages - 1 ? 'style="opacity:0.4;cursor:not-allowed"' : ''}>SIGUIENTE →</button>
+      </div>
+    </div>`;
+
+    htmlOutput += pageLines.map(line => `<p style="margin-bottom:10px;">${line}</p>`).join('');
+    document.getElementById('outTxt').innerHTML = htmlOutput;
+
+    document.getElementById('tripLa').innerHTML = activeFolio.lines.map(l => l.la).join('<br>');
+    document.getElementById('tripEn').innerHTML = activeFolio.lines.map(l => l.en).join('<br>');
+  } else {
+    document.getElementById('evaTxt').innerText = activeFolio.eva || "";
+    let fallbackText = (currentLang === 'en') ? activeFolio.en : ((currentLang === 'la') ? activeFolio.la : activeFolio.es);
+    document.getElementById('outTxt').innerText = `"${fallbackText}"`;
+    document.getElementById('tripLa').innerText = activeFolio.la || "";
+    document.getElementById('tripEn').innerText = activeFolio.en || "";
+  }
+
+  document.getElementById('lLabel').innerText = currentLang.toUpperCase() + ' // 3LT BRIDGE';
+  document.getElementById('cVec').innerText = 'VECTOR: F' + activeFolio.id.toUpperCase() + ' // SYNC';
+  document.getElementById('cFrq').innerText = 'FRECUENCIA: ' + activeFolio.frq;
+  document.getElementById('cohVal').innerText = activeFolio.coh;
 }
 
 function runDecode(){
   updateWorkspace();
 }
+
+function changeLinePage(dir){
+  if(!activeFolio.lines) return;
+  const totalPages = Math.ceil(activeFolio.lines.length / linesPerPage);
+  currentLinePage += dir;
+  if(currentLinePage < 0) currentLinePage = 0;
+  if(currentLinePage >= totalPages) currentLinePage = totalPages - 1;
+  updateWorkspace();
+}
+
+const originalSelectFolio = window.selectFolio || function(){};
+window.selectFolio = function(id){
+  currentLinePage = 0;
+  originalSelectFolio(id);
+};
+
 
 function copyTxt(){
   navigator.clipboard.writeText(document.getElementById('outTxt').innerText);
