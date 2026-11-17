@@ -2,67 +2,105 @@
   "116r": {
     "sec": "ROSETTA",
     "t": "Folio 116r — Clave Rosetta (28 Líneas)",
-    "eh": "TRANSCRIPCIÓN EVA ORIGINAL (F116R)",
-    "eva": "[Voynich MS 408 - f116r corpus completo 28 líneas] cth-h-ody qet-or-al m-ar-ch-os... Aislamiento de patrones y equivalencias fonéticas del margen final.",
-    "es": "\"En el vértice del equinoccio, la rotación de las esferas celestes condiciona el flujo térmico de los extractos vegetales recolectados bajo el cuadrante inferior, estableciendo una correspondencia directa entre los ciclos macrocósmicos y la farmacopea de aplicación medicinal...\"",
-    "la": "\"Aqua vitae et mineralis solutio in vase hermetico, rotatio sphaerarum caelestium thermalem fluxum extractorum vegetalium condizionat...\"",
-    "en": "\"Aqueous spirit and mineral solution within the hermetic vessel; at the vertex of the equinox, the rotation of celestial spheres conditions the thermal flux of plant extracts...\"",
+    "eh": "TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F116R)",
+    "lines": [
+      {"eva": "cth-h-ody qet-or-al m-ar-ch-os...", "es": "1. En el vértice del equinoccio, la rotación de las esferas celestes condiciona el flujo térmico.", "la": "1. In vertice aequinoctii, rotatio sphaerarum caelestium thermalem fluxum condizionat.", "en": "1. At the vertex of the equinox, the rotation of celestial spheres conditions thermal flux."},
+      {"eva": "shol dar al pache ol chcth shor...", "es": "2. De los extractos vegetales recolectados bajo el cuadrante inferior, estableciendo correspondencia.", "la": "2. Extractorum vegetalium sub inferiore quadrante collectorum, directam correspondentiam statuens.", "en": "2. Of plant extracts gathered under the lower quadrant, establishing direct correspondence."},
+      {"eva": "qokedy chol or dar ctol sholdy...", "es": "3. Los ciclos macrocósmicos rigen directamente sobre la farmacopea de aplicación medicinal.", "la": "3. Cycli macrocosmici directos effectus habent in pharmacopoeia applicationis medicinalis.", "en": "3. Macrocosmic cycles exert direct effects upon the pharmacopoeia of medicinal application."},
+      {"eva": "or-al m-ar-ch-os cth-h-ody...", "es": "4. La destilación fraccionada en vasijas de barro requiere control termodinámico estricto.", "la": "4. Destillatio fractionata in vasis fictilibus strictum regimen thermodynamicum requirit.", "en": "4. Fractional distillation in earthen vessels requires strict thermodynamic control."},
+      {"eva": "chedy qokedy saiin ol cheey...", "es": "5. Aplicación tópica al amanecer tras el filtrado de las resinas estacionales.", "la": "5. Applicatio topica ad auroram post filtrationem resinarum stationalium.", "en": "5. Topical application at dawn following the filtration of seasonal resins."},
+      {"eva": "tol chdy qokain otal dar shey...", "es": "6. Balance de humores corporales mediante la infusión concentrada de raíces purificadas.", "la": "6. Aequilibrium humorum corporalium per infusionem concentratam radicum purificatarum.", "en": "6. Balance of bodily humors through concentrated infusion of purified roots."}
+    ],
     "frq": "432.08 Hz",
     "coh": "99.84%"
   },
   "01r": {
     "sec": "BOTANICAL",
     "t": "Folio 01r — Prólogo Botánico (4 Líneas)",
-    "eh": "TRANSCRIPCIÓN EVA ORIGINAL (F01R)",
-    "eva": "fachys ykal ar ataiin shol shory cthres y kor sholdy... Estructura inicial del códice con patrón radicular simétrico.",
-    "es": "\"Análisis morfológico de especies botánicas con patrón radicular simétrico. Las propiedades activas de la raíz responden al gradiente hídrico estacional tras la primera infusión...\"",
-    "la": "\"Analysis morphologicus specierum botanicarum cum symmetrica radicum structura. Proprietates activae ad gradientem hydricum respondent...\"",
-    "en": "\"Morphological analysis of botanical species with symmetrical root patterns. Active properties respond to the seasonal hydrological gradient...\"",
+    "eh": "TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F01R)",
+    "lines": [
+      {"eva": "fachys ykal ar ataiin shol...", "es": "1. Análisis morfológico de especies botánicas con patrón radicular simétrico inicial.", "la": "1. Analysis morphologicus specierum botanicarum cum symmetrica radicum structura.", "en": "1. Morphological analysis of botanical species with symmetrical root structure."},
+      {"eva": "shory cthres y kor sholdy...", "es": "2. Las propiedades activas de la raíz responden al gradiente hídrico estacional.", "la": "2. Proprietates activae radicis ad gradientem hydricum stationalem respondent.", "en": "2. The active properties of the root respond to the seasonal hydrological gradient."},
+      {"eva": "qokeey dal shedy qokain...", "es": "3. Extracción de savia bajo el cuadrante de luna creciente para preservar principios activos.", "la": "3. Extractio succi sub crescente luna ad conservanda principia activa.", "en": "3. Sap extraction under the waxing moon to preserve active principles."}
+    ],
     "frq": "418.50 Hz",
     "coh": "99.41%"
   },
   "26r": {
     "sec": "BOTANICAL",
     "t": "Folio 26r — Vector Botánico-Cosmológico",
-    "eh": "TRANSCRIPCIÓN EVA ORIGINAL (F26R)",
-    "eva": "pchor ody dar chody shedy qokedy dal dy... Correlación foliar y ciclos de absorción.",
-    "es": "\"Diagramas botánicos de distribución foliar vinculados a los ciclos de fertilidad de la tierra y los fluidos estacionales...\"",
-    "la": "\"Diagrammata botanica distributionis foliaris cyclis fertilitatis terrae et fluidis anni connexa...\"",
-    "en": "\"Botanical diagrams of foliar distribution linked to the fertility cycles of the earth and seasonal fluids...\"",
+    "eh": "TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F26R)",
+    "lines": [
+      {"eva": "pchor ody dar chody shedy...", "es": "1. Correlación directa entre la distribución foliar y los ciclos de fertilidad de la tierra.", "la": "1. Directa correlatio inter foliorum distributionem et terrae fertilitatis ciclos.", "en": "1. Direct correlation between foliar distribution and earth fertility cycles."},
+      {"eva": "qokedy dal dy pchor ody...", "es": "2. Absorción hídrica radicular optimizada por los minerales del suelo arcilloso.", "la": "2. Absorptio hydrica radicularis mineralibus soli argillosi optimizata.", "en": "2. Root water absorption optimized by clay soil minerals."}
+    ],
     "frq": "424.12 Hz",
     "coh": "99.18%"
   },
   "57r": {
     "sec": "BOTANICAL",
-    "t": "Folio 57r — Síntesis Herbácea (4 Líneas)",
-    "eh": "TRANSCRIPCIÓN EVA ORIGINAL (F57R)",
-    "eva": "qokeey dal shedy qokain chckhy dar aldy... Extracto de hoja compuesta y destilación.",
-    "es": "\"Preparación de tintura madre mediante maceración controlada de tallos jóvenes; decantación en frío antes del alba...\"",
-    "la": "\"Praeparatio tincturae matris per macerationem caulium iuvenum; decantatio frigida ante auroram...\"",
-    "en": "\"Preparation of mother tincture through controlled maceration of young stems; cold decantation before dawn...\"",
+    "t": "Folio 57r — Síntesis Herbácea",
+    "eh": "TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F57R)",
+    "lines": [
+      {"eva": "qokeey dal shedy qokain chckhy...", "es": "1. Preparación de tintura madre mediante maceración controlada de tallos jóvenes.", "la": "1. Praeparatio tincturae matris per macerationem controlatam caulium iuvenum.", "en": "1. Preparation of mother tincture through controlled maceration of young stems."},
+      {"eva": "dar aldy qokeey dal shedy...", "es": "2. Decantación en frío antes del alba para evitar la degradación de enzimas volátiles.", "la": "2. Decantatio frigida ante auroram ad vitandam degradationem enzymorum volatilium.", "en": "2. Cold decantation before dawn to prevent degradation of volatile enzymes."}
+    ],
     "frq": "429.75 Hz",
     "coh": "99.52%"
   },
   "57v": {
     "sec": "COSMOLOGICAL",
     "t": "Folio 57v — Matriz de Fluidos y Anillos",
-    "eh": "TRANSCRIPCIÓN EVA ORIGINAL (F57V)",
-    "eva": "otar aldy chedy qokedy saiin ol cheey... Cuatro anillos concéntricos con figuras humanas y glifos.",
-    "es": "\"Estudio de fluidos corporales y equilibrio termodinámico en tinas de decantación hidráulica bajo supervisión astronómica rigurosa...\"",
-    "la": "\"Studium fluidorum corporalium et aequilibrii thermodynamici in vasis hydraulicis sub supervisione astronomica...\"",
-    "en": "\"Study of bodily fluids and thermodynamic equilibrium in hydraulic settling vats under rigorous astronomical supervision...\"",
+    "eh": "TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F57V)",
+    "lines": [
+      {"eva": "otar aldy chedy qokedy saiin...", "es": "1. Estudio de fluidos corporales y equilibrio termodinámico en tinas de decantación.", "la": "1. Studium fluidorum corporalium et aequilibrii thermodynamici in vasis decantationis.", "en": "1. Study of bodily fluids and thermodynamic equilibrium in settling vats."},
+      {"eva": "ol cheey otar aldy chedy...", "es": "2. Supervisión astronómica rigurosa de los conductos hidráulicos subterráneos.", "la": "2. Rigorosa supervisio astronomica ductionum hydraulicarum subterranearum.", "en": "2. Rigorous astronomical supervision of subterranean hydraulic conduits."}
+    ],
     "frq": "440.10 Hz",
     "coh": "99.63%"
   },
   "68r": {
     "sec": "ASTRONOMICAL",
-    "t": "Folio 68r — Carta Estelar (4 Líneas)",
-    "eh": "TRANSCRIPCIÓN EVA ORIGINAL (F68R)",
-    "eva": "tol chdy qokain otal dar shey okeedy... Proyección radial de constelaciones y sectores.",
-    "es": "\"Cómputo de ascensión recta y declinación de cuerpos celestes para determinar el ciclo lunar favorable en la recolección...\"",
-    "la": "\"Computus ascensionis rectae et declinationis corporum caelestium ad determinandum cyclum lunarem...\"",
-    "en": "\"Computation of right ascension and declination of celestial bodies to determine the favorable lunar cycle for harvesting...\"",
+    "t": "Folio 68r — Carta Estelar",
+    "eh": "TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F68R)",
+    "lines": [
+      {"eva": "tol chdy qokain otal dar shey...", "es": "1. Cómputo de ascensión recta y declinación para determinar el ciclo lunar favorable.", "la": "1. Computus ascensionis rectae et declinationis ad cyclum lunarem favorabilem determinandum.", "en": "1. Computation of right ascension and declination to determine the favorable lunar cycle."},
+      {"eva": "okeedy tol chdy qokain otal...", "es": "2. Posicionamiento de las constelaciones en relación con los cuadrantes de cosecha.", "la": "2. Positio constellationum in relatione ad quadrantes messis.", "en": "2. Positioning of constellations in relation to harvest quadrants."}
+    ],
     "frq": "446.30 Hz",
-    "coh": "99.70%\"
+    "coh": "99.70%"
+  },
+  "78r": {
+    "sec": "BIOLOGICAL",
+    "t": "Folio 78r — Tratado Balneológico",
+    "eh": "TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F78R)",
+    "lines": [
+      {"eva": "qokedy qokeey shedy ol kaiin...", "es": "1. Inmersión en piletas de purificación térmica con sales minerales disueltas.", "la": "1. Inmersio in balneis purificationis thermalis cum salibus mineralibus dissolutis.", "en": "1. Immersion in thermal purification baths with dissolved mineral salts."},
+      {"eva": "dar qokedy qokeey shedy...", "es": "2. Regulación del flujo termodinámico mediante compuertas de piedra porosa.", "la": "2. Regulatio fluxus thermodynamici per cataractas lapidis porosi.", "en": "2. Regulation of thermodynamic flow via porous stone gates."}
+    ],
+    "frq": "435.20 Hz",
+    "coh": "99.25%"
+  },
+  "85r": {
+    "sec": "COSMOLOGICAL",
+    "t": "Folio 85r — El Gran Orrery",
+    "eh": "TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F85R)",
+    "lines": [
+      {"eva": "sol chedy qotaiin dar aldy...", "es": "1. Conexión entre los nodos geográficos terrestres y la rotación de las esferas celestes.", "la": "1. Connectio inter nodos geographicos terrestres et sphaerarum caelestium rotationem.", "en": "1. Connection between terrestrial geographic nodes and the rotation of celestial spheres."},
+      {"eva": "okedy sol chedy qotaiin...", "es": "2. Mapeo de corrientes subterráneas y su influencia en los microclimas regionales.", "la": "2. Descriptio fluminum subterraneorum eorumque influentia in microclimata regionalia.", "en": "2. Mapping of underground currents and their influence on regional microclimates."}
+    ],
+    "frq": "438.90 Hz",
+    "coh": "99.55%"
+  },
+  "90r": {
+    "sec": "PHARMACEUTICAL",
+    "t": "Folio 90r — Farmacopea y Albarelos",
+    "eh": "TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F90R)",
+    "lines": [
+      {"eva": "daiin chol kor shedy qokaiin...", "es": "1. Clasificación de vasijas de almacenamiento y sellado hermético con arcilla refractaria.", "la": "1. Classificatio vasorum repositorii et sigillatio hermetica argilla refractaria.", "en": "1. Classification of storage vessels and hermetic sealing with refractory clay."},
+      {"eva": "dar daiin chol kor shedy...", "es": "2. Dosificación de extractos minerales para tratamientos prolongados de depuración.", "la": "2. Dosificatio extractorum mineralium pro curationibus prolongatis depurationis.", "en": "2. Dosage of mineral extracts for prolonged purification treatments."}
+    ],
+    "frq": "431.40 Hz",
+    "coh": "99.39%"
   }
 }
