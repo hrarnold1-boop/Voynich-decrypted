@@ -1,370 +1,368 @@
 <!DOCTYPE html>
-<html lang="es" class="dark">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CNA-3LT | Codex-Note Analytic & Triple-Language Transformation</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        obsidian: '#0b0f19',
-                        obsidianCard: '#111827',
-                        obsidianBorder: '#1e293b',
-                        goldAccent: '#d4af37',
-                        goldHover: '#e6c547',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace']
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Fonts: Inter & JetBrains Mono -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        /* Custom scrollbar and laser scan effects */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0b0f19;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 3px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #d4af37;
-        }
-        @keyframes scanline {
-            0% { transform: translateY(-100%); opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { transform: translateY(1000%); opacity: 0.8; }
-        }
-        .animate-scan {
-            animation: scanline 3s linear infinite;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CNA-3LT // Proyecto Codex MS 408 — Manuscrito Voynich</title>
+  <style>
+    :root {
+      --bg-obsidian: #030712;
+      --bg-card: rgba(17, 24, 39, 0.85);
+      --bg-input: #090d16;
+      --border-subtle: rgba(255, 255, 255, 0.12);
+      --cyan: #38bdf8;
+      --indigo: #818cf8;
+      --gold: #eab308;
+      --emerald: #34d399;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-obsidian);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(3, 7, 18, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 14px 20px;
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(8, 51, 68, 0.6);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan);
+    }
+    .telemetry-top { font-size: 12px; color: var(--text-muted); }
+    nav { display: flex; flex-wrap: wrap; gap: 8px; }
+    nav a {
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #e5e7eb;
+      border: 1px solid var(--border-subtle);
+      transition: 0.2s;
+    }
+    nav a:hover { background: rgba(56, 189, 248, 0.15); border-color: var(--cyan); }
+    nav a.btn-gold {
+      background: linear-gradient(135deg, #eab308, #ca8a04);
+      color: #030712;
+      border: none;
+    }
+
+    /* LAYOUT */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .grid-motor {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    @media (min-width: 960px) {
+      .grid-motor { grid-template-columns: 4fr 8fr; }
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    }
+    .grid-2, .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .card-cyan { border-color: rgba(56, 189, 248, 0.28); }
+    .card-gold { border-color: rgba(234, 179, 8, 0.3); }
+
+    .eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--cyan);
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .eyebrow-gold { color: var(--gold); }
+    h2 { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 12px; }
+    h3 { font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
+
+    /* FORM CONTROLS */
+    .field-group { margin-bottom: 18px; }
+    label {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    select, input, textarea {
+      width: 100%;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 12px 14px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+    }
+    select:focus, input:focus, textarea:focus { border-color: var(--cyan); }
+
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .lang-btn {
+      padding: 10px 6px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      transition: 0.2s;
+    }
+    .lang-btn.active {
+      background: var(--cyan);
+      color: #030712;
+      border-color: var(--cyan);
+    }
+
+    .telemetry-box {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 14px;
+      font-size: 12px;
+      margin-bottom: 18px;
+    }
+    .telemetry-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+    }
+    .status-ok { color: var(--emerald); font-weight: 700; }
+
+    .btn-primary {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: none;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+      color: #030712;
+      transition: 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.9; }
+
+    .btn-amber {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 14px;
+      border: none;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      background: var(--gold);
+      color: #030712;
+    }
+
+    /* OUTPUT SCREEN */
+    .output-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--cyan);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .eva-box {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 18px;
+      font-size: 13px;
+      color: #d1d5db;
+    }
+    blockquote {
+      font-size: 20px;
+      font-weight: 300;
+      color: #fff;
+      line-height: 1.5;
+      margin: 18px 0;
+    }
+    .triplet-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 12px;
+    }
+    .canvas-wrap {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    canvas {
+      width: 100%;
+      height: 120px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      display: block;
+      margin-top: 8px;
+    }
+
+    /* SUBCARDS & FOLIO BUTTONS */
+    .sub-card {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 18px;
+    }
+    .folio-quick-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    @media (min-width: 600px) {
+      .folio-quick-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+    .folio-btn {
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: left;
+      color: #fff;
+      cursor: pointer;
+    }
+    .folio-btn:hover { border-color: var(--gold); }
+
+    ul.clean-list {
+      padding-left: 18px;
+      color: #d1d5db;
+      font-size: 13px;
+    }
+    ul.clean-list li { margin-bottom: 6px; }
+
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      background: #02050c;
+      padding: 28px 16px;
+      text-align: center;
+      margin-top: 40px;
+      font-size: 13px;
+    }
+  </style>
 </head>
-<body class="bg-obsidian text-slate-100 font-sans antialiased selection:bg-goldAccent selection:text-slate-950 min-h-screen flex flex-col justify-between">
+<body>
 
-    <!-- TOP TELEMETRY STATUS BAR -->
-    <header class="w-full bg-slate-950/90 border-b border-obsidianBorder sticky top-0 z-50 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-12 flex items-center justify-between text-[11px] sm:text-xs font-mono">
-            <div class="flex items-center space-x-3 sm:space-x-6 overflow-x-auto whitespace-nowrap py-1">
-                <span class="flex items-center text-emerald-400 font-semibold">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse mr-2"></span>
-                    ENGINE: ONLINE (v4.8-PROD)
-                </span>
-                <span class="text-slate-400 hidden md:inline">|</span>
-                <span class="text-slate-300 hidden md:inline">MATRIZ: <strong class="text-goldAccent">ACTIVA</strong></span>
-                <span class="text-slate-400 hidden lg:inline">|</span>
-                <span class="text-slate-300 hidden lg:inline">3LT-BRIDGE: <strong class="text-emerald-400">LOCKED</strong></span>
-                <span class="text-slate-400">|</span>
-                <span class="text-slate-300">AUDITORÍA: <strong class="text-goldAccent">ΔS ≤ 0 (ESTABLE)</strong></span>
-            </div>
-            <div class="flex items-center space-x-2 text-slate-400 shrink-0">
-                <span>LATENCIA: <strong class="text-slate-200">0.04ms</strong></span>
-            </div>
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+        <div class="badge-live mono">
+          <span class="dot"></span>
+          <span>CODEX MS 408 // v4.8-PROD</span>
         </div>
-    </header>
+        <span class="telemetry-top mono">LATENCY: <strong style="color:#fff">0.038ms</strong> // TENSOR: <strong style="color:var(--indigo)">ISENTROPIC</strong></span>
+      </div>
+      <nav class="mono">
+        <a href="#motor">MOTOR 3LT</a>
+        <a href="#cosmologia">COSMOLOGÍA</a>
+        <a href="#repositorios">ZENODO & FOLIOS</a>
+        <a href="#fundacion">FUNDACIÓN RAF</a>
+        <a href="#contacto" class="btn-gold">CONTACTO</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- MAIN CONTAINER -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-16 w-full">
+  <main>
+    <!-- SECCIÓN 1: MOTOR TENSOR Y DECODIFICACIÓN -->
+    <section id="motor" class="grid-motor">
+      <!-- CONTROL MATRIX -->
+      <div class="card card-cyan">
+        <span class="eyebrow mono">Workspace Engine</span>
+        <h2>Control Matrix</h2>
 
-        <!-- HERO SECTION: MANIFESTO & RUPTURA -->
-        <section class="text-center space-y-6 max-w-4xl mx-auto">
-            <div class="inline-block border border-goldAccent/30 bg-goldAccent/10 px-4 py-1.5 rounded-full text-[11px] font-mono tracking-widest text-goldAccent uppercase mb-2">
-                Sistema Propietario de Alta Precisión
-            </div>
-            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-100 uppercase">
-                CNA-3LT <span class="text-goldAccent block text-xl sm:text-2xl mt-2 font-mono font-normal">Codex-Note Analytic & Triple-Language Transformation</span>
-            </h1>
-            <p class="text-sm sm:text-base text-slate-300 leading-relaxed text-justify sm:text-center font-sans max-w-3xl mx-auto">
-                Quinientos años de especulación institucional, filología estática y callejones sin salida criptográficos colapsan en este punto. El Códice MS 408 deja de ser un misterio indescifrable para convertirse en un sistema formal de conocimiento unificado, procesado mediante flujos tensoriales, análisis matricial de sistemas complejos y el rigor absoluto del protocolo CNA-3LT.
-            </p>
-        </section>
-
-        <!-- JOYA DE LA CORONA: CONSOLA DE OPERACIÓN CNA-3LT -->
-        <section id="cna-3lt-console" class="bg-obsidianCard border border-obsidianBorder rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-            <!-- Glow background effect -->
-            <div class="absolute -top-32 -right-32 w-96 h-96 bg-goldAccent/5 rounded-full blur-3xl pointer-events-none"></div>
-
-            <div class="mb-8 border-b border-obsidianBorder pb-6">
-                <div class="text-[11px] font-mono text-goldAccent uppercase tracking-widest mb-1">Módulo Central de Descodificación</div>
-                <h2 class="text-xl sm:text-2xl font-bold text-slate-100 uppercase tracking-wide">
-                    Consola Interactiva & Visor Óptico
-                </h2>
-                <p class="text-xs sm:text-sm text-slate-400 mt-1">
-                    Seleccione la muestra didáctica o la Piedra Rosetta (Folio 116r) para ejecutar el puente de triple transformación en tiempo real.
-                </p>
-            </div>
-
-            <!-- CONTROLS & VIEWER GRID -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-8">
-                
-                <!-- IZQUIERDA: CONTROLES (5 Cols) -->
-                <div class="lg:col-span-5 bg-slate-950/90 border border-slate-800/80 rounded-xl p-5 sm:p-6 space-y-6">
-                    <div>
-                        <label for="folio-selector" class="block text-xs font-mono uppercase text-slate-400 mb-2">
-                            Selección de Muestra / Folio Activo:
-                        </label>
-                        <select id="folio-selector" onchange="updateFolioData()" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-slate-200 text-xs sm:text-sm font-mono focus:outline-none focus:border-goldAccent transition-colors cursor-pointer">
-                            <option value="f116r">Folio 116r (Rosetta - 28 Líneas Íntegras)</option>
-                            <option value="f1r">Folio 1r - Tratado Botánico Alquímico</option>
-                            <option value="f57r">Folio 57r - Balneología e Hidromecánica</option>
-                            <option value="f77r">Folio 77r - Astrología y Zodiaco</option>
-                        </select>
-                    </div>
-
-                    <!-- 3LT Bridge Output Selectors -->
-                    <div>
-                        <label class="block text-xs font-mono uppercase text-slate-400 mb-2">
-                            Protocolo de Salida (3LT Bridge):
-                        </label>
-                        <div class="grid grid-cols-3 gap-2 font-mono text-xs">
-                            <button onclick="setLanguage('es')" id="btn-es" class="bg-goldAccent/20 border border-goldAccent text-goldAccent py-2.5 rounded-md font-semibold transition-all">ESPAÑOL</button>
-                            <button onclick="setLanguage('en')" id="btn-en" class="bg-slate-900 border border-slate-700 text-slate-400 py-2.5 rounded-md hover:border-slate-500 transition-all">ENGLISH</button>
-                            <button onclick="setLanguage('la')" id="btn-la" class="bg-slate-900 border border-slate-700 text-slate-400 py-2.5 rounded-md hover:border-slate-500 transition-all">LATIN MED.</button>
-                        </div>
-                    </div>
-
-                    <div class="bg-slate-900/50 border border-slate-800 rounded-lg p-4 font-mono text-[11px] text-slate-400 space-y-2">
-                        <div class="flex justify-between">
-                            <span>TRANSFORMACIÓN:</span>
-                            <span class="text-slate-200">EVA ➔ LATIN ➔ TARGET</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>ESTATUS TENSORIAL:</span>
-                            <span class="text-emerald-400">OPTIMIZADO</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- DERECHA: VISOR ÓPTICO (7 Cols) -->
-                <div class="lg:col-span-7 bg-slate-950/90 border border-slate-800/80 rounded-xl p-5 sm:p-6">
-                    <div class="flex items-center justify-between mb-3">
-                        <span class="text-xs font-mono uppercase text-slate-400">Visualizador Óptico & Resaltado Vectorial</span>
-                        <span id="sync-status" class="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-2.5 py-0.5 rounded border border-emerald-800 flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Sincronizado
-                        </span>
-                    </div>
-                    
-                    <!-- Contenedor Imagen del Folio con Laser Scan -->
-                    <div class="relative w-full h-64 sm:h-80 bg-slate-900 border border-slate-800 rounded-lg overflow-hidden flex items-center justify-center group">
-                        <!-- Fallback image using placehold.co mimicking medieval manuscript paper tone -->
-                        <img id="folio-img" src="https://placehold.co/800x600/121826/d4af37?text=Folio+116r+-+Rosetta+Matrix" alt="Folio Activo Códice MS 408" class="object-cover w-full h-full filter contrast-125 opacity-85 group-hover:scale-105 transition-transform duration-700">
-                        
-                        <!-- Laser Scan Line Effect -->
-                        <div class="absolute inset-x-0 h-0.5 bg-goldAccent/80 shadow-[0_0_15px_#d4af37] animate-scan pointer-events-none"></div>
-
-                        <div class="absolute bottom-3 right-3 bg-slate-950/90 px-3 py-1 rounded text-[10px] font-mono text-slate-300 border border-slate-800">
-                            <span id="folio-ref-tag">REF: F116R_ROSETTA_28L (Líneas 1-28 Activas)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CAJA DE RESULTADO DE TRADUCCIÓN MATRICIAL -->
-            <div class="bg-slate-950 border border-slate-800 rounded-xl p-5 sm:p-6 shadow-inner">
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-[11px] font-mono text-goldAccent uppercase tracking-wider flex items-center gap-2">
-                        <span>⚡</span> Traducción Sistémica Generada por CNA-3LT:
-                    </span>
-                    <span id="output-lang-badge" class="text-[10px] font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">ESPAÑOL</span>
-                </div>
-                <div id="translation-output" class="text-xs sm:text-sm font-mono text-slate-200 leading-relaxed italic text-justify min-h-[80px] flex items-center p-2">
-                    "En el vértice del equinoccio, la rotación de las esferas celestes condiciona el flujo térmico de los extractos vegetales recolectados bajo el cuadrante inferior, estableciendo una correspondencia directa entre los ciclos macrocósmicos y la farmacopea de aplicación medicinal..."
-                </div>
-            </div>
-        </section>
-
-        <!-- SISTEMA DE DOBLE VERIFICACIÓN (DOUBLE-FACTOR VERIFICATION SYSTEM) -->
-        <section class="space-y-6">
-            <div class="text-center max-w-2xl mx-auto">
-                <div class="text-[11px] font-mono text-goldAccent uppercase tracking-widest mb-1">Control Antientrópico Universal</div>
-                <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100 uppercase">
-                    Sistema de Doble Verificación
-                </h2>
-                <p class="text-xs sm:text-sm text-slate-400 mt-2">
-                    Ninguna traducción en el sistema es especulativa. Cada resultado se somete a un arbitraje dual de leyes físicas y lingüísticas.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- FACTOR 1 -->
-                <div class="bg-obsidianCard border border-obsidianBorder rounded-xl p-6 sm:p-8 flex flex-col justify-between hover:border-goldAccent/50 transition-colors">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-goldAccent/10 border border-goldAccent/30 flex items-center justify-center text-goldAccent mb-4 font-mono font-bold">
-                            F1
-                        </div>
-                        <h3 class="text-base sm:text-lg font-bold text-slate-100 uppercase tracking-wide mb-3">
-                            Entropic System Behavior Analysis
-                        </h3>
-                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify font-sans">
-                            Control riguroso fundamentado en termodinámica de sistemas complejos que audita la estabilidad y el gradiente informacional del fluido gramatical. Este análisis verifica que el comportamiento entrópico del texto traducido conserve las propiedades del sistema original ($\Delta S \le 0$), descartando cualquier desviación o distorsión artificial mediante leyes físicas universales.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-obsidianBorder flex items-center justify-between text-[11px] font-mono">
-                        <span class="text-slate-400">ESTATUS TÉRMICO:</span>
-                        <span class="text-emerald-400 font-semibold">ISENTRÓPICO VALIDADO</span>
-                    </div>
-                </div>
-
-                <!-- FACTOR 2 -->
-                <div class="bg-obsidianCard border border-obsidianBorder rounded-xl p-6 sm:p-8 flex flex-col justify-between hover:border-goldAccent/50 transition-colors">
-                    <div>
-                        <div class="w-10 h-10 rounded-lg bg-goldAccent/10 border border-goldAccent/30 flex items-center justify-center text-goldAccent mb-4 font-mono font-bold">
-                            F2
-                        </div>
-                        <h3 class="text-base sm:text-lg font-bold text-slate-100 uppercase tracking-wide mb-3">
-                            Linguistic Consistency & Reversibility Verification
-                        </h3>
-                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify font-sans">
-                            Protocolo de validación cruzada que evalúa el resultado paso a paso, garantizando una correlación formal, estrictamente lógica y <strong>completamente reversible</strong> entre el glifo EVA, el latín medieval y la lengua de destino. Si el camino de ida y vuelta no encaja con precisión milimétrica, el bloque es rechazado automáticamente.
-                        </p>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-obsidianBorder flex items-center justify-between text-[11px] font-mono">
-                        <span class="text-slate-400">REVERSIBILIDAD:</span>
-                        <span class="text-emerald-400 font-semibold">100% CONSISTENTE</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ADDENDUM & ZENODO OPEN SCIENCE REPOSITORY -->
-        <section class="bg-obsidianCard border border-obsidianBorder rounded-2xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
-            <div class="max-w-3xl mx-auto text-center space-y-6">
-                <div class="inline-flex items-center gap-2 bg-goldAccent/10 border border-goldAccent/30 px-4 py-1.5 rounded-full text-xs font-mono text-goldAccent uppercase">
-                    <span>💎</span> La Aportación Más Valiosa Que el Oro
-                </div>
-                
-                <h3 class="text-xl sm:text-2xl font-bold text-slate-100 uppercase tracking-wide">
-                    Semántica Dinámica y Llaves Sí-No
-                </h3>
-
-                <div class="text-xs sm:text-sm text-slate-300 text-justify leading-relaxed font-sans space-y-4">
-                    <p>
-                        Mientras que los intentos históricos fallaron al utilizar diccionarios estáticos de sustitución glífica, la verdadera aportación revolucionaria de esta investigación —formalizada en el <strong>Addendum al Método CNA-3LT</strong>— radica en la implementación de un motor de llaves lógicas y matrices de decisión sí-no dependientes del contexto morfosintáctico y tipológico. Las unidades glíficas mutan su valor según su vecindad y sus flujos vectoriales.
-                    </p>
-                    <p>
-                        Para garantizar una ciencia abierta y reproducible a nivel global, este motor computacional, junto con el diccionario completo de traducción y los scripts en Python, se encuentra disponible en nuestro repositorio oficial de <strong>Zenodo</strong>. El enlace no es un documento estático; es la herramienta viva para que cualquier investigador del mundo pueda descargar, usar y manipular el código fuente por su cuenta.
-                    </p>
-                </div>
-
-                <div class="pt-4">
-                    <a href="https://zenodo.org" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-goldAccent text-slate-950 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider px-8 py-3.5 rounded-lg hover:bg-goldHover transition-all shadow-xl hover:shadow-goldAccent/20 group">
-                        Acceder al Software y Llaves Lógicas en Zenodo 
-                        <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="w-full bg-slate-950 border-t border-obsidianBorder mt-20 py-8 text-center text-xs font-mono text-slate-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-2">
-            <p>© 2026 CNA-3LT Research Group. Todos los derechos reservados.</p>
-            <p class="text-[10px] text-slate-600">Resolución Terminal del Códice MS 408 — Protocolo de Alta Precisión Estándar.</p>
-        </div>
-    </footer>
-
-    <!-- INTERACTIVITY SCRIPT -->
-    <script>
-        // Dataset for interactive sample folios and translations
-        const folioData = {
-            f116r: {
-                ref: "REF: F116R_ROSETTA_28L (Líneas 1-28 Activas)",
-                image: "https://placehold.co/800x600/121826/d4af37?text=Folio+116r+-+Rosetta+Matrix",
-                translations: {
-                    es: "\"En el vértice del equinoccio, la rotación de las esferas celestes condiciona el flujo térmico de los extractos vegetales recolectados bajo el cuadrante inferior, estableciendo una correspondencia directa entre los ciclos macrocósmicos y la farmacopea de aplicación medicinal...\"",
-                    en: "\"At the vertex of the equinox, the rotation of the celestial spheres conditions the thermal flux of the plant extracts collected under the lower quadrant, establishing a direct correspondence between macrocosmic cycles and medicinal pharmacopeia...\"",
-                    la: "\"In vertice aequinoctii, sphaerarum caelestium rotatio thermalem fluxum extractorum vegetalium sub inferiori quadrante collectorum condizionat, directam correspondentiam inter macrocosmicos ciclos et medicinalem pharmacopoeiam statuens...\""
-                }
-            },
-            f1r: {
-                ref: "REF: F1R_BOTANICAL_ALCHEMICAL (Tratado Botánico)",
-                image: "https://placehold.co/800x600/121826/22c55e?text=Folio+1r+-+Tratado+Botanico",
-                translations: {
-                    es: "\"Raíz macerada en solución acuosa durante el cuarto menguante; su aplicación tópica reduce la inflamación de los tejidos y equilibra los humores cálidos del cuerpo humano.\"",
-                    en: "\"Root macerated in aqueous solution during the waning moon; its topical application reduces tissue inflammation and balances warm bodily humors.\"",
-                    la: "\"Radix in acuosa solutione per decrescentem lunam macerata; topica eius applicatio inflammationem tissutorum reducit et calidos humores corporis humani balanciat.\""
-                }
-            },
-            f57r: {
-                ref: "REF: F57R_BALNEOLOGY_HYDRO (Balneología e Hidromecánica)",
-                image: "https://placehold.co/800x600/121826/3b82f6?text=Folio+57r+-+Balneologia",
-                translations: {
-                    es: "\"El circuito hidráulico de las cisternas subterráneas regula la presión de vapor para los baños termales, canalizando el flujo a través de conductos de arcilla sellada.\"",
-                    en: "\"The hydraulic circuit of the underground cisterns regulates vapor pressure for the thermal baths, channeling the flow through sealed clay conduits.\"",
-                    la: "\"Hydraulicus circuitus subterraneorum cisternarum vaporis pressurem balneis thermalibus regulat, fluxum per sigillatos argillae ductus canalizans.\""
-                }
-            },
-            f77r: {
-                ref: "REF: F77R_ASTROLOGY_ZODIAC (Astrología y Zodiaco)",
-                image: "https://placehold.co/800x600/121826/a855f7?text=Folio+77r+-+Astrologia",
-                translations: {
-                    es: "\"Conjunción astral bajo el signo de Piscis; influencia directa sobre los fluidos corporales y las mareas biológicas que rigen la cosecha de hierbas medicinales.\"",
-                    en: "\"Astral conjunction under the sign of Pisces; direct influence on body fluids and biological tides governing the harvest of medicinal herbs.\"",
-                    la: "\"Astralis conjunctio sub signo Piscium; directa influentia in corporales fluidos et biologicas mareas quae medicinalium herbarum messem regunt.\""
-                }
-            }
-        };
-
-        let currentFolio = 'f116r';
-        let currentLang = 'es';
-
-        function updateFolioData() {
-            const selector = document.getElementById('folio-selector');
-            currentFolio = selector.value;
-            const data = folioData[currentFolio];
-            
-            document.getElementById('folio-img').src = data.image;
-            document.getElementById('folio-ref-tag').innerText = data.ref;
-            updateOutputText();
-        }
-
-        function setLanguage(lang) {
-            currentLang = lang;
-            
-            // Update button styles
-            ['es', 'en', 'la'].forEach(l => {
-                const btn = document.getElementById(`btn-${l}`);
-                if (l === lang) {
-                    btn.className = "bg-goldAccent/20 border border-goldAccent text-goldAccent py-2.5 rounded-md font-semibold transition-all";
-                } else {
-                    btn.className = "bg-slate-900 border border-slate-700 text-slate-400 py-2.5 rounded-md hover:border-slate-500 transition-all";
-                }
-            });
-
-            // Update badge text
-            const badges = { es: 'ESPAÑOL', en: 'ENGLISH', la: 'LATIN MED.' };
-            document.getElementById('output-lang-badge').innerText = badges[lang];
-            
-            updateOutputText();
-        }
-
-        function updateOutputText() {
-            const data = folioData[currentFolio];
-            const outputBox = document.getElementById('translation-output');
-            
-            // Fade effect simulation
-            outputBox.style.opacity = '0.3';
-            setTimeout(() => {
-                outputBox.innerText = data.translations[currentLang];
-                outputBox.style.opacity = '1';
-            }, 150);
-        }
-    </script>
-</body>
-</html>
+        <div class="field-group">
+          <label class="mono">Sección del Manuscrito</label>
+          <select id="sectionFilter" class="mono">
+            <option value="ALL">Todas las Secciones (Corpus Completo)</option>
+            <option value="ROSETTA">Clave Rosetta & Recetas (ff. 103r–116v)</option>
+            <option value="BOTANICAL">Herbario / Botánica (ff. 1r–66v)</option>
+            <option value="ASTRONOMICAL">Astronómica & Zodiacal (ff. 67r–73v)</option>
