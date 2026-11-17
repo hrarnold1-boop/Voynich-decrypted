@@ -32,7 +32,7 @@
     "eh": "TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F26R)",
     "lines": [
       {"eva": "pchor ody dar chody shedy...", "es": "1. Correlación directa entre la distribución foliar y los ciclos de fertilidad de la tierra.", "la": "1. Directa correlatio inter foliorum distributionem et terrae fertilitatis ciclos.", "en": "1. Direct correlation between foliar distribution and earth fertility cycles."},
-      {"eva": "qokedy dal dy pchor ody...", "es": "2. Absorción hídrica radicular optimizada por los minerales del suelo arcilloso.", "la": "2. Absorptio hydrica radicularis mineralibus soli argillosi optimizata.", "en": "2. Root water absorption optimized by clay soil minerals."}
+      {"eva": "qokedy dal dy pchor ody...", "es": "2. Absorción hídrica radicularis optimizada por los minerales del suelo arcilloso.", "la": "2. Absorptio hydrica radicularis mineralibus soli argillosi optimizata.", "en": "2. Root water absorption optimized by clay soil minerals."}
     ],
     "frq": "424.12 Hz",
     "coh": "99.18%"
@@ -69,38 +69,5 @@
     ],
     "frq": "446.30 Hz",
     "coh": "99.70%"
-  },
-  "78r": {
-    "sec": "BIOLOGICAL",
-    "t": "Folio 78r — Tratado Balneológico",
-    "eh": "TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F78R)",
-    "lines": [
-      {"eva": "qokedy qokeey shedy ol kaiin...", "es": "1. Inmersión en piletas de purificación térmica con sales minerales disueltas.", "la": "1. Inmersio in balneis purificationis thermalis cum salibus mineralibus dissolutis.", "en": "1. Immersion in thermal purification baths with dissolved mineral salts."},
-      {"eva": "dar qokedy qokeey shedy...", "es": "2. Regulación del flujo termodinámico mediante compuertas de piedra porosa.", "la": "2. Regulatio fluxus thermodynamici per cataractas lapidis porosi.", "en": "2. Regulation of thermodynamic flow via porous stone gates."}
-    ],
-    "frq": "435.20 Hz",
-    "coh": "99.25%"
-  },
-  "85r": {
-    "sec": "COSMOLOGICAL",
-    "t": "Folio 85r — El Gran Orrery",
-    "eh": "TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F85R)",
-    "lines": [
-      {"eva": "sol chedy qotaiin dar aldy...", "es": "1. Conexión entre los nodos geográficos terrestres y la rotación de las esferas celestes.", "la": "1. Connectio inter nodos geographicos terrestres et sphaerarum caelestium rotationem.", "en": "1. Connection between terrestrial geographic nodes and the rotation of celestial spheres."},
-      {"eva": "okedy sol chedy qotaiin...", "es": "2. Mapeo de corrientes subterráneas y su influencia en los microclimas regionales.", "la": "2. Descriptio fluminum subterraneorum eorumque influentia in microclimata regionalia.", "en": "2. Mapping of underground currents and their influence on regional microclimates."}
-    ],
-    "frq": "438.90 Hz",
-    "coh": "99.55%"
-  },
-  "90r": {
-    "sec": "PHARMACEUTICAL",
-    "t": "Folio 90r — Farmacopea y Albarelos",
-    "eh": "TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F90R)",
-    "lines": [
-      {"eva": "daiin chol kor shedy qokaiin...", "es": "1. Clasificación de vasijas de almacenamiento y sellado hermético con arcilla refractaria.", "la": "1. Classificatio vasorum repositorii et sigillatio hermetica argilla refractaria.", "en": "1. Classification of storage vessels and hermetic sealing with refractory clay."},
-      {"eva": "dar daiin chol kor shedy...", "es": "2. Dosificación de extractos minerales para tratamientos prolongados de depuración.", "la": "2. Dosificatio extractorum mineralium pro curationibus prolongatis depurationis.", "en": "2. Dosage of mineral extracts for prolonged purification treatments."}
-    ],
-    "frq": "431.40 Hz",
-    "coh": "99.39%"
   }
 }
