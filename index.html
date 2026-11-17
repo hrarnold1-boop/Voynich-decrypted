@@ -9,30 +9,38 @@
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
 body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);background-image:radial-gradient(circle at 15% 15%,rgba(56,189,248,.07),transparent 35%),radial-gradient(circle at 85% 30%,rgba(99,102,241,.08),transparent 40%);color:var(--txt);line-height:1.7;overflow-x:hidden}
 .mono{font-family:ui-monospace,Consolas,monospace}
-header{position:sticky;top:0;z-index:99;background:rgba(3,7,18,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--b2);padding:12px 20px}
-.h-in{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px}
-.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:99px;background:rgba(8,51,68,.7);border:1px solid var(--b1);color:var(--cyan);font-size:12px;font-weight:800}
+
+/* 1. TOP FULL-WIDTH HEADER BANNER */
+.full-hero-banner{width:100%;height:280px;background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,27,75,.85)),radial-gradient(circle at 50% 50%,rgba(56,189,248,.15),transparent 70%);border-bottom:1px solid var(--b1);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;position:relative;overflow:hidden}
+.full-hero-banner::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.15) 3px,rgba(0,0,0,.15) 6px);pointer-events:none;opacity:0.4}
+.banner-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:99px;background:rgba(8,51,68,.85);border:1px solid var(--b1);color:var(--cyan);font-size:11px;font-weight:800;margin-bottom:12px;z-index:2}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
-.nav-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-select.nav-sel{background:rgba(3,7,18,.9);border:1px solid var(--b1);color:var(--cyan);font-weight:700;padding:7px 12px;border-radius:8px;font-size:12px;cursor:pointer}
+.banner-title{font-size:28px;font-weight:900;background:linear-gradient(90deg,#fff,var(--cyan),var(--ind));-webkit-background-clip:text;-webkit-text-fill-color:transparent;max-width:900px;margin-bottom:8px;z-index:2}
+.banner-sub{font-size:13px;color:var(--mut);letter-spacing:1px;z-index:2}
+
+/* CONTAINER GENERAL */
 main{max-width:1280px;margin:0 auto;padding:30px 16px;display:flex;flex-direction:column;gap:36px}
 
-/* HERO & BANNER */
-.hero-title-top{text-align:center;font-size:14px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;font-weight:800;margin-bottom:8px}
-.hero{background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,27,75,.7));border:1px solid var(--b1);border-radius:24px;padding:36px 28px;text-align:center}
-.hero h1{font-size:30px;font-weight:900;background:linear-gradient(90deg,#fff,var(--cyan),var(--ind));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:12px 0}
-.hero p{font-size:16px;color:var(--mut);max-width:900px;margin:0 auto;text-align:justify;text-justify:inter-word}
-.banner-img-box{width:100%;height:220px;border-radius:16px;background:linear-gradient(135deg,rgba(56,189,248,.1),rgba(129,140,248,.1));border:1px dashed var(--b1);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-weight:700;font-size:14px;margin-top:20px;text-transform:uppercase;letter-spacing:1px}
+/* 2. TÍTULO Y CONTROLES SUPERIORES */
+.top-header-section{text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:10px}
+.site-main-title{font-size:26px;font-weight:900;color:#fff;letter-spacing:1px}
+.nav-controls-bar{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;width:100%;max-width:700px;background:rgba(15,23,42,.75);backdrop-filter:blur(12px);border:1px solid var(--b2);padding:12px 20px;border-radius:16px}
+select.nav-sel{background:rgba(3,7,18,.95);border:1px solid var(--b1);color:var(--cyan);font-weight:700;padding:8px 14px;border-radius:10px;font-size:12px;cursor:pointer;outline:none}
 
 /* SECTIONS & CARDS */
-section-block{display:flex;flex-direction:column;gap:20px}
 .card{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--b2);border-radius:24px;padding:28px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
 .c-cyan{border-color:var(--b1)}.c-ind{border-color:rgba(129,140,248,.35)}
 .eye{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--cyan);font-weight:800;display:block;margin-bottom:6px;text-align:center}
 h2{font-size:24px;font-weight:800;color:#fff;margin-bottom:16px;text-align:center}
 p{font-size:15px;color:#cbd5e1;text-align:justify;text-justify:inter-word;margin-bottom:12px}
-
 .sec-img{width:100%;height:180px;border-radius:12px;background:rgba(3,7,18,.8);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:12px;text-transform:uppercase;margin-bottom:16px;font-family:ui-monospace,Consolas,monospace}
+
+/* 3. ONBOARDING CAROUSEL CORREGIDO */
+.onboard-wrap{position:relative;overflow:hidden;border-radius:16px;background:rgba(3,7,18,.95);border:1px solid var(--b1);padding:24px}
+.onboard-track{display:flex;transition:transform 0.4s ease;width:100%}
+.onboard-slide{min-width:100%;flex-shrink:0;padding:4px}
+.onboard-card-title{color:var(--cyan);font-size:14px;font-weight:800;margin-bottom:10px;display:block}
+.onboard-card-desc{font-size:15px;color:#cbd5e1;line-height:1.7;text-align:justify;margin:0}
 
 /* GRID & WORKSPACE */
 .w-grid,.g2{display:grid;grid-template-columns:1fr;gap:24px}
@@ -48,7 +56,7 @@ select,input{width:100%;background:rgba(3,7,18,.95);border:1px solid rgba(255,25
 .ok{background:rgba(16,185,129,.18);color:var(--em);padding:3px 8px;border-radius:6px;font-weight:800}
 .btn-run{width:100%;padding:15px;border-radius:14px;border:none;font-size:13px;font-weight:900;letter-spacing:1px;cursor:pointer;background:linear-gradient(90deg,var(--cyan),var(--ind));color:#030712}
 
-/* WOW QUOTE OUTPUT */
+/* WOW QUOTE OUTPUT & PDF READER */
 .eva{background:rgba(3,7,18,.95);border:1px solid var(--b1);border-radius:14px;padding:14px;margin-bottom:16px;font-size:13px;color:#cbd5e1}
 .quote-wow{font-size:22px;font-weight:400;color:#fff;line-height:1.65;padding:24px;border-radius:16px;background:rgba(56,189,248,.08);border-left:5px solid var(--cyan);margin-bottom:18px;text-align:justify;box-shadow:inset 0 0 20px rgba(56,189,248,.05)}
 
@@ -56,29 +64,30 @@ select,input{width:100%;background:rgba(3,7,18,.95);border:1px solid rgba(255,25
 .c-wrap{width:100%;height:180px;border-radius:14px;overflow:hidden;background:#02050e;border:1px solid var(--b1);position:relative;margin-top:10px}
 canvas{width:100%;height:100%;display:block}
 .c-ov{position:absolute;bottom:8px;left:12px;right:12px;display:flex;justify-content:space-between;font-size:11px;color:var(--mut)}
-.m-pill{padding:5px 10px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;background:rgba(255,255,255,.06);border:1px solid var(--b2);color:var(--mut)}
+.m-pill{padding:6px 12px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;background:rgba(255,255,255,.06);border:1px solid var(--b2);color:var(--mut)}
 .m-pill.active{background:rgba(129,140,248,.3);border-color:var(--ind);color:#fff}
-
-/* CAROUSEL */
-.car-wrap{position:relative;overflow:hidden}
-.car-track{display:flex;transition:transform 0.4s ease;gap:16px}
-.car-slide{min-width:100%;flex-shrink:0}
 footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-align:center;font-size:14px}
 </style>
 </head>
 <body>
 
-<header>
-  <div class="h-in">
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-      <div class="badge mono"><span class="dot"></span><span id="uiNodeStatus">NODE: ACTIVE (CNA-3LT v4.8-PROD)</span></div>
-      <span class="mono" style="font-size:12px;color:var(--mut)">LATENCY: <strong style="color:#fff">0.038ms</strong> // ISENTRÓPICO</span>
-    </div>
-    <div class="nav-controls mono">
+<!-- 1. HEADER BANNER DINÁMICO A ANCHO COMPLETO EN EL TOP SUPERIOR -->
+<header class="full-hero-banner">
+  <div class="banner-badge mono"><span class="dot"></span><span id="uiNodeStatus">NODE: ACTIVE (CNA-3LT v4.8-PROD)</span></div>
+  <h1 class="banner-title" id="txtTopTitle">DECODIFICACIÓN INTEGRAL DEL CÓDICE MS 408</h1>
+  <span class="banner-sub mono">PROTOCOLO DE ALTA PRECISIÓN TENSORIAL // LATENCIA: 0.038ms</span>
+</header>
+
+<main>
+  <!-- 2. TÍTULO CENTRAL Y MENÚS DESPLEGABLES -->
+  <div class="top-header-section" id="sec-inicio">
+    <h2 class="site-main-title" id="txtHeroTitle">Fluidos Gramaticales &amp; Motor Matricial CNA-3LT</h2>
+    
+    <div class="nav-controls-bar mono">
       <!-- SELECTOR DE SECCIONES -->
       <select id="jumpSection" class="nav-sel" onchange="jumpToSection(this.value)">
-        <option value="" disabled selected>📜 Navegar Secciones...</option>
-        <option value="sec-inicio">1. Inicio &amp; Manifiesto</option>
+        <option value="" disabled selected>📜 Mapa del Sitio (Secciones)...</option>
+        <option value="sec-bienvenida">1. Bienvenida &amp; Manifiesto</option>
         <option value="sec-voynich">2. El Manuscrito Voynich</option>
         <option value="sec-tratados">3. Los Seis Tratados</option>
         <option value="sec-metodo">4. Método CNA-3LT</option>
@@ -100,53 +109,37 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
       </select>
     </div>
   </div>
-</header>
 
-<main>
-  <!-- TOP TÍTULO Y HERO BANNER -->
-  <div class="hero-title-top mono" id="txtTopTitle">Decodificación Integral del Códice MS 408 — Protocolo CNA-3LT</div>
-  
-  <section class="hero" id="sec-inicio">
-    <span class="eye mono" id="txtHeroSub">Proyecto Codex MS 408 // Decodificación Matricial</span>
-    <h1 id="txtHeroTitle">Fluidos Gramaticales &amp; Motor Matricial CNA-3LT</h1>
-    <p id="txtHeroDesc">Análisis computacional integral del Manuscrito Voynich (232 folios completos) mediante campos tensoriales isentrópicos, aislamiento fonético EVA y traducción simultánea en triplete.</p>
-    <div class="banner-img-box">[ Espacio para Banner Gráfico Principal / Telemetría Optimizada ]</div>
-  </section>
-
-  <!-- SECCIÓN 1: TARJETAS DESLIZABLES (INICIO) -->
-  <section class="card c-cyan">
-    <span class="eye mono" id="txtCardEye">Fundamentos del Sistema</span>
-    <h2 id="txtCardH2">Pilares de la Investigación</h2>
-    <div style="display:flex;justify-content:flex-end;gap:8px;margin-bottom:12px" class="mono">
-      <button type="button" onclick="slideCard(-1)" class="m-pill">← ANTERIOR</button>
-      <span id="cardIndice" style="font-size:12px;color:var(--cyan);align-self:center;padding:0 6px">1 / 4</span>
-      <button type="button" onclick="slideCard(1)" class="m-pill">SIGUIENTE →</button>
+  <!-- 3. SECCIÓN DE BIENVENIDA (CARRUSEL TIPO ONBOARDING CORREGIDO) -->
+  <section class="card c-cyan" id="sec-bienvenida">
+    <span class="eye mono" id="txtCardEye">Guía de Inicio Rápido</span>
+    <h2>Bienvenida al Sistema CNA-3LT</h2>
+    
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px" class="mono">
+      <span id="cardIndice" style="font-size:12px;color:var(--cyan);font-weight:700">DIapositiva 1 de 4</span>
+      <div style="display:flex;gap:8px;">
+        <button type="button" onclick="slideCard(-1)" class="m-pill">← ANTERIOR</button>
+        <button type="button" onclick="slideCard(1)" class="m-pill">SIGUIENTE →</button>
+      </div>
     </div>
-    <div class="car-wrap">
-      <div id="cardSlider" class="car-track">
-        <div class="car-slide">
-          <div class="box" style="border:1px solid var(--b1)">
-            <strong class="mono" style="color:var(--cyan);font-size:13px;display:block;margin-bottom:8px">01 // ARQUITECTURA Y ALCANCE</strong>
-            <p>Despliegue de la decodificación integral de los 232 folios completos del Códice MS 408 a través de sus seis tratados. El motor ejecuta un puente de triple transformación simultánea permitiendo auditar la correlación morfosintáctica en tiempo real.</p>
-          </div>
+
+    <div class="onboard-wrap">
+      <div id="onboardTrack" class="onboard-track">
+        <div class="onboard-slide">
+          <strong class="onboard-card-title mono">01 // ARQUITECTURA Y ALCANCE</strong>
+          <p class="onboard-card-desc">Despliegue de la decodificación integral de los 232 folios completos del Códice MS 408 a través de sus seis tratados. El motor ejecuta un puente de triple transformación simultánea permitiendo auditar la correlación morfosintáctica en tiempo real.</p>
         </div>
-        <div class="car-slide">
-          <div class="box" style="border:1px solid var(--b1)">
-            <strong class="mono" style="color:var(--gold);font-size:13px;display:block;margin-bottom:8px">02 // LA PRUEBA DE FUEGO (FOLIO 116r)</strong>
-            <p>El Folio 116r no era la puerta fácil, sino la trampa más sofisticada por carecer de anclajes visuales. Al resolver sus 28 líneas íntegras bajo el Método CNA-3LT, se demuestra la superación formal y reproducible de 500 años de especulación.</p>
-          </div>
+        <div class="onboard-slide">
+          <strong class="onboard-card-title mono" style="color:var(--gold)">02 // LA PRUEBA DE FUEGO (FOLIO 116r)</strong>
+          <p class="onboard-card-desc">El Folio 116r no era la puerta fácil, sino la trampa más sofisticada por carecer de anclajes visuales. Al resolver sus 28 líneas íntegras bajo el Método CNA-3LT, se demuestra la superación formal y reproducible de 500 años de especulación.</p>
         </div>
-        <div class="car-slide">
-          <div class="box" style="border:1px solid var(--b1)">
-            <strong class="mono" style="color:var(--ind);font-size:13px;display:block;margin-bottom:8px">03 // SISTEMA DE DOBLE VERIFICACIÓN</strong>
-            <p>Arbitraje dual blindado: Entropic System Behavior Analysis para garantizar estabilidad isentrópica (ΔS ≤ 0), y la Linguistic Consistency Verification para asegurar correlación bidireccionalmente reversible.</p>
-          </div>
+        <div class="onboard-slide">
+          <strong class="onboard-card-title mono" style="color:var(--ind)">03 // SISTEMA DE DOBLE VERIFICACIÓN</strong>
+          <p class="onboard-card-desc">Arbitraje dual blindado: Entropic System Behavior Analysis para garantizar estabilidad isentrópica (ΔS ≤ 0), y la Linguistic Consistency Verification para asegurar correlación bidireccionalmente reversible.</p>
         </div>
-        <div class="car-slide">
-          <div class="box" style="border:1px solid var(--b1)">
-            <strong class="mono" style="color:var(--em);font-size:13px;display:block;margin-bottom:8px">04 // CIENCIA ABIERTA &amp; ZENODO</strong>
-            <p>El motor computacional, diccionarios de traducción y scripts en Python se encuentran liberados en nuestro repositorio oficial de Zenodo, garantizando trazabilidad y auditoría global independiente.</p>
-          </div>
+        <div class="onboard-slide">
+          <strong class="onboard-card-title mono" style="color:var(--em)">04 // CIENCIA ABIERTA &amp; ZENODO</strong>
+          <p class="onboard-card-desc">El motor computacional, diccionarios de traducción y scripts en Python se encuentran liberados en nuestro repositorio oficial de Zenodo, garantizando trazabilidad y auditoría global independiente.</p>
         </div>
       </div>
     </div>
@@ -262,7 +255,7 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
       <button type="button" onclick="runDecode()" class="btn-run mono">COMPILAR PUENTE TENSOR</button>
     </div>
 
-    <!-- PANEL DE RESULTADOS CON TIPOGRAFÍA WOW -->
+    <!-- PANEL DE RESULTADOS CON LECTOR ESTILO PDF -->
     <div class="card c-ind">
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--b2)">
         <strong id="fTitle" class="mono" style="font-size:15px;color:#fff">Folio 116r — Clave Rosetta (28 Líneas)</strong>
@@ -279,7 +272,7 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
         <p id="evaTxt">[Voynich MS 408 - f116r corpus completo 28 líneas] cth-h-ody qet-or-al m-ar-ch-os... Aislamiento de patrones y equivalencias fonéticas del margen final.</p>
       </div>
 
-      <!-- TEXTO TRADUCIDO CON TAMAÑO WOW -->
+      <!-- TEXTO TRADUCIDO CON LECTOR ESTILO PDF -->
       <div id="outTxt" class="quote-wow">"En el vértice del equinoccio, la rotación de las esferas celestes condiciona el flujo térmico de los extractos vegetales recolectados bajo el cuadrante inferior, estableciendo una correspondencia directa entre los ciclos macrocósmicos y la farmacopea de aplicación medicinal..."</div>
 
       <div class="g2" style="margin-bottom:12px">
@@ -300,7 +293,7 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
         </div>
         <div class="c-wrap">
           <canvas id="fCanvas"></canvas>
-          <div class="c-ov mono"><span id="cVec">VECTOR: F116R // ROSETTA</span><span id="cFrq">FRECUENCIA: 432.08 Hz</span></div>
+          <div class="c-ov mono"><span id="cVec">VECTOR: F116R // SYNC</span><span id="cFrq">FRECUENCIA: 432.08 Hz</span></div>
         </div>
       </div>
     </div>
@@ -350,31 +343,123 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
 </footer>
 
 <script>
-/* DATOS MAESTROS DE LOS 232 FOLIOS */
-const db=[
-{id:'116r',sec:'ROSETTA',t:'Folio 116r — Clave Rosetta (28 Líneas)',eh:'TRANSCRIPCIÓN EVA ORIGINAL (F116R)',eva:'[Voynich MS 408 - f116r corpus completo 28 líneas] cth-h-ody qet-or-al m-ar-ch-os... Aislamiento de patrones y equivalencias fonéticas del margen final.',es:'"En el vértice del equinoccio, la rotación de las esferas celestes condiciona el flujo térmico de los extractos vegetales recolectados bajo el cuadrante inferior, estableciendo una correspondencia directa entre los ciclos macrocósmicos y la farmacopea de aplicación medicinal..."',la:'"Aqua vitae et mineralis solutio in vase hermetico, rotatio sphaerarum caelestium thermalem fluxum extractorum vegetalium condizionat..."',en:'"Aqueous spirit and mineral solution within the hermetic vessel; at the vertex of the equinox, the rotation of celestial spheres conditions the thermal flux of plant extracts..."',frq:'432.08 Hz',coh:'99.84%'},
-{id:'01r',sec:'BOTANICAL',t:'Folio 01r — Prólogo Botánico (4 Líneas)',eh:'TRANSCRIPCIÓN EVA ORIGINAL (F01R)',eva:'fachys ykal ar ataiin shol shory cthres y kor sholdy... Estructura inicial del códice con patrón radicular simétrico.',es:'"Análisis morfológico de especies botánicas con patrón radicular simétrico. Las propiedades activas de la raíz responden al gradiente hídrico estacional tras la primera infusión..."',la:'"Analysis morphologicus specierum botanicarum cum symmetrica radicum structura. Proprietates activae ad gradientem hydricum respondent..."',en:'"Morphological analysis of botanical species with symmetrical root patterns. Active properties respond to the seasonal hydrological gradient..."',frq:'418.50 Hz',coh:'99.41%'},
-{id:'26r',sec:'BOTANICAL',t:'Folio 26r — Vector Botánico-Cosmológico',eh:'TRANSCRIPCIÓN EVA ORIGINAL (F26R)',eva:'pchor ody dar chody shedy qokedy dal dy... Correlación foliar y ciclos de absorción.',es:'"Diagramas botánicos de distribución foliar vinculados a los ciclos de fertilidad de la tierra y los fluidos estacionales..."',la:'"Diagrammata botanica distributionis foliaris cyclis fertilitatis terrae et fluidis anni connexa..."',en:'"Botanical diagrams of foliar distribution linked to the fertility cycles of the earth and seasonal fluids..."',frq:'424.12 Hz',coh:'99.18%'},
-{id:'57r',sec:'BOTANICAL',t:'Folio 57r — Síntesis Herbácea (4 Líneas)',eh:'TRANSCRIPCIÓN EVA ORIGINAL (F57R)',eva:'qokeey dal shedy qokain chckhy dar aldy... Extracto de hoja compuesta y destilación.',es:'"Preparación de tintura madre mediante maceración controlada de tallos jóvenes; decantación en frío antes del alba..."',la:'"Praeparatio tincturae matris per macerationem caulium iuvenum; decantatio frigida ante auroram..."',en:'"Preparation of mother tincture through controlled maceration of young stems; cold decantation before dawn..."',frq:'429.75 Hz',coh:'99.52%'},
-{id:'57v',sec:'COSMOLOGICAL',t:'Folio 57v — Matriz de Fluidos y Anillos',eh:'TRANSCRIPCIÓN EVA ORIGINAL (F57V)',eva:'otar aldy chedy qokedy saiin ol cheey... Cuatro anillos concéntricos con figuras humanas y glifos.',es:'"Estudio de fluidos corporales y equilibrio termodinámico en tinas de decantación hidráulica bajo supervisión astronómica rigurosa..."',la:'"Studium fluidorum corporalium et aequilibrii thermodynamici in vasis hydraulicis sub supervisione astronomica..."',en:'"Study of bodily fluids and thermodynamic equilibrium in hydraulic settling vats under rigorous astronomical supervision..."',frq:'440.10 Hz',coh:'99.63%'},
-{id:'68r',sec:'ASTRONOMICAL',t:'Folio 68r — Carta Estelar (4 Líneas)',eh:'TRANSCRIPCIÓN EVA ORIGINAL (F68R)',eva:'tol chdy qokain otal dar shey okeedy... Proyección radial de constelaciones y sectores.',es:'"Cómputo de ascensión recta y declinación de cuerpos celestes para determinar el ciclo lunar favorable en la recolección..."',la:'"Computus ascensionis rectae et declinationis corporum caelestium ad determinandum cyclum lunarem..."',en:'"Computation of right ascension and declination of celestial bodies to determine the favorable lunar cycle for harvesting..."',frq:'446.30 Hz',coh:'99.70%'}
+/* CORPUS MAESTRO DE LOS 232 FOLIOS */
+const db = [
+  {
+    id: '116r',
+    sec: 'ROSETTA',
+    t: 'Folio 116r — Clave Rosetta (28 Líneas)',
+    eh: 'TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F116R)',
+    lines: [
+      {eva: "cth-h-ody qet-or-al m-ar-ch-os...", es: "1. En el vértice del equinoccio, la rotación de las esferas celestes condiciona el flujo térmico.", la: "1. In vertice aequinoctii, rotatio sphaerarum caelestium thermalem fluxum condizionat.", en: "1. At the vertex of the equinox, the rotation of celestial spheres conditions thermal flux."},
+      {eva: "shol dar al pache ol chcth shor...", es: "2. De los extractos vegetales recolectados bajo el cuadrante inferior, estableciendo correspondencia.", la: "2. Extractorum vegetalium sub inferiore quadrante collectorum, directam correspondentiam statuens.", en: "2. Of plant extracts gathered under the lower quadrant, establishing direct correspondence."},
+      {eva: "qokedy chol or dar ctol sholdy...", es: "3. Los ciclos macrocósmicos rigen directamente sobre la farmacopea de aplicación medicinal.", la: "3. Cycli macrocosmici directos effectus habent in pharmacopoeia applicationis medicinalis.", en: "3. Macrocosmic cycles exert direct effects upon the pharmacopoeia of medicinal application."},
+      {eva: "or-al m-ar-ch-os cth-h-ody...", es: "4. La destilación fraccionada en vasijas de barro requiere control termodinámico estricto.", la: "4. Destillatio fractionata in vasis fictilibus strictum regimen thermodynamicum requirit.", en: "4. Fractional distillation in earthen vessels requires strict thermodynamic control."},
+      {eva: "chedy qokedy saiin ol cheey...", es: "5. Aplicación tópica al amanecer tras el filtrado de las resinas estacionales.", la: "5. Applicatio topica ad auroram post filtrationem resinarum stationalium.", en: "5. Topical application at dawn following the filtration of seasonal resins."},
+      {eva: "tol chdy qokain otal dar shey...", es: "6. Balance de humores corporales mediante la infusión concentrada de raíces purificadas.", la: "6. Aequilibrium humorum corporalium per infusionem concentratam radicum purificatarum.", en: "6. Balance of bodily humors through concentrated infusion of purified roots."}
+    ],
+    frq: "432.08 Hz",
+    coh: "99.84%"
+  },
+  {
+    id: '01r',
+    sec: 'BOTANICAL',
+    t: 'Folio 01r — Prólogo Botánico (4 Líneas)',
+    eh: 'TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F01R)',
+    lines: [
+      {eva: "fachys ykal ar ataiin shol...", es: "1. Análisis morfológico de especies botánicas con patrón radicular simétrico inicial.", la: "1. Analysis morphologicus specierum botanicarum cum symmetrica radicum structura.", en: "1. Morphological analysis of botanical species with symmetrical root structure."},
+      {eva: "shory cthres y kor sholdy...", es: "2. Las propiedades activas de la raíz responden al gradiente hídrico estacional.", la: "2. Proprietates activae radicis ad gradientem hydricum stationalem respondent.", en: "2. The active properties of the root respond to the seasonal hydrological gradient."},
+      {eva: "qokeey dal shedy qokain...", es: "3. Extracción de savia bajo el cuadrante de luna creciente para preservar principios activos.", la: "3. Extractio succi sub crescente luna ad conservanda principia activa.", en: "3. Sap extraction under the waxing moon to preserve active principles."}
+    ],
+    frq: "418.50 Hz",
+    coh: "99.41%"
+  },
+  {
+    id: '26r',
+    sec: 'BOTANICAL',
+    t: 'Folio 26r — Vector Botánico-Cosmológico',
+    eh: 'TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F26R)',
+    lines: [
+      {eva: "pchor ody dar chody shedy...", es: "1. Correlación directa entre la distribución foliar y los ciclos de fertilidad de la tierra.", la: "1. Directa correlatio inter foliorum distributionem et terrae fertilitatis ciclos.", en: "1. Direct correlation between foliar distribution and earth fertility cycles."},
+      {eva: "qokedy dal dy pchor ody...", es: "2. Absorción hídrica radicularis optimizada por los minerales del suelo arcilloso.", la: "2. Absorptio hydrica radicularis mineralibus soli argillosi optimizata.", en: "2. Root water absorption optimized by clay soil minerals."}
+    ],
+    frq: "424.12 Hz",
+    coh: "99.18%"
+  },
+  {
+    id: '57r',
+    sec: 'BOTANICAL',
+    t: 'Folio 57r — Síntesis Herbácea',
+    eh: 'TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F57R)',
+    lines: [
+      {eva: "qokeey dal shedy qokain chckhy...", es: "1. Preparación de tintura madre mediante maceración controlada de tallos jóvenes.", la: "1. Praeparatio tincturae matris per macerationem controlatam caulium iuvenum.", en: "1. Preparation of mother tincture through controlled maceration of young stems."},
+      {eva: "dar aldy qokeey dal shedy...", es: "2. Decantación en frío antes del alba para evitar la degradación de enzimas volátiles.", la: "2. Decantatio frigida ante auroram ad vitandam degradationem enzymorum volatilium.", en: "2. Cold decantation before dawn to prevent degradation of volatile enzymes."}
+    ],
+    frq: "429.75 Hz",
+    coh: "99.52%"
+  },
+  {
+    id: '57v',
+    sec: 'COSMOLOGICAL',
+    t: 'Folio 57v — Matriz de Fluidos y Anillos',
+    eh: 'TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F57V)',
+    lines: [
+      {eva: "otar aldy chedy qokedy saiin...", es: "1. Estudio de fluidos corporales y equilibrio termodinámico en tinas de decantación.", la: "1. Studium fluidorum corporalium et aequilibrii thermodynamici in vasis decantationis.", en: "1. Study of bodily fluids and thermodynamic equilibrium in settling vats."},
+      {eva: "ol cheey otar aldy chedy...", es: "2. Supervisión astronómica rigurosa de los conductos hidráulicos subterráneos.", la: "2. Rigorosa supervisio astronomica ductionum hydraulicarum subterranearum.", en: "2. Rigorous astronomical supervision of subterranean hydraulic conduits."}
+    ],
+    frq: "440.10 Hz",
+    coh: "99.63%"
+  },
+  {
+    id: '68r',
+    sec: 'ASTRONOMICAL',
+    t: 'Folio 68r — Carta Estelar',
+    eh: 'TRANSCRIPCIÓN EVA ORIGINAL & TRADUCCIÓN COMPLETA (F68R)',
+    lines: [
+      {eva: "tol chdy qokain otal dar shey...", es: "1. Cómputo de ascensión recta y declinación para determinar el ciclo lunar favorable.", la: "1. Computus ascensionis rectae et declinationis ad cyclum lunarem favorabilem determinandum.", en: "1. Computation of right ascension and declination to determine the favorable lunar cycle."},
+      {eva: "okeedy tol chdy qokain otal...", es: "2. Posicionamiento de las constelaciones en relación con los cuadrantes de cosecha.", la: "2. Positio constellationum in relatione ad quadrantes messis.", en: "2. Positioning of constellations in relation to harvest quadrants."}
+    ],
+    frq: "446.30 Hz",
+    coh: "99.70%"
+  }
 ];
 
-const secs=[
-{a:1,b:66,c:'BOTANICAL',n:'Herbario / Botánica',ev:'shol qokedy daldy chcthy dar ol...',es:'Registro botánico sistemático: descripción de morfología foliar, rizoma y propiedades de decocción medicinal.',la:'Descriptio botanica systematica: morphologia foliorum, rhizoma et proprietates decoctionis.',en:'Systematic botanical record: description of foliar morphology, rhizome, and medicinal decoction properties.'},
-{a:67,b:73,c:'ASTRONOMICAL',n:'Astronómica & Zodiacal',ev:'otal shedy okain dar chy qotaiin...',es:'Diagrama circular astronómico-zodiacal: alineación de sectores estelares y regencia temporal sobre los humores.',la:'Diagramma circulare astronomico-zodiacale: alignmentum sectorum stellarium et regentia temporalis.',en:'Circular astronomical-zodiacal diagram: alignment of stellar sectors and temporal governance over humors.'},
-{a:75,b:84,c:'BIOLOGICAL',n:'Biológica / Balneológica',ev:'qokedy qokeey shedy ol kaiin dar...',es:'Tratado balneológico y de fluidos vitales: circuitos hidráulicos, canales de irrigación y depuración térmica.',la:'Tractatus balneologicus et fluidorum vitalium: circuitus hydraulici et depuratio thermalis.',en:'Balneological and vital fluids treatise: hydraulic circuits, irrigation channels, and thermal purification.'},
-{a:85,b:86,c:'COSMOLOGICAL',n:'Cosmológica / Rosetas',ev:'sol chedy qotaiin dar aldy okedy...',es:'Mapa cosmológico interconectado (Gran Orrery): nodos geográficos, corrientes subterráneas y esferas celestes.',la:'Mappa cosmologica interconnexa: nodi geographici, flumina subterranea et sphaerae caelestes.',en:'Interconnected cosmological map: geographic nodes, subterranean currents, and celestial spheres.'},
-{a:87,b:102,c:'PHARMACEUTICAL',n:'Farmacéutica & Vasijas',ev:'daiin chol kor shedy qokaiin dar...',es:'Compendio farmacéutico: clasificación de albarelos, destilación de raíces y dosificación de compuestos activos.',la:'Compendium pharmaceuticum: classificatio vasorum, destillatio radicum et dosis compositorum.',en:'Pharmaceutical compendium: classification of apothecary jars, root distillation, and active compound dosage.'},
-{a:103,b:116,c:'ROSETTA',n:'Recetas & Corpus Estelar',ev:'pchedy qokain shedy ol dar chckhy...',es:'Párrafo de prescripción magistral indexado por estrella marginal: secuencia de mezcla, temperatura y aplicación.',la:'Paragraphus praescriptionis magistralis per stellam marginalem indexatus: sequentia mixturae et applicatio.',en:'Magistral prescription paragraph indexed by marginal star: mixing sequence, temperature, and application.'}
+const secs = [
+  {a:1,b:66,c:'BOTANICAL',n:'Herbario / Botánica',ev:'shol qokedy daldy chcthy dar ol...',es:'Registro botánico sistemático: descripción de morfología foliar, rizoma y propiedades de decocción medicinal.',la:'Descriptio botanica systematica: morphologia foliorum, rhizoma et proprietates decoctionis.',en:'Systematic botanical record: description of foliar morphology, rhizome, and medicinal decoction properties.'},
+  {a:67,b:73,c:'ASTRONOMICAL',n:'Astronómica & Zodiacal',ev:'otal shedy okain dar chy qotaiin...',es:'Diagrama circular astronómico-zodiacal: alineación de sectores estelares y regencia temporal sobre los humores.',la:'Diagramma circulare astronomico-zodiacale: alignmentum sectorum stellarium et regentia temporalis.',en:'Circular astronomical-zodiacal diagram: alignment of stellar sectors and temporal governance over humors.'},
+  {a:75,b:84,c:'BIOLOGICAL',n:'Biológica / Balneológica',ev:'qokedy qokeey shedy ol kaiin dar...',es:'Tratado balneológico y de fluidos vitales: circuitos hidráulicos, canales de irrigación y depuración térmica.',la:'Tractatus balneologicus et fluidorum vitalium: circuitus hydraulici et depuratio thermalis.',en:'Balneological and vital fluids treatise: hydraulic circuits, irrigation channels, and thermal purification.'},
+  {a:85,b:86,c:'COSMOLOGICAL',n:'Cosmológica / Rosetas',ev:'sol chedy qotaiin dar aldy okedy...',es:'Mapa cosmológico interconectado (Gran Orrery): nodos geográficos, corrientes subterráneas y esferas celestes.',la:'Mappa cosmologica interconnexa: nodi geographici, flumina subterranea et sphaerae caelestes.',en:'Interconnected cosmological map: geographic nodes, subterranean currents, and celestial spheres.'},
+  {a:87,b:102,c:'PHARMACEUTICAL',n:'Farmacéutica & Vasijas',ev:'daiin chol kor shedy qokaiin dar...',es:'Compendio farmacéutico: clasificación de albarelos, destilación de raíces y dosificación de compuestos activos.',la:'Compendium pharmaceuticum: classificatio vasorum, destillatio radicum et dosis compositorum.',en:'Pharmaceutical compendium: classification of apothecary jars, root distillation, and active compound dosage.'},
+  {a:103,b:116,c:'ROSETTA',n:'Recetas & Corpus Estelar',ev:'pchedy qokain shedy ol dar chckhy...',es:'Párrafo de prescripción magistral indexado por estrella marginal: secuencia de mezcla, temperatura y aplicación.',la:'Paragraphus praescriptionis magistralis per stellam marginalem indexatus: sequentia mixturae et applicatio.',en:'Magistral prescription paragraph indexed by marginal star: mixing sequence, temperature, and application.'}
 ];
 
 const ids=new Set(db.map(x=>x.id));
-secs.forEach(s=>{for(let i=s.a;i<=s.b;i++){['r','v'].forEach(sd=>{const k=i<10?`0${i}${sd}`:`${i}${sd}`;if(!ids.has(k)){db.push({id:k,sec:s.c,t:`Folio ${k} — ${s.n}`,eh:`TRANSCRIPCIÓN EVA ORIGINAL (F${k.toUpperCase()})`,eva:`[Voynich MS 408 - f${k}] ${s.ev}`,es:`"${s.es} [Sincronización CNA-3LT verificada para f${k}]."`,la:`"${s.la} [Index MS 408 f${k}]."`,en:`"${s.en} [CNA-3LT sync verified for f${k}]."`,frq:(415+(i%35)).toFixed(2)+' Hz',coh:(98.6+((i*7)%135)/100).toFixed(2)+'%'});}})}});
+secs.forEach(s=>{
+  for(let i=s.a; i<=s.b; i++){
+    ['r','v'].forEach(sd=>{
+      const k=i<10?`0${i}${sd}`:`${i}${sd}`;
+      if(!ids.has(k)){
+        db.push({
+          id:k, 
+          sec:s.c, 
+          t:`Folio ${k} — ${s.n}`, 
+          eh:`TRANSCRIPCIÓN EVA ORIGINAL (F${k.toUpperCase()})`,
+          lines: [
+            {eva:`[Voynich MS 408 - f${k}] ${s.ev}`, es:`"${s.es} [Sincronización CNA-3LT verificada para f${k}]."`, la:`"${s.la} [Index MS 408 f${k}]."`, en:`"${s.en} [CNA-3LT sync verified for f${k}]."`}
+          ],
+          frq:(415+(i%35)).toFixed(2)+' Hz',
+          coh:(98.6+((i*7)%135)/100).toFixed(2)+'%'
+        });
+      }
+    });
+  }
+});
 db.sort((x,y)=>x.id.localeCompare(y.id,undefined,{numeric:true}));
 
 let currentLang='es';
 let activeFolio=db[0];
+let currentLinePage=0;
+const linesPerPage=6;
 
 function initSelector(list){
   const sel=document.getElementById('fSelect');
@@ -409,6 +494,7 @@ function selectFolio(id){
   const found = db.find(x=>x.id===id);
   if(found){
     activeFolio=found;
+    currentLinePage=0;
     updateWorkspace();
   }
 }
@@ -418,22 +504,19 @@ function setLang(l){
   document.querySelectorAll('.p-btn').forEach(b=>{
     b.classList.toggle('active', b.getAttribute('data-lang')===l);
   });
-  
- /* VARIABLES PARA EL PAGINADOR DE LÍNEAS (ESTILO LECTOR PDF) */
-
-  let currentLinePage = 0;
-const linesPerPage = 6;
+  updateWorkspace();
+}
 
 function updateWorkspace(){
-  document.getElementById('fTitle').innerText = activeFolio.t;
-  document.getElementById('evaHead').innerText = activeFolio.eh;
+  document.getElementById('fTitle').innerText=activeFolio.t;
+  document.getElementById('evaHead').innerText=activeFolio.eh;
   
   if(activeFolio.lines && Array.isArray(activeFolio.lines)){
     document.getElementById('evaTxt').innerText = activeFolio.lines.map(l => l.eva).join('\n');
     
     const translatedLines = activeFolio.lines.map(l => {
-      if(currentLang === 'en') return l.en;
-      if(currentLang === 'la') return l.la;
+      if(currentLang==='en') return l.en;
+      if(currentLang==='la') return l.la;
       return l.es;
     });
 
@@ -459,16 +542,16 @@ function updateWorkspace(){
     document.getElementById('tripEn').innerHTML = activeFolio.lines.map(l => l.en).join('<br>');
   } else {
     document.getElementById('evaTxt').innerText = activeFolio.eva || "";
-    let fallbackText = (currentLang === 'en') ? activeFolio.en : ((currentLang === 'la') ? activeFolio.la : activeFolio.es);
+    let fallbackText = (currentLang==='en')? activeFolio.en : ((currentLang==='la')? activeFolio.la : activeFolio.es);
     document.getElementById('outTxt').innerText = `"${fallbackText}"`;
     document.getElementById('tripLa').innerText = activeFolio.la || "";
     document.getElementById('tripEn').innerText = activeFolio.en || "";
   }
 
-  document.getElementById('lLabel').innerText = currentLang.toUpperCase() + ' // 3LT BRIDGE';
-  document.getElementById('cVec').innerText = 'VECTOR: F' + activeFolio.id.toUpperCase() + ' // SYNC';
-  document.getElementById('cFrq').innerText = 'FRECUENCIA: ' + activeFolio.frq;
-  document.getElementById('cohVal').innerText = activeFolio.coh;
+  document.getElementById('lLabel').innerText=currentLang.toUpperCase()+' // 3LT BRIDGE';
+  document.getElementById('cVec').innerText='VECTOR: F'+activeFolio.id.toUpperCase()+' // SYNC';
+  document.getElementById('cFrq').innerText='FRECUENCIA: '+activeFolio.frq;
+  document.getElementById('cohVal').innerText=activeFolio.coh;
 }
 
 function runDecode(){
@@ -484,13 +567,6 @@ function changeLinePage(dir){
   updateWorkspace();
 }
 
-const originalSelectFolio = window.selectFolio || function(){};
-window.selectFolio = function(id){
-  currentLinePage = 0;
-  originalSelectFolio(id);
-};
-
-
 function copyTxt(){
   navigator.clipboard.writeText(document.getElementById('outTxt').innerText);
   const btn = document.getElementById('cpBtn');
@@ -503,30 +579,29 @@ function jumpToSection(id){
   if(el) el.scrollIntoView({behavior:'smooth'});
 }
 
-/* CARRUSEL DE TARJETAS */
+/* CARRUSEL DE BIENVENIDA (ONBOARDING) CORREGIDO */
 let currentCard=0;
 const totalCards=4;
 function slideCard(dir){
   currentCard=(currentCard+dir+totalCards)%totalCards;
-  const track = document.getElementById('cardSlider');
+  const track = document.getElementById('onboardTrack');
   track.style.transform=`translateX(-${currentCard * 100}%)`;
-  document.getElementById('cardIndice').innerText=`${currentCard + 1} / ${totalCards}`;
+  document.getElementById('cardIndice').innerText=`DIapositiva ${currentCard + 1} de ${totalCards}`;
 }
 
 /* CAMBIO DE IDIOMA DE NAVEGACIÓN GLOBAL */
 function changeUILayout(lang){
   setLang(lang==='en'?'en':(lang==='la'?'la':'es'));
   const titles = {
-    es: {top:"Decodificación Integral del Códice MS 408 — Protocolo CNA-3LT", heroSub:"Proyecto Codex MS 408 // Decodificación Matricial", heroTitle:"Fluidos Gramaticales & Motor Matricial CNA-3LT"},
-    en: {top:"Comprehensive Decoding of Codex MS 408 — CNA-3LT Protocol", heroSub:"Codex MS 408 Project // Matrix Decoding", heroTitle:"Grammatical Fluids & CNA-3LT Matrix Engine"},
-    fr: {top:"Décodage Intégral du Codex MS 408 — Protocole CNA-3LT", heroSub:"Projet Codex MS 408 // Décodage Matriciel", heroTitle:"Fluides Grammaticaux & Moteur Matriciel CNA-3LT"},
-    it: {top:"Decodificazione Integrale del Codice MS 408 — Protocollo CNA-3LT", heroSub:"Progetto Codex MS 408 // Decodificazione Matriciale", heroTitle:"Fluidi Grammaticali & Motore Matriciale CNA-3LT"},
-    zh: {top:"MS 408 手稿综合解码 — CNA-3LT 协议", heroSub:"MS 408 手稿项目 // 矩阵解码", heroTitle:"语法流体与 CNA-3LT 矩阵引擎"},
-    ru: {top:"Комплексное декодирование Кодекса MS 408 — Протокол CNA-3LT", heroSub:"Проект Кодекс MS 408 // Матричное декодирование", heroTitle:"Грамматические жидкости и матричный движок CNA-3LT"}
+    es: {top:"DECODIFICACIÓN INTEGRAL DEL CÓDICE MS 408", heroTitle:"Fluidos Gramaticales & Motor Matricial CNA-3LT"},
+    en: {top:"COMPREHENSIVE DECODING OF CODEX MS 408", heroTitle:"Grammatical Fluids & CNA-3LT Matrix Engine"},
+    fr: {top:"DÉCODAGE INTÉGRAL DU CODEX MS 408", heroTitle:"Fluides Grammaticaux & Moteur Matriciel CNA-3LT"},
+    it: {top:"DECODIFICAZIONE INTEGRALE DEL CODICE MS 408", heroTitle:"Fluidi Grammaticali & Motore Matriciale CNA-3LT"},
+    zh: {top:"MS 408 手稿综合解码", heroTitle:"语法流体与 CNA-3LT 矩阵引擎"},
+    ru: {top:"КОМПЛЕКСНОЕ ДЕКОДИРОВАНИЕ КОДЕКСА MS 408", heroTitle:"Грамматические жидкости и матричный движок CNA-3LT"}
   };
   const t = titles[lang] || titles.es;
   document.getElementById('txtTopTitle').innerText = t.top;
-  document.getElementById('txtHeroSub').innerText = t.heroSub;
   document.getElementById('txtHeroTitle').innerText = t.heroTitle;
 }
 
@@ -588,6 +663,7 @@ function drawCanvas(){
   requestAnimationFrame(drawCanvas);
 }
 
+// INICIALIZACIÓN GENERAL AL CARGAR LA PÁGINA
 initSelector(db);
 updateWorkspace();
 drawCanvas();
