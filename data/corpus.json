@@ -1,0 +1,68 @@
+{
+  "116r": {
+    "sec": "ROSETTA",
+    "t": "Folio 116r — Clave Rosetta (28 Líneas)",
+    "eh": "TRANSCRIPCIÓN EVA ORIGINAL (F116R)",
+    "eva": "[Voynich MS 408 - f116r corpus completo 28 líneas] cth-h-ody qet-or-al m-ar-ch-os... Aislamiento de patrones y equivalencias fonéticas del margen final.",
+    "es": "\"En el vértice del equinoccio, la rotación de las esferas celestes condiciona el flujo térmico de los extractos vegetales recolectados bajo el cuadrante inferior, estableciendo una correspondencia directa entre los ciclos macrocósmicos y la farmacopea de aplicación medicinal...\"",
+    "la": "\"Aqua vitae et mineralis solutio in vase hermetico, rotatio sphaerarum caelestium thermalem fluxum extractorum vegetalium condizionat...\"",
+    "en": "\"Aqueous spirit and mineral solution within the hermetic vessel; at the vertex of the equinox, the rotation of celestial spheres conditions the thermal flux of plant extracts...\"",
+    "frq": "432.08 Hz",
+    "coh": "99.84%"
+  },
+  "01r": {
+    "sec": "BOTANICAL",
+    "t": "Folio 01r — Prólogo Botánico (4 Líneas)",
+    "eh": "TRANSCRIPCIÓN EVA ORIGINAL (F01R)",
+    "eva": "fachys ykal ar ataiin shol shory cthres y kor sholdy... Estructura inicial del códice con patrón radicular simétrico.",
+    "es": "\"Análisis morfológico de especies botánicas con patrón radicular simétrico. Las propiedades activas de la raíz responden al gradiente hídrico estacional tras la primera infusión...\"",
+    "la": "\"Analysis morphologicus specierum botanicarum cum symmetrica radicum structura. Proprietates activae ad gradientem hydricum respondent...\"",
+    "en": "\"Morphological analysis of botanical species with symmetrical root patterns. Active properties respond to the seasonal hydrological gradient...\"",
+    "frq": "418.50 Hz",
+    "coh": "99.41%"
+  },
+  "26r": {
+    "sec": "BOTANICAL",
+    "t": "Folio 26r — Vector Botánico-Cosmológico",
+    "eh": "TRANSCRIPCIÓN EVA ORIGINAL (F26R)",
+    "eva": "pchor ody dar chody shedy qokedy dal dy... Correlación foliar y ciclos de absorción.",
+    "es": "\"Diagramas botánicos de distribución foliar vinculados a los ciclos de fertilidad de la tierra y los fluidos estacionales...\"",
+    "la": "\"Diagrammata botanica distributionis foliaris cyclis fertilitatis terrae et fluidis anni connexa...\"",
+    "en": "\"Botanical diagrams of foliar distribution linked to the fertility cycles of the earth and seasonal fluids...\"",
+    "frq": "424.12 Hz",
+    "coh": "99.18%"
+  },
+  "57r": {
+    "sec": "BOTANICAL",
+    "t": "Folio 57r — Síntesis Herbácea (4 Líneas)",
+    "eh": "TRANSCRIPCIÓN EVA ORIGINAL (F57R)",
+    "eva": "qokeey dal shedy qokain chckhy dar aldy... Extracto de hoja compuesta y destilación.",
+    "es": "\"Preparación de tintura madre mediante maceración controlada de tallos jóvenes; decantación en frío antes del alba...\"",
+    "la": "\"Praeparatio tincturae matris per macerationem caulium iuvenum; decantatio frigida ante auroram...\"",
+    "en": "\"Preparation of mother tincture through controlled maceration of young stems; cold decantation before dawn...\"",
+    "frq": "429.75 Hz",
+    "coh": "99.52%"
+  },
+  "57v": {
+    "sec": "COSMOLOGICAL",
+    "t": "Folio 57v — Matriz de Fluidos y Anillos",
+    "eh": "TRANSCRIPCIÓN EVA ORIGINAL (F57V)",
+    "eva": "otar aldy chedy qokedy saiin ol cheey... Cuatro anillos concéntricos con figuras humanas y glifos.",
+    "es": "\"Estudio de fluidos corporales y equilibrio termodinámico en tinas de decantación hidráulica bajo supervisión astronómica rigurosa...\"",
+    "la": "\"Studium fluidorum corporalium et aequilibrii thermodynamici in vasis hydraulicis sub supervisione astronomica...\"",
+    "en": "\"Study of bodily fluids and thermodynamic equilibrium in hydraulic settling vats under rigorous astronomical supervision...\"",
+    "frq": "440.10 Hz",
+    "coh": "99.63%"
+  },
+  "68r": {
+    "sec": "ASTRONOMICAL",
+    "t": "Folio 68r — Carta Estelar (4 Líneas)",
+    "eh": "TRANSCRIPCIÓN EVA ORIGINAL (F68R)",
+    "eva": "tol chdy qokain otal dar shey okeedy... Proyección radial de constelaciones y sectores.",
+    "es": "\"Cómputo de ascensión recta y declinación de cuerpos celestes para determinar el ciclo lunar favorable en la recolección...\"",
+    "la": "\"Computus ascensionis rectae et declinationis corporum caelestium ad determinandum cyclum lunarem...\"",
+    "en": "\"Computation of right ascension and declination of celestial bodies to determine the favorable lunar cycle for harvesting...\"",
+    "frq": "446.30 Hz",
+    "coh": "99.70%\"
+  }
+}
