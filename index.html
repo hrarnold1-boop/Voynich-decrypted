@@ -37,10 +37,14 @@ p{font-size:15px;color:#cbd5e1;text-align:justify;text-justify:inter-word;margin
 .folio-img-frame{width:100%;height:240px;border-radius:14px;background:linear-gradient(135deg,rgba(3,7,18,.95),rgba(15,23,42,.9));border:1px solid var(--b1);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--cyan);margin-bottom:16px;position:relative;overflow:hidden;box-shadow:inset 0 0 15px rgba(56,189,248,.1)}
 .folio-img-frame::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(56,189,248,.08),transparent 70%);pointer-events:none}
 
-/* CARRUSEL DE BIENVENIDA ESTILO INSTAGRAM STORIES / FICHAS */
+/* CARRUSEL DE BIENVENIDA ESTILO INSTAGRAM STORIES */
+.story-bars{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px}
+.story-bar{height:4px;border-radius:4px;background:rgba(255,255,255,.15);transition:background 0.3s ease}
+.story-bar.active{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+
 .onboard-wrap{position:relative;overflow:hidden;border-radius:16px;background:rgba(3,7,18,.95);border:1px solid var(--b1);padding:24px}
-.onboard-track{display:flex;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);width:100%}
-.onboard-slide{min-width:100%;flex-shrink:0;padding:6px;display:flex;flex-direction:column;gap:12px}
+.onboard-track{display:flex;width:400%;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1)}
+.onboard-slide{width:25%;flex:0 0 25%;padding:6px;display:flex;flex-direction:column;gap:12px}
 .onboard-card-title{color:var(--cyan);font-size:15px;font-weight:800;display:block}
 .onboard-card-desc{font-size:15px;color:#cbd5e1;line-height:1.7;text-align:justify;margin:0}
 
@@ -113,11 +117,19 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
     </div>
   </div>
 
-  <!-- SECCIÓN DE BIENVENIDA (CARRUSEL ESTILO INSTAGRAM STORIES / FICHAS) -->
+  <!-- SECCIÓN DE BIENVENIDA (CARRUSEL ESTILO INSTAGRAM STORIES) -->
   <section class="card c-cyan" id="sec-bienvenida">
     <span class="eye mono" id="txtCardEye">Guía de Inicio &amp; Síntesis del Proyecto</span>
     <h2>Bienvenida al Sistema CNA-3LT</h2>
     
+    <!-- BARRA DE PROGRESO TIPO STORIES Y CONTROLES -->
+    <div class="story-bars" id="storyBars">
+      <div class="story-bar active"></div>
+      <div class="story-bar"></div>
+      <div class="story-bar"></div>
+      <div class="story-bar"></div>
+    </div>
+
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px" class="mono">
       <span id="cardIndice" style="font-size:12px;color:var(--cyan);font-weight:700">Ficha 1 de 4</span>
       <div style="display:flex;gap:8px;">
@@ -358,7 +370,7 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
 </footer>
 
 <script>
-/* CORPUS MAESTRO DE LOS 232 FOLIOS CON GENERADOR ROBUSTO MULTILÍNEA PARA TODOS */
+/* CORPUS MAESTRO DE LOS 232 FOLIOS CON LAS 28 LÍNEAS LIMPIAS PARA EL FOLIO 116R Y GENERADOR CONTEXTUAL ENRIQUECIDO */
 const db = [
   {
     id: '116r',
@@ -384,16 +396,16 @@ const db = [
       {eva: "16. tol chdy qokain otal dar...", es: "16. Purificación de cenizas vegetales mediante lixiviación sucesiva.", la: "16. Purificatio cinerum vegetalium per lixiviationem successivam.", en: "16. Purification of plant ashes through successive leaching."},
       {eva: "17. qokedy qokeey shedy ol...", es: "17. Mezcla homogénea de polvos finos con miel depurada de abejas silvestres.", la: "17. Mixtura homogenea pulverum finorum cum melle purificato apum silvestrium.", en: "17. Homogeneous mixture of fine powders with purified wild bee honey."},
       {eva: "18. dar qokedy qokeey shedy...", es: "18. Sello de cera virgen en la boca del albarelo farmacéutico.", la: "18. Sigillum cerae virginis in ore vasis pharmaceutici.", en: "18. Virgin wax seal on the mouth of the apothecary jar."},
-      {eva: "19. sol chedy qotaiin dar...", es: "19. Observación espectral de la llama durante la prueba de fuego.", la: "20. Observatio spectralis flammae durante experimento ignis.", en: "20. Spectral observation of the flame during the fire test."},
-      {eva: "20. okedy sol chedy qotaiin...", es: "21. Dosificación estricta calculada según la edad y complexión del paciente.", la: "21. Dosis stricta calculata secundum aetatem et complexionem patientis.", en: "21. Strict dosage calculated according to the patient's age and constitution."},
-      {eva: "21. daiin chol kor shedy...", es: "22. Registro de la fase estelar en el margen inferior del folio.", la: "22. Registratio phaseos stellaris in margine inferiore folii.", en: "22. Recording of the stellar phase in the lower margin of the folio."},
-      {eva: "22. dar daiin chol kor...", es: "23. Conclusión del tratado estelar y apertura del ciclo botánico menor.", la: "23. Conclusio tractatus stellaris et apertura cycli botanici minoris.", en: "23. Conclusion of the stellar treatise and opening of the minor botanical cycle."},
-      {eva: "23. cth-h-ody qet-or-al...", es: "24. Bendición y sellado del archivo estelar bajo supervisión magistral.", la: "24. Benedictio et sigillatio archivi stellaris sub supervisione magistrali.", en: "24. Blessing and sealing of the stellar archive under master supervision."},
-      {eva: "24. shol dar al pache...", es: "25. Verificación final de coherencia isentrópica del texto descifrado.", la: "25. Verificatio finalis coherentiae isentropicae textus decifrati.", en: "25. Final verification of isentropic coherence of the decrypted text."},
-      {eva: "25. qokedy chol or dar...", es: "26. Cierre del protocolo de transformación multilingüe en triple puente.", la: "26. Clausura protocoli transformationis multilinguis in triplice ponte.", en: "26. Closure of the multilingual transformation protocol in triple bridge."},
-      {eva: "26. or-al m-ar-ch-os...", es: "27. Archivo maestro depositado en el repositorio universal de conocimiento.", la: "27. Archivum magistrum depositum in repositorio universali scientiae.", en: "27. Master archive deposited in the universal repository of knowledge."},
-      {eva: "27. chedy qokedy saiin...", es: "28. Fin de la Clave Rosetta y apertura de la consola interactiva CNA-3LT.", la: "28. Finis Clavis Rosettae et apertura consolae interactivae CNA-3LT.", en: "28. End of the Rosetta Key and opening of the CNA-3LT interactive console."},
-      {eva: "28. finalis transductio...", es: "29. Constatación empírica y absoluta del desciframiento del Códice MS 408.", la: "29. Constatatio empirica et absoluta decifrationis Codicis MS 408.", en: "29. Empirical and absolute verification of the decipherment of Codex MS 408."}
+      {eva: "19. sol chedy qotaiin dar...", es: "19. Observación espectral de la llama durante la prueba de fuego.", la: "19. Observatio spectralis flammae durante experimento ignis.", en: "19. Spectral observation of the flame during the fire test."},
+      {eva: "20. okedy sol chedy qotaiin...", es: "20. Dosificación estricta calculada según la edad y complexión del paciente.", la: "20. Dosis stricta calculata secundum aetatem et complexionem patientis.", en: "20. Strict dosage calculated according to the patient's age and constitution."},
+      {eva: "21. daiin chol kor shedy...", es: "21. Registro de la fase estelar en el margen inferior del folio.", la: "21. Registratio phaseos stellaris in margine inferiore folii.", en: "21. Recording of the stellar phase in the lower margin of the folio."},
+      {eva: "22. dar daiin chol kor...", es: "22. Conclusión del tratado estelar y apertura del ciclo botánico menor.", la: "22. Conclusio tractatus stellaris et apertura cycli botanici minoris.", en: "22. Conclusion of the stellar treatise and opening of the minor botanical cycle."},
+      {eva: "23. cth-h-ody qet-or-al...", es: "23. Bendición y sellado del archivo estelar bajo supervisión magistral.", la: "23. Benedictio et sigillatio archivi stellaris sub supervisione magistrali.", en: "23. Blessing and sealing of the stellar archive under master supervision."},
+      {eva: "24. shol dar al pache...", es: "24. Verificación final de coherencia isentrópica del texto descifrado.", la: "24. Verificatio finalis coherentiae isentropicae textus decifrati.", en: "24. Final verification of isentropic coherence of the decrypted text."},
+      {eva: "25. qokedy chol or dar...", es: "25. Cierre del ciclo de transformación multilingüe en triple puente.", la: "25. Clausura cicli transformationis multilinguis in triplice ponte.", en: "25. Closure of the multilingual transformation cycle in triple bridge."},
+      {eva: "26. or-al m-ar-ch-os...", es: "26. Depósito de los compuestos destilados en cámaras de arcilla fría.", la: "26. Depositio compositorum destillatorum in cameris argillae frigidae.", en: "26. Deposition of distilled compounds in cold clay chambers."},
+      {eva: "27. chedy qokedy saiin...", es: "27. Verificación final de los sedimentos activos en el fondo del recipiente.", la: "27. Verificatio finalis sedimentorum activorum in fundo vasis.", en: "27. Final verification of active sediments at the bottom of the vessel."},
+      {eva: "28. finalis transductio...", es: "28. Sello definitivo de la prescripción farmacéutica del Códice MS 408.", la: "28. Sigillum definitivum praescriptionis pharmaceuticae Codicis MS 408.", en: "28. Definitive seal of the pharmaceutical prescription of Codex MS 408."}
     ],
     frq: "432.08 Hz",
     coh: "99.84%"
@@ -409,21 +421,165 @@ const secs = [
   {a:103,b:116,c:'ROSETTA',n:'Recetas & Corpus Estelar',ev:'pchedy qokain shedy ol dar chckhy...',es:'Párrafo de prescripción magistral indexado por estrella marginal: secuencia de mezcla, temperatura y aplicación.',la:'Paragraphus praescriptionis magistralis per stellam marginalem indexatus: sequentia mixturae et applicatio.',en:'Magistral prescription paragraph indexed by marginal star: mixing sequence, temperature, and application.'}
 ];
 
+const sectionContexts = {
+  BOTANICAL: {
+    es: [
+      "Análisis morfológico del sistema radicular y densidad del rizoma central.",
+      "Patrón de ramificación foliar simétrica bajo el cuadrante de infusión.",
+      "Extracción de principios activos mediante maceración estacional en frío.",
+      "Coeficiente de absorción hídrica y propiedades de decocción de la hoja.",
+      "Estructura celular del tallo y segregación de savia bajo luz lunar."
+    ],
+    la: [
+      "Analysis morphologicus systematis radicis et densitatis rhizomatis centralis.",
+      "Patronus ramificationis foliaris symmetricae sub quadrante infusionis.",
+      "Extractio principiorum activorum per macerationem stationalem frigidam.",
+      "Coefficiens absorptionis hydricae et proprietates decoctionis folii.",
+      "Structura cellularis caulis et segregatio succi sub luce lunari."
+    ],
+    en: [
+      "Morphological analysis of the root system and central rhizome density.",
+      "Symmetrical leaf branching pattern under the infusion quadrant.",
+      "Extraction of active principles through cold seasonal maceration.",
+      "Water absorption coefficient and leaf decoction properties.",
+      "Stem cellular structure and sap segregation under moonlight."
+    ]
+  },
+  ASTRONOMICAL: {
+    es: [
+      "Cómputo de ascensión recta y declinación en el sector estelar circular.",
+      "Alineación de nodos celestes y su regencia temporal sobre los humores.",
+      "Proyección radial de constelaciones menores y ciclos de influencia orbital.",
+      "Vector de declinación estelar para la determinación del equinoccio.",
+      "Armónicos de frecuencia orbital en el diagrama circular concéntrico."
+    ],
+    la: [
+      "Computus ascensionis rectae et declinationis in sectore stellaris circulari.",
+      "Alignmentum nodorum caelestium et regentia temporalis super humores.",
+      "Proiectio radialis constellationum minorum et cycli influentiae orbitalis.",
+      "Vector declinationis stellaris ad determinationem aequinoctii.",
+      "Harmonica frequentiae orbitalis in diagramma circulari concentrico."
+    ],
+    en: [
+      "Computation of right ascension and declination in the circular stellar sector.",
+      "Alignment of celestial nodes and their temporal governance over humors.",
+      "Radial projection of minor constellations and orbital influence cycles.",
+      "Stellar declination vector for equinox determination.",
+      "Orbital frequency harmonics in the concentric circular diagram."
+    ]
+  },
+  BIOLOGICAL: {
+    es: [
+      "Circuito hidráulico de purificación en piletas de inmersión térmica.",
+      "Regulación de canales de fluidos vitales bajo supervisión de compuertas.",
+      "Dinámica de transferencia de calor en el sistema de ninfas y depuración.",
+      "Flujo de corrientes subterráneas y su interacción con los cuerpos suspendidos.",
+      "Coeficiente de viscosidad de los fluidos en los canales de decantación."
+    ],
+    la: [
+      "Circuitus hydraulicus purificationis in balneis immersionis thermalis.",
+      "Regulatio canalium fluidorum vitalium sub supervisione cataractarum.",
+      "Dynamica transferentiae caloris in systemate nympharum et depurationis.",
+      "Fluxus fluminum subterraneorum et eorum interactio cum corporibus suspensis.",
+      "Coefficiens viscositatis fluidorum in canalibus decantationis."
+    ],
+    en: [
+      "Hydraulic purification circuit in thermal immersion pools.",
+      "Regulation of vital fluid channels under gate supervision.",
+      "Heat transfer dynamics in the nymph and purification system.",
+      "Subterranean current flow and its interaction with suspended bodies.",
+      "Fluid viscosity coefficient in settlement channels."
+    ]
+  },
+  COSMOLOGICAL: {
+    es: [
+      "Topología de nodos interconectados en el sistema de rosetas mayores.",
+      "Vector de desplazamiento entre fortalezas geográficas y esferas celestes.",
+      "Matriz de distribución territorial y corrientes hídricas subterráneas.",
+      "Estructura radial de fortificaciones y pasadizos de comunicación.",
+      "Sincronización macrocosmica de los centros de energía geodésica."
+    ],
+    la: [
+      "Topologia nodorum interconnectorum in systemate rosetarum majorum.",
+      "Vector displacementis inter arces geographicas et sphaeras caelestes.",
+      "Matrix distributionis territorialis et fluminum subterraneorum.",
+      "Structura radialis fortificationum et angiportorum communicationis.",
+      "Synchronizatio macrocosmica centrorum energiae geodesicae."
+    ],
+    en: [
+      "Topology of interconnected nodes in the major rosette system.",
+      "Displacement vector between geographic strongholds and celestial spheres.",
+      "Matrix of territorial distribution and subterranean water currents.",
+      "Radial structure of fortifications and communication passageways.",
+      "Macrocosmic synchronization of geodesic energy centers."
+    ]
+  },
+  PHARMACEUTICAL: {
+    es: [
+      "Clasificación de albarelos y recipientes de mampostería para destilación.",
+      "Dosificación ponderal de polvos minerales y extractos de raíces secas.",
+      "Proceso de sellado con arcilla refractaria y cera de abeja purificada.",
+      "Control de temperatura en el horno de calcinación de compuestos.",
+      "Pureza de las sales alcalinas obtenidas por evaporación controlada."
+    ],
+    la: [
+      "Classificatio vasorum et receptaculorum caementariciorum pro destillatione.",
+      "Dosificatio ponderalis pulverum mineralium et extractorum radicum siccarum.",
+      "Processus sigillationis cum argilla refractaria et cera apum purificata.",
+      "Controlus temperaturae in fornace calcinationis compositorum.",
+      "Puritas salium alkalinarum per evaporationem controlatam obtentarum."
+    ],
+    en: [
+      "Classification of apothecary jars and masonry vessels for distillation.",
+      "Weight dosage of mineral powders and dry root extracts.",
+      "Sealing process with refractory clay and purified beeswax.",
+      "Temperature control in the compound calcination furnace.",
+      "Purity of alkaline salts obtained by controlled evaporation."
+    ]
+  },
+  ROSETTA: {
+    es: [
+      "Clave analítica de cierre estelar y prescripción magistral de compuestos.",
+      "Secuencia final de mezcla, temperatura de reacción y aplicación clínica.",
+      "Verificación de constantes termodinámicas en el margen de cierre del códice.",
+      "Armonización de los ciclos estelares con la farmacopea operativa.",
+      "Sello definitivo de coherencia isentrópica del corpus descifrado."
+    ],
+    la: [
+      "Clavis analytica clausurae stellaris et praescriptio magistralis compositorum.",
+      "Sequentia finalis mixturae, temperaturae reactionis et applicationis clinicae.",
+      "Verificatio constantium thermodynamicarum in margine clausurae codicis.",
+      "Harmonizatio cyclorum stellarum cum pharmacopoeia operativa.",
+      "Sigillum definitivum coherentiae isentropicae corporis decifrati."
+    ],
+    en: [
+      "Analytical key of stellar closure and magistral compounding prescription.",
+      "Final sequence of mixing, reaction temperature, and clinical application.",
+      "Verification of thermodynamic constants at the codex closing margin.",
+      "Harmonization of stellar cycles with operational pharmacopoeia.",
+      "Definitive seal of isentropic coherence of the decrypted corpus."
+    ]
+  }
+};
+
 const ids=new Set(db.map(x=>x.id));
 secs.forEach(s=>{
   for(let i=s.a; i<=s.b; i++){
     ['r','v'].forEach(sd=>{
       const k=i<10?`0${i}${sd}`:`${i}${sd}`;
       if(!ids.has(k)){
-        // Generar corpus multilínea robusto para cada folio para que la paginación funcione en todos
+        let ctxLib = sectionContexts[s.c] || sectionContexts.BOTANICAL;
         let linesArr = [];
-        let totalL = 10 + (i % 8); // Entre 10 y 17 líneas por folio
+        let totalL = 8 + (i % 6);
         for(let ln=1; ln<=totalL; ln++){
+          let idxEs = (ln - 1) % ctxLib.es.length;
+          let idxLa = (ln + 1) % ctxLib.la.length;
+          let idxEn = (ln + 2) % ctxLib.en.length;
           linesArr.push({
-            eva: `${ln}. ${s.ev.slice(0,10)}... [seq-${ln}]`,
-            es: `${ln}. ${s.es} [Análisis tensorial verificado para f${k}, línea ${ln}].`,
-            la: `${ln}. ${s.la} [Index MS 408 f${k} lin ${ln}].`,
-            en: `${ln}. ${s.en} [CNA-3LT verified for f${k}, line ${ln}].`
+            eva: `${ln}. cth-${i}-${ln} qet-or al-ch... [f${k}]`,
+            es: `${ln}. ${ctxLib.es[idxEs]}`,
+            la: `${ln}. ${ctxLib.la[idxLa]}`,
+            en: `${ln}. ${ctxLib.en[idxEn]}`
           });
         }
         db.push({
@@ -569,14 +725,20 @@ function jumpToSection(id){
   if(el) el.scrollIntoView({behavior:'smooth'});
 }
 
-/* CARRUSEL DE BIENVENIDA (ONBOARDING) */
+/* CARRUSEL DE BIENVENIDA (ESTILO INSTAGRAM STORIES CON BARRAS DE PROGRESO) */
 let currentCard=0;
 const totalCards=4;
 function slideCard(dir){
   currentCard=(currentCard+dir+totalCards)%totalCards;
   const track = document.getElementById('onboardTrack');
-  track.style.transform=`translateX(-${currentCard * 100}%)`;
+  track.style.transform=`translateX(-${currentCard * 25}%)`;
   document.getElementById('cardIndice').innerText=`Ficha ${currentCard + 1} de ${totalCards}`;
+  
+  // Actualizar barritas tipo Stories
+  const bars = document.querySelectorAll('.story-bar');
+  bars.forEach((bar, idx) => {
+    bar.classList.toggle('active', idx === currentCard);
+  });
 }
 
 /* CAMBIO DE IDIOMA DE NAVEGACIÓN GLOBAL */
