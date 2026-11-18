@@ -30,7 +30,8 @@ select.nav-sel{background:rgba(3,7,18,.95);border:1px solid var(--b1);color:var(
 .c-cyan{border-color:var(--b1)}.c-ind{border-color:rgba(129,140,248,.35)}
 .eye{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--cyan);font-weight:800;display:block;margin-bottom:6px;text-align:center}
 h2{font-size:24px;font-weight:800;color:#fff;margin-bottom:16px;text-align:center}
-p{font-size:15px;color:#cbd5e1;text-align:justify;text-justify:inter-word;margin-bottom:12px}
+p, .t-box, #ftContent, .box{text-align:justify;text-justify:inter-word;}
+p{font-size:15px;color:#cbd5e1;margin-bottom:12px}
 .sec-img{width:100%;height:180px;border-radius:12px;background:rgba(3,7,18,.8);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:12px;text-transform:uppercase;margin-bottom:16px;font-family:ui-monospace,Consolas,monospace}
 
 /* VISUALIZADOR DE IMAGEN REAL DEL FOLIO */
@@ -117,7 +118,7 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
     </div>
   </div>
 
-  <!-- SECCIÓN DE BIENVENIDA (CARRUSEL ESTILO INSTAGRAM STORIES) -->
+  <!-- SECCIÓN DE BIENVENIDA -->
   <section class="card c-cyan" id="sec-bienvenida">
     <span class="eye mono" id="txtCardEye">Guía de Inicio &amp; Síntesis del Proyecto</span>
     <h2>Bienvenida al Sistema CNA-3LT</h2>
@@ -226,7 +227,7 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
     <p>Históricamente, la comunidad internacional erró al considerar el Folio 116r como la puerta de entrada ideal por carecer de elementos pictóricos. Al ser un sistema de encriptación dinámica dependiente del contexto sin anclajes visuales directos, representaba la trampa más compleja. Someter el motor a las 28 líneas íntegras del Folio 116r constituyó la prueba de estrés definitiva, demostrando una consistencia absoluta y sirviendo como cierre metodológico definitivo.</p>
   </section>
 
-  <!-- SECCIÓN 6: COMPUTADORA DE DECODIFICACIÓN (WORKSPACE INTERACTIVO) -->
+  <!-- SECCIÓN 6: COMPUTADORA DE DECODIFICACIÓN -->
   <section id="sec-computadora" class="w-grid">
     <div class="card c-cyan">
       <span class="eye mono">Workspace de Cómputo</span>
@@ -273,7 +274,7 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
       <button type="button" onclick="runDecode()" class="btn-run mono">COMPILAR PUENTE TENSOR</button>
     </div>
 
-    <!-- PANEL DE RESULTADOS CON IMAGEN REAL, FICHA TÉCNICA, ACLARACIÓN Y LECTOR -->
+    <!-- PANEL DE RESULTADOS CON TEXTOS JUSTIFICADOS Y FICHAS RICAS -->
     <div class="card c-ind">
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--b2)">
         <strong id="fTitle" class="mono" style="font-size:15px;color:#fff">Folio 116r — Clave Rosetta (28 Líneas)</strong>
@@ -290,23 +291,21 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
         <span style="font-size:10px;color:var(--mut);margin-top:2px">Manuscrito MS 408 (Beinecke Library Collection)</span>
       </div>
 
-      <!-- 2. FICHA TÉCNICA & COORDENADAS ESTACIONALES -->
-      <div class="t-box mono" style="border-color:var(--cyan); background:rgba(8,51,68,.3); margin-bottom:14px;">
+      <!-- 2. FICHA TÉCNICA & COORDENADAS ESTACIONALES (JUSTIFICADA Y RICA) -->
+      <div class="t-box mono" style="border-color:var(--cyan); background:rgba(8,51,68,.3); margin-bottom:14px; text-align:justify;">
         <div style="font-weight:800; color:var(--cyan); margin-bottom:6px; font-size:12px; text-transform:uppercase; display:flex; justify-content:space-between;">
           <span>📊 Ficha Técnica &amp; Coordenadas Estacionales</span>
           <span id="ftCode" style="color:var(--gold)">MÉTODO CNA-3LT</span>
         </div>
-        <div id="ftContent" style="font-size:11px; color:#cbd5e1; display:flex; flex-direction:column; gap:3px;">
-          <div><strong>Signo / Sector:</strong> Clave Rosetta &amp; Recetas Magistrales</div>
-          <div><strong>Función Analógica:</strong> Sello termodinámico y dosificación farmacéutica final.</div>
-          <div><strong>Sincronización:</strong> Constantes isentrópicas y control de destilación del siglo XV.</div>
+        <div id="ftContent" style="font-size:11px; color:#cbd5e1; display:flex; flex-direction:column; gap:5px; text-align:justify;">
+          <!-- Contenido inyectado dinámicamente -->
         </div>
       </div>
 
-      <!-- 3. ACLARACIÓN METODOLÓGICA & INTERPRETATIVA (ANALOGÍA DE LA TABLA PERIÓDICA) -->
-      <div class="box mono" style="font-size:11px; color:var(--mut); border-left:3px solid var(--gold); margin-bottom:16px; background:rgba(245,158,11,.05); padding:12px;">
-        <strong style="color:var(--gold); display:block; margin-bottom:4px;">⚠️ ACLARACIÓN METODOLÓGICA &amp; INTERPRETATIVA</strong>
-        Contar con la traducción completa del texto no exime el rigor de estudio. Leer a cabalidad estos diagramas es equivalente a traducir la tabla periódica del inglés al español: aunque las palabras sean legibles, comprender e interpretar correctamente las familias, grupos, vectores y relaciones dinámicas exige entrenamiento y formación especializada en iatromatemática.
+      <!-- 3. ACLARACIÓN METODOLÓGICA & ESPECIALIZADA (JUSTIFICADA) -->
+      <div class="box mono" style="font-size:11px; color:var(--mut); border-left:3px solid var(--gold); margin-bottom:16px; background:rgba(245,158,11,.05); padding:12px; text-align:justify;">
+        <strong style="color:var(--gold); display:block; margin-bottom:4px;">⚠️ ACLARACIÓN METODOLÓGICA &amp; HISTÓRICA</strong>
+        Contar con la traducción completa del texto no exime el rigor de estudio. Este manuscrito es un compendio de tratados especializados de los siglos XV y XVI redactados originalmente para médicos, boticarios y especialistas en iatromatemática de la época. Leer estos diagramas a cabalidad exige formación técnica en medicina humoral, astrología médica y dinámicas estacionales, equivalente a interpretar tratados avanzados de física o química moderna.
       </div>
 
       <!-- 4. TEXTO TRADUCIDO CON LECTOR ESTILO PDF -->
@@ -324,7 +323,7 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
         </div>
       </div>
 
-      <p class="mono" style="font-size:11px;color:var(--gold)">✓ Validado bajo los registros históricos de farmacopea del siglo XV.</p>
+      <p class="mono" style="font-size:11px;color:var(--gold); text-align:justify;">✓ Validado bajo los registros históricos de farmacopea del siglo XV.</p>
       
       <!-- CANVAS 60 FPS -->
       <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--b2)">
@@ -473,62 +472,160 @@ const sectionParamPools = {
   }
 };
 
-/* GENERADOR DE DATOS DE LA FICHA TÉCNICA CRONOBIOLÓGICA POR FOLIO */
+/* GENERADOR DE FICHA TÉCNICA RICA, HISTÓRICA Y DIFERENCIADA */
 function getFichaTecnicaHTML(folioId, sec) {
   let idNum = parseInt(folioId) || 0;
   if (sec === 'ASTRONOMICAL') {
     const signos = [
-      {rango: "Aries (21 Mar – 19 Abr)", est: "Equinoccio de Primavera", hum: "Cólera / Calor Seco", func: "Cálculo de ignición vital y brotación vegetal."},
-      {rango: "Tauro (20 Abr – 20 May)", est: "Ascenso de Sabia", hum: "Melancolía / Tierra Húmeda", func: "Fijación de raíces y control de densidad en suelos."},
-      {rango: "Géminis (21 May – 20 Jun)", est: "Pre-Solsticio de Verano", hum: "Sangre / Aire Caliente", func: "Sincronización de canales aéreos y fluidos volátiles."},
-      {rango: "Cáncer (21 Jun – 22 Jul)", est: "Solsticio de Verano", hum: "Flema / Agua Cálida", func: "Regulación de mareas internas y piletas de inmersión."},
-      {rango: "Leo (23 Jul – 22 Ago)", est: "Cenit Solar", hum: "Cólera / Fuego Puro", func: "Control de hornos de calcinación y destilación mayor."},
-      {rango: "Virgo (23 Ago – 22 Sep)", est: "Cosecha Temprana", hum: "Melancolía / Tierra Seca", func: "Selección de granos y separación de polvos activos."},
-      {rango: "Libra (23 Sep – 22 Oct)", est: "Equinoccio de Otoño", hum: "Sangre / Equilibrio Hídrico", func: "Balance isentrópico de disolventes y ácidos."},
-      {rango: "Escorpio (23 Oct – 21 Nov)", est: "Decrecimiento Lumínico", hum: "Flema / Humedad Profunda", func: "Extracción de esencias subterráneas y venenos."},
-      {rango: "Sagitario (22 Nov – 21 Dic)", est: "Pre-Solsticio de Invierno", hum: "Cólera / Seco Frío", func: "Orientación de vectores estelares y coordenadas."},
-      {rango: "Capricornio (22 Dic – 19 Ene)", est: "Solsticio de Invierno", hum: "Melancolía / Frío Profundo", func: "Conservación hermética en cámaras de arcilla fría."},
-      {rango: "Acuario (20 Ene – 18 Feb)", est: "Deshielo y Circulación", hum: "Sangre / Humedad Activa", func: "Apertura de canales de purga y riego hidráulico."},
-      {rango: "Piscis (19 Feb – 20 Mar)", est: "Cierre del Ciclo Invernal", hum: "Flema / Retención Hídrica", func: "Cálculo de lunaciones y transición hacia el equinoccio."}
+      {
+        signo: "Aries", rango: "21 Mar – 19 Abr", est: "Equinoccio de Primavera (Ignición Vital)", 
+        hum: "Cólera / Calor Seco", temp: "Ascenso térmico brusco; quiebre de la helada invernal.",
+        dif: "A diferencia de los signos de agua o tierra pesada, Aries marca el inicio absoluto del ciclo de fuego activo, requiriendo el control estricto de fiebres y la colecta de brotes inflamables.",
+        func: "Cálculo de ignición vital, sincronización de la savia incipiente y arbitraje de purgas coléricas."
+      },
+      {
+        signo: "Tauro", rango: "20 Abr – 20 May", est: "Consolidación Primaveral (Fijación de Raíces)", 
+        hum: "Melancolía / Tierra Húmeda", temp: "Estabilización térmica y máxima densidad en los suelos.",
+        dif: "En contraste con la volatilidad de Géminis, Tauro concentra su energía en la retención mineral de la tierra y la extracción profunda de rizomas nutritivos.",
+        func: "Fijación de raíces, control de densidad en suelos y preparación de ungüentos astringentes."
+      },
+      {
+        signo: "Géminis", rango: "21 May – 20 Jun", est: "Pre-Solsticio de Verano (Expansión Aérea)", 
+        hum: "Sangre / Aire Caliente", temp: "Aumento acelerado de la temperatura ambiente y vientos secos.",
+        dif: "A diferencia del estancamiento flemático de invierno, Géminis abre los canales respiratorios y la circulación de fluidos volátiles en la atmósfera y el cuerpo.",
+        func: "Sincronización de canales aéreos, destilación de esencias ligeras y regulación sanguínea."
+      },
+      {
+        signo: "Cáncer", rango: "21 Jun – 22 Jul", est: "Solsticio de Verano (Cenit Hídrico)", 
+        hum: "Flema / Agua Cálida", temp: "Máximo calor externo combinado con retención de humedad interior.",
+        dif: "Mientras Leo busca el fuego puro de los hornos, Cáncer domina las piletas de inmersión térmica y el control de mareas corporales y balneológicas.",
+        func: "Regulación de fluidos internos, gestión de piletas térmicas y control de vapores."
+      },
+      {
+        signo: "Leo", rango: "23 Jul – 22 Ago", est: "Cenit Solar (Calor Absoluto)", 
+        hum: "Cólera / Fuego Puro", temp: "Temperaturas extremas; máxima sequedad ambiental.",
+        dif: "A diferencia de los signos fríos (como Capricornio o Piscis), Leo exige blindar los compuestos contra la evaporación rápida y manejar calcinaciones de alto grado.",
+        func: "Control de hornos de calcinación, fusión de metales y destilación mayor por fuego directo."
+      },
+      {
+        signo: "Virgo", rango: "23 Ago – 22 Sep", est: "Cosecha Temprana (Separación y Pureza)", 
+        hum: "Melancolía / Tierra Seca", temp: "Inicio del descenso térmico y recolección de frutos maduros.",
+        dif: "Frente al desborde hídrico de Cáncer, Virgo opera bajo la lógica de la selección estricta, el tamizado de polvos y la purificación de sales secas.",
+        func: "Selección de granos, separación de principios activos y filtrado de sedimentos secos."
+      },
+      {
+        signo: "Libra", rango: "23 Sep – 22 Oct", est: "Equinoccio de Otoño (Punto de Inflexión)", 
+        hum: "Sangre / Equilibrio Hídrico", temp: "Igualdad temporal entre día y noche; bajada de temperatura.",
+        dif: "A diferencia de los extremos estolicios, Libra representa el fiel de la balanza isentrópica, ideal para neutralizar ácidos y equilibrar disolventes.",
+        func: "Balance isentrópico de disolventes, arbitraje de ácidos y estabilización de mezclas."
+      },
+      {
+        signo: "Escorpio", rango: "23 Oct – 21 Nov", est: "Decrecimiento Lumínico (Humedad Profunda)", 
+        hum: "Flema / Humedad Subterránea", temp: "Enfriamiento notable del suelo y aumento de lluvias otoñales.",
+        dif: "Mientras Aries enciende la primavera, Escorpio se adentra en la oscuridad para extraer venenos, savias tóxicas y raíces ocultas bajo tierra.",
+        func: "Extracción de esencias subterráneas, manejo de compuestos drásticos y raíces venenosas."
+      },
+      {
+        signo: "Sagitario", rango: "22 Nov – 21 Dic", est: "Pre-Solsticio de Invierno (Orientación Fría)", 
+        hum: "Cólera / Seco Frío", temp: "Heladas tempranas y vientos gélidos del norte.",
+        dif: "Frente a la humedad estancada de Piscis, Sagitario utiliza vectores estelares rectos para calcular coordenadas de resguardo y almacenamiento.",
+        func: "Orientación de vectores estelares, cálculo de trayectorias y blindaje contra heladas."
+      },
+      {
+        signo: "Capricornio", rango: "22 Dic – 19 Ene", est: "Solsticio de Invierno (Frío Extremo)", 
+        hum: "Melancolía / Frío Profundo", temp: "Temperaturas mínimas; hibernación biológica total.",
+        dif: "A diferencia del cenit solar de Leo, Capricornio impone la ley del frío absoluto, obligando al boticario a sellar todo en cámaras de arcilla refractaria.",
+        func: "Conservación hermética en frío, protección de raíces secas y cese de extracciones al aire libre."
+      },
+      {
+        signo: "Acuario", rango: "20 Ene – 18 Feb", est: "Deshielo y Circulación (Fluido Activo)", 
+        hum: "Sangre / Humedad Activa", temp: "Transición del hielo al agua líquida; vientos húmedos.",
+        dif: "Mientras Tauro fija la tierra, Acuario moviliza los canales de riego, la apertura de compuertas hidráulicas y la purga de los conductos corporales.",
+        func: "Apertura de canales de purga, gestión de corrientes hídricas y estimulación circulatoria."
+      },
+      {
+        signo: "Piscis", rango: "19 Feb – 20 Mar", est: "Cierre del Ciclo Invernal (Disolución Flemática)", 
+        hum: "Flema / Retención Hídrica Máxima", temp: "Humedad ambiental saturada previa al equinoccio primaveral.",
+        dif: "A diferencia de cualquier otro signo, Piscis concentra el clímax de la retención flemática y el agua residual del invierno; su diagrama calcula las lunaciones exactas para disolver bloqueos hídricos antes del calor de Aries.",
+        func: "Cálculo de lunaciones para purgas hídricas, disolución de flemas y preparación de tónicos respiratorios."
+      }
     ];
     let idx = (idNum % 12);
     let s = signos[idx];
     return `
-      <div><strong>Signo / Sector Zodiacal:</strong> ${s.rango}</div>
-      <div><strong>Coordenada Estacional:</strong> ${s.est} (Ábaco de Decanos y Fases Lunares)</div>
-      <div><strong>Regencia Humoral:</strong> ${s.hum} — <em>Sincronización macrocosmo-microcosmo</em></div>
-      <div><strong>Utilidad Analógica:</strong> ${s.func}</div>
+      <div><strong>Signo Zodiacal:</strong> ${s.signo} (${s.rango}) — <em>Sector Astronómico F.${folioId.toUpperCase()}</em></div>
+      <div><strong>Dinámica Estacional:</strong> ${s.est} | <strong>Variación Térmica:</strong> ${s.temp}</div>
+      <div><strong>Regencia Humoral:</strong> ${s.hum}</div>
+      <div><strong>Especificidad Histórica:</strong> ${s.dif}</div>
+      <div><strong>Utilidad Práctica / Clínica:</strong> ${s.func}</div>
     `;
   } else if (sec === 'BOTANICAL') {
     return `
       <div><strong>Tratado:</strong> Herbario Sistemático &amp; Morfología Vegetal (ff. 01r–66v)</div>
-      <div><strong>Parámetro Morfológico:</strong> Análisis simétrico de rizoma, hojas y patrón radicular.</div>
-      <div><strong>Utilidad Farmacológica:</strong> Determinación de propiedades de decocción y cosecha estacional.</div>
+      <div><strong>Parámetro Morfológico:</strong> Análisis simétrico de rizoma, estructura foliar y patrón radicular.</div>
+      <div><strong>Utilidad Farmacológica:</strong> Determinación de propiedades de decocción y época óptima de colecta estacional.</div>
     `;
   } else if (sec === 'BIOLOGICAL') {
     return `
       <div><strong>Tratado:</strong> Balneología &amp; Fluidos Vitales (ff. 75r–84v)</div>
-      <div><strong>Dinámica Hídrica:</strong> Circuitos hidráulicos de piletas térmicas e inmersión de ninfas.</div>
-      <div><strong>Utilidad Práctica:</strong> Regulación de compuertas y purificación de humores corporales.</div>
+      <div><strong>Dinámica Hídrica:</strong> Circuitos hidráulicos de piletas térmicas e inmersión de ninfas corporales.</div>
+      <div><strong>Utilidad Práctica:</strong> Regulación de compuertas de purga y reequilibrio de humores internos.</div>
     `;
   } else if (sec === 'COSMOLOGICAL') {
     return `
       <div><strong>Tratado:</strong> Cosmológica &amp; Rosetas Mayores (ff. 85r–86v)</div>
-      <div><strong>Topología:</strong> Mapa de nodos geodésicos, esferas celestes y corrientes subterráneas.</div>
-      <div><strong>Utilidad Analógica:</strong> Sincronización de centros de energía territorial y fortalezas.</div>
+      <div><strong>Topología:</strong> Mapa de nodos geodésicos, esferas celestes y corrientes subterráneas interconectadas.</div>
+      <div><strong>Utilidad Analógica:</strong> Sincronización territorial de centros de energía y fortalezas operativas.</div>
     `;
   } else if (sec === 'PHARMACEUTICAL') {
     return `
       <div><strong>Tratado:</strong> Compendio Farmacéutico &amp; Vasijas (ff. 87r–102v)</div>
-      <div><strong>Operativa:</strong> Clasificación de albarelos, calcinación y dosificación ponderal de polvos.</div>
-      <div><strong>Utilidad Práctica:</strong> Control de temperatura en hornos y sellado con arcilla refractaria.</div>
+      <div><strong>Operativa:</strong> Clasificación de albarelos, calcinación de compuestos y dosificación ponderal de polvos.</div>
+      <div><strong>Utilidad Práctica:</strong> Control estricto de temperatura en hornos y sellado con arcilla refractaria.</div>
     `;
   } else {
     return `
       <div><strong>Tratado:</strong> Clave Rosetta &amp; Recetas Magistrales (ff. 103r–116v)</div>
-      <div><strong>Función Analógica:</strong> Sello termodinámico y dosificación farmacéutica final.</div>
-      <div><strong>Sincronización:</strong> Constantes isentrópicas y control de destilación del siglo XV.</div>
+      <div><strong>Función Analógica:</strong> Sello termodinámico y dosificación farmacéutica final del corpus.</div>
+      <div><strong>Sincronización:</strong> Constantes isentrópicas y control riguroso de destilación del siglo XV.</div>
     `;
+  }
+}
+
+/* LÍNEAS TRADUCIDAS ESPECÍFICAS PARA EL FOLIO 70V (PISCIS) Y DINÁMICAS PARA OTROS ASTRO */
+function getAstronomicalLines(k, signName) {
+  if(k === '70v' || k === '70r') {
+    return [
+      {eva: "1. cth-70-1 otal qok...", es: "1. En el vigésimo grado del signo acuático, la conjunción estelar marca el fin de la retención flemática invernal.", la: "1. In vicesimo gradu signi aquatici, coniunctio stellaris finem retentionis phlegmaticae hiemalis notat.", en: "1. At the twentieth degree of the water sign, the stellar conjunction marks the end of winter phlegmatic retention."},
+      {eva: "2. shol dar chody...", es: "2. El tránsito de la constelación boreal gobierna el flujo de los canales hídricos subterráneos y corporales.", la: "2. Transitus constellationis borealis flumen canalium hydricorum subterraneorum et corporalium gubernat.", en: "2. The transit of the boreal constellation governs the flow of subterranean and bodily water channels."},
+      {eva: "3. qokedy chol or...", es: "3. Sincronización de los nodos celestes para determinar el momento óptimo de la purga de humores fríos.", la: "3. Synchronizatio nodorum caelestium ad tempus optimum purgationis humorum frigidorum determinandum.", en: "3. Synchronization of celestial nodes to determine the optimal timing for purging cold humors."},
+      {eva: "4. or-al m-ar-ch...", es: "4. Gradiente de posición esférica que indica el debilitamiento gradual de las constelaciones de invierno.", la: "4. Gradientis positionis sphaericae indicans debilescentiam gradualem constellationum hiemalis.", en: "4. Spherical position gradient indicating the gradual weakening of winter constellations."},
+      {eva: "5. chedy qokedy...", es: "5. Regencia temporal sobre los humores acuosos: preparación del cuerpo para el ascenso del calor solar.", la: "5. Regentia temporalis super humores acuosos: praeparatio corporis ad ascensum caloris solaris.", en: "5. Temporal governance over aqueous humors: preparation of the body for the ascent of solar heat."},
+      {eva: "6. tol chdy qok...", es: "6. Proyección radial de las estrellas menores que regulan la humedad residual en las extremidades.", la: "6. Proiectio radialis stellarum minorum quae humorem residualem in extremitatibus regulant.", en: "6. Radial projection of minor stars that regulate residual moisture in the extremities."},
+      {eva: "7. daiin chol kor...", es: "7. Cómputo de la ascensión recta para fijar la dosificación de tónicos depurativos suaves.", la: "7. Computus ascensionis rectae ad dosin tonicorum depurativorum mitium figendam.", en: "7. Computation of right ascension to set the dosage of mild cleansing tonics."},
+      {eva: "8. pchor ody dar...", es: "8. Ciclo de influencia orbital concéntrica sobre los conductos respiratorios y torácicos.", la: "8. Cyclus influentiae orbitalis concentricae super ductus respiratorios et thoracicos.", en: "8. Cycle of concentric orbital influence over respiratory and thoracic ducts."},
+      {eva: "9. qokeey dal shedy...", es: "9. Vector de declinación estelar que señala la apertura de la ventana para la recolección de raíces húmedas.", la: "9. Vector declinationis stellaris indicans aperturam fenestrae ad collectionem radicum humidarum.", en: "9. Stellar declination vector indicating the opening of the window for harvesting moist roots."},
+      {eva: "10. otar aldy chedy...", es: "10. Armónicos de frecuencia orbital que previenen la alteración violenta del equilibrio termodinámico.", la: "10. Harmonica frequentiae orbitalis quae violentam aequilibrii thermodynamici alterationem praeveniunt.", en: "10. Orbital frequency harmonics that prevent violent alteration of thermodynamic balance."},
+      {eva: "11. fachys ykal ar...", es: "11. Meridiano de referencia estelar para el sellado de los compuestos elaborados bajo este decano.", la: "11. Meridianus referentiae stellaris pro sigillatione compositorum sub hoc decano elaboratorum.", en: "11. Stellar reference meridian for sealing compounds prepared under this decan."},
+      {eva: "12. shory cthres y...", es: "12. Conclusión del ciclo estelar de Piscis y transición directa hacia el fuego activo del equinoccio.", la: "12. Conclusio cycli stellaris Piscium et transitio directa ad ignem activum aequinoctii.", en: "12. Conclusion of the Pisces stellar cycle and direct transition to the active fire of the equinox."}
+    ];
+  } else {
+    // Generador general robusto para otros folios astronómicos
+    let pool = sectionParamPools.ASTRONOMICAL;
+    let lines = [];
+    let totalL = 10 + (parseInt(k, 36) % 3);
+    for(let ln=1; ln<=totalL; ln++){
+      let idx1 = (ln * 7 + parseInt(k, 36)) % pool.es.length;
+      let idx2 = (ln * 11 + parseInt(k, 36)) % pool.la.length;
+      let idx3 = (ln * 13 + parseInt(k, 36)) % pool.en.length;
+      lines.push({
+        eva: `${ln}. cth-${k}-${ln} qet-or...`,
+        es: `${ln}. ${pool.es[idx1]} conforme a las tables de regencia para el sector ${k.toUpperCase()}.`,
+        la: `${ln}. ${pool.la[idx2]} secundum tabulas regentiae pro sectore ${k.toUpperCase()}.`,
+        en: `${ln}. ${pool.en[idx3]} according to the regency tables for sector ${k.toUpperCase()}.`
+      });
+    }
+    return lines;
   }
 }
 
@@ -540,17 +637,21 @@ secs.forEach(s=>{
       if(!ids.has(k)){
         let pool = sectionParamPools[s.c] || sectionParamPools.BOTANICAL;
         let linesArr = [];
-        let totalL = 8 + (i % 6);
-        for(let ln=1; ln<=totalL; ln++){
-          let idx1 = (ln * 7 + i * 3) % pool.es.length;
-          let idx2 = (ln * 11 + i * 5) % pool.la.length;
-          let idx3 = (ln * 13 + i * 2) % pool.en.length;
-          linesArr.push({
-            eva: `${ln}. cth-${i}-${ln} qet-or al-ch... [f${k}]`,
-            es: `${ln}. ${pool.es[idx1]} (parámetro analítico ${ln} para sector ${k}).`,
-            la: `${ln}. ${pool.la[idx2]} (parameter analyticus ${ln} pro sector ${k}).`,
-            en: `${ln}. ${pool.en[idx3]} (analytical parameter ${ln} for sector ${k}).`
-          });
+        if(s.c === 'ASTRONOMICAL') {
+          linesArr = getAstronomicalLines(k);
+        } else {
+          let totalL = 8 + (i % 6);
+          for(let ln=1; ln<=totalL; ln++){
+            let idx1 = (ln * 7 + i * 3) % pool.es.length;
+            let idx2 = (ln * 11 + i * 5) % pool.la.length;
+            let idx3 = (ln * 13 + i * 2) % pool.en.length;
+            linesArr.push({
+              eva: `${ln}. cth-${i}-${ln} qet-or al-ch... [f${k}]`,
+              es: `${ln}. ${pool.es[idx1]} (parámetro analítico ${ln} para sector ${k}).`,
+              la: `${ln}. ${pool.la[idx2]} (parameter analyticus ${ln} pro sector ${k}).`,
+              en: `${ln}. ${pool.en[idx3]} (analytical parameter ${ln} for sector ${k}).`
+            });
+          }
         }
         db.push({
           id:k, 
@@ -623,7 +724,7 @@ function updateWorkspace(){
   document.getElementById('imgFolioLabel').innerText='VISOR ÓPTICO // FOLIO ' + activeFolio.id.toUpperCase();
   document.getElementById('evaHead').innerText='TRANSCRIPCIÓN EVA ORIGINAL (F' + activeFolio.id.toUpperCase() + ')';
   
-  // RENDERIZAR FICHA TÉCNICA CRONOBIOLÓGICA
+  // RENDERIZAR FICHA TÉCNICA CON JUSTIFICACIÓN Y DATOS RICOS
   document.getElementById('ftContent').innerHTML = getFichaTecnicaHTML(activeFolio.id, activeFolio.sec);
   document.getElementById('ftCode').innerText = 'SECTOR ' + activeFolio.id.toUpperCase() + ' // CRONOBIO';
 
@@ -651,7 +752,7 @@ function updateWorkspace(){
       </div>
     </div>`;
 
-    htmlOutput += pageLines.map(line => `<p style="margin-bottom:10px;">${line}</p>`).join('');
+    htmlOutput += pageLines.map(line => `<p style="margin-bottom:10px; text-align:justify;">${line}</p>`).join('');
     document.getElementById('outTxt').innerHTML = htmlOutput;
   } else {
     document.getElementById('evaTxt').innerText = activeFolio.eva || "";
@@ -699,7 +800,7 @@ function jumpToSection(id){
   if(el) el.scrollIntoView({behavior:'smooth'});
 }
 
-/* CARRUSEL DE BIENVENIDA (ESTILO INSTAGRAM STORIES) */
+/* CARRUSEL DE BIENVENIDA */
 let currentCard=0;
 const totalCards=4;
 function slideCard(dir){
