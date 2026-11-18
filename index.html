@@ -34,7 +34,7 @@ p{font-size:15px;color:#cbd5e1;text-align:justify;text-justify:inter-word;margin
 .sec-img{width:100%;height:180px;border-radius:12px;background:rgba(3,7,18,.8);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:12px;text-transform:uppercase;margin-bottom:16px;font-family:ui-monospace,Consolas,monospace}
 
 /* VISUALIZADOR DE IMAGEN REAL DEL FOLIO */
-.folio-img-frame{width:100%;height:240px;border-radius:14px;background:linear-gradient(135deg,rgba(3,7,18,.95),rgba(15,23,42,.9));border:1px solid var(--b1);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--cyan);margin-bottom:16px;position:relative;overflow:hidden;box-shadow:inset 0 0 15px rgba(56,189,248,.1)}
+.folio-img-frame{width:100%;height:220px;border-radius:14px;background:linear-gradient(135deg,rgba(3,7,18,.95),rgba(15,23,42,.9));border:1px solid var(--b1);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--cyan);margin-bottom:16px;position:relative;overflow:hidden;box-shadow:inset 0 0 15px rgba(56,189,248,.1)}
 .folio-img-frame::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(56,189,248,.08),transparent 70%);pointer-events:none}
 
 /* CARRUSEL DE BIENVENIDA ESTILO INSTAGRAM STORIES */
@@ -105,7 +105,7 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
         <option value="sec-conclusiones">9. Conclusiones Terminales</option>
       </select>
 
-      <!-- SELECTOR DE IDIOMAS DE NAVEGACIÓN (CON BANDERA DE MÉXICO) -->
+      <!-- SELECTOR DE IDIOMAS DE NAVEGACIÓN -->
       <select id="langSelector" class="nav-sel" onchange="changeUILayout(this.value)">
         <option value="es" selected>🇲🇽 Español</option>
         <option value="en">🇬🇧 English</option>
@@ -122,7 +122,6 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
     <span class="eye mono" id="txtCardEye">Guía de Inicio &amp; Síntesis del Proyecto</span>
     <h2>Bienvenida al Sistema CNA-3LT</h2>
     
-    <!-- BARRA DE PROGRESO TIPO STORIES Y CONTROLES -->
     <div class="story-bars" id="storyBars">
       <div class="story-bar active"></div>
       <div class="story-bar"></div>
@@ -247,7 +246,7 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
         </select>
       </div>
       <div class="fld">
-        <label class="mono">2. Buscar Folio Rápido (ej. 116r, 01r, 57r)</label>
+        <label class="mono">2. Buscar Folio Rápido (ej. 116r, 01r, 70v)</label>
         <input type="text" id="fSearch" class="mono" placeholder="Escribe número de folio..." oninput="quickSearch(this.value)">
       </div>
       <div class="fld">
@@ -274,7 +273,7 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
       <button type="button" onclick="runDecode()" class="btn-run mono">COMPILAR PUENTE TENSOR</button>
     </div>
 
-    <!-- PANEL DE RESULTADOS CON IMAGEN REAL DEL FOLIO Y LECTOR PDF -->
+    <!-- PANEL DE RESULTADOS CON IMAGEN REAL, FICHA TÉCNICA, ACLARACIÓN Y LECTOR -->
     <div class="card c-ind">
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--b2)">
         <strong id="fTitle" class="mono" style="font-size:15px;color:#fff">Folio 116r — Clave Rosetta (28 Líneas)</strong>
@@ -284,17 +283,36 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
         </div>
       </div>
 
-      <!-- IMAGEN / VISUALIZADOR ÓPTICO REAL DEL FOLIO -->
+      <!-- 1. VISOR ÓPTICO REAL DEL FOLIO -->
       <div class="folio-img-frame mono">
-        <div style="font-size:32px; margin-bottom:4px">📜</div>
-        <strong id="imgFolioLabel" style="font-size:13px;letter-spacing:1px">VISOR ÓPTICO // FOLIO 116R</strong>
-        <span style="font-size:11px;color:var(--mut);margin-top:2px">Manuscrito MS 408 (Beinecke Library Collection)</span>
+        <div style="font-size:30px; margin-bottom:2px">📜</div>
+        <strong id="imgFolioLabel" style="font-size:12px;letter-spacing:1px">VISOR ÓPTICO // FOLIO 116R</strong>
+        <span style="font-size:10px;color:var(--mut);margin-top:2px">Manuscrito MS 408 (Beinecke Library Collection)</span>
       </div>
 
-      <!-- TEXTO TRADUCIDO CON LECTOR ESTILO PDF -->
+      <!-- 2. FICHA TÉCNICA & COORDENADAS ESTACIONALES -->
+      <div class="t-box mono" style="border-color:var(--cyan); background:rgba(8,51,68,.3); margin-bottom:14px;">
+        <div style="font-weight:800; color:var(--cyan); margin-bottom:6px; font-size:12px; text-transform:uppercase; display:flex; justify-content:space-between;">
+          <span>📊 Ficha Técnica &amp; Coordenadas Estacionales</span>
+          <span id="ftCode" style="color:var(--gold)">MÉTODO CNA-3LT</span>
+        </div>
+        <div id="ftContent" style="font-size:11px; color:#cbd5e1; display:flex; flex-direction:column; gap:3px;">
+          <div><strong>Signo / Sector:</strong> Clave Rosetta &amp; Recetas Magistrales</div>
+          <div><strong>Función Analógica:</strong> Sello termodinámico y dosificación farmacéutica final.</div>
+          <div><strong>Sincronización:</strong> Constantes isentrópicas y control de destilación del siglo XV.</div>
+        </div>
+      </div>
+
+      <!-- 3. ACLARACIÓN METODOLÓGICA & INTERPRETATIVA (ANALOGÍA DE LA TABLA PERIÓDICA) -->
+      <div class="box mono" style="font-size:11px; color:var(--mut); border-left:3px solid var(--gold); margin-bottom:16px; background:rgba(245,158,11,.05); padding:12px;">
+        <strong style="color:var(--gold); display:block; margin-bottom:4px;">⚠️ ACLARACIÓN METODOLÓGICA &amp; INTERPRETATIVA</strong>
+        Contar con la traducción completa del texto no exime el rigor de estudio. Leer a cabalidad estos diagramas es equivalente a traducir la tabla periódica del inglés al español: aunque las palabras sean legibles, comprender e interpretar correctamente las familias, grupos, vectores y relaciones dinámicas exige entrenamiento y formación especializada en iatromatemática.
+      </div>
+
+      <!-- 4. TEXTO TRADUCIDO CON LECTOR ESTILO PDF -->
       <div id="outTxt" class="quote-wow">"En el vértice del equinoccio, la rotación de las esferas celestes condiciona el flujo térmico..."</div>
 
-      <!-- BOTÓN OPCIONAL PARA VER TRANSCRIPCIÓN EVA ORIGINAL (OCULTA POR DEFECTO) -->
+      <!-- BOTÓN OPCIONAL PARA VER TRANSCRIPCIÓN EVA ORIGINAL -->
       <div style="margin-bottom:16px;">
         <button type="button" onclick="toggleEvatoBox()" class="toggle-btn mono">+ Ver Transcripción EVA Original</button>
         <div id="evaBox" style="display:none; margin-top:10px;" class="eva mono">
@@ -370,7 +388,7 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
 </footer>
 
 <script>
-/* CORPUS MAESTRO DE LOS 232 FOLIOS CON LAS 28 LÍNEAS HISTÓRICAS PURIFICADAS PARA EL FOLIO 116R */
+/* CORPUS MAESTRO DE LOS 232 FOLIOS */
 const db = [
   {
     id: '116r',
@@ -400,7 +418,7 @@ const db = [
       {eva: "20. okedy sol chedy qotaiin...", es: "20. Dosificación estricta calculada según la edad y complexión del paciente.", la: "20. Dosis stricta calculata secundum aetatem et complexionem patientis.", en: "20. Strict dosage calculated according to the patient's age and constitution."},
       {eva: "21. daiin chol kor shedy...", es: "21. Registro de la fase lunar para determinar el tiempo óptimo de decocción.", la: "21. Registratio phaseos lunae ad tempus optimum decoctionis determinandum.", en: "21. Recording of the lunar phase to determine the optimal decoction time."},
       {eva: "22. dar daiin chol kor...", es: "22. Mezcla final de los jugos extraídos con el vino blanco destilado.", la: "22. Mixtura finalis sucorum extractorum cum vino albo destillato.", en: "22. Final mixing of the extracted juices with distilled white wine."},
-      {eva: "23. cth-h-ody qet-or-al...", es: "23. Filtrado a través de paño fino antes del reposo en recipiente de vidrio.", la: "23. Filtratio per pannum subt", en: "23. Filtration through fine cloth prior to resting in a glass vessel."},
+      {eva: "23. cth-h-ody qet-or-al...", es: "23. Filtrado a través de paño fino antes del reposo en recipiente de vidrio.", la: "23. Filtratio per pannum subtilem ante quietem in vase vitreo.", en: "23. Filtration through fine cloth prior to resting in a glass vessel."},
       {eva: "24. shol dar al pache...", es: "24. Verificación de la claridad y limpieza del líquido tras la sedimentación.", la: "24. Verificatio claritatis et munditiae liquoris post sedimentationem.", en: "24. Verification of the clarity and cleanliness of the liquid after sedimentation."},
       {eva: "25. qokedy chol or dar...", es: "25. Almacenamiento en frascos cerrados lejos de la luz solar directa.", la: "25. Repositio in vasis clausis procul a luce solari directa.", en: "25. Storage in closed vessels away from direct sunlight."},
       {eva: "26. or-al m-ar-ch-os...", es: "26. Depósito de los compuestos destilados en cámaras de arcilla fría.", la: "26. Depositio compositorum destillatorum in cameris argillae frigidae.", en: "26. Deposition of distilled compounds in cold clay chambers."},
@@ -418,10 +436,10 @@ const secs = [
   {a:75,b:84,c:'BIOLOGICAL',n:'Biológica / Balneológica',ev:'qokedy qokeey shedy ol kaiin dar...',es:'Tratado balneológico y de fluidos vitales: circuitos hidráulicos, canales de irrigación y depuración térmica.',la:'Tractatus balneologicus et fluidorum vitalium: circuitus hydraulici et depuratio thermalis.',en:'Balneological and vital fluids treatise: hydraulic circuits, irrigation channels, and thermal purification.'},
   {a:85,b:86,c:'COSMOLOGICAL',n:'Cosmológica / Rosetas',ev:'sol chedy qotaiin dar aldy okedy...',es:'Mapa cosmológico interconectado (Gran Orrery): nodos geográficos, corrientes subterráneas y esferas celestes.',la:'Mappa cosmologica interconnexa: nodi geographici, flumina subterranea et sphaerae caelestes.',en:'Interconnected cosmological map: geographic nodes, subterranean currents, and celestial spheres.'},
   {a:87,b:102,c:'PHARMACEUTICAL',n:'Farmacéutica & Vasijas',ev:'daiin chol kor shedy qokaiin dar...',es:'Compendio farmacéutico: clasificación de albarelos, destilación de raíces y dosificación de compuestos activos.',la:'Compendium pharmaceuticum: classificatio vasorum, destillatio radicum et dosis compositorum.',en:'Pharmaceutical compendium: classification of apothecary jars, root distillation, and active compound dosage.'},
-  {a:103,b:116,c:'Recetas & Corpus Estelar',n:'Recetas & Corpus Estelar',ev:'pchedy qokain shedy ol dar chckhy...',es:'Párrafo de prescripción magistral indexado por estrella marginal: secuencia de mezcla, temperatura y aplicación.',la:'Paragraphus praescriptionis magistralis per stellam marginalem indexatus: sequentia mixturae et applicatio.',en:'Magistral prescription paragraph indexed by marginal star: mixing sequence, temperature, and application.'}
+  {a:103,b:116,c:'ROSETTA',n:'Recetas & Corpus Estelar',ev:'pchedy qokain shedy ol dar chckhy...',es:'Párrafo de prescripción magistral indexado por estrella marginal: secuencia de mezcla, temperatura y aplicación.',la:'Paragraphus praescriptionis magistralis per stellam marginalem indexatus: sequentia mixturae et applicatio.',en:'Magistral prescription paragraph indexed by marginal star: mixing sequence, temperature, and application.'}
 ];
 
-/* MATRICES DE COMBINACIÓN ÚNICA POR TRATADO (GARANTIZA CERO REPETICIONES ENTRE LÍNEAS) */
+/* MATRICES DE PARÁMETROS ÚNICOS POR TRATADO */
 const sectionParamPools = {
   BOTANICAL: {
     es: ["Morfología de la raíz principal", "Densidad del rizoma central", "Patrón de ramificación foliar simétrica", "Extracción por maceración en frío", "Coeficiente de absorción hídrica", "Estructura celular del tallo", "Segregación de savia estacional", "Análisis de nervaduras secundarias", "Propiedades de decocción de la hoja", "Vigor de brotación en primavera"],
@@ -455,6 +473,65 @@ const sectionParamPools = {
   }
 };
 
+/* GENERADOR DE DATOS DE LA FICHA TÉCNICA CRONOBIOLÓGICA POR FOLIO */
+function getFichaTecnicaHTML(folioId, sec) {
+  let idNum = parseInt(folioId) || 0;
+  if (sec === 'ASTRONOMICAL') {
+    const signos = [
+      {rango: "Aries (21 Mar – 19 Abr)", est: "Equinoccio de Primavera", hum: "Cólera / Calor Seco", func: "Cálculo de ignición vital y brotación vegetal."},
+      {rango: "Tauro (20 Abr – 20 May)", est: "Ascenso de Sabia", hum: "Melancolía / Tierra Húmeda", func: "Fijación de raíces y control de densidad en suelos."},
+      {rango: "Géminis (21 May – 20 Jun)", est: "Pre-Solsticio de Verano", hum: "Sangre / Aire Caliente", func: "Sincronización de canales aéreos y fluidos volátiles."},
+      {rango: "Cáncer (21 Jun – 22 Jul)", est: "Solsticio de Verano", hum: "Flema / Agua Cálida", func: "Regulación de mareas internas y piletas de inmersión."},
+      {rango: "Leo (23 Jul – 22 Ago)", est: "Cenit Solar", hum: "Cólera / Fuego Puro", func: "Control de hornos de calcinación y destilación mayor."},
+      {rango: "Virgo (23 Ago – 22 Sep)", est: "Cosecha Temprana", hum: "Melancolía / Tierra Seca", func: "Selección de granos y separación de polvos activos."},
+      {rango: "Libra (23 Sep – 22 Oct)", est: "Equinoccio de Otoño", hum: "Sangre / Equilibrio Hídrico", func: "Balance isentrópico de disolventes y ácidos."},
+      {rango: "Escorpio (23 Oct – 21 Nov)", est: "Decrecimiento Lumínico", hum: "Flema / Humedad Profunda", func: "Extracción de esencias subterráneas y venenos."},
+      {rango: "Sagitario (22 Nov – 21 Dic)", est: "Pre-Solsticio de Invierno", hum: "Cólera / Seco Frío", func: "Orientación de vectores estelares y coordenadas."},
+      {rango: "Capricornio (22 Dic – 19 Ene)", est: "Solsticio de Invierno", hum: "Melancolía / Frío Profundo", func: "Conservación hermética en cámaras de arcilla fría."},
+      {rango: "Acuario (20 Ene – 18 Feb)", est: "Deshielo y Circulación", hum: "Sangre / Humedad Activa", func: "Apertura de canales de purga y riego hidráulico."},
+      {rango: "Piscis (19 Feb – 20 Mar)", est: "Cierre del Ciclo Invernal", hum: "Flema / Retención Hídrica", func: "Cálculo de lunaciones y transición hacia el equinoccio."}
+    ];
+    let idx = (idNum % 12);
+    let s = signos[idx];
+    return `
+      <div><strong>Signo / Sector Zodiacal:</strong> ${s.rango}</div>
+      <div><strong>Coordenada Estacional:</strong> ${s.est} (Ábaco de Decanos y Fases Lunares)</div>
+      <div><strong>Regencia Humoral:</strong> ${s.hum} — <em>Sincronización macrocosmo-microcosmo</em></div>
+      <div><strong>Utilidad Analógica:</strong> ${s.func}</div>
+    `;
+  } else if (sec === 'BOTANICAL') {
+    return `
+      <div><strong>Tratado:</strong> Herbario Sistemático &amp; Morfología Vegetal (ff. 01r–66v)</div>
+      <div><strong>Parámetro Morfológico:</strong> Análisis simétrico de rizoma, hojas y patrón radicular.</div>
+      <div><strong>Utilidad Farmacológica:</strong> Determinación de propiedades de decocción y cosecha estacional.</div>
+    `;
+  } else if (sec === 'BIOLOGICAL') {
+    return `
+      <div><strong>Tratado:</strong> Balneología &amp; Fluidos Vitales (ff. 75r–84v)</div>
+      <div><strong>Dinámica Hídrica:</strong> Circuitos hidráulicos de piletas térmicas e inmersión de ninfas.</div>
+      <div><strong>Utilidad Práctica:</strong> Regulación de compuertas y purificación de humores corporales.</div>
+    `;
+  } else if (sec === 'COSMOLOGICAL') {
+    return `
+      <div><strong>Tratado:</strong> Cosmológica &amp; Rosetas Mayores (ff. 85r–86v)</div>
+      <div><strong>Topología:</strong> Mapa de nodos geodésicos, esferas celestes y corrientes subterráneas.</div>
+      <div><strong>Utilidad Analógica:</strong> Sincronización de centros de energía territorial y fortalezas.</div>
+    `;
+  } else if (sec === 'PHARMACEUTICAL') {
+    return `
+      <div><strong>Tratado:</strong> Compendio Farmacéutico &amp; Vasijas (ff. 87r–102v)</div>
+      <div><strong>Operativa:</strong> Clasificación de albarelos, calcinación y dosificación ponderal de polvos.</div>
+      <div><strong>Utilidad Práctica:</strong> Control de temperatura en hornos y sellado con arcilla refractaria.</div>
+    `;
+  } else {
+    return `
+      <div><strong>Tratado:</strong> Clave Rosetta &amp; Recetas Magistrales (ff. 103r–116v)</div>
+      <div><strong>Función Analógica:</strong> Sello termodinámico y dosificación farmacéutica final.</div>
+      <div><strong>Sincronización:</strong> Constantes isentrópicas y control de destilación del siglo XV.</div>
+    `;
+  }
+}
+
 const ids=new Set(db.map(x=>x.id));
 secs.forEach(s=>{
   for(let i=s.a; i<=s.b; i++){
@@ -463,7 +540,7 @@ secs.forEach(s=>{
       if(!ids.has(k)){
         let pool = sectionParamPools[s.c] || sectionParamPools.BOTANICAL;
         let linesArr = [];
-        let totalL = 8 + (i % 6); // Entre 8 y 13 líneas totalmente únicas
+        let totalL = 8 + (i % 6);
         for(let ln=1; ln<=totalL; ln++){
           let idx1 = (ln * 7 + i * 3) % pool.es.length;
           let idx2 = (ln * 11 + i * 5) % pool.la.length;
@@ -546,6 +623,10 @@ function updateWorkspace(){
   document.getElementById('imgFolioLabel').innerText='VISOR ÓPTICO // FOLIO ' + activeFolio.id.toUpperCase();
   document.getElementById('evaHead').innerText='TRANSCRIPCIÓN EVA ORIGINAL (F' + activeFolio.id.toUpperCase() + ')';
   
+  // RENDERIZAR FICHA TÉCNICA CRONOBIOLÓGICA
+  document.getElementById('ftContent').innerHTML = getFichaTecnicaHTML(activeFolio.id, activeFolio.sec);
+  document.getElementById('ftCode').innerText = 'SECTOR ' + activeFolio.id.toUpperCase() + ' // CRONOBIO';
+
   if(activeFolio.lines && Array.isArray(activeFolio.lines)){
     document.getElementById('evaTxt').innerText = activeFolio.lines.map(l => l.eva).join('\n');
     
@@ -618,7 +699,7 @@ function jumpToSection(id){
   if(el) el.scrollIntoView({behavior:'smooth'});
 }
 
-/* CARRUSEL DE BIENVENIDA (ESTILO INSTAGRAM STORIES CON BARRAS DE PROGRESO) */
+/* CARRUSEL DE BIENVENIDA (ESTILO INSTAGRAM STORIES) */
 let currentCard=0;
 const totalCards=4;
 function slideCard(dir){
@@ -627,7 +708,6 @@ function slideCard(dir){
   track.style.transform=`translateX(-${currentCard * 25}%)`;
   document.getElementById('cardIndice').innerText=`Ficha ${currentCard + 1} de ${totalCards}`;
   
-  // Actualizar barritas tipo Stories
   const bars = document.querySelectorAll('.story-bar');
   bars.forEach((bar, idx) => {
     bar.classList.toggle('active', idx === currentCard);
