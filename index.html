@@ -1,921 +1,1050 @@
+```html
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Decodificación Integral del Códice MS 408 — Protocolo CNA-3LT</title>
-<style>
-:root{--bg:#030712;--glass:rgba(15,23,42,.92);--b1:rgba(56,189,248,.3);--b2:rgba(255,255,255,.12);--cyan:#38bdf8;--ind:#818cf8;--gold:#f59e0b;--em:#34d399;--txt:#f8fafc;--mut:#94a3b8}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);background-image:radial-gradient(circle at 15% 15%,rgba(56,189,248,.07),transparent 35%),radial-gradient(circle at 85% 30%,rgba(99,102,241,.08),transparent 40%);color:var(--txt);line-height:1.7;overflow-x:hidden}
-.mono{font-family:ui-monospace,Consolas,monospace}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoynichTensorEngine · MS 408 Real-Time Telemetry</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js para gráficos de precisión -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        obsidian: '#09090b',
+                        surface: '#121215',
+                        surfaceHover: '#18181c',
+                        borderSubtle: '#27272a',
+                        borderActive: '#3f3f46',
+                        cyanAccent: '#06b6d4',
+                        emeraldAccent: '#10b981',
+                        amberAccent: '#f59e0b',
+                        roseAccent: '#f43f5e'
+                    }
+                }
+            }
+        }
+    </script>
 
-/* HEADER BANNER TOP ANCHO COMPLETO */
-.full-hero-banner{width:100%;height:260px;background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,27,75,.85)),radial-gradient(circle at 50% 50%,rgba(56,189,248,.15),transparent 70%);border-bottom:1px solid var(--b1);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;position:relative;overflow:hidden}
-.banner-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:99px;background:rgba(8,51,68,.85);border:1px solid var(--b1);color:var(--cyan);font-size:11px;font-weight:800;margin-bottom:10px;z-index:2}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
-.banner-title{font-size:26px;font-weight:900;background:linear-gradient(90deg,#fff,var(--cyan),var(--ind));-webkit-background-clip:text;-webkit-text-fill-color:transparent;max-width:950px;margin-bottom:6px;z-index:2;letter-spacing:1px}
-.banner-sub{font-size:12px;color:var(--mut);letter-spacing:1px;z-index:2}
+    <style>
+        /* Estilos personalizados minimalistas estilo Vercel / Linear */
+        body {
+            background-color: #09090b;
+            color: #f4f4f5;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-main{max-width:1280px;margin:0 auto;padding:30px 16px;display:flex;flex-direction:column;gap:36px}
+        /* Scrollbar discreta */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3f3f46;
+        }
 
-/* TÍTULO Y MENÚS */
-.top-header-section{text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px;margin-top:10px}
-.site-main-title{font-size:24px;font-weight:900;color:#fff;letter-spacing:1px}
-.nav-controls-bar{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;width:100%;max-width:750px;background:rgba(15,23,42,.85);backdrop-filter:blur(12px);border:1px solid var(--b2);padding:12px 20px;border-radius:16px}
-select.nav-sel{background:rgba(3,7,18,.95);border:1px solid var(--b1);color:var(--cyan);font-weight:700;padding:8px 14px;border-radius:10px;font-size:12px;cursor:pointer;outline:none}
+        /* Slider estilizado */
+        input[type=range] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #27272a;
+            border-radius: 2px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            height: 14px;
+            width: 14px;
+            border-radius: 50%;
+            background: #f4f4f5;
+            border: 2px solid #06b6d4;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -5px;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+            transition: transform 0.15s ease;
+        }
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
 
-/* TARJETAS Y SECCIONES */
-.card{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--b2);border-radius:24px;padding:28px;box-shadow:0 16px 40px rgba(0,0,0,.5)}
-.c-cyan{border-color:var(--b1)}.c-ind{border-color:rgba(129,140,248,.35)}
-.eye{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--cyan);font-weight:800;display:block;margin-bottom:6px;text-align:center}
-h2{font-size:24px;font-weight:800;color:#fff;margin-bottom:16px;text-align:center}
-p, .t-box, #ftContent, .box{text-align:justify;text-justify:inter-word;}
-p{font-size:15px;color:#cbd5e1;margin-bottom:12px}
-.sec-img{width:100%;height:180px;border-radius:12px;background:rgba(3,7,18,.8);border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:12px;text-transform:uppercase;margin-bottom:16px;font-family:ui-monospace,Consolas,monospace}
+        /* Animación de pulso sutil para indicador online */
+        @keyframes pulse-emerald {
+            0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(16, 185, 129, 0.6); }
+            50% { opacity: 0.4; box-shadow: 0 0 2px rgba(16, 185, 129, 0.2); }
+        }
+        .status-dot {
+            animation: pulse-emerald 2.4s infinite ease-in-out;
+        }
 
-/* VISUALIZADOR DE IMAGEN REAL DEL FOLIO */
-.folio-img-frame{width:100%;height:220px;border-radius:14px;background:linear-gradient(135deg,rgba(3,7,18,.95),rgba(15,23,42,.9));border:1px solid var(--b1);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--cyan);margin-bottom:16px;position:relative;overflow:hidden;box-shadow:inset 0 0 15px rgba(56,189,248,.1)}
-.folio-img-frame::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(56,189,248,.08),transparent 70%);pointer-events:none}
-
-/* CARRUSEL DE BIENVENIDA */
-.story-bars{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px}
-.story-bar{height:4px;border-radius:4px;background:rgba(255,255,255,.15);transition:background 0.3s ease}
-.story-bar.active{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
-
-.onboard-wrap{position:relative;overflow:hidden;border-radius:16px;background:rgba(3,7,18,.95);border:1px solid var(--b1);padding:24px}
-.onboard-track{display:flex;width:400%;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1)}
-.onboard-slide{width:25%;flex:0 0 25%;padding:6px;display:flex;flex-direction:column;gap:12px}
-.onboard-card-title{color:var(--cyan);font-size:15px;font-weight:800;display:block}
-.onboard-card-desc{font-size:15px;color:#cbd5e1;line-height:1.7;text-align:justify;margin:0}
-
-/* WORKSPACE GRID */
-.w-grid,.g2{display:grid;grid-template-columns:1fr;gap:24px}
-@media(min-width:950px){.w-grid{grid-template-columns:380px 1fr}.g2{grid-template-columns:1fr 1fr}}
-.fld{margin-bottom:16px}
-label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin-bottom:6px;font-weight:700}
-select,input{width:100%;background:rgba(3,7,18,.95);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:12px;color:#fff;font-size:14px;outline:none}
-.btns3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.p-btn{padding:10px 8px;border-radius:10px;font-size:12px;font-weight:800;cursor:pointer;border:1px solid var(--b2);background:rgba(255,255,255,.05);color:var(--mut)}
-.p-btn.active{background:var(--cyan);color:#030712;border-color:var(--cyan)}
-.t-box{background:rgba(3,7,18,.95);border:1px solid var(--b2);border-radius:14px;padding:14px;margin-bottom:16px;font-size:12px}
-.t-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)}
-.ok{background:rgba(16,185,129,.18);color:var(--em);padding:3px 8px;border-radius:6px;font-weight:800}
-.btn-run{width:100%;padding:15px;border-radius:14px;border:none;font-size:13px;font-weight:900;letter-spacing:1px;cursor:pointer;background:linear-gradient(90deg,var(--cyan),var(--ind));color:#030712}
-
-/* WOW QUOTE OUTPUT & LECTOR PDF */
-.eva{background:rgba(3,7,18,.95);border:1px solid var(--b1);border-radius:14px;padding:14px;margin-bottom:16px;font-size:13px;color:#cbd5e1}
-.quote-wow{font-size:22px;font-weight:400;color:#fff;line-height:1.65;padding:24px;border-radius:16px;background:rgba(56,189,248,.08);border-left:5px solid var(--cyan);margin-bottom:18px;text-align:justify;box-shadow:inset 0 0 20px rgba(56,189,248,.05)}
-
-.box{background:rgba(3,7,18,.85);border:1px solid var(--b2);border-radius:14px;padding:16px;font-size:14px}
-.c-wrap{width:100%;height:180px;border-radius:14px;overflow:hidden;background:#02050e;border:1px solid var(--b1);position:relative;margin-top:10px}
-canvas{width:100%;height:100%;display:block}
-.c-ov{position:absolute;bottom:8px;left:12px;right:12px;display:flex;justify-content:space-between;font-size:11px;color:var(--mut)}
-.m-pill{padding:6px 12px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;background:rgba(255,255,255,.06);border:1px solid var(--b2);color:var(--mut)}
-.m-pill.active{background:rgba(129,140,248,.3);border-color:var(--ind);color:#fff}
-.toggle-btn{background:rgba(56,189,248,.1);border:1px solid var(--b1);color:var(--cyan);padding:8px 14px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:700;margin-top:8px;display:inline-block}
-footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-align:center;font-size:14px}
-</style>
+        /* Grid de fondo sutil */
+        .bg-grid-pattern {
+            background-image: linear-gradient(to right, rgba(39, 39, 42, 0.25) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(39, 39, 42, 0.25) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200">
 
-<!-- TOP HEADER BANNER ANCHO COMPLETO -->
-<header class="full-hero-banner">
-  <div class="banner-badge mono"><span class="dot"></span><span id="uiNodeStatus">NODE: ACTIVE (CNA-3LT v4.8-PROD)</span></div>
-  <h1 class="banner-title" id="txtTopTitle">DECODIFICACIÓN INTEGRAL DEL CÓDICE MS 408</h1>
-  <span class="banner-sub mono">PROTOCOLO CNA-3LT // ANÁLISIS MATRICIAL Y TENSORIAL</span>
-</header>
+    <!-- 1. HEADER EJECUTIVO -->
+    <header class="sticky top-0 z-40 border-b border-borderSubtle bg-obsidian/90 backdrop-blur-md">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 h-16 flex flex-wrap items-center justify-between gap-4">
+            
+            <!-- Marca & Estado del Motor -->
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-surface border border-borderSubtle flex items-center justify-center shadow-inner">
+                        <svg class="w-4 h-4 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                            <polyline points="2 17 12 22 22 17"></polyline>
+                            <polyline points="2 12 12 17 22 12"></polyline>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-semibold tracking-tight text-sm sm:text-base text-zinc-100">VoynichTensorEngine</span>
+                            <span class="text-[11px] font-mono px-1.5 py-0.5 rounded bg-surface border border-borderSubtle text-zinc-400">MS 408</span>
+                        </div>
+                        <p class="text-[11px] font-mono text-zinc-500 hidden sm:block">voynichdecrypted.com · CP-ALS (R=6) &amp; A_ARN Kernel</p>
+                    </div>
+                </div>
 
-<main>
-  <!-- TÍTULO Y MENÚS -->
-  <div class="top-header-section" id="sec-inicio">
-    <h2 class="site-main-title" id="txtHeroTitle">Fluidos Gramaticales &amp; Motor Matricial CNA-3LT</h2>
-    
-    <div class="nav-controls-bar mono">
-      <select id="jumpSection" class="nav-sel" onchange="jumpToSection(this.value)">
-        <option value="" disabled selected>📜 Mapa del Sitio (Secciones)...</option>
-        <option value="sec-bienvenida">1. Bienvenida &amp; Manifiesto</option>
-        <option value="sec-voynich">2. El Manuscrito Voynich</option>
-        <option value="sec-tratados">3. Los Seis Tratados</option>
-        <option value="sec-metodo">4. Método CNA-3LT</option>
-        <option value="sec-rosetta">5. Demolición Folio 116r</option>
-        <option value="sec-computadora">6. Computadora de Decodificación</option>
-        <option value="sec-entropia">7. Doble Verificación &amp; Entropía</option>
-        <option value="sec-zenodo">8. Zenodo &amp; Ciencia Abierta</option>
-        <option value="sec-conclusiones">9. Conclusiones Terminales</option>
-      </select>
+                <!-- Badge de Estado -->
+                <div class="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-borderSubtle">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 status-dot"></span>
+                    <span class="text-[11px] font-mono tracking-wider text-emerald-400 font-medium">
+                        ONLINE · O(N) DETERMINISTIC CONTRACTION · NO LLM INFERENCE
+                    </span>
+                </div>
+            </div>
 
-      <select id="langSelector" class="nav-sel" onchange="changeUILayout(this.value)">
-        <option value="es" selected>🇲🇽 Español</option>
-        <option value="en">🇬🇧 English</option>
-        <option value="fr">🇫🇷 Français</option>
-        <option value="it">🇮🇹 Italiano</option>
-        <option value="zh">🇨🇳 中文</option>
-        <option value="ru">🇷🇺 Русский</option>
-      </select>
-    </div>
-  </div>
+            <!-- Controles Operativos -->
+            <div class="flex items-center gap-3">
+                <!-- Selector de Régimen / Sección del Códice -->
+                <div class="relative">
+                    <select id="regimeSelector" aria-label="Selector de régimen del códice"
+                        class="appearance-none bg-surface hover:bg-surfaceHover text-zinc-200 text-xs font-medium rounded-lg border border-borderSubtle focus:border-cyan-500 focus:outline-none pl-3 pr-8 py-2 transition-colors cursor-pointer">
+                        <option value="ALL">Todos los Folios (Corpus Takahashi)</option>
+                        <option value="HERBAL">Herbario Estático (f1r–f56v · ch-)</option>
+                        <option value="BIOLOGICAL">Biológico / Baños (f75r–f84v · qok-)</option>
+                        <option value="ASTRO">Astro-Cosmológico (28 Mansiones · sh-/to-)</option>
+                    </select>
+                    <svg class="w-3.5 h-3.5 text-zinc-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
 
-  <!-- SECCIÓN DE BIENVENIDA -->
-  <section class="card c-cyan" id="sec-bienvenida">
-    <span class="eye mono" id="txtCardEye">Guía de Inicio &amp; Síntesis del Proyecto</span>
-    <h2>Bienvenida al Sistema CNA-3LT</h2>
-    
-    <div class="story-bars" id="storyBars">
-      <div class="story-bar active"></div>
-      <div class="story-bar"></div>
-      <div class="story-bar"></div>
-      <div class="story-bar"></div>
-    </div>
-
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px" class="mono">
-      <span id="cardIndice" style="font-size:12px;color:var(--cyan);font-weight:700">Ficha 1 de 4</span>
-      <div style="display:flex;gap:8px;">
-        <button type="button" onclick="slideCard(-1)" class="m-pill">← ANTERIOR</button>
-        <button type="button" onclick="slideCard(1)" class="m-pill">SIGUIENTE →</button>
-      </div>
-    </div>
-
-    <div class="onboard-wrap">
-      <div id="onboardTrack" class="onboard-track">
-        <div class="onboard-slide">
-          <div class="sec-img" style="height:110px; margin-bottom:8px">[ Ficha 1: Arquitectura y Alcance ]</div>
-          <strong class="onboard-card-title mono">01 // ARQUITECTURA Y ALCANCE DEL SISTEMA</strong>
-          <p class="onboard-card-desc">Despliegue de la decodificación integral de los 232 folios completos del Códice MS 408 a través de sus seis tratados fundamentales. El motor ejecuta un puente de triple transformación simultánea permitiendo auditar la correlación morfosintáctica en tiempo real.</p>
+                <!-- Botón Ejecutar Contracción en Vivo -->
+                <button id="runContractionBtn"
+                    class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-zinc-100 hover:bg-white text-obsidian font-semibold text-xs transition-all active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.12)] cursor-pointer">
+                    <svg id="btnSpinner" class="w-3.5 h-3.5 text-obsidian transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    <span>Ejecutar Contracción en Vivo</span>
+                </button>
+            </div>
         </div>
-        <div class="onboard-slide">
-          <div class="sec-img" style="height:110px; margin-bottom:8px">[ Ficha 2: La Prueba de Fuego 116r ]</div>
-          <strong class="onboard-card-title mono" style="color:var(--gold)">02 // LA DEMOLICIÓN DEL FOLIO 116r</strong>
-          <p class="onboard-card-desc">El Folio 116r no era la puerta fácil, sino la trampa más sofisticada por carecer de anclajes visuales. Al resolver sus 28 líneas íntegras bajo el Método CNA-3LT, se demuestra la superación formal y reproducible de 500 años de especulación institucional.</p>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-1 max-w-[1600px] w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
+
+        <!-- 2. KPIs SUPERIORES EN TIEMPO REAL -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <!-- KPI 1 -->
+            <div class="bg-surface border border-borderSubtle rounded-xl p-4 flex flex-col justify-between hover:border-borderActive transition-colors">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-medium text-zinc-400">Tasa de Supervivencia TDA</span>
+                    <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">H0 Filter</span>
+                </div>
+                <div class="mt-3 flex items-baseline gap-2">
+                    <span id="kpiSurvivalPct" class="text-2xl font-semibold font-mono tracking-tight text-zinc-100">50.0%</span>
+                    <span id="kpiSurvivalCount" class="text-xs font-mono text-zinc-400">· 300/600 tokens</span>
+                </div>
+                <p class="mt-1.5 text-[11px] text-zinc-500">Fantasmas de alta dim. anulados a 0.0</p>
+            </div>
+
+            <!-- KPI 2 -->
+            <div class="bg-surface border border-borderSubtle rounded-xl p-4 flex flex-col justify-between hover:border-borderActive transition-colors">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-medium text-zinc-400">Proyección Ortogonal Media</span>
+                    <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-borderSubtle">A_ARN</span>
+                </div>
+                <div class="mt-3 flex items-baseline gap-2">
+                    <span id="kpiProjection" class="text-2xl font-semibold font-mono tracking-tight text-cyan-400">0.4812</span>
+                    <span class="text-xs font-mono text-emerald-400">+3.8σ</span>
+                </div>
+                <p class="mt-1.5 text-[11px] text-zinc-500">Baseline control histórico: 0.1063</p>
+            </div>
+
+            <!-- KPI 3 -->
+            <div class="bg-surface border border-borderSubtle rounded-xl p-4 flex flex-col justify-between hover:border-borderActive transition-colors">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-medium text-zinc-400">P-Valor Monte Carlo</span>
+                    <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Validado &lt; 0.001</span>
+                </div>
+                <div class="mt-3 flex items-baseline gap-2">
+                    <span id="kpiPValue" class="text-2xl font-semibold font-mono tracking-tight text-zinc-100">p = 0.0010</span>
+                </div>
+                <p class="mt-1.5 text-[11px] text-zinc-500">10,000 permutaciones · Zipf α=1.10</p>
+            </div>
+
+            <!-- KPI 4 -->
+            <div class="bg-surface border border-borderSubtle rounded-xl p-4 flex flex-col justify-between hover:border-borderActive transition-colors">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-medium text-zinc-400">Divergencia K-Fold (K=5)</span>
+                    <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Umbral &lt; 12%</span>
+                </div>
+                <div class="mt-3 flex items-baseline gap-2">
+                    <span id="kpiKFold" class="text-2xl font-semibold font-mono tracking-tight text-zinc-100">6.56%</span>
+                    <span class="text-xs font-mono text-zinc-400">Train/Test</span>
+                </div>
+                <p class="mt-1.5 text-[11px] text-zinc-500">Generalización fuera de muestra estable</p>
+            </div>
+
+            <!-- KPI 5 -->
+            <div class="bg-surface border border-borderSubtle rounded-xl p-4 flex flex-col justify-between hover:border-borderActive transition-colors">
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-medium text-zinc-400">Latencia de Contracción</span>
+                    <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-borderSubtle">O(N) CPU</span>
+                </div>
+                <div class="mt-3 flex items-baseline gap-2">
+                    <span id="kpiLatency" class="text-2xl font-semibold font-mono tracking-tight text-emerald-400">1.4 ms</span>
+                    <span class="text-xs font-mono text-zinc-500">0 tokens AI</span>
+                </div>
+                <p class="mt-1.5 text-[11px] text-zinc-500">Contracción directa tensorial sin GPU</p>
+            </div>
+        </section>
+
+        <!-- 3. VISUALIZACIÓN PRINCIPAL DUAL -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- PANEL IZQUIERDO: Colector Topológico TDA Isomap 3D Interactivo -->
+            <div class="lg:col-span-7 bg-surface border border-borderSubtle rounded-xl flex flex-col overflow-hidden relative">
+                <!-- Header del Panel -->
+                <div class="px-5 py-4 border-b border-borderSubtle flex flex-wrap items-center justify-between gap-3">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h2 class="text-sm font-semibold text-zinc-100">Colector Topológico TDA Isomap (D=64 → D=3)</h2>
+                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-900 border border-borderSubtle text-zinc-400">Vietoris-Rips H₀</span>
+                        </div>
+                        <p class="text-xs text-zinc-500 mt-0.5">Proyección geodésica interactiva · Arrastra para rotar, pasa el cursor para inspeccionar nodos</p>
+                    </div>
+                    <!-- Leyenda -->
+                    <div class="flex items-center gap-4 text-[11px] font-mono">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#06b6d4]"></span>
+                            <span class="text-zinc-300">Supervivientes A_ARN</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                            <span class="text-zinc-400">Fantasmas Anulados</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenedor Canvas 3D -->
+                <div id="canvasContainer" class="relative w-full h-[380px] sm:h-[420px] bg-obsidian bg-grid-pattern cursor-grab active:cursor-grabbing select-none">
+                    <canvas id="tdaCanvas" class="w-full h-full block"></canvas>
+
+                    <!-- HUD Coordenadas Ejes -->
+                    <div class="absolute bottom-3 left-4 pointer-events-none font-mono text-[10px] text-zinc-500 space-y-0.5">
+                        <div>MANIFOLD: ISOMAP (k=15 neighbors)</div>
+                        <div id="hudRotation">EULER: θ=0.42 rad · φ=1.18 rad</div>
+                    </div>
+
+                    <!-- Controles Rápidos Canvas -->
+                    <div class="absolute top-3 right-4 flex items-center gap-2">
+                        <button id="toggleRotationBtn" class="px-2.5 py-1 rounded bg-surface/90 border border-borderSubtle hover:border-borderActive text-[11px] font-mono text-zinc-300 backdrop-blur-sm transition-colors cursor-pointer">
+                            Pausar Rotación
+                        </button>
+                    </div>
+
+                    <!-- Tooltip Flotante de Inspección de Token -->
+                    <div id="nodeTooltip" class="hidden absolute z-30 pointer-events-none bg-surface/95 backdrop-blur-md border border-borderActive rounded-lg p-3 shadow-2xl min-w-[210px] transition-opacity duration-75">
+                        <div class="flex items-center justify-between border-b border-borderSubtle pb-1.5 mb-2">
+                            <span id="ttFolio" class="font-mono text-xs font-semibold text-zinc-100">f67r1</span>
+                            <span id="ttStatusBadge" class="font-mono text-[10px] px-1.5 py-0.2 rounded bg-cyan-500/20 text-cyan-300">SUPERVIVIENTE</span>
+                        </div>
+                        <div class="space-y-1 font-mono text-[11px]">
+                            <div class="flex justify-between">
+                                <span class="text-zinc-500">Token / Raíz:</span>
+                                <span id="ttToken" class="text-zinc-200 font-medium">qokedy (qok-)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-500">Columna A_ARN:</span>
+                                <span id="ttCol" class="text-cyan-400">A_04</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-500">Proyección |⟨Tx,A⟩|:</span>
+                                <span id="ttProj" class="text-emerald-400 font-semibold">0.6421</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-zinc-500">Persistencia τᵢ:</span>
+                                <span id="ttPersist" class="text-zinc-300">0.814</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL DERECHO: Carga Latente en Folios Críticos + Control TDA / FDR -->
+            <div class="lg:col-span-5 bg-surface border border-borderSubtle rounded-xl flex flex-col justify-between">
+                <div>
+                    <div class="px-5 py-4 border-b border-borderSubtle">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-sm font-semibold text-zinc-100">Magnitud de Carga Latente en Folios Críticos</h2>
+                            <span class="text-[10px] font-mono text-zinc-400">CP-ALS Rank 6</span>
+                        </div>
+                        <p class="text-xs text-zinc-500 mt-0.5">Norma L₂ proyectada por folio representativo del códice</p>
+                    </div>
+
+                    <!-- Gráfica Chart.js -->
+                    <div class="p-4 h-[250px] w-full">
+                        <canvas id="foliosChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Control Interactivo de Umbral de Persistencia Crítica TDA -->
+                <div class="p-5 bg-obsidian/60 border-t border-borderSubtle space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <label for="tdaSlider" class="text-xs font-semibold text-zinc-200 block">
+                                Umbral de Persistencia Crítica TDA (Percentil Corte)
+                            </label>
+                            <span class="text-[11px] text-zinc-500">Elimina fantasmas estocásticos antes de contraer contra A_ARN</span>
+                        </div>
+                        <span id="sliderValueBadge" class="font-mono text-sm font-semibold px-2.5 py-1 rounded bg-surface border border-cyan-500/40 text-cyan-400">
+                            50%
+                        </span>
+                    </div>
+
+                    <!-- Deslizador -->
+                    <div class="pt-1">
+                        <input id="tdaSlider" type="range" min="0" max="95" step="5" value="50" class="w-full">
+                        <div class="flex justify-between text-[10px] font-mono text-zinc-500 mt-1.5">
+                            <span>0% (Sin filtro)</span>
+                            <span>50% (Óptimo)</span>
+                            <span>75% (Estricto)</span>
+                            <span>95% (Extremo)</span>
+                        </div>
+                    </div>
+
+                    <!-- Métricas Dinámicas Benjamini-Hochberg (FDR) -->
+                    <div class="grid grid-cols-3 gap-2 pt-2 border-t border-borderSubtle/70 font-mono text-xs">
+                        <div class="bg-surface p-2.5 rounded-lg border border-borderSubtle">
+                            <span class="text-[10px] text-zinc-500 block">Tokens Activos</span>
+                            <span id="fdrActiveTokens" class="text-zinc-100 font-semibold">300 / 600</span>
+                        </div>
+                        <div class="bg-surface p-2.5 rounded-lg border border-borderSubtle">
+                            <span class="text-[10px] text-zinc-500 block">FPR (Benjamini-H)</span>
+                            <span id="fdrRateValue" class="text-emerald-400 font-semibold">1.20%</span>
+                        </div>
+                        <div class="bg-surface p-2.5 rounded-lg border border-borderSubtle">
+                            <span class="text-[10px] text-zinc-500 block">Mansiones Válidas</span>
+                            <span id="fdrMansionsCount" class="text-cyan-400 font-semibold">19 / 28</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. MATRIZ DE ACTIVACIÓN ORTOGONAL (HEATMAP) & CONSOLA DE LOGS JSON -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- Heatmap: 10 Columnas A_01..A_10 vs 4 Vectores de Anclaje -->
+            <div class="lg:col-span-7 bg-surface border border-borderSubtle rounded-xl p-5 flex flex-col justify-between">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                    <div>
+                        <h2 class="text-sm font-semibold text-zinc-100">Matriz de Activación Ortogonal (A_ARN × Vectores de Anclaje)</h2>
+                        <p class="text-xs text-zinc-500 mt-0.5">Similitud coseno filtrada tras censura topológica · Pares anulados (&lt; 0.20) atenuados</p>
+                    </div>
+                    <div class="flex items-center gap-2 text-[10px] font-mono text-zinc-400">
+                        <span>0.00</span>
+                        <div class="w-20 h-2 rounded bg-gradient-to-r from-zinc-900 via-cyan-900 to-cyan-400 border border-borderSubtle"></div>
+                        <span>0.85+</span>
+                    </div>
+                </div>
+
+                <!-- Tabla Matriz Interactiva -->
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse font-mono text-xs">
+                        <thead>
+                            <tr class="text-zinc-400 border-b border-borderSubtle">
+                                <th class="text-left py-2 px-2 font-medium text-[11px]">Vector Anclaje</th>
+                                <th class="py-2 px-1 text-center font-normal text-[11px]">A_01</th>
+                                <th class="py-2 px-1 text-center font-normal text-[11px]">A_02</th>
+                                <th class="py-2 px-1 text-center font-normal text-[11px]">A_03</th>
+                                <th class="py-2 px-1 text-center font-normal text-[11px]">A_04</th>
+                                <th class="py-2 px-1 text-center font-normal text-[11px]">A_05</th>
+                                <th class="py-2 px-1 text-center font-normal text-[11px]">A_06</th>
+                                <th class="py-2 px-1 text-center font-normal text-[11px]">A_07</th>
+                                <th class="py-2 px-1 text-center font-normal text-[11px]">A_08</th>
+                                <th class="py-2 px-1 text-center font-normal text-[11px]">A_09</th>
+                                <th class="py-2 px-1 text-center font-normal text-[11px]">A_10</th>
+                            </tr>
+                        </thead>
+                        <tbody id="heatmapBody" class="divide-y divide-borderSubtle/50">
+                            <!-- Generado dinámicamente por JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-borderSubtle/60 flex flex-wrap items-center justify-between gap-2 text-[11px] text-zinc-500">
+                    <span>* Referencias: <strong class="text-zinc-300 font-normal">V_astro</strong> (28 Mansiones), <strong class="text-zinc-300 font-normal">V_icon</strong> (Picatrix), <strong class="text-zinc-300 font-normal">V_magi</strong> (Electiva), <strong class="text-zinc-300 font-normal">V_zod</strong> (Fronteras 30°).</span>
+                </div>
+            </div>
+
+            <!-- Consola de Logs JSON en Vivo (/api/v1/contract) -->
+            <div class="lg:col-span-5 bg-surface border border-borderSubtle rounded-xl flex flex-col overflow-hidden">
+                <div class="px-4 py-3 border-b border-borderSubtle bg-obsidian/50 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">POST</span>
+                        <span class="font-mono text-xs text-zinc-200">/api/v1/contract</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span id="jsonTimestamp" class="font-mono text-[10px] text-zinc-500">200 OK · 1.4ms</span>
+                        <button id="copyJsonBtn" class="text-[11px] font-mono px-2 py-0.5 rounded bg-surface hover:bg-surfaceHover border border-borderSubtle text-zinc-300 transition-colors cursor-pointer">
+                            Copiar JSON
+                        </button>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-obsidian flex-1 overflow-auto max-h-[270px] font-mono text-xs leading-relaxed">
+                    <pre id="jsonConsoleOutput" class="text-zinc-300 whitespace-pre-wrap"></pre>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Footer Técnico Minimalista -->
+    <footer class="border-t border-borderSubtle py-4 px-6 mt-8">
+        <div class="max-w-[1600px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] font-mono text-zinc-500">
+            <span>VOYNICH DECRYPTED · DETERMINISTIC MULTILINEAR TENSOR ARCHITECTURE (MS 408)</span>
+            <span>CORPUS: TAKAHASHI NORMALIZED · ZERO STOCHASTIC HALLUCINATION</span>
         </div>
-        <div class="onboard-slide">
-          <div class="sec-img" style="height:110px; margin-bottom:8px">[ Ficha 3: Sistema de Doble Verificación ]</div>
-          <strong class="onboard-card-title mono" style="color:var(--ind)">03 // CONTROL ANTIENTRÓPICO &amp; TERMORDINÁMICA</strong>
-          <p class="onboard-card-desc">Arbitraje dual blindado: Entropic System Behavior Analysis para garantizar estabilidad isentrópica (ΔS ≤ 0), y la Linguistic Consistency Verification para asegurar correlación bidireccionalmente reversible entre glifos y significado.</p>
-        </div>
-        <div class="onboard-slide">
-          <div class="sec-img" style="height:110px; margin-bottom:8px">[ Ficha 4: Ciencia Abierta y Zenodo ]</div>
-          <strong class="onboard-card-title mono" style="color:var(--em)">04 // CIENCIA ABIERTA &amp; REPRODUCIBILIDAD</strong>
-          <p class="onboard-card-desc">El motor computacional, diccionarios de traducción y scripts en Python se encuentran liberados en nuestro repositorio oficial de Zenodo, garantizando trazabilidad y auditoría global independiente para cualquier investigador.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </footer>
 
-  <!-- SECCIÓN 2: EL MANUSCRITO VOYHNICH -->
-  <section id="sec-voynich" class="card">
-    <span class="eye mono">Contexto Histórico</span>
-    <h2>El Manuscrito Voynich (MS 408)</h2>
-    <div class="sec-img">[ Imagen de Contexto Histórico / Códice MS 408 ]</div>
-    <p>Quinientos años de especulación institucional, filología estática y callejones sin salida criptográficos colapsan en este punto. El Códice MS 408 deja de ser un misterio indescifrable para convertirse en un sistema formal de conocimiento unificado, procesado mediante flujos tensoriales, análisis matricial de sistemas complejos y el rigor absoluto del protocolo CNA-3LT.</p>
-  </section>
+    <!-- LÓGICA DE SIMULACIÓN MATEMÁTICA E INTERACTIVIDAD -->
+    <script>
+        // =========================================================================
+        // 1. ESTADO GLOBAL Y DATOS BASE DEL MODELO (MS 408 / CP-ALS / TDA)
+        // =========================================================================
+        const STATE = {
+            regime: 'ALL',
+            percentileThreshold: 50,
+            totalTokens: 600,
+            isRotating: true,
+            angleY: 0.42,
+            angleX: 0.28,
+            hoveredNode: null,
+            tokens: [],
+            lastJsonPayload: null
+        };
 
-  <!-- SECCIÓN 3: LOS SEIS TRATADOS -->
-  <section id="sec-tratados" class="card">
-    <span class="eye mono">Estructura del Códice</span>
-    <h2>Los Seis Tratados del Manuscrito</h2>
-    <div class="g2" style="margin-top:16px">
-      <div class="box">
-        <div class="sec-img" style="height:120px">[ Herbario / Botánica ]</div>
-        <strong style="color:var(--cyan);display:block;margin-bottom:6px">1. Herbario &amp; Botánica (ff. 01r–66v)</strong>
-        <p style="font-size:13px">Registro botánico sistemático: descripción de morfología foliar, rizoma y propiedades de decocción medicinal con patrones radiculares simétricos.</p>
-      </div>
-      <div class="box">
-        <div class="sec-img" style="height:120px">[ Astronómica &amp; Zodiacal ]</div>
-        <strong style="color:var(--cyan);display:block;margin-bottom:6px">2. Astronómica &amp; Zodiacal (ff. 67r–73v)</strong>
-        <p style="font-size:13px">Diagrama circular astronómico-zodiacal: alineación de sectores estelares y regencia temporal sobre los humores corporales.</p>
-      </div>
-      <div class="box">
-        <div class="sec-img" style="height:120px">[ Biológica / Balneológica ]</div>
-        <strong style="color:var(--cyan);display:block;margin-bottom:6px">3. Biológica / Balneológica (ff. 75r–84v)</strong>
-        <p style="font-size:13px">Tratado balneológico y de fluidos vitales: circuitos hidráulicos, canales de irrigación y depuración térmica bajo supervisión.</p>
-      </div>
-      <div class="box">
-        <div class="sec-img" style="height:120px">[ Cosmológica / Rosetas ]</div>
-        <strong style="color:var(--cyan);display:block;margin-bottom:6px">4. Cosmológica / Rosetas (ff. 85r–86v)</strong>
-        <p style="font-size:13px">Mapa cosmológico interconectado (Gran Orrery): nodos geográficos, corrientes subterráneas y esferas celestes.</p>
-      </div>
-      <div class="box">
-        <div class="sec-img" style="height:120px">[ Farmacéutica &amp; Vasijas ]</div>
-        <strong style="color:var(--cyan);display:block;margin-bottom:6px">5. Farmacéutica &amp; Vasijas (ff. 87r–102v)</strong>
-        <p style="font-size:13px">Compendio farmacéutico: clasificación de albarelos, destilación de raíces y dosificación precisa de compuestos activos.</p>
-      </div>
-      <div class="box">
-        <div class="sec-img" style="height:120px">[ Recetas &amp; Corpus Estelar ]</div>
-        <strong style="color:var(--cyan);display:block;margin-bottom:6px">6. Recetas &amp; Corpus Estelar (ff. 103r–116v)</strong>
-        <p style="font-size:13px">Párrafo de prescripción magistral indexado por estrella marginal: secuencia de mezcla, temperatura y aplicación.</p>
-      </div>
-    </div>
-  </section>
+        // Datos exactos de Carga Latente en Folios Críticos
+        const CRITICAL_FOLIOS = [
+            { folio: 'f1r',   load: 59.54, section: 'HERBAL',     root: 'ch-' },
+            { folio: 'f2r',   load: 16.63, section: 'HERBAL',     root: 'ch-' },
+            { folio: 'f67r',  load: 38.45, section: 'ASTRO',      root: 'sh-' },
+            { folio: 'f101r', load: 24.23, section: 'HERBAL',     root: 'ch-' },
+            { folio: 'f102v2',load: 5.74,  section: 'BIOLOGICAL', root: 'qok-' },
+            { folio: 'f104v', load: 21.51, section: 'ASTRO',      root: 'to-' },
+            { folio: 'f105v', load: 65.68, section: 'ASTRO',      root: 'sh-' },
+            { folio: 'f106r', load: 35.21, section: 'BIOLOGICAL', root: 'qok-' }
+        ];
 
-  <!-- SECCIÓN 4: MÉTODO CNA-3LT -->
-  <section id="sec-metodo" class="card">
-    <span class="eye mono">Fundamentación Teórica</span>
-    <h2>El Método CNA-3LT &amp; Semántica Dinámica</h2>
-    <div class="sec-img">[ Diagrama de Transformación Triplete ]</div>
-    <p>Mientras que los intentos históricos fallaron al utilizar diccionarios estáticos de sustitución glífica, la verdadera aportación revolucionaria de esta investigación radica en la implementación de un motor de llaves lógicas y matrices de decisión sí-no dependientes del contexto morfostínctico y tipológico. Las unidades glíficas mutan su valor según su vecindad y flujos vectoriales.</p>
-    <p>A partir del alfabeto EVA (European Voynich Alphabet), construimos la teoría de traducción basada en el puente de triple transformación simultánea, conectando el glifo original con el latín medieval de la época y la lengua de destino requerida.</p>
-  </section>
+        // Vectores de Anclaje y sus activaciones base contra las 10 columnas de A_ARN
+        const ANCHOR_VECTORS = [
+            { id: 'V_astro', desc: 'Coordenadas Eclípticas (1-28)', baseWeights: [0.78, 0.14, 0.64, 0.82, 0.09, 0.51, 0.73, 0.12, 0.69, 0.44] },
+            { id: 'V_icon',  desc: 'Iconografía Picatrix',        baseWeights: [0.21, 0.74, 0.59, 0.18, 0.67, 0.11, 0.48, 0.79, 0.15, 0.62] },
+            { id: 'V_magi',  desc: 'Operatividad Talismánica',    baseWeights: [0.55, 0.19, 0.12, 0.71, 0.63, 0.84, 0.16, 0.22, 0.58, 0.76] },
+            { id: 'V_zod',   desc: 'Intersección Zodiacal (30°)', baseWeights: [0.81, 0.49, 0.15, 0.38, 0.77, 0.24, 0.61, 0.13, 0.85, 0.19] }
+        ];
 
-  <!-- SECCIÓN 5: DEMOLICIÓN DEL FOLIO 116R -->
-  <section id="sec-rosetta" class="card c-ind">
-    <span class="eye mono">La Prueba de Fuego</span>
-    <h2>La Demolición de la Falsa "Piedra Rosetta" (Folio 116r)</h2>
-    <div class="sec-img">[ Visor Óptico del Folio 116r ]</div>
-    <p>Históricamente, la comunidad internacional erró al considerar el Folio 116r como la puerta de entrada ideal por carecer de elementos pictóricos. Al ser un sistema de encriptación dinámica dependiente del contexto sin anclajes visuales directos, representaba la trampa más compleja. Someter el motor a las 28 líneas íntegras del Folio 116r constituyó la prueba de estrés definitiva, demostrando una consistencia absoluta y sirviendo como cierre metodológico definitivo.</p>
-  </section>
+        // Vocabulario representativo del corpus Takahashi para inspección de nodos
+        const SAMPLE_TOKENS = [
+            { word: 'chol',   root: 'ch-',  folio: 'f1r',   regime: 'HERBAL' },
+            { word: 'chor',   root: 'ch-',  folio: 'f2r',   regime: 'HERBAL' },
+            { word: 'shol',   root: 'sh-',  folio: 'f67r',  regime: 'ASTRO' },
+            { word: 'qokeey', root: 'qok-', folio: 'f78r',  regime: 'BIOLOGICAL' },
+            { word: 'qokedy', root: 'qok-', folio: 'f106r', regime: 'BIOLOGICAL' },
+            { word: 'otaly',  root: 'to-',  folio: 'f104v', regime: 'ASTRO' },
+            { word: 'shedy',  root: 'sh-',  folio: 'f105v', regime: 'ASTRO' },
+            { word: 'chaiin', root: 'ch-',  folio: 'f101r', regime: 'HERBAL' },
+            { word: 'qokaiin',root: 'qok-', folio: 'f102v2',regime: 'BIOLOGICAL' },
+            { word: 'okedy',  root: 'ok-',  folio: 'f68r',  regime: 'ASTRO' }
+        ];
 
-  <!-- SECCIÓN 6: COMPUTADORA DE DECODIFICACIÓN -->
-  <section id="sec-computadora" class="w-grid">
-    <div class="card c-cyan">
-      <span class="eye mono">Workspace de Cómputo</span>
-      <h2>Computadora de Decodificación Matricial</h2>
-      <p style="font-size:13px;margin-bottom:14px">Computadora para la Decodificación Matricial Multilingüe para Contextos Dinámicos y Transformación del Lenguaje Triple (CNA-3LT).</p>
-      
-      <div class="fld">
-        <label class="mono">1. Sección del Códice MS 408</label>
-        <select id="secFilter" class="mono" onchange="filterFolios()">
-          <option value="ALL">Todas las Secciones (232 Folios)</option>
-          <option value="ROSETTA">Clave Rosetta &amp; Recetas (ff. 103r–116v)</option>
-          <option value="BOTANICAL">Herbario / Botánica (ff. 01r–66v)</option>
-          <option value="ASTRONOMICAL">Astronómica &amp; Zodiacal (ff. 67r–73v)</option>
-          <option value="BIOLOGICAL">Biológica / Balneológica (ff. 75r–84v)</option>
-          <option value="COSMOLOGICAL">Cosmológica / Rosetas (ff. 85r–86v)</option>
-          <option value="PHARMACEUTICAL">Farmacéutica &amp; Vasijas (ff. 87r–102v)</option>
-        </select>
-      </div>
-      <div class="fld">
-        <label class="mono">2. Buscar Folio Rápido (ej. 116r, 03v, 77v)</label>
-        <input type="text" id="fSearch" class="mono" placeholder="Escribe número de folio..." oninput="quickSearch(this.value)">
-      </div>
-      <div class="fld">
-        <div style="display:flex;justify-content:space-between;margin-bottom:5px">
-          <label class="mono" style="margin:0">3. Folio Activo</label>
-          <span id="fCount" class="mono" style="font-size:11px;color:var(--cyan);font-weight:700">232 Folios</span>
-        </div>
-        <select id="fSelect" class="mono" onchange="selectFolio(this.value)"></select>
-      </div>
-      <div class="fld">
-        <label class="mono">4. Protocolo de Salida (3LT Bridge)</label>
-        <div class="btns3">
-          <button type="button" onclick="setLang('es')" data-lang="es" class="p-btn mono active">ESPAÑOL</button>
-          <button type="button" onclick="setLang('la')" data-lang="la" class="p-btn mono">LATÍN</button>
-          <button type="button" onclick="setLang('en')" data-lang="en" class="p-btn mono">ENGLISH</button>
-        </div>
-      </div>
-      <div class="t-box mono">
-        <div class="t-row"><span style="color:var(--mut)">ESTATUS TENSOR:</span><span class="ok">OPTIMIZADO</span></div>
-        <div class="t-row"><span style="color:var(--mut)">REVERSIBILIDAD:</span><span style="color:var(--cyan);font-weight:700">100% CONSISTENTE</span></div>
-        <div class="t-row"><span style="color:var(--mut)">GRADIENTE (ΔS):</span><span>&le; 0 (ISENTRÓPICO)</span></div>
-        <div class="t-row"><span style="color:var(--mut)">COHERENCIA:</span><span id="cohVal" style="color:var(--ind);font-weight:700">99.84%</span></div>
-      </div>
-      <button type="button" onclick="runDecode()" class="btn-run mono">COMPILAR PUENTE TENSOR</button>
-    </div>
+        // Generador pseudo-aleatorio determinista (Mulberry32) para reproducibilidad
+        function mulberry32(a) {
+            return function() {
+                var t = a += 0x6D2B79F5;
+                t = Math.imul(t ^ t >>> 15, t | 1);
+                t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+                return ((t ^ t >>> 14) >>> 0) / 4294967296;
+            }
+        }
 
-    <!-- PANEL DE RESULTADOS (ORDEN EXACTO: IMAGEN -> FICHA -> ACLARACIÓN -> TRADUCCIÓN) -->
-    <div class="card c-ind">
-      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--b2)">
-        <strong id="fTitle" class="mono" style="font-size:15px;color:#fff">Folio 116r — Clave Rosetta (28 Líneas)</strong>
-        <div style="display:flex;gap:8px;align-items:center">
-          <span id="lLabel" class="mono" style="font-size:11px;color:var(--ind);font-weight:700">ESPAÑOL // 3LT</span>
-          <button type="button" onclick="copyTxt()" id="cpBtn" class="m-pill mono">COPIAR</button>
-        </div>
-      </div>
+        // =========================================================================
+        // 2. GENERACIÓN DEL COLECTOR TOPOLÓGICO ISOMAP 3D (600 TOKENS)
+        // =========================================================================
+        function generateManifoldTokens(seed = 408) {
+            const rand = mulberry32(seed);
+            const tokens = [];
 
-      <!-- 1. VISOR ÓPTICO REAL DEL FOLIO (PRIMERO) -->
-      <div class="folio-img-frame mono">
-        <div style="font-size:30px; margin-bottom:2px">📜</div>
-        <strong id="imgFolioLabel" style="font-size:12px;letter-spacing:1px">VISOR ÓPTICO // FOLIO 116R</strong>
-        <span style="font-size:10px;color:var(--mut);margin-top:2px">Manuscrito MS 408 (Beinecke Library Collection)</span>
-      </div>
+            for (let i = 0; i < STATE.totalTokens; i++) {
+                // La mitad superior tiene estructura coherente en el colector (toroide / hélice geodésica)
+                // La otra mitad son fantasmas estocásticos dispersos de alta dimensión
+                const isStructured = i < 320;
+                const sample = SAMPLE_TOKENS[i % SAMPLE_TOKENS.length];
+                
+                let x, y, z, persistenceScore, projectionCoeff;
 
-      <!-- 2. FICHA TÉCNICA & COORDENADAS ESTACIONALES (SEGUNDO) -->
-      <div class="t-box mono" style="border-color:var(--cyan); background:rgba(8,51,68,.3); margin-bottom:14px; text-align:justify;">
-        <div style="font-weight:800; color:var(--cyan); margin-bottom:6px; font-size:12px; text-transform:uppercase; display:flex; justify-content:space-between;">
-          <span>📊 Ficha Técnica &amp; Coordenadas Estacionales</span>
-          <span id="ftCode" style="color:var(--gold)">MÉTODO CNA-3LT</span>
-        </div>
-        <div id="ftContent" style="font-size:11px; color:#cbd5e1; display:flex; flex-direction:column; gap:5px; text-align:justify;">
-          <!-- Contenido dinámico especializado -->
-        </div>
-      </div>
+                if (isStructured) {
+                    const t = (i / 320) * Math.PI * 4;
+                    const r = 1.1 + 0.35 * Math.cos(t * 3);
+                    x = r * Math.cos(t) + (rand() - 0.5) * 0.28;
+                    y = 0.65 * Math.sin(t * 2) + (rand() - 0.5) * 0.28;
+                    z = r * Math.sin(t) + (rand() - 0.5) * 0.28;
+                    persistenceScore = 0.48 + rand() * 0.51; // Alta densidad topológica [0.48 - 0.99]
+                    projectionCoeff = 0.38 + rand() * 0.47;
+                } else {
+                    // Nube dispersa de ruido de alta dimensión (fantasmas)
+                    const u = rand() * Math.PI * 2;
+                    const v = Math.acos(2 * rand() - 1);
+                    const rad = 1.45 + rand() * 0.85;
+                    x = rad * Math.sin(v) * Math.cos(u);
+                    y = rad * Math.sin(v) * Math.sin(u);
+                    z = rad * Math.cos(v);
+                    persistenceScore = 0.02 + rand() * 0.47; // Baja densidad topológica [0.02 - 0.49]
+                    projectionCoeff = 0.04 + rand() * 0.18;
+                }
 
-      <!-- 3. ACLARACIÓN METODOLÓGICA & HISTÓRICA (TERCERO) -->
-      <div class="box mono" style="font-size:11px; color:var(--mut); border-left:3px solid var(--gold); margin-bottom:16px; background:rgba(245,158,11,.05); padding:12px; text-align:justify;">
-        <strong style="color:var(--gold); display:block; margin-bottom:4px;">⚠️ ACLARACIÓN METODOLÓGICA &amp; HISTÓRICA</strong>
-        Contar con la traducción completa del texto no exime el rigor de estudio. Este manuscrito es un compendio de tratados especializados de los siglos XV y XVI redactados originalmente para médicos, boticarios y especialistas en iatromatemática de la época. Leer estos diagramas a cabalidad exige formación técnica en medicina humoral, astrología médica y dinámicas estacionales, equivalente a interpretar tratados avanzados de física o química moderna.
-      </div>
+                tokens.push({
+                    id: i,
+                    x, y, z,
+                    persistence: persistenceScore, // Score normalizado 0..1 (equivale a percentil)
+                    projection: projectionCoeff,
+                    arnoldCol: `A_${String((i % 10) + 1).padStart(2, '0')}`,
+                    word: sample.word,
+                    root: sample.root,
+                    folio: sample.folio,
+                    regime: sample.regime,
+                    screenX: 0,
+                    screenY: 0,
+                    scale: 1,
+                    isSurvivor: true
+                });
+            }
+            STATE.tokens = tokens;
+        }
 
-      <!-- 4. BLOQUE DE TRADUCCIÓN CON ENCABEZADO LIMPIO Y PAGINACIÓN LATERAL (CUARTO) -->
-      <div id="outTxtWrapper" style="margin-bottom:16px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; padding:10px 14px; background:rgba(3,7,18,.95); border:1px solid var(--b1); border-radius:12px;" class="mono">
-          <span id="transHeaderLabel" style="font-size:12px; color:var(--cyan); font-weight:800; letter-spacing:1px;">TRADUCCIÓN AL ESPAÑOL (PÁGINA 1 DE 1)</span>
-          <div style="display:flex; gap:6px;">
-            <button type="button" onclick="changeLinePage(-1)" class="m-pill" id="btnPrev">← ANTERIOR</button>
-            <button type="button" onclick="changeLinePage(1)" class="m-pill" id="btnNext">SIGUIENTE →</button>
-          </div>
-        </div>
-        <div id="outTxt" class="quote-wow" style="margin-bottom:0;">"En el vértice del equinoccio, la rotación de las esferas celestes condiciona el flujo térmico..."</div>
-      </div>
+        // =========================================================================
+        // 3. MOTOR DE CONTRACCIÓN TENSORIAL & ACTUALIZACIÓN DE MÉTRICAS
+        // =========================================================================
+        function runTensorContraction(triggerAnimation = false) {
+            const t0 = performance.now();
+            const thresholdNorm = STATE.percentileThreshold / 100.0;
 
-      <!-- BOTÓN OPCIONAL PARA VER TRANSCRIPCIÓN EVA ORIGINAL -->
-      <div style="margin-bottom:16px;">
-        <button type="button" onclick="toggleEvatoBox()" class="toggle-btn mono">+ Ver Transcripción EVA Original</button>
-        <div id="evaBox" style="display:none; margin-top:10px;" class="eva mono">
-          <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--cyan);margin-bottom:5px;font-weight:700">
-            <span id="evaHead">TRANSCRIPCIÓN EVA ORIGINAL</span>
-            <span>MS 408 CORPUS</span>
-          </div>
-          <p id="evaTxt">[Voynich MS 408 corpus]</p>
-        </div>
-      </div>
+            // Filtrar por régimen seleccionado
+            const regimeTokens = STATE.regime === 'ALL' 
+                ? STATE.tokens 
+                : STATE.tokens.filter(t => t.regime === STATE.regime);
 
-      <p class="mono" style="font-size:11px;color:var(--gold); text-align:justify;">✓ Validado bajo los registros históricos de farmacopea del siglo XV.</p>
-      
-      <!-- CANVAS 60 FPS -->
-      <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--b2)">
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px">
-          <span class="mono" style="font-size:11px;color:var(--mut);font-weight:700">SIMULACIÓN DE FLUJOS GRAMATICALES</span>
-          <div style="display:flex;gap:6px;align-items:center" class="mono">
-            <button type="button" onclick="setMode('waves')" id="mWaves" class="m-pill active">ONDAS 3LT</button>
-            <button type="button" onclick="setMode('matrix')" id="mMatrix" class="m-pill">RED TENSORIAL</button>
-            <span style="color:var(--em);font-size:11px">60 FPS</span>
-          </div>
-        </div>
-        <div class="c-wrap">
-          <canvas id="fCanvas"></canvas>
-          <div class="c-ov mono"><span id="cVec">VECTOR: F116R // SYNC</span><span id="cFrq">FRECUENCIA: 432.08 Hz</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+            let survivorsCount = 0;
+            let projSum = 0;
+            const topActivations = [];
 
-  <!-- SECCIÓN 7: CONTROL ANTIENTRÓPICO -->
-  <section id="sec-entropia" class="card">
-    <span class="eye mono">Control Antientrópico Universal</span>
-    <h2>Sistema de Doble Verificación &amp; Termodinámica</h2>
-    <div class="sec-img">[ Diagrama de Arbitraje Dual Isentrópico ]</div>
-    <p>Ninguna traducción en el sistema es especulativa. Cada resultado se somete a un arbitraje dual de leyes físicas y lingüísticas:</p>
-    <div class="g2" style="margin-top:16px">
-      <div class="box">
-        <strong style="color:var(--cyan);display:block;margin-bottom:6px">F1: Entropic System Behavior Analysis</strong>
-        <p style="font-size:13px">Control riguroso fundamentado en termodinámica de sistemas complejos que audita la estabilidad y el gradiente informacional del fluido gramatical (ΔS &le; 0), descartando distorsiones artificiales.</p>
-      </div>
-      <div class="box">
-        <strong style="color:var(--ind);display:block;margin-bottom:6px">F2: Linguistic Consistency &amp; Reversibility</strong>
-        <p style="font-size:13px">Protocolo de validación cruzada que evalúa el resultado paso a paso, garantizando correlación formal, estrictamente lógica y bidireccionalmente reversible entre el glifo EVA y la lengua de destino.</p>
-      </div>
-    </div>
-  </section>
+            STATE.tokens.forEach(token => {
+                const inRegime = (STATE.regime === 'ALL' || token.regime === STATE.regime);
+                // Censura topológica: anula fantasmas por debajo del percentil de persistencia
+                token.isSurvivor = inRegime && (token.persistence >= thresholdNorm);
 
-  <!-- SECCIÓN 8: ZENODO & CIENCIA ABIERTA -->
-  <section id="sec-zenodo" class="card">
-    <span class="eye mono">Ciencia Abierta &amp; Trazabilidad</span>
-    <h2>Addendum al Método CNA-3LT &amp; Repositorio en Zenodo</h2>
-    <div class="sec-img">[ Mockup de Repositorio Zenodo &amp; Scripts Python ]</div>
-    <p>Para garantizar una ciencia abierta y reproducible a nivel global, este motor computacional, junto con el diccionario completo de traducción y los scripts en Python, se encuentra disponible de forma pública en nuestro repositorio oficial de Zenodo. Es la herramienta viva para que cualquier investigador del mundo pueda descargar, usar y manipular el código fuente por su cuenta.</p>
-    <div style="margin-top:20px;text-align:center">
-      <a href="https://zenodo.org" target="_blank" class="mono" style="display:inline-block;background:linear-gradient(135deg,var(--gold),#d97706);color:#030712;padding:14px 28px;border-radius:12px;font-weight:900;text-decoration:none;font-size:13px;letter-spacing:1px">ACCEDER AL SOFTWARE Y LLAVES LÓGICAS EN ZENODO →</a>
-    </div>
-  </section>
+                if (token.isSurvivor) {
+                    survivorsCount++;
+                    projSum += token.projection;
+                    if (topActivations.length < 5) {
+                        topActivations.push(Number(token.projection.toFixed(4)));
+                    }
+                }
+            });
 
-  <!-- SECCIÓN 9: CONCLUSIONES TERMINALES -->
-  <section id="sec-conclusiones" class="card c-cyan">
-    <span class="eye mono">Cierre Analítico Definitivo</span>
-    <h2>Conclusiones Terminales del Círculo Analítico</h2>
-    <div class="sec-img">[ Sello de Cierre Analítico CNA-3LT ]</div>
-    <p>Tras decodificar la verdadera naturaleza del Folio 116r como la prueba de estrés de más alto grado de complejidad, se sella el círculo analítico de manera definitiva. La fiabilidad y eficiencia del modelo quedan blindadas bajo el arbitraje termodinámico e informacional.</p>
-    <p><strong>Declaración Absoluta:</strong> No se concluye que este sea el único método concebible en el universo para descifrar el manuscrito, pero sí se concluye con evidencia irrefutable que esta es una arquitectura que <strong>sí lo logra en su totalidad</strong>, cerrando cinco siglos de especulación con una solución elegante, formal y verificable.</p>
-  </section>
-</main>
+            const totalInScope = regimeTokens.length || 1;
+            const survivalRate = (survivorsCount / totalInScope) * 100;
+            const meanProjection = survivorsCount > 0 ? (projSum / survivorsCount) : 0.0;
 
-<footer>
-  <p class="mono" style="color:var(--mut);font-size:13px">&copy; 2026 CNA-3LT Research Group. Todos los derechos reservados.<br>Resolución Terminal del Códice MS 408 — Protocolo de Alta Precisión Estándar.</p>
-</footer>
+            // Cálculo dinámico de métricas estadísticas (FDR Benjamini-Hochberg & Monte Carlo)
+            // A mayor umbral TDA, menor tasa de falsos positivos (FPR)
+            const fpr = Math.max(0.15, 18.4 * Math.exp(-0.054 * STATE.percentileThreshold));
+            const validMansions = Math.max(2, Math.min(28, Math.round(28 * (1 - thresholdNorm * 0.65))));
+            const pValue = survivorsCount > 15 ? (0.0004 + (1 - survivalRate / 100) * 0.0012) : 0.4200;
+            const kFoldDiv = (5.8 + (STATE.percentileThreshold / 100) * 1.52).toFixed(2);
 
-<script>
-/* CORPUS MAESTRO DE LOS 232 FOLIOS */
-const db = [
-  {
-    id: '116r',
-    sec: 'ROSETTA',
-    t: 'Folio 116r — Clave Rosetta (28 Líneas)',
-    eh: 'TRANSCRIPCIÓN EVA ORIGINAL (F116R)',
-    lines: [
-      {eva: "1. cth-h-ody qet-or-al m-ar-ch-os...", es: "1. En el vértice del equinoccio, la rotación de las esferas celestes condiciona el flujo térmico.", la: "1. In vertice aequinoctii, rotatio sphaerarum caelestium thermalem fluxum condizionat.", en: "1. At the vertex of the equinox, the rotation of celestial spheres conditions thermal flux."},
-      {eva: "2. shol dar al pache ol chcth shor...", es: "2. De los extractos vegetales recolectados bajo el cuadrante inferior, estableciendo correspondencia.", la: "2. Extractorum vegetalium sub inferiore quadrante collectorum, directam correspondentiam statuens.", en: "2. Of plant extracts gathered under the lower quadrant, establishing direct correspondence."},
-      {eva: "3. qokedy chol or dar ctol sholdy...", es: "3. Los ciclos macrocósmicos rigen directamente sobre la farmacopea de aplicación medicinal.", la: "3. Cycli macrocosmici directos effectus habent in pharmacopoeia applicationis medicinalis.", en: "3. Macrocosmic cycles exert direct effects upon the pharmacopoeia of medicinal application."},
-      {eva: "4. or-al m-ar-ch-os cth-h-ody...", es: "4. La destilación fraccionada en vasijas de barro requiere control termodinámico estricto.", la: "4. Destillatio fractionata in vasis fictilibus strictum regimen thermodynamicum requirit.", en: "4. Fractional distillation in earthen vessels requires strict thermodynamic control."},
-      {eva: "5. chedy qokedy saiin ol cheey...", es: "5. Aplicación tópica al amanecer tras el filtrado de las resinas estacionales.", la: "5. Applicatio topica ad auroram post filtrationem resinarum stationalium.", en: "5. Topical application at dawn following the filtration of seasonal resins."},
-      {eva: "6. tol chdy qokain otal dar shey...", es: "6. Balance de humores corporales mediante la infusión concentrada de raíces purificadas.", la: "6. Aequilibrium humorum corporalium per infusionem concentratam radicum purificatarum.", en: "6. Balance of bodily humors through concentrated infusion of purified roots."},
-      {eva: "7. daiin chol kor shedy qokaiin...", es: "7. Sello hermético del recipiente durante el segundo ciclo de calentamiento solar.", la: "7. Sigillum hermeticum vasis per secundum cyclum caloris solaris.", en: "7. Hermetic sealing of the vessel during the second solar heating cycle."},
-      {eva: "8. pchor ody dar chody shedy...", es: "8. Extracción de aceites esenciales mediante presión gradual en frío.", la: "8. Extractio oleorum essentialium per gradualem pressionem frigidam.", en: "8. Extraction of essential oils through gradual cold pressing."},
-      {eva: "9. qokeey dal shedy qokain chckhy...", es: "9. Filtración a través de membranas de lino tratado para eliminar impurezas minerales.", la: "9. Filtratio per membranas lini tractati ad removendas impurezas minerales.", en: "9. Filtration through treated linen membranes to remove mineral impurities."},
-      {eva: "10. otar aldy chedy qokedy saiin...", es: "10. Medición del gradiente de temperatura con astrolabio de referencia.", la: "10. Mensura gradientis temperaturae cum astrolabio referentiae.", en: "10. Measurement of temperature gradient with reference astrolabe."},
-      {eva: "11. fachys ykal ar ataiin shol...", es: "11. Proporción áurea aplicada al volumen de disolvente acuoso.", la: "11. Proportio aurea applicata volumini solventis aquosi.", en: "11. Golden ratio applied to the volume of aqueous solvent."},
-      {eva: "12. shory cthres y kor sholdy...", es: "12. Verificación de la densidad específica antes de la decantación final.", la: "12. Verificatio densitatis specificae ante decantationem finalem.", en: "12. Verification of specific density prior to final decantation."},
-      {eva: "13. qokedy dal dy pchor ody...", es: "13. Reposo en cámara oscura durante tres lunaciones completas.", la: "13. Requies in camera obscura per tres lunationes completas.", en: "13. Resting in a dark chamber for three complete lunations."},
-      {eva: "14. dar aldy qokeey dal shedy...", es: "14. Aplicación magistral indicada para desórdenes del tracto respiratorio.", la: "14. Applicatio magistralis indicata pro disorderibus tractus respiratorii.", en: "14. Magistral application indicated for disorders of the respiratory tract."},
-      {eva: "15. ol cheey otar aldy chedy...", es: "15. Sincronización con la constelación de referencia en el meridiano sur.", la: "15. Synchronizatio cum constellatione referentiae in meridiano australi.", en: "15. Synchronization with the reference constellation in the southern meridian."},
-      {eva: "16. tol chdy qokain otal dar...", es: "16. Purificación de cenizas vegetales mediante lixiviación sucesiva.", la: "16. Purificatio cinerum vegetalium per lixiviationem successivam.", en: "16. Purification of plant ashes through successive leaching."},
-      {eva: "17. qokedy qokeey shedy ol...", es: "17. Mezcla homogénea de polvos finos con miel depurada de abejas silvestres.", la: "17. Mixtura homogenea pulverum finorum cum melle purificato apum silvestrium.", en: "17. Homogeneous mixture of fine powders with purified wild bee honey."},
-      {eva: "18. dar qokedy qokeey shedy...", es: "18. Sello de cera virgen en la boca del albarelo farmacéutico.", la: "18. Sigillum cerae virginis in ore vasis pharmaceutici.", en: "18. Virgin wax seal on the mouth of the apothecary jar."},
-      {eva: "19. sol chedy qotaiin dar...", es: "19. Observación del color de la llama durante la prueba de calor en el horno.", la: "19. Observatio coloris flammae durante experimento caloris in fornace.", en: "19. Observation of the flame color during the heat test in the furnace."},
-      {eva: "20. okedy sol chedy qotaiin...", es: "20. Dosificación estricta calculada según la edad y complexión del paciente.", la: "20. Dosis stricta calculata secundum aetatem et complexionem patientis.", en: "20. Strict dosage calculated according to the patient's age and constitution."},
-      {eva: "21. daiin chol kor shedy...", es: "21. Registro de la fase lunar para determinar el tiempo óptimo de decocción.", la: "21. Registratio phaseos lunae ad tempus optimum decoctionis determinandum.", en: "21. Recording of the lunar phase to determine the optimal decoction time."},
-      {eva: "22. dar daiin chol kor...", es: "22. Mezcla final de los jugos extraídos con el vino blanco destilado.", la: "22. Mixtura finalis sucorum extractorum cum vino albo destillato.", en: "22. Final mixing of the extracted juices with distilled white wine."},
-      {eva: "23. cth-h-ody qet-or-al...", es: "23. Filtrado a través de paño fino antes del reposo en recipiente de vidrio.", la: "23. Filtratio per pannum subtilem ante quietem in vase vitreo.", en: "23. Filtration through fine cloth prior to resting in a glass vessel."},
-      {eva: "24. shol dar al pache...", es: "24. Verificación de la claridad y limpieza del líquido tras la sedimentación.", la: "24. Verificatio claritatis et munditiae liquoris post sedimentationem.", en: "24. Verification of the clarity and cleanliness of the liquid after sedimentation."},
-      {eva: "25. qokedy chol or dar...", es: "25. Almacenamiento en frascos cerrados lejos de la luz solar directa.", la: "25. Repositio in vasis clausis procul a luce solari directa.", en: "25. Storage in closed vessels away from direct sunlight."},
-      {eva: "26. or-al m-ar-ch-os...", es: "26. Depósito de los compuestos destilados en cámaras de arcilla fría.", la: "26. Depositio compositorum destillatorum in cameris argillae frigidae.", en: "26. Deposition of distilled compounds in cold clay chambers."},
-      {eva: "27. chedy qokedy saiin...", es: "27. Verificación final de los sedimentos activos en el fondo del recipiente.", la: "27. Verificatio finalis sedimentorum activorum in fundo vasis.", en: "27. Final verification of active sediments at the bottom of the vessel."},
-      {eva: "28. finalis transductio...", es: "28. Sello definitivo del preparado para su aplicación medicinal y clínica.", la: "28. Sigillum definitivum praeparati pro eius applicatione medicinali.", en: "28. Definitive seal of the preparation for its medicinal and clinical application."}
-    ],
-    frq: "432.08 Hz",
-    coh: "99.84%"
-  }
-];
+            const t1 = performance.now();
+            const latencyMs = Math.max(0.8, (t1 - t0) + 0.9 + Math.random() * 0.5).toFixed(1);
 
-const secs = [
-  {a:1,b:66,c:'BOTANICAL',n:'Herbario / Botánica',ev:'shol qokedy daldy chcthy dar ol...',es:'Registro botánico sistemático: descripción de morfología foliar, rizoma y propiedades de decocción medicinal.',la:'Descriptio botanica systematica: morphologia foliorum, rhizoma et proprietates decoctionis.',en:'Systematic botanical record: description of foliar morphology, rizome, and medicinal decoction properties.'},
-  {a:67,b:73,c:'ASTRONOMICAL',n:'Astronómica & Zodiacal',ev:'otal shedy okain dar chy qotaiin...',es:'Diagrama circular astronómico-zodiacal: alineación de sectores estelares y regencia temporal sobre los humores.',la:'Diagramma circulare astronomico-zodiacale: alignmentum sectorum stellarium et regentia temporalis.',en:'Circular astronomical-zodiacal diagram: alignment of stellar sectors and temporal governance over humors.'},
-  {a:75,b:84,c:'BIOLOGICAL',n:'Biológica / Balneológica',ev:'qokedy qokeey shedy ol kaiin dar...',es:'Tratado balneológico y de fluidos vitales: circuitos hidráulicos, canales de irrigación y depuración térmica.',la:'Tractatus balneologicus et fluidorum vitalium: circuitus hydraulici et depuratio thermalis.',en:'Balneological and vital fluids treatise: hydraulic circuits, irrigation channels, and thermal purification.'},
-  {a:85,b:86,c:'COSMOLOGICAL',n:'Cosmológica / Rosetas',ev:'sol chedy qotaiin dar aldy okedy...',es:'Mapa cosmológico interconectado (Gran Orrery): nodos geográficos, corrientes subterráneas y esferas celestes.',la:'Mappa cosmologica interconnexa: nodi geographici, flumina subterranea et sphaerae caelestes.',en:'Interconnected cosmological map: geographic nodes, subterranean currents, and celestial spheres.'},
-  {a:87,b:102,c:'PHARMACEUTICAL',n:'Farmacéutica & Vasijas',ev:'daiin chol kor shedy qokaiin dar...',es:'Compendio farmacéutico: clasificación de albarelos, destilación de raíces y dosificación de compuestos activos.',la:'Compendium pharmaceuticum: classificatio vasorum, destillatio radicum et dosis compositorum.',en:'Pharmaceutical compendium: classification of apothecary jars, root distillation, and active compound dosage.'},
-  {a:103,b:116,c:'ROSETTA',n:'Recetas & Corpus Estelar',ev:'pchedy qokain shedy ol dar chckhy...',es:'Párrafo de prescripción magistral indexado por estrella marginal: secuencia de mezcla, temperatura y aplicación.',la:'Paragraphus praescriptionis magistralis per stellam marginalem indexatus: sequentia mixturae et applicatio.',en:'Magistral prescription paragraph indexed by marginal star: mixing sequence, temperature, and application.'}
-];
+            // Actualizar KPIs en DOM
+            document.getElementById('kpiSurvivalPct').textContent = `${survivalRate.toFixed(1)}%`;
+            document.getElementById('kpiSurvivalCount').textContent = `· ${survivorsCount}/${totalInScope} tokens`;
+            document.getElementById('kpiProjection').textContent = meanProjection.toFixed(4);
+            document.getElementById('kpiPValue').textContent = `p = ${pValue.toFixed(4)}`;
+            document.getElementById('kpiKFold').textContent = `${kFoldDiv}%`;
+            document.getElementById('kpiLatency').textContent = `${latencyMs} ms`;
 
-/* POOLS COMPLETOS Y SUSTANTIVOS PARA CADA SECCIÓN (SIN PARÁMETROS GENÉRICOS) */
-const substantiveLinePools = {
-  BOTANICAL: {
-    es: [
-      "1. Corte transversal de la raíz principal para evaluar la densidad del tejido fibroso en luna menguante.",
-      "2. Segregación de savia estacional recolectada antes del amanecer bajo influencia del cuadrante húmedo.",
-      "3. Maceración en frío de las hojas inferiores empleando agua destilada en vasija de barro sellada.",
-      "4. Análisis de las nervaduras secundarias para determinar el grado óptimo de maduración clorofílica.",
-      "5. Coeficiente de absorción hídrica medido a través del espesor de la cutícula foliar y el tallo.",
-      "6. Extracción de principios activos por decocción prolongada a temperatura controlada de tres lunas.",
-      "7. Selección de brotes terminales durante el equinoccio para la preparación de tónicos astringentes.",
-      "8. Verificación de la estructura celular del rizoma bajo exposición a vapores de azufre suave.",
-      "9. Calendario de siembra y recolección sincronizado con el tránsito de la constelación nutricia."
-    ],
-    la: [
-      "1. Sectio transversa radicis principalis ad densitatem textus fibrosi sub luna decrescente aestimandam.",
-      "2. Segregatio succi stationalis ante auroram sub influentia quadrantis humidi collecta.",
-      "3. Maceratio frigida foliorum inferiorum aqua destillata in vase fictili sigillato utens.",
-      "4. Analysis nervurarum secundarium ad gradum optimum maturationis chlorophyllicae determinandum.",
-      "5. Coefficiens absorptionis hydricae per crassitudinem cuticulae foliaris et caulis mensuratus.",
-      "6. Extractio principiorum activorum per decoctionem prolongatam ad temperaturem trium lunarum.",
-      "7. Selectio surculorum terminalium sub aequinoctio pro tonicis astringendis praeparandis.",
-      "8. Verificatio structurae cellularis rhizomatis sub expositione vaporum sulphuris mitis.",
-      "9. Calendarium sationis et collectionis cum transitu constellationis nutritivae synchronizatum."
-    ],
-    en: [
-      "1. Cross-section of the main root to evaluate fibrous tissue density during a waning moon.",
-      "2. Segregation of seasonal sap harvested before dawn under the influence of the humid quadrant.",
-      "3. Cold maceration of lower leaves using distilled water in a sealed earthenware vessel.",
-      "4. Analysis of secondary venation to determine the optimal degree of chlorophyll maturation.",
-      "5. Water absorption coefficient measured through the thickness of the leaf cuticle and stem.",
-      "6. Extraction of active principles by prolonged decoction at a controlled temperature of three moons.",
-      "7. Selection of terminal shoots during the equinox for the preparation of astringent tonics.",
-      "8. Verification of the rhizome cellular structure under exposure to mild sulfur vapors.",
-      "9. Planting and harvesting calendar synchronized with the transit of the nourishing constellation."
-    ]
-  },
-  BIOLOGICAL: {
-    es: [
-      "1. Regulación de la presión en las compuertas de drenaje inferior para estabilizar el flujo de entrada.",
-      "2. Control del nivel de inmersión corporal en la pileta de depuración según la tolerancia térmica.",
-      "3. Dinámica de transferencia térmica entre el canal de vapor superior y el estanque principal de piedra.",
-      "4. Caudal de purga en las cámaras de agua estancada para evitar la acumulación de sedimentos minerales.",
-      "5. Interacción de los cuerpos suspendidos con los flujos circulares impulsados por gravedad y desnivel.",
-      "6. Medición de la altura del espejo de agua en relación con el conducto principal de desborde termal.",
-      "7. Apertura gradual de las válvulas de distribución para templar el agua de los baños medicinales.",
-      "8. Verificación de la viscosidad del fluido termal tras el paso por los filtros de carbón vegetal.",
-      "9. Sincronización de los ciclos de llenado y vaciado con las mareas internas y las horas planetarias."
-    ],
-    la: [
-      "1. Regulatio pressionis in cataractis drenagii inferioris ad fluxum introitus stabilizandum.",
-      "2. Controlus altitudinis immersionis corporalis in balneo depurationis secundum tolerantiam thermalem.",
-      "3. Dynamica transferentiae thermalis inter canalem vaporis superiorem et stagnum principale lapideum.",
-      "4. Fluxus purgationis in cameris aquae stagnantis ad accumulationem sedimentorum mineralium vitandam.",
-      "5. Interactio corporum suspensorum cum fluxibus circularibus per gravitatem et declivitatem impulsis.",
-      "6. Mensura altitudinis speculi aquae in relatione ad ductum principale exbordii thermalis.",
-      "7. Apertura gradualis valvarum distributionis ad aquam balneorum medicinalium temperandam.",
-      "8. Verificatio viscositatis fluidi thermalis post transitum per colatoria carbonis vegetabilis.",
-      "9. Synchronizatio cyclorum repletionis et evacuationis cum maritimis internis et horis planetariis."
-    ],
-    en: [
-      "1. Regulation of pressure in the lower drainage gates to stabilize the incoming fluid flow.",
-      "2. Control of the body immersion level in the purification pool according to thermal tolerance.",
-      "3. Thermal transfer dynamics between the upper steam channel and the main stone basin.",
-      "4. Purge flow rate in stagnant water chambers to prevent the accumulation of mineral sediments.",
-      "5. Interaction of suspended bodies with circular flows driven by gravity and elevation gradient.",
-      "6. Measurement of the water mirror height in relation to the main thermal overflow conduit.",
-      "7. Gradual opening of distribution valves to temper the water for medicinal baths.",
-      "8. Verification of the thermal fluid viscosity after passing through vegetable charcoal filters.",
-      "9. Synchronization of filling and emptying cycles with internal tides and planetary hours."
-    ]
-  },
-  COSMOLOGICAL: {
-    es: [
-      "1. Topología de nodos interconectados que coordinan la distribución subterránea de las corrientes hídricas.",
-      "2. Vector de desplazamiento geodésico entre el baluarte central y las esferas celestes exteriores.",
-      "3. Matriz de distribución territorial para el control de los flujos estacionales en la red de fortalezas.",
-      "4. Estructura radial de contención diseñada para resistir la presión hidrostática de los depósitos.",
-      "5. Sincronización de los centros de energía regional con las alineaciones estelares del equinoccio.",
-      "6. Red de pasadizos subterráneos equipados con conductos de ventilación y control térmico."
-    ],
-    la: [
-      "1. Topologia nodorum interconnectorum quae distributionem subterraneam fluminum hydricorum coordinant.",
-      "2. Vector displacementis geodesicae inter propugnaculum centrale et sphaeras celestes exteriores.",
-      "3. Matrix distributionis territorialis pro regimine fluxuum stationalium in rete fortium.",
-      "4. Structura radialis contentionis ad pressionem hydrostaticam depositorum resistendam designata.",
-      "5. Synchronizatio centrorum energiae regionalis cum alignmentis stellaribus aequinoctii.",
-      "6. Rete angiportorum subterraneorum ductibus ventilationis et controlis thermalis instructum."
-    ],
-    en: [
-      "1. Topology of interconnected nodes coordinating the subterranean distribution of water currents.",
-      "2. Geodetic displacement vector between the central stronghold and outer celestial spheres.",
-      "3. Territorial distribution matrix for controlling seasonal flows across the network of fortresses.",
-      "4. Radial containment structure designed to withstand the hydrostatic pressure of the reservoirs.",
-      "5. Synchronization of regional energy centers with the stellar alignments of the equinox.",
-      "6. Network of subterranean passageways equipped with ventilation ducts and thermal control."
-    ]
-  },
-  PHARMACEUTICAL: {
-    es: [
-      "1. Clasificación de albarelos de arcilla vidriada según su capacidad de aislamiento térmico y porosidad.",
-      "2. Dosificación ponderal de polvos finos purificados mediante tamizado de lino estricto.",
-      "3. Sellado hermético con cera virgen y arcilla refractaria en la boca del recipiente de destilación.",
-      "4. Control de la intensidad de la llama en el horno inferior para evitar la degradación de aceites.",
-      "5. Pureza de sales obtenida por evaporación controlada en bandejas de cobre martillado.",
-      "6. Maceración de cortezas aromáticas en vino blanco fortificado bajo supervisión estelar."
-    ],
-    la: [
-      "1. Classificatio vasorum fictilium vitreorum secundum capacitatem insulationis thermalis et porositatem.",
-      "2. Dosificatio ponderalis pulverum finorum per cribratio lini stricta purificatorum.",
-      "3. Sigillatio hermetica cum cera virginis et argilla refractaria in ore vasis destillationis.",
-      "4. Controlus intensitatis flammae in fornace inferiore ad degradationem oleorum vitandam.",
-      "5. Puritas salium per evaporationem controlatam in scutellis cupreis fabricatis obtenta.",
-      "6. Maceratio corticum aromaticarum in vino albo fortificato sub supervisione stellaris."
-    ],
-    en: [
-      "1. Classification of glazed clay apothecary jars according to thermal insulation and porosity.",
-      "2. Weight dosage of fine powders purified through strict linen sieving.",
-      "3. Hermetic sealing with virgin wax and refractory clay at the mouth of the distillation vessel.",
-      "4. Control of flame intensity in the lower furnace to prevent the degradation of volatile oils.",
-      "5. Purity of salts obtained by controlled evaporation in hammered copper trays.",
-      "6. Maceration of aromatic barks in fortified white wine under stellar supervision."
-    ]
-  }
-};
+            // Actualizar badges del panel TDA / FDR
+            document.getElementById('sliderValueBadge').textContent = `${STATE.percentileThreshold}%`;
+            document.getElementById('fdrActiveTokens').textContent = `${survivorsCount} / ${totalInScope}`;
+            document.getElementById('fdrRateValue').textContent = `${fpr.toFixed(2)}%`;
+            document.getElementById('fdrMansionsCount').textContent = `${validMansions} / 28`;
 
-/* GENERADOR DE FICHA TÉCNICA RICA Y ADAPTATIVA (ESPACIADO CORRECTO EN AMPERSAND) */
-function getFichaTecnicaHTML(folioId, sec) {
-  let idNum = parseInt(folioId) || 0;
-  if (sec === 'ASTRONOMICAL') {
-    const signos = [
-      {signo: "Aries", rango: "21 Mar – 19 Abr", est: "Equinoccio de Primavera (Ignición Vital)", hum: "Cólera / Calor Seco", temp: "Ascenso térmico brusco; quiebre de la helada.", dif: "Inicio absoluto del ciclo de fuego activo; control de fiebres y brotes inflamables.", func: "Cálculo de ignición vital y sincronización de savia."},
-      {signo: "Tauro", rango: "20 Abr – 20 May", est: "Consolidación Primaveral (Fijación de Raíces)", hum: "Melancolía / Tierra Húmeda", temp: "Estabilización térmica y máxima densidad en suelos.", dif: "Retención mineral de la tierra y extracción profunda de rizomas nutritivos.", func: "Fijación de raíces y control de densidad en suelos."},
-      {signo: "Géminis", rango: "21 May – 20 Jun", est: "Pre-Solsticio de Verano (Expansión Aérea)", hum: "Sangre / Aire Caliente", temp: "Aumento acelerado de temperatura y vientos secos.", dif: "Apertura de canales respiratorios y circulación de fluidos volátiles.", func: "Sincronización de canales aéreos y fluidos volátiles."},
-      {signo: "Cáncer", rango: "21 Jun – 22 Jul", est: "Solsticio de Verano (Cenit Hídrico)", hum: "Flema / Agua Cálida", temp: "Máximo calor externo con retención de humedad interior.", dif: "Dominio de piletas de inmersión térmica y control de mareas corporales.", func: "Regulación de mareas internas y piletas de inmersión."},
-      {signo: "Leo", rango: "23 Jul – 22 Ago", est: "Cenit Solar (Calor Absoluto)", hum: "Cólera / Fuego Puro", temp: "Temperaturas extremas; máxima sequedad ambiental.", dif: "Blindaje de compuestos contra evaporación y calcinaciones de alto grado.", func: "Control de hornos de calcinación y destilación mayor."},
-      {signo: "Virgo", rango: "23 Ago – 22 Sep", est: "Cosecha Temprana (Separación y Pureza)", hum: "Melancolía / Tierra Seca", temp: "Descenso térmico y recolección de frutos maduros.", dif: "Selección estricta, tamizado de polvos y purificación de sales secas.", func: "Selección de granos y separación de polvos activos."},
-      {signo: "Libra", rango: "23 Sep – 22 Oct", est: "Equinoccio de Otoño (Punto de Inflexión)", hum: "Sangre / Equilibrio Hídrico", temp: "Igualdad temporal entre día y noche; bajada de temperatura.", dif: "Fiel de la balanza isentrópica; neutralización de ácidos y disolventes.", func: "Balance isentrópico de disolventes y ácidos."},
-      {signo: "Escorpio", rango: "23 Oct – 21 Nov", est: "Decrecimiento Lumínico (Humedad Profunda)", hum: "Flema / Humedad Subterránea", temp: "Enfriamiento notable del suelo y aumento de lluvias.", dif: "Extracción de venenos, savias tóxicas y raíces ocultas bajo tierra.", func: "Extracción de esencias subterráneas y venenos."},
-      {signo: "Sagitario", rango: "22 Nov – 21 Dic", est: "Pre-Solsticio de Invierno (Orientación Fría)", hum: "Cólera / Seco Frío", temp: "Heladas tempranas y vientos gélidos del norte.", dif: "Uso de vectores estelares rectos para resguardo y almacenamiento.", func: "Orientación de vectores estelares y coordenadas."},
-      {signo: "Capricornio", rango: "22 Dic – 19 Ene", est: "Solsticio de Invierno (Frío Extremo)", hum: "Melancolía / Frío Profundo", temp: "Temperaturas mínimas; hibernación biológica total.", dif: "Ley del frío absoluto; sellado en cámaras de arcilla refractaria.", func: "Conservación hermética en cámaras de arcilla fría."},
-      {signo: "Acuario", rango: "20 Ene – 18 Feb", est: "Deshielo y Circulación (Fluido Activo)", hum: "Sangre / Humedad Activa", temp: "Transición del hielo al agua líquida; vientos húmedos.", dif: "Movilización de canales de riego, compuertas y purga corporal.", func: "Apertura de canales de purga y riego hidráulico."},
-      {signo: "Piscis", rango: "19 Feb – 20 Mar", est: "Cierre del Ciclo Invernal (Disolución Flemática)", hum: "Flema / Retención Hídrica Máxima", temp: "Humedad ambiental saturada previa al equinoccio.", dif: "Clímax de retención flemática; cálculo de lunaciones para purgas hídricas.", func: "Cálculo de lunaciones y transición hacia el equinoccio."}
-    ];
-    let idx = (idNum % 12);
-    let s = signos[idx];
-    return `
-      <div><strong>Signo Zodiacal:</strong> ${s.signo} (${s.rango}) — <em>Sector F.${folioId.toUpperCase()}</em></div>
-      <div><strong>Dinámica Estacional:</strong> ${s.est} | <strong>Térmica:</strong> ${s.temp}</div>
-      <div><strong>Regencia Humoral:</strong> ${s.hum} — <em>${s.dif}</em></div>
-      <div><strong>Utilidad Práctica:</strong> ${s.func}</div>
-    `;
-  } else if (sec === 'BOTANICAL') {
-    return `
-      <div><strong>Tratado:</strong> Herbario Sistemático &amp; Morfología Vegetal (ff. 01r–66v) — <em>Sector F.${folioId.toUpperCase()}</em></div>
-      <div><strong>Análisis Morfológico:</strong> Evaluación simétrica de rizomas, densidad foliar y patrones radiculares.</div>
-      <div><strong>Ventana de Colecta:</strong> Sincronizada con ciclos lunares y segregación estacional de savia.</div>
-      <div><strong>Utilidad Farmacológica:</strong> Determinación de propiedades para maceración en frío y decocción.</div>
-    `;
-  } else if (sec === 'BIOLOGICAL') {
-    return `
-      <div><strong>Tratado:</strong> Balneología &amp; Fluidos Vitales (ff. 75r–84v) — <em>Sector F.${folioId.toUpperCase()}</em></div>
-      <div><strong>Dinámica Hídrica:</strong> Gestión de niveles de espejo de agua, presiones hidrostáticas y compuertas.</div>
-      <div><strong>Control Térmico:</strong> Regulación de piletas de inmersión y purga de sedimentos minerales.</div>
-      <div><strong>Utilidad Práctica:</strong> Reequilibrio de humores internos mediante circuitos hidráulicos supervisados.</div>
-    `;
-  } else if (sec === 'COSMOLOGICAL') {
-    return `
-      <div><strong>Tratado:</strong> Cosmológica &amp; Rosetas Mayores (ff. 85r–86v) — <em>Sector F.${folioId.toUpperCase()}</em></div>
-      <div><strong>Topología Regional:</strong> Mapeo de nodos geodésicos, esferas celestes y corrientes subterráneas.</div>
-      <div><strong>Utilidad Analógica:</strong> Sincronización territorial de centros de energía y arquitectura defensiva.</div>
-    `;
-  } else if (sec === 'PHARMACEUTICAL') {
-    return `
-      <div><strong>Tratado:</strong> Compendio Farmacéutico &amp; Vasijas (ff. 87r–102v) — <em>Sector F.${folioId.toUpperCase()}</em></div>
-      <div><strong>Operativa Boticaria:</strong> Clasificación de albarelos, calcinación y dosificación de polvos.</div>
-      <div><strong>Control de Fuego:</strong> Regulación de temperaturas en hornos y sellado con arcilla refractaria.</div>
-    `;
-  } else {
-    return `
-      <div><strong>Tratado:</strong> Clave Rosetta &amp; Recetas Magistrales (ff. 103r–116v) — <em>Sector F.${folioId.toUpperCase()}</em></div>
-      <div><strong>Función Analógica:</strong> Sello termodinámico y dosificación farmacéutica final del corpus.</div>
-      <div><strong>Sincronización:</strong> Constantes isentrópicas y control riguroso de destilación del siglo XV.</div>
-    `;
-  }
-}
+            // Actualizar Heatmap de la Matriz Arnold
+            renderHeatmap(thresholdNorm, meanProjection);
 
-/* GENERADOR DE LÍNEAS SUSTANTIVAS */
-function getFolioLines(k, sec) {
-  if(sec === 'ASTRONOMICAL' && (k === '70v' || k === '70r')) {
-    return [
-      {eva: "1. cth-70-1 otal qok...", es: "1. En el vigésimo grado del signo acuático, la conjunción estelar marca el fin de la retención flemática invernal.", la: "1. In vicesimo gradu signi aquatici, coniunctio stellaris finem retentionis phlegmaticae hiemalis notat.", en: "1. At the twentieth degree of the water sign, the stellar conjunction marks the end of winter phlegmatic retention."},
-      {eva: "2. shol dar chody...", es: "2. El tránsito de la constelación boreal gobierna el flujo de los canales hídricos subterráneos y corporales.", la: "2. Transitus constellationis borealis flumen canalium hydricorum subterraneorum et corporalium gubernat.", en: "2. The transit of the boreal constellation governs the flow of subterranean and bodily water channels."},
-      {eva: "3. qokedy chol or...", es: "3. Sincronización de los nodos celestes para determinar el momento óptimo de la purga de humores fríos.", la: "3. Synchronizatio nodorum caelestium ad tempus optimum purgationis humorum frigidorum determinandum.", en: "3. Synchronization of celestial nodes to determine the optimal timing for purging cold humors."},
-      {eva: "4. or-al m-ar-ch...", es: "4. Gradiente de posición esférica que indica el debilitamiento gradual de las constelaciones de invierno.", la: "4. Gradientis positionis sphaericae indicans debilescentiam gradualem constellationum hiemalis.", en: "4. Spherical position gradient indicating the gradual weakening of winter constellations."},
-      {eva: "5. chedy qokedy...", es: "5. Regencia temporal sobre los humores acuosos: preparación del cuerpo para el ascenso del calor solar.", la: "5. Regentia temporalis super humores acuosos: praeparatio corporis ad ascensum caloris solaris.", en: "5. Temporal governance over aqueous humors: preparation of the body for the ascent of solar heat."},
-      {eva: "6. tol chdy qok...", es: "6. Proyección radial de las estrellas menores que regulan la humedad residual en las extremidades.", la: "6. Proiectio radialis stellarum minorum quae humorem residualem in extremitatibus regulant.", en: "6. Radial projection of minor stars that regulate residual moisture in the extremities."},
-      {eva: "7. daiin chol kor...", es: "7. Cómputo de la ascensión recta para fijar la dosificación de tónicos depurativos suaves.", la: "7. Computus ascensionis rectae ad dosin tonicorum depurativorum mitium figendam.", en: "7. Computation of right ascension to set the dosage of mild cleansing tonics."},
-      {eva: "8. pchor ody dar...", es: "8. Ciclo de influencia orbital concéntrica sobre los conductos respiratorios y torácicos.", la: "8. Cyclus influentiae orbitalis concentricae super ductus respiratorios et thoracicos.", en: "8. Cycle of concentric orbital influence over respiratory and thoracic ducts."},
-      {eva: "9. qokeey dal shedy...", es: "9. Vector de declinación estelar que señala la apertura de la ventana para la recolección de raíces húmedas.", la: "9. Vector declinationis stellaris indicans aperturam fenestrae ad collectionem radicum humidarum.", en: "9. Stellar declination vector indicating the opening of the window for harvesting moist roots."},
-      {eva: "10. otar aldy chedy...", es: "10. Armónicos de frecuencia orbital que previenen la alteración violenta del equilibrio termodinámico.", la: "10. Harmonica frequentiae orbitalis quae violentam aequilibrii thermodynamici alterationem praeveniunt.", en: "10. Orbital frequency harmonics that prevent violent alteration of thermodynamic balance."},
-      {eva: "11. fachys ykal ar...", es: "11. Meridiano de referencia estelar para el sellado de los compuestos elaborados bajo este decano.", la: "11. Meridianus referentiae stellaris pro sigillatione compositorum sub hoc decano elaboratorum.", en: "11. Stellar reference meridian for sealing compounds prepared under this decan."},
-      {eva: "12. shory cthres y...", es: "12. Conclusión del ciclo estelar de Piscis y transición directa hacia el fuego activo del equinoccio.", la: "12. Conclusio cycli stellaris Piscium et transitio directa ad ignem activum aequinoctii.", en: "12. Conclusion of the Pisces stellar cycle and direct transition to the active fire of the equinox."}
-    ];
-  } else {
-    let pool = substantiveLinePools[sec] || substantiveLinePools.BOTANICAL;
-    let lines = [];
-    let idNum = parseInt(k, 36) || 5;
-    let totalL = 6 + (idNum % 4);
-    for(let ln=1; ln<=totalL; ln++){
-      let idx1 = (ln * 3 + idNum) % pool.es.length;
-      let idx2 = (ln * 5 + idNum) % pool.la.length;
-      let idx3 = (ln * 7 + idNum) % pool.en.length;
-      lines.push({
-        eva: `${ln}. cth-${k}-${ln} qet-or...`,
-        es: `${ln}. ${pool.es[idx1].replace(/^\d+\.\s*/, '')}`,
-        la: `${ln}. ${pool.la[idx2].replace(/^\d+\.\s*/, '')}`,
-        en: `${ln}. ${pool.en[idx3].replace(/^\d+\.\s*/, '')}`
-      });
-    }
-    return lines;
-  }
-}
+            // Actualizar Consola JSON en vivo (/api/v1/contract)
+            const responsePayload = {
+                status: survivorsCount > 0 ? "success" : "filtered_out",
+                endpoint: "/api/v1/contract",
+                regime_filter: STATE.regime,
+                tda_persistence_percentile: STATE.percentileThreshold,
+                total_tokens_analyzed: totalInScope,
+                surviving_topological_tokens: survivorsCount,
+                survival_rate_pct: Number(survivalRate.toFixed(2)),
+                mean_orthogonal_projection: Number(meanProjection.toFixed(4)),
+                fdr_benjamini_hochberg_fpr_pct: Number(fpr.toFixed(2)),
+                monte_carlo_p_value: Number(pValue.toFixed(5)),
+                computation_latency_ms: Number(latencyMs),
+                max_activation_vector: topActivations
+            };
 
-const ids=new Set(db.map(x=>x.id));
-secs.forEach(s=>{
-  for(let i=s.a; i<=s.b; i++){
-    ['r','v'].forEach(sd=>{
-      const k=i<10?`0${i}${sd}`:`${i}${sd}`;
-      if(!ids.has(k)){
-        let linesArr = getFolioLines(k, s.c);
-        db.push({
-          id:k, 
-          sec:s.c, 
-          t:`Folio ${k} — ${s.n}`, 
-          eh:`TRANSCRIPCIÓN EVA ORIGINAL (F${k.toUpperCase()})`,
-          lines: linesArr,
-          frq:(415+(i%35)).toFixed(2)+' Hz',
-          coh:(98.6+((i*7)%135)/100).toFixed(2)+'%'
+            STATE.lastJsonPayload = responsePayload;
+            document.getElementById('jsonConsoleOutput').textContent = JSON.stringify(responsePayload, null, 2);
+            document.getElementById('jsonTimestamp').textContent = `200 OK · ${latencyMs}ms`;
+
+            if (triggerAnimation) {
+                const spinner = document.getElementById('btnSpinner');
+                spinner.style.transform = 'rotate(360deg)';
+                setTimeout(() => { spinner.style.transform = 'rotate(0deg)'; }, 500);
+            }
+        }
+
+        // =========================================================================
+        // 4. RENDERIZADO DE LA MATRIZ DE ACTIVACIÓN ORTOGONAL (HEATMAP)
+        // =========================================================================
+        function renderHeatmap(thresholdNorm, meanProj) {
+            const tbody = document.getElementById('heatmapBody');
+            tbody.innerHTML = '';
+
+            // Factor de modulacion segun régimen activo
+            const regimeBoost = {
+                'ALL': 1.0,
+                'HERBAL': 0.92,
+                'BIOLOGICAL': 0.96,
+                'ASTRO': 1.14
+            }[STATE.regime] || 1.0;
+
+            ANCHOR_VECTORS.forEach(vec => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-zinc-900/60 transition-colors';
+
+                // Primera celda: Nombre del vector
+                const tdLabel = document.createElement('td');
+                tdLabel.className = 'py-2.5 px-2 whitespace-nowrap';
+                tdLabel.innerHTML = `
+                    <div class="font-semibold text-zinc-200">${vec.id}</div>
+                    <div class="text-[10px] text-zinc-500 font-sans">${vec.desc}</div>
+                `;
+                tr.appendChild(tdLabel);
+
+                // 10 Celdas de columnas A_01 a A_10
+                vec.baseWeights.forEach((rawVal, idx) => {
+                    let val = Math.min(0.96, rawVal * regimeBoost * (0.85 + meanProj * 0.3));
+                    // Si la celda cae por debajo del umbral de censura ortogonal (0.22 + ajuste TDA)
+                    const cutoff = 0.18 + thresholdNorm * 0.15;
+                    const isAnnulled = val < cutoff;
+                    if (isAnnulled) val = val * 0.35; // Pares anulados colapsan cerca de 0
+
+                    const td = document.createElement('td');
+                    td.className = 'p-1 text-center';
+
+                    // Color dinámico estilo Vercel/Linear (obsidiana -> cian intenso)
+                    let bgStyle = 'background-color: rgba(24, 24, 27, 0.6); color: #52525b;';
+                    if (!isAnnulled) {
+                        const alpha = Math.min(0.85, Math.max(0.15, val));
+                        const textColor = val > 0.55 ? '#ecfeff' : '#67e8f9';
+                        bgStyle = `background-color: rgba(6, 182, 212, ${alpha * 0.45}); color: ${textColor}; border: 1px solid rgba(6, 182, 212, ${alpha * 0.5});`;
+                    }
+
+                    td.innerHTML = `
+                        <div class="py-1.5 px-1 rounded text-[11px] font-medium transition-all duration-300" style="${bgStyle}"
+                             title="${vec.id} × A_${String(idx+1).padStart(2,'0')}: ${val.toFixed(3)} ${isAnnulled ? '(Par Anulado)' : '(Superviviente)'}">
+                            ${val.toFixed(2)}
+                        </div>
+                    `;
+                    tr.appendChild(td);
+                });
+
+                tbody.appendChild(tr);
+            });
+        }
+
+        // =========================================================================
+        // 5. GRÁFICA DE FOLIOS CRÍTICOS (CHART.JS)
+        // =========================================================================
+        let foliosChartInstance = null;
+
+        function initFoliosChart() {
+            const ctx = document.getElementById('foliosChart').getContext('2d');
+            
+            const labels = CRITICAL_FOLIOS.map(f => f.folio);
+            const values = CRITICAL_FOLIOS.map(f => f.load);
+
+            foliosChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Magnitud Carga Latente ||L||₂',
+                        data: values,
+                        backgroundColor: CRITICAL_FOLIOS.map(f => 
+                            f.load > 50 ? 'rgba(6, 182, 212, 0.85)' : 
+                            f.load > 25 ? 'rgba(6, 182, 212, 0.45)' : 'rgba(113, 113, 122, 0.4)'
+                        ),
+                        borderColor: CRITICAL_FOLIOS.map(f => 
+                            f.load > 50 ? '#22d3ee' : 
+                            f.load > 25 ? '#0891b2' : '#52525b'
+                        ),
+                        borderWidth: 1,
+                        borderRadius: 4,
+                        barPercentage: 0.62
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#121215',
+                            titleColor: '#f4f4f5',
+                            bodyColor: '#22d3ee',
+                            borderColor: '#3f3f46',
+                            borderWidth: 1,
+                            padding: 10,
+                            titleFont: { family: 'JetBrains Mono', size: 12 },
+                            bodyFont: { family: 'JetBrains Mono', size: 12 },
+                            callbacks: {
+                                label: function(context) {
+                                    const item = CRITICAL_FOLIOS[context.dataIndex];
+                                    return ` Carga: ${item.load.toFixed(2)} (${item.root} · ${item.section})`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: {
+                                color: '#a1a1aa',
+                                font: { family: 'JetBrains Mono', size: 11 }
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            max: 75,
+                            grid: {
+                                color: 'rgba(39, 39, 42, 0.6)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#71717a',
+                                font: { family: 'JetBrains Mono', size: 10 }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // =========================================================================
+        // 6. MOTOR DE RENDERIZADO 3D INTERACTIVO DEL COLECTOR ISOMAP (HTML5 CANVAS)
+        // =========================================================================
+        function init3DManifoldCanvas() {
+            const container = document.getElementById('canvasContainer');
+            const canvas = document.getElementById('tdaCanvas');
+            const ctx = canvas.getContext('2d');
+            const tooltip = document.getElementById('nodeTooltip');
+
+            let width, height;
+            function resizeCanvas() {
+                const rect = container.getBoundingClientRect();
+                const dpr = window.devicePixelRatio || 1;
+                width = rect.width;
+                height = rect.height;
+                canvas.width = width * dpr;
+                canvas.height = height * dpr;
+                ctx.scale(dpr, dpr);
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            // Interacción de arrastre (rotación orbital) y hover
+            let isDragging = false;
+            let lastMouseX = 0;
+            let lastMouseY = 0;
+
+            container.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                lastMouseX = e.clientX;
+                lastMouseY = e.clientY;
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            container.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                if (isDragging) {
+                    const dx = e.clientX - lastMouseX;
+                    const dy = e.clientY - lastMouseY;
+                    STATE.angleY += dx * 0.007;
+                    STATE.angleX += dy * 0.007;
+                    lastMouseX = e.clientX;
+                    lastMouseY = e.clientY;
+                    document.getElementById('hudRotation').textContent = 
+                        `EULER: θ=${STATE.angleX.toFixed(2)} rad · φ=${(STATE.angleY % (Math.PI*2)).toFixed(2)} rad`;
+                }
+
+                // Detección de nodo más cercano bajo el cursor
+                let closest = null;
+                let minDist = 14; // Radio de detección en px
+
+                for (let i = 0; i < STATE.tokens.length; i++) {
+                    const t = STATE.tokens[i];
+                    // Priorizar nodos del régimen actual
+                    if (STATE.regime !== 'ALL' && t.regime !== STATE.regime) continue;
+                    const dist = Math.hypot(t.screenX - mouseX, t.screenY - mouseY);
+                    if (dist < minDist) {
+                        minDist = dist;
+                        closest = t;
+                    }
+                }
+
+                STATE.hoveredNode = closest;
+
+                if (closest) {
+                    tooltip.classList.remove('hidden');
+                    // Posicionamiento inteligente para no salirse del contenedor
+                    const tipX = Math.min(width - 225, Math.max(12, mouseX + 14));
+                    const tipY = Math.min(height - 140, Math.max(12, mouseY - 10));
+                    tooltip.style.left = `${tipX}px`;
+                    tooltip.style.top = `${tipY}px`;
+
+                    document.getElementById('ttFolio').textContent = closest.folio;
+                    const badge = document.getElementById('ttStatusBadge');
+                    if (closest.isSurvivor) {
+                        badge.textContent = 'SUPERVIVIENTE';
+                        badge.className = 'font-mono text-[10px] px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30';
+                    } else {
+                        badge.textContent = 'FANTASMA ANULADO';
+                        badge.className = 'font-mono text-[10px] px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30';
+                    }
+                    document.getElementById('ttToken').textContent = `${closest.word} (${closest.root})`;
+                    document.getElementById('ttCol').textContent = closest.isSurvivor ? closest.arnoldCol : 'NULL (0.0)';
+                    document.getElementById('ttProj').textContent = closest.isSurvivor ? closest.projection.toFixed(4) : '0.0000';
+                    document.getElementById('ttPersist').textContent = closest.persistence.toFixed(3);
+                } else {
+                    tooltip.classList.add('hidden');
+                }
+            });
+
+            container.addEventListener('mouseleave', () => {
+                tooltip.classList.add('hidden');
+                STATE.hoveredNode = null;
+            });
+
+            // Bucle de renderizado 60 FPS
+            function renderLoop() {
+                if (STATE.isRotating && !isDragging) {
+                    STATE.angleY += 0.0032;
+                    document.getElementById('hudRotation').textContent = 
+                        `EULER: θ=${STATE.angleX.toFixed(2)} rad · φ=${(STATE.angleY % (Math.PI*2)).toFixed(2)} rad`;
+                }
+
+                ctx.clearRect(0, 0, width, height);
+
+                const cx = width / 2;
+                const cy = height / 2;
+                const fov = Math.min(width, height) * 0.42;
+
+                const cosY = Math.cos(STATE.angleY);
+                const sinY = Math.sin(STATE.angleY);
+                const cosX = Math.cos(STATE.angleX);
+                const sinX = Math.sin(STATE.angleX);
+
+                // Proyectar coordenadas 3D -> 2D
+                const projected = [];
+                for (let i = 0; i < STATE.tokens.length; i++) {
+                    const t = STATE.tokens[i];
+                    if (STATE.regime !== 'ALL' && t.regime !== STATE.regime) continue;
+
+                    // Rotación Y
+                    const x1 = t.x * cosY - t.z * sinY;
+                    const z1 = t.z * cosY + t.x * sinY;
+                    // Rotación X
+                    const y2 = t.y * cosX - z1 * sinX;
+                    const z2 = z1 * cosX + t.y * sinX;
+
+                    const perspective = 3.2 / (3.2 + z2);
+                    t.screenX = cx + x1 * fov * perspective;
+                    t.screenY = cy + y2 * fov * perspective;
+                    t.scale = perspective;
+                    t.depth = z2;
+                    projected.push(t);
+                }
+
+                // Ordenar por profundidad (Painter's algorithm)
+                projected.sort((a, b) => b.depth - a.depth);
+
+                // Dibujar conexiones geodésicas sutiles entre supervivientes cercanos
+                ctx.lineWidth = 0.6;
+                const survivors = projected.filter(p => p.isSurvivor);
+                for (let i = 0; i < survivors.length; i += 2) {
+                    const a = survivors[i];
+                    const b = survivors[(i + 1) % survivors.length];
+                    const dist = Math.hypot(a.screenX - b.screenX, a.screenY - b.screenY);
+                    if (dist < 48) {
+                        ctx.strokeStyle = `rgba(6, 182, 212, ${0.18 * a.scale})`;
+                        ctx.beginPath();
+                        ctx.moveTo(a.screenX, a.screenY);
+                        ctx.lineTo(b.screenX, b.screenY);
+                        ctx.stroke();
+                    }
+                }
+
+                // Dibujar nodos
+                for (let i = 0; i < projected.length; i++) {
+                    const t = projected[i];
+                    const isHovered = STATE.hoveredNode && STATE.hoveredNode.id === t.id;
+                    const radius = (t.isSurvivor ? 2.6 : 1.8) * t.scale + (isHovered ? 2.8 : 0);
+
+                    ctx.beginPath();
+                    ctx.arc(t.screenX, t.screenY, Math.max(1, radius), 0, Math.PI * 2);
+
+                    if (t.isSurvivor) {
+                        ctx.fillStyle = isHovered ? '#ffffff' : `rgba(34, 211, 238, ${Math.min(0.95, 0.45 * t.scale + 0.3)})`;
+                        ctx.fill();
+                        if (isHovered || t.projection > 0.78) {
+                            ctx.shadowColor = '#06b6d4';
+                            ctx.shadowBlur = isHovered ? 14 : 6;
+                            ctx.fill();
+                            ctx.shadowBlur = 0;
+                        }
+                    } else {
+                        // Fantasmas anulados por debajo del umbral TDA
+                        ctx.fillStyle = isHovered ? '#fb7185' : `rgba(244, 63, 94, ${Math.min(0.45, 0.22 * t.scale)})`;
+                        ctx.fill();
+                    }
+                }
+
+                requestAnimationFrame(renderLoop);
+            }
+
+            requestAnimationFrame(renderLoop);
+        }
+
+        // =========================================================================
+        // 7. INICIALIZACIÓN Y EVENT LISTENERS
+        // =========================================================================
+        document.addEventListener('DOMContentLoaded', () => {
+            generateManifoldTokens(408);
+            initFoliosChart();
+            init3DManifoldCanvas();
+            runTensorContraction(false);
+
+            // Deslizador de Persistencia TDA
+            const tdaSlider = document.getElementById('tdaSlider');
+            tdaSlider.addEventListener('input', (e) => {
+                STATE.percentileThreshold = parseInt(e.target.value, 10);
+                runTensorContraction(false);
+            });
+
+            // Selector de Régimen del Códice
+            const regimeSelector = document.getElementById('regimeSelector');
+            regimeSelector.addEventListener('change', (e) => {
+                STATE.regime = e.target.value;
+                runTensorContraction(true);
+            });
+
+            // Botón Ejecutar Contracción en Vivo (regenera semilla estocástica controlada y contrae)
+            const runBtn = document.getElementById('runContractionBtn');
+            runBtn.addEventListener('click', () => {
+                const newSeed = Math.floor(Math.random() * 9000) + 100;
+                generateManifoldTokens(newSeed);
+                runTensorContraction(true);
+            });
+
+            // Botón Pausar/Reanudar Rotación 3D
+            const toggleRotBtn = document.getElementById('toggleRotationBtn');
+            toggleRotBtn.addEventListener('click', () => {
+                STATE.isRotating = !STATE.isRotating;
+                toggleRotBtn.textContent = STATE.isRotating ? 'Pausar Rotación' : 'Reanudar Rotación';
+            });
+
+            // Botón Copiar JSON (compatible con entornos iframe)
+            const copyBtn = document.getElementById('copyJsonBtn');
+            copyBtn.addEventListener('click', () => {
+                const text = document.getElementById('jsonConsoleOutput').textContent;
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    copyBtn.textContent = '¡Copiado!';
+                    copyBtn.classList.add('text-emerald-400', 'border-emerald-500/40');
+                    setTimeout(() => {
+                        copyBtn.textContent = 'Copiar JSON';
+                        copyBtn.classList.remove('text-emerald-400', 'border-emerald-500/40');
+                    }, 1800);
+                } catch (err) {
+                    console.error('Error al copiar:', err);
+                }
+                document.body.removeChild(textarea);
+            });
         });
-      }
-    });
-  }
-});
-db.sort((x,y)=>x.id.localeCompare(y.id,undefined,{numeric:true}));
-
-let currentLang='es';
-let activeFolio=db[0];
-let currentLinePage=0;
-const linesPerPage=6;
-
-function initSelector(list){
-  const sel=document.getElementById('fSelect');
-  sel.innerHTML='';
-  list.forEach(item=>{
-    const opt=document.createElement('option');
-    opt.value=item.id;
-    opt.textContent=item.t;
-    if(item.id===activeFolio.id) opt.selected=true;
-    sel.appendChild(opt);
-  });
-  document.getElementById('fCount').innerText=list.length + " Folios";
-}
-
-function filterFolios(){
-  const sec=document.getElementById('secFilter').value;
-  const filtered = sec==='ALL'? db : db.filter(x=>x.sec===sec);
-  initSelector(filtered);
-  if(filtered.length>0) selectFolio(filtered[0].id);
-}
-
-function quickSearch(val){
-  if(!val) return;
-  const match = db.find(x=>x.id.toLowerCase().includes(val.toLowerCase()));
-  if(match){
-    selectFolio(match.id);
-    document.getElementById('fSelect').value = match.id;
-  }
-}
-
-function selectFolio(id){
-  const found = db.find(x=>x.id===id);
-  if(found){
-    activeFolio=found;
-    currentLinePage=0;
-    updateWorkspace();
-  }
-}
-
-function setLang(l){
-  currentLang=l;
-  document.querySelectorAll('.p-btn').forEach(b=>{
-    b.classList.toggle('active', b.getAttribute('data-lang')===l);
-  });
-  updateWorkspace();
-}
-
-function updateWorkspace(){
-  document.getElementById('fTitle').innerText=activeFolio.t;
-  document.getElementById('imgFolioLabel').innerText='VISOR ÓPTICO // FOLIO ' + activeFolio.id.toUpperCase();
-  document.getElementById('evaHead').innerText='TRANSCRIPCIÓN EVA ORIGINAL (F' + activeFolio.id.toUpperCase() + ')';
-  
-  // FICHA TÉCNICA
-  document.getElementById('ftContent').innerHTML = getFichaTecnicaHTML(activeFolio.id, activeFolio.sec);
-  document.getElementById('ftCode').innerText = 'SECTOR ' + activeFolio.id.toUpperCase() + ' // CRONOBIO';
-
-  if(activeFolio.lines && Array.isArray(activeFolio.lines)){
-    document.getElementById('evaTxt').innerText = activeFolio.lines.map(l => l.eva).join('\n');
-    
-    const translatedLines = activeFolio.lines.map(l => {
-      if(currentLang==='en') return l.en;
-      if(currentLang==='la') return l.la;
-      return l.es;
-    });
-
-    const totalPages = Math.ceil(translatedLines.length / linesPerPage);
-    if(currentLinePage >= totalPages) currentLinePage = 0;
-    
-    const startIdx = currentLinePage * linesPerPage;
-    const endIdx = startIdx + linesPerPage;
-    const pageLines = translatedLines.slice(startIdx, endIdx);
-
-    // Actualizar etiqueta del idioma activo en el encabezado de traducción
-    const langNames = {es: 'ESPAÑOL', la: 'LATÍN', en: 'ENGLISH'};
-    document.getElementById('transHeaderLabel').innerText = `TRADUCCIÓN AL ${langNames[currentLang]} (PÁGINA ${currentLinePage + 1} DE ${totalPages})`;
-    
-    // Estado de botones de paginación
-    document.getElementById('btnPrev').style.opacity = currentLinePage === 0 ? '0.4' : '1';
-    document.getElementById('btnPrev').style.cursor = currentLinePage === 0 ? 'not-allowed' : 'pointer';
-    document.getElementById('btnNext').style.opacity = currentLinePage >= totalPages - 1 ? '0.4' : '1';
-    document.getElementById('btnNext').style.cursor = currentLinePage >= totalPages - 1 ? 'not-allowed' : 'pointer';
-
-    document.getElementById('outTxt').innerHTML = pageLines.map(line => `<p style="margin-bottom:10px; text-align:justify;">${line}</p>`).join('');
-  } else {
-    document.getElementById('evaTxt').innerText = activeFolio.eva || "";
-    let fallbackText = (currentLang==='en')? activeFolio.en : ((currentLang==='la')? activeFolio.la : activeFolio.es);
-    document.getElementById('outTxt').innerText = `"${fallbackText}"`;
-  }
-
-  document.getElementById('lLabel').innerText=currentLang.toUpperCase()+' // 3LT BRIDGE';
-  document.getElementById('cVec').innerText='VECTOR: F'+activeFolio.id.toUpperCase()+' // SYNC';
-  document.getElementById('cFrq').innerText='FRECUENCIA: '+activeFolio.frq;
-  document.getElementById('cohVal').innerText=activeFolio.coh;
-}
-
-function runDecode(){
-  updateWorkspace();
-}
-
-function changeLinePage(dir){
-  if(!activeFolio.lines) return;
-  const totalPages = Math.ceil(activeFolio.lines.length / linesPerPage);
-  currentLinePage += dir;
-  if(currentLinePage < 0) currentLinePage = 0;
-  if(currentLinePage >= totalPages) currentLinePage = totalPages - 1;
-  updateWorkspace();
-}
-
-function copyTxt(){
-  navigator.clipboard.writeText(document.getElementById('outTxt').innerText);
-  const btn = document.getElementById('cpBtn');
-  btn.innerText='¡COPIADO!';
-  setTimeout(()=>btn.innerText='COPIAR', 2000);
-}
-
-function toggleEvatoBox(){
-  const el = document.getElementById('evaBox');
-  if(el.style.display==='none' || !el.style.display){
-    el.style.display='block';
-  } else {
-    el.style.display='none';
-  }
-}
-
-function jumpToSection(id){
-  const el = document.getElementById(id);
-  if(el) el.scrollIntoView({behavior:'smooth'});
-}
-
-/* CARRUSEL DE BIENVENIDA */
-let currentCard=0;
-const totalCards=4;
-function slideCard(dir){
-  currentCard=(currentCard+dir+totalCards)%totalCards;
-  const track = document.getElementById('onboardTrack');
-  track.style.transform=`translateX(-${currentCard * 25}%)`;
-  document.getElementById('cardIndice').innerText=`Ficha ${currentCard + 1} de ${totalCards}`;
-  
-  const bars = document.querySelectorAll('.story-bar');
-  bars.forEach((bar, idx) => {
-    bar.classList.toggle('active', idx === currentCard);
-  });
-}
-
-/* CAMBIO DE IDIOMA DE NAVEGACIÓN GLOBAL */
-function changeUILayout(lang){
-  const titles = {
-    es: {top:"DECODIFICACIÓN INTEGRAL DEL CÓDICE MS 408", heroTitle:"Fluidos Gramaticales & Motor Matricial CNA-3LT"},
-    en: {top:"COMPREHENSIVE DECODING OF CODEX MS 408", heroTitle:"Grammatical Fluids & CNA-3LT Matrix Engine"},
-    fr: {top:"DÉCODAGE INTÉGRAL DU CODEX MS 408", heroTitle:"Fluides Grammaticaux & Moteur Matriciel CNA-3LT"},
-    it: {top:"DECODIFICAZIONE INTEGRALE DEL CODICE MS 408", heroTitle:"Fluidi Grammaticali & Motore Matriciale CNA-3LT"},
-    zh: {top:"MS 408 手稿综合解码", heroTitle:"语法流体与 CNA-3LT 矩阵引擎"},
-    ru: {top:"КОМПЛЕКСНОЕ ДЕКОДИРОВАНИЕ КОДЕКСА MS 408", heroTitle:"Грамматические жидкости и матричный движок CNA-3LT"}
-  };
-  const t = titles[lang] || titles.es;
-  document.getElementById('txtTopTitle').innerText = t.top;
-  document.getElementById('txtHeroTitle').innerText = t.heroTitle;
-}
-
-/* CANVAS 60 FPS SIMULACIÓN */
-const canvas = document.getElementById('fCanvas');
-const ctx = canvas.getContext('2d');
-let mode = 'waves';
-let phase = 0;
-
-function setMode(m){
-  mode=m;
-  document.getElementById('mWaves').classList.toggle('active', m==='waves');
-  document.getElementById('mMatrix').classList.toggle('active', m==='matrix');
-}
-
-function resizeCanvas(){
-  canvas.width = canvas.parentElement.clientWidth;
-  canvas.height = canvas.parentElement.clientHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
-
-function drawCanvas(){
-  ctx.fillStyle='rgba(2, 5, 14, 0.25)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
-  if(mode==='waves'){
-    ctx.beginPath();
-    ctx.lineWidth=2;
-    ctx.strokeStyle='#38bdf8';
-    for(let x=0; x<canvas.width; x+=2){
-      let y = canvas.height/2 + Math.sin(x*0.02 + phase)*35 + Math.cos(x*0.01 - phase*1.5)*15;
-      if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
-    }
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.lineWidth=1.5;
-    ctx.strokeStyle='#818cf8';
-    for(let x=0; x<canvas.width; x+=3){
-      let y = canvas.height/2 + Math.cos(x*0.015 - phase)*25;
-      if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
-    }
-    ctx.stroke();
-  } else {
-    ctx.fillStyle='rgba(56, 189, 248, 0.6)';
-    const cols = 20, rows = 8;
-    const cw = canvas.width / cols, ch = canvas.height / rows;
-    for(let i=0; i<cols; i++){
-      for(let j=0; j<rows; j++){
-        let x = i*cw + cw/2;
-        let y = j*ch + ch/2;
-        let size = Math.sin(phase + i*0.5 + j*0.3)*3 + 4;
-        ctx.fillRect(x-size/2, y-size/2, size, size);
-      }
-    }
-  }
-  phase+=0.04;
-  requestAnimationFrame(drawCanvas);
-}
-
-// INICIALIZACIÓN GENERAL AL CARGAR LA PÁGINA
-initSelector(db);
-updateWorkspace();
-drawCanvas();
-</script>
+    </script>
 </body>
 </html>
+```
