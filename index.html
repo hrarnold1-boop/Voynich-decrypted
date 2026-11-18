@@ -38,7 +38,7 @@ p{font-size:15px;color:#cbd5e1;margin-bottom:12px}
 .folio-img-frame{width:100%;height:220px;border-radius:14px;background:linear-gradient(135deg,rgba(3,7,18,.95),rgba(15,23,42,.9));border:1px solid var(--b1);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--cyan);margin-bottom:16px;position:relative;overflow:hidden;box-shadow:inset 0 0 15px rgba(56,189,248,.1)}
 .folio-img-frame::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(56,189,248,.08),transparent 70%);pointer-events:none}
 
-/* CARRUSEL DE BIENVENIDA ESTILO INSTAGRAM STORIES */
+/* CARRUSEL DE BIENVENIDA */
 .story-bars{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px}
 .story-bar{height:4px;border-radius:4px;background:rgba(255,255,255,.15);transition:background 0.3s ease}
 .story-bar.active{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
@@ -92,7 +92,6 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
     <h2 class="site-main-title" id="txtHeroTitle">Fluidos Gramaticales &amp; Motor Matricial CNA-3LT</h2>
     
     <div class="nav-controls-bar mono">
-      <!-- SELECTOR DE SECCIONES -->
       <select id="jumpSection" class="nav-sel" onchange="jumpToSection(this.value)">
         <option value="" disabled selected>📜 Mapa del Sitio (Secciones)...</option>
         <option value="sec-bienvenida">1. Bienvenida &amp; Manifiesto</option>
@@ -106,7 +105,6 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
         <option value="sec-conclusiones">9. Conclusiones Terminales</option>
       </select>
 
-      <!-- SELECTOR DE IDIOMAS DE NAVEGACIÓN -->
       <select id="langSelector" class="nav-sel" onchange="changeUILayout(this.value)">
         <option value="es" selected>🇲🇽 Español</option>
         <option value="en">🇬🇧 English</option>
@@ -247,7 +245,7 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
         </select>
       </div>
       <div class="fld">
-        <label class="mono">2. Buscar Folio Rápido (ej. 116r, 01r, 70v)</label>
+        <label class="mono">2. Buscar Folio Rápido (ej. 116r, 03v, 77v)</label>
         <input type="text" id="fSearch" class="mono" placeholder="Escribe número de folio..." oninput="quickSearch(this.value)">
       </div>
       <div class="fld">
@@ -274,7 +272,7 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
       <button type="button" onclick="runDecode()" class="btn-run mono">COMPILAR PUENTE TENSOR</button>
     </div>
 
-    <!-- PANEL DE RESULTADOS CON TEXTOS JUSTIFICADOS Y FICHAS RICAS -->
+    <!-- PANEL DE RESULTADOS -->
     <div class="card c-ind">
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--b2)">
         <strong id="fTitle" class="mono" style="font-size:15px;color:#fff">Folio 116r — Clave Rosetta (28 Líneas)</strong>
@@ -291,18 +289,18 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
         <span style="font-size:10px;color:var(--mut);margin-top:2px">Manuscrito MS 408 (Beinecke Library Collection)</span>
       </div>
 
-      <!-- 2. FICHA TÉCNICA & COORDENADAS ESTACIONALES (JUSTIFICADA Y RICA) -->
+      <!-- 2. FICHA TÉCNICA Y COORDENADAS ESTACIONALES PROFUNDAS -->
       <div class="t-box mono" style="border-color:var(--cyan); background:rgba(8,51,68,.3); margin-bottom:14px; text-align:justify;">
         <div style="font-weight:800; color:var(--cyan); margin-bottom:6px; font-size:12px; text-transform:uppercase; display:flex; justify-content:space-between;">
           <span>📊 Ficha Técnica &amp; Coordenadas Estacionales</span>
           <span id="ftCode" style="color:var(--gold)">MÉTODO CNA-3LT</span>
         </div>
         <div id="ftContent" style="font-size:11px; color:#cbd5e1; display:flex; flex-direction:column; gap:5px; text-align:justify;">
-          <!-- Contenido inyectado dinámicamente -->
+          <!-- Contenido dinámico especializado -->
         </div>
       </div>
 
-      <!-- 3. ACLARACIÓN METODOLÓGICA & ESPECIALIZADA (JUSTIFICADA) -->
+      <!-- 3. ACLARACIÓN METODOLÓGICA & ESPECIALIZADA -->
       <div class="box mono" style="font-size:11px; color:var(--mut); border-left:3px solid var(--gold); margin-bottom:16px; background:rgba(245,158,11,.05); padding:12px; text-align:justify;">
         <strong style="color:var(--gold); display:block; margin-bottom:4px;">⚠️ ACLARACIÓN METODOLÓGICA &amp; HISTÓRICA</strong>
         Contar con la traducción completa del texto no exime el rigor de estudio. Este manuscrito es un compendio de tratados especializados de los siglos XV y XVI redactados originalmente para médicos, boticarios y especialistas en iatromatemática de la época. Leer estos diagramas a cabalidad exige formación técnica en medicina humoral, astrología médica y dinámicas estacionales, equivalente a interpretar tratados avanzados de física o química moderna.
@@ -438,163 +436,196 @@ const secs = [
   {a:103,b:116,c:'ROSETTA',n:'Recetas & Corpus Estelar',ev:'pchedy qokain shedy ol dar chckhy...',es:'Párrafo de prescripción magistral indexado por estrella marginal: secuencia de mezcla, temperatura y aplicación.',la:'Paragraphus praescriptionis magistralis per stellam marginalem indexatus: sequentia mixturae et applicatio.',en:'Magistral prescription paragraph indexed by marginal star: mixing sequence, temperature, and application.'}
 ];
 
-/* MATRICES DE PARÁMETROS ÚNICOS POR TRATADO */
-const sectionParamPools = {
+/* POOLS DE LÍNEAS TÉCNICAS SUSTANTIVAS Y ESPECIALIZADAS POR TRATADO */
+const substantiveLinePools = {
   BOTANICAL: {
-    es: ["Morfología de la raíz principal", "Densidad del rizoma central", "Patrón de ramificación foliar simétrica", "Extracción por maceración en frío", "Coeficiente de absorción hídrica", "Estructura celular del tallo", "Segregación de savia estacional", "Análisis de nervaduras secundarias", "Propiedades de decocción de la hoja", "Vigor de brotación en primavera"],
-    la: ["Morphologia radicis principalis", "Densitas rhizomatis centralis", "Patronus ramificationis foliaris", "Extractio per macerationem frigidam", "Coefficiens absorptionis hydricae", "Structura cellularis caulis", "Segregatio succi stationalis", "Analysis nervurarum secundarium", "Proprietates decoctionis folii", "Vigor germinationis vernalis"],
-    en: ["Main root morphology", "Central rhizome density", "Symmetrical leaf branching pattern", "Cold maceration extraction", "Water absorption coefficient", "Stem cellular structure", "Seasonal sap segregation", "Secondary venation analysis", "Leaf decoction properties", "Spring budding vigor"]
-  },
-  ASTRONOMICAL: {
-    es: ["Cómputo de ascensión recta en el sector", "Alineación de nodos celestes mayores", "Proyección radial de constelaciones", "Vector de declinación estelar", "Armónicos de frecuencia orbital", "Regencia temporal sobre los humores", "Ciclo de influencia orbital concéntrica", "Meridiano de referencia estelar", "Gradiente de posición en la esfera", "Tránsito de la constelación boreal"],
-    la: ["Computus ascensionis rectae in sectore", "Alignmentum nodorum caelestium", "Proiectio radialis constellationum", "Vector declinationis stellaris", "Harmonica frequentiae orbitalis", "Regentia temporalis super humores", "Cyclus influentiae orbitalis", "Meridianus referentiae stellaris", "Gradus positionis in sphaera", "Transitus constellationis borealis"],
-    en: ["Right ascension computation in sector", "Major celestial nodes alignment", "Radial constellation projection", "Stellar declination vector", "Orbital frequency harmonics", "Temporal governance over humors", "Concentric orbital influence cycle", "Stellar reference meridian", "Sphere position gradient", "Boreal constellation transit"]
+    es: [
+      "1. Corte transversal de la raíz principal para evaluar la densidad del tejido fibroso en luna menguante.",
+      "2. Segregación de savia estacional recolectada antes del amanecer bajo influencia del cuadrante húmedo.",
+      "3. Maceración en frío de las hojas inferiores empleando agua destilada en vasija de barro sellada.",
+      "4. Análisis de las nervaduras secundarias para determinar el grado óptimo de maduración clorofílica.",
+      "5. Coeficiente de absorción hídrica medido a través del espesor de la cutícula foliar y el tallo.",
+      "6. Extracción de principios activos por decocción prolongada a temperatura controlada de tres lunas.",
+      "7. Selección de brotes terminales durante el equinoccio para la preparación de tónicos astringentes.",
+      "8. Verificación de la estructura celular del rizoma bajo exposición a vapores de azufre suave.",
+      "9. Calendario de siembra y recolección sincronizado con el tránsito de la constelación nutricia."
+    ],
+    la: [
+      "1. Sectio transversa radicis principalis ad densitatem textus fibrosi sub luna decrescente aestimandam.",
+      "2. Segregatio succi stationalis ante auroram sub influentia quadrantis humidi collecta.",
+      "3. Maceratio frigida foliorum inferiorum aqua destillata in vase fictili sigillato utens.",
+      "4. Analysis nervurarum secundarium ad gradum optimum maturationis chlorophyllicae determinandum.",
+      "5. Coefficiens absorptionis hydricae per crassitudinem cuticulae foliaris et caulis mensuratus.",
+      "6. Extractio principiorum activorum per decoctionem prolongatam ad temperaturem trium lunarum.",
+      "7. Selectio surculorum terminalium sub aequinoctio pro tonicis astringendis praeparandis.",
+      "8. Verificatio structurae cellularis rhizomatis sub expositione vaporum sulphuris mitis.",
+      "9. Calendarium sationis et collectionis cum transitu constellationis nutritivae synchronizatum."
+    ],
+    en: [
+      "1. Cross-section of the main root to evaluate fibrous tissue density during a waning moon.",
+      "2. Segregation of seasonal sap harvested before dawn under the influence of the humid quadrant.",
+      "3. Cold maceration of lower leaves using distilled water in a sealed earthenware vessel.",
+      "4. Analysis of secondary venation to determine the optimal degree of chlorophyll maturation.",
+      "5. Water absorption coefficient measured through the thickness of the leaf cuticle and stem.",
+      "6. Extraction of active principles by prolonged decoction at a controlled temperature of three moons.",
+      "7. Selection of terminal shoots during the equinox for the preparation of astringent tonics.",
+      "8. Verification of the rhizome cellular structure under exposure to mild sulfur vapors.",
+      "9. Planting and harvesting calendar synchronized with the transit of the nourishing constellation."
+    ]
   },
   BIOLOGICAL: {
-    es: ["Circuito hidráulico de purificación", "Regulación de canales de fluidos", "Dinámica de transferencia térmica", "Flujo de corrientes subterráneas", "Coeficiente de viscosidad hídrica", "Inmersión en piletas de depuración", "Interacción con cuerpos suspendidos", "Conducto de filtración termal", "Presión de compuertas de drenaje", "Caudal de purga en cámaras de agua"],
-    la: ["Circuitus hydraulicus purificationis", "Regulatio canalium fluidorum", "Dynamica transferentiae thermalis", "Fluxus fluminum subterraneorum", "Coefficiens viscositatis hydricae", "Inmersio in balneis depurationis", "Interactio cum corporibus suspensis", "Ductus filtrationis thermalis", "Pressio cataractarum excurrentium", "Fluxus purgationis in cameris"],
-    en: ["Hydraulic purification circuit", "Fluid channels regulation", "Thermal transfer dynamics", "Subterranean current flow", "Water viscosity coefficient", "Thermal immersion pools", "Interaction with suspended bodies", "Thermal filtration duct", "Drainage gate pressure", "Purge flow in water chambers"]
+    es: [
+      "1. Regulación de la presión en las compuertas de drenaje inferior para estabilizar el flujo de entrada.",
+      "2. Control del nivel de inmersión corporal en la pileta de depuración según la tolerancia térmica.",
+      "3. Dinámica de transferencia térmica entre el canal de vapor superior y el estanque principal de piedra.",
+      "4. Caudal de purga en las cámaras de agua estancada para evitar la acumulación de sedimentos minerales.",
+      "5. Interacción de los cuerpos suspendidos con los flujos circulares impulsados por gravedad y desnivel.",
+      "6. Medición de la altura del espejo de agua en relación con el conducto principal de desborde termal.",
+      "7. Apertura gradual de las válvulas de distribución para templar el agua de los baños medicinales.",
+      "8. Verificación de la viscosidad del fluido termal tras el paso por los filtros de carbón vegetal.",
+      "9. Sincronización de los ciclos de llenado y vaciado con las mareas internas y las horas planetarias."
+    ],
+    la: [
+      "1. Regulatio pressionis in cataractis drenagii inferioris ad fluxum introitus stabilizandum.",
+      "2. Controlus altitudinis immersionis corporalis in balneo depurationis secundum tolerantiam thermalem.",
+      "3. Dynamica transferentiae thermalis inter canalem vaporis superiorem et stagnum principale lapideum.",
+      "4. Fluxus purgationis in cameris aquae stagnantis ad accumulationem sedimentorum mineralium vitandam.",
+      "5. Interactio corporum suspensorum cum fluxibus circularibus per gravitatem et declivitatem impulsis.",
+      "6. Mensura altitudinis speculi aquae in relatione ad ductum principale exbordii thermalis.",
+      "7. Apertura gradualis valvarum distributionis ad aquam balneorum medicinalium temperandam.",
+      "8. Verificatio viscositatis fluidi thermalis post transitum per colatoria carbonis vegetabilis.",
+      "9. Synchronizatio cyclorum repletionis et evacuationis cum maritimis internis et horis planetariis."
+    ],
+    en: [
+      "1. Regulation of pressure in the lower drainage gates to stabilize the incoming fluid flow.",
+      "2. Control of the body immersion level in the purification pool according to thermal tolerance.",
+      "3. Thermal transfer dynamics between the upper steam channel and the main stone basin.",
+      "4. Purge flow rate in stagnant water chambers to prevent the accumulation of mineral sediments.",
+      "5. Interaction of suspended bodies with circular flows driven by gravity and elevation gradient.",
+      "6. Measurement of the water mirror height in relation to the main thermal overflow conduit.",
+      "7. Gradual opening of distribution valves to temper the water for medicinal baths.",
+      "8. Verification of the thermal fluid viscosity after passing through vegetable charcoal filters.",
+      "9. Synchronization of filling and emptying cycles with internal tides and planetary hours."
+    ]
   },
   COSMOLOGICAL: {
-    es: ["Topología de nodos interconectados", "Vector de desplazamiento geodésico", "Matriz de distribución territorial", "Estructura radial de fortalezas", "Sincronización de centros de energía", "Red de pasadizos subterráneos", "Conexión entre esferas celestes", "Orientación de murallas concéntricas", "Distribución de baluartes mayores", "Eje simétrico del mapa general"],
-    la: ["Topologia nodorum interconnectorum", "Vector displacementis geodesicae", "Matrix distributionis territorialis", "Structura radialis fortium", "Synchronizatio centrorum energiae", "Rete angiportorum subterraneorum", "Nexus inter sphaeras caelestes", "Orientatio murorum concentricorum", "Distributio propugnaculorum", "Axis symmetricus mappae generalis"],
-    en: ["Interconnected nodes topology", "Geodetic displacement vector", "Territorial distribution matrix", "Radial structure of strongholds", "Energy centers synchronization", "Subterranean passageways network", "Connection between celestial spheres", "Concentric walls orientation", "Major bulwarks distribution", "General map symmetric axis"]
+    es: [
+      "1. Topología de nodos interconectados que coordinan la distribución subterránea de las corrientes hídricas.",
+      "2. Vector de desplazamiento geodésico entre el baluarte central y las esferas celestes exteriores.",
+      "3. Matriz de distribución territorial para el control de los flujos estacionales en la red de fortalezas.",
+      "4. Estructura radial de contención diseñada para resistir la presión hidrostática de los depósitos.",
+      "5. Sincronización de los centros de energía regional con las alineaciones estelares del equinoccio.",
+      "6. Red de pasadizos subterráneos equipados con conductos de ventilación y control térmico."
+    ],
+    la: [
+      "1. Topologia nodorum interconnectorum quae distributionem subterraneam fluminum hydricorum coordinant.",
+      "2. Vector displacementis geodesicae inter propugnaculum centrale et sphaeras celestes exteriores.",
+      "3. Matrix distributionis territorialis pro regimine fluxuum stationalium in rete fortium.",
+      "4. Structura radialis contentionis ad pressionem hydrostaticam depositorum resistendam designata.",
+      "5. Synchronizatio centrorum energiae regionalis cum alignmentis stellaribus aequinoctii.",
+      "6. Rete angiportorum subterraneorum ductibus ventilationis et controlis thermalis instructum."
+    ],
+    en: [
+      "1. Topology of interconnected nodes coordinating the subterranean distribution of water currents.",
+      "2. Geodetic displacement vector between the central stronghold and outer celestial spheres.",
+      "3. Territorial distribution matrix for controlling seasonal flows across the network of fortresses.",
+      "4. Radial containment structure designed to withstand the hydrostatic pressure of the reservoirs.",
+      "5. Synchronization of regional energy centers with the stellar alignments of the equinox.",
+      "6. Network of subterranean passageways equipped with ventilation ducts and thermal control."
+    ]
   },
   PHARMACEUTICAL: {
-    es: ["Clasificación de albarelos de arcilla", "Dosificación ponderal de polvos", "Sellado con cera y arcilla refractaria", "Control de temperatura en hornos", "Pureza de sales por evaporación", "Maceración de cortezas aromáticas", "Destilación fraccionada de resinas", "Filtración por tamices de lino", "Preparación de ungüento base", "Medición de densidad del extracto"],
-    la: ["Classificatio vasorum fictilium", "Dosificatio ponderalis pulverum", "Sigillatio cum cera et argilla", "Controlus temperaturae fornacum", "Puritas salium per evaporationem", "Maceratio corticum aromaticarum", "Destillatio fractionata resinarum", "Filtratio per cribra lini", "Praeparatio unguenti basici", "Mensura densitatis extracti"],
-    en: ["Clay apothecary jars classification", "Powders weight dosage", "Wax and refractory clay sealing", "Furnaces temperature control", "Salts purity by evaporation", "Aromatic barks maceration", "Resins fractional distillation", "Linen sieves filtration", "Base ointment preparation", "Extract density measurement"]
-  },
-  ROSETTA: {
-    es: ["Clave analítica de cierre estelar", "Secuencia final de mezcla química", "Verificación de constantes de reacción", "Armonización de ciclos estelares", "Sello definitivo del corpus activo", "Prescripción magistral de compuestos", "Balance termodinámico del proceso", "Coordinación de medidas y tiempos", "Registro de control en el margen", "Conclusión de la fórmula principal"],
-    la: ["Clavis analytica clausurae stellaris", "Sequentia finalis mixturae chemicae", "Verificatio constantium reactionis", "Harmonizatio cyclorum stellarum", "Sigillum definitivum corporis", "Praescriptio magistralis compositorum", "Aequilibrium thermodynamicum", "Coordinatio mensurarum et temporum", "Registratio controlis in margine", "Conclusio formulae principalis"],
-    en: ["Stellar closure analytical key", "Chemical mixing final sequence", "Reaction constants verification", "Stellar cycles harmonization", "Active corpus definitive seal", "Magistral compounding prescription", "Process thermodynamic balance", "Measurements and times coordination", "Margin control recording", "Main formula conclusion"]
+    es: [
+      "1. Clasificación de albarelos de arcilla vidriada según su capacidad de aislamiento térmico y porosidad.",
+      "2. Dosificación ponderal de polvos finos purificados mediante tamizado de lino estricto.",
+      "3. Sellado hermético con cera virgen y arcilla refractaria en la boca del recipiente de destilación.",
+      "4. Control de la intensidad de la llama en el horno inferior para evitar la degradación de aceites.",
+      "5. Pureza de sales obtenida por evaporación controlada en bandejas de cobre martillado.",
+      "6. Maceración de cortezas aromáticas en vino blanco fortificado bajo supervisión estelar."
+    ],
+    la: [
+      "1. Classificatio vasorum fictilium vitreorum secundum capacitatem insulationis thermalis et porositatem.",
+      "2. Dosificatio ponderalis pulverum finorum per cribratio lini stricta purificatorum.",
+      "3. Sigillatio hermetica cum cera virginis et argilla refractaria in ore vasis destillationis.",
+      "4. Controlus intensitatis flammae in fornace inferiore ad degradationem oleorum vitandam.",
+      "5. Puritas salium per evaporationem controlatam in scutellis cupreis fabricatis obtenta.",
+      "6. Maceratio corticum aromaticarum in vino albo fortificato sub supervisione stellaris."
+    ],
+    en: [
+      "1. Classification of glazed clay apothecary jars according to thermal insulation and porosity.",
+      "2. Weight dosage of fine powders purified through strict linen sieving.",
+      "3. Hermetic sealing with virgin wax and refractory clay at the mouth of the distillation vessel.",
+      "4. Control of flame intensity in the lower furnace to prevent the degradation of volatile oils.",
+      "5. Purity of salts obtained by controlled evaporation in hammered copper trays.",
+      "6. Maceration of aromatic barks in fortified white wine under stellar supervision."
+    ]
   }
 };
 
-/* GENERADOR DE FICHA TÉCNICA RICA, HISTÓRICA Y DIFERENCIADA */
+/* GENERADOR DE FICHA TÉCNICA RICA Y ADAPTATIVA */
 function getFichaTecnicaHTML(folioId, sec) {
   let idNum = parseInt(folioId) || 0;
   if (sec === 'ASTRONOMICAL') {
     const signos = [
-      {
-        signo: "Aries", rango: "21 Mar – 19 Abr", est: "Equinoccio de Primavera (Ignición Vital)", 
-        hum: "Cólera / Calor Seco", temp: "Ascenso térmico brusco; quiebre de la helada invernal.",
-        dif: "A diferencia de los signos de agua o tierra pesada, Aries marca el inicio absoluto del ciclo de fuego activo, requiriendo el control estricto de fiebres y la colecta de brotes inflamables.",
-        func: "Cálculo de ignición vital, sincronización de la savia incipiente y arbitraje de purgas coléricas."
-      },
-      {
-        signo: "Tauro", rango: "20 Abr – 20 May", est: "Consolidación Primaveral (Fijación de Raíces)", 
-        hum: "Melancolía / Tierra Húmeda", temp: "Estabilización térmica y máxima densidad en los suelos.",
-        dif: "En contraste con la volatilidad de Géminis, Tauro concentra su energía en la retención mineral de la tierra y la extracción profunda de rizomas nutritivos.",
-        func: "Fijación de raíces, control de densidad en suelos y preparación de ungüentos astringentes."
-      },
-      {
-        signo: "Géminis", rango: "21 May – 20 Jun", est: "Pre-Solsticio de Verano (Expansión Aérea)", 
-        hum: "Sangre / Aire Caliente", temp: "Aumento acelerado de la temperatura ambiente y vientos secos.",
-        dif: "A diferencia del estancamiento flemático de invierno, Géminis abre los canales respiratorios y la circulación de fluidos volátiles en la atmósfera y el cuerpo.",
-        func: "Sincronización de canales aéreos, destilación de esencias ligeras y regulación sanguínea."
-      },
-      {
-        signo: "Cáncer", rango: "21 Jun – 22 Jul", est: "Solsticio de Verano (Cenit Hídrico)", 
-        hum: "Flema / Agua Cálida", temp: "Máximo calor externo combinado con retención de humedad interior.",
-        dif: "Mientras Leo busca el fuego puro de los hornos, Cáncer domina las piletas de inmersión térmica y el control de mareas corporales y balneológicas.",
-        func: "Regulación de fluidos internos, gestión de piletas térmicas y control de vapores."
-      },
-      {
-        signo: "Leo", rango: "23 Jul – 22 Ago", est: "Cenit Solar (Calor Absoluto)", 
-        hum: "Cólera / Fuego Puro", temp: "Temperaturas extremas; máxima sequedad ambiental.",
-        dif: "A diferencia de los signos fríos (como Capricornio o Piscis), Leo exige blindar los compuestos contra la evaporación rápida y manejar calcinaciones de alto grado.",
-        func: "Control de hornos de calcinación, fusión de metales y destilación mayor por fuego directo."
-      },
-      {
-        signo: "Virgo", rango: "23 Ago – 22 Sep", est: "Cosecha Temprana (Separación y Pureza)", 
-        hum: "Melancolía / Tierra Seca", temp: "Inicio del descenso térmico y recolección de frutos maduros.",
-        dif: "Frente al desborde hídrico de Cáncer, Virgo opera bajo la lógica de la selección estricta, el tamizado de polvos y la purificación de sales secas.",
-        func: "Selección de granos, separación de principios activos y filtrado de sedimentos secos."
-      },
-      {
-        signo: "Libra", rango: "23 Sep – 22 Oct", est: "Equinoccio de Otoño (Punto de Inflexión)", 
-        hum: "Sangre / Equilibrio Hídrico", temp: "Igualdad temporal entre día y noche; bajada de temperatura.",
-        dif: "A diferencia de los extremos estolicios, Libra representa el fiel de la balanza isentrópica, ideal para neutralizar ácidos y equilibrar disolventes.",
-        func: "Balance isentrópico de disolventes, arbitraje de ácidos y estabilización de mezclas."
-      },
-      {
-        signo: "Escorpio", rango: "23 Oct – 21 Nov", est: "Decrecimiento Lumínico (Humedad Profunda)", 
-        hum: "Flema / Humedad Subterránea", temp: "Enfriamiento notable del suelo y aumento de lluvias otoñales.",
-        dif: "Mientras Aries enciende la primavera, Escorpio se adentra en la oscuridad para extraer venenos, savias tóxicas y raíces ocultas bajo tierra.",
-        func: "Extracción de esencias subterráneas, manejo de compuestos drásticos y raíces venenosas."
-      },
-      {
-        signo: "Sagitario", rango: "22 Nov – 21 Dic", est: "Pre-Solsticio de Invierno (Orientación Fría)", 
-        hum: "Cólera / Seco Frío", temp: "Heladas tempranas y vientos gélidos del norte.",
-        dif: "Frente a la humedad estancada de Piscis, Sagitario utiliza vectores estelares rectos para calcular coordenadas de resguardo y almacenamiento.",
-        func: "Orientación de vectores estelares, cálculo de trayectorias y blindaje contra heladas."
-      },
-      {
-        signo: "Capricornio", rango: "22 Dic – 19 Ene", est: "Solsticio de Invierno (Frío Extremo)", 
-        hum: "Melancolía / Frío Profundo", temp: "Temperaturas mínimas; hibernación biológica total.",
-        dif: "A diferencia del cenit solar de Leo, Capricornio impone la ley del frío absoluto, obligando al boticario a sellar todo en cámaras de arcilla refractaria.",
-        func: "Conservación hermética en frío, protección de raíces secas y cese de extracciones al aire libre."
-      },
-      {
-        signo: "Acuario", rango: "20 Ene – 18 Feb", est: "Deshielo y Circulación (Fluido Activo)", 
-        hum: "Sangre / Humedad Activa", temp: "Transición del hielo al agua líquida; vientos húmedos.",
-        dif: "Mientras Tauro fija la tierra, Acuario moviliza los canales de riego, la apertura de compuertas hidráulicas y la purga de los conductos corporales.",
-        func: "Apertura de canales de purga, gestión de corrientes hídricas y estimulación circulatoria."
-      },
-      {
-        signo: "Piscis", rango: "19 Feb – 20 Mar", est: "Cierre del Ciclo Invernal (Disolución Flemática)", 
-        hum: "Flema / Retención Hídrica Máxima", temp: "Humedad ambiental saturada previa al equinoccio primaveral.",
-        dif: "A diferencia de cualquier otro signo, Piscis concentra el clímax de la retención flemática y el agua residual del invierno; su diagrama calcula las lunaciones exactas para disolver bloqueos hídricos antes del calor de Aries.",
-        func: "Cálculo de lunaciones para purgas hídricas, disolución de flemas y preparación de tónicos respiratorios."
-      }
+      {signo: "Aries", rango: "21 Mar – 19 Abr", est: "Equinoccio de Primavera (Ignición Vital)", hum: "Cólera / Calor Seco", temp: "Ascenso térmico brusco; quiebre de la helada.", dif: "Inicio absoluto del ciclo de fuego activo; control de fiebres y brotes inflamables.", func: "Cálculo de ignición vital y sincronización de savia."},
+      {signo: "Tauro", rango: "20 Abr – 20 May", est: "Consolidación Primaveral (Fijación de Raíces)", hum: "Melancolía / Tierra Húmeda", temp: "Estabilización térmica y máxima densidad en suelos.", dif: "Retención mineral de la tierra y extracción profunda de rizomas nutritivos.", func: "Fijación de raíces y control de densidad en suelos."},
+      {signo: "Géminis", rango: "21 May – 20 Jun", est: "Pre-Solsticio de Verano (Expansión Aérea)", hum: "Sangre / Aire Caliente", temp: "Aumento acelerado de temperatura y vientos secos.", dif: "Apertura de canales respiratorios y circulación de fluidos volátiles.", func: "Sincronización de canales aéreos y fluidos volátiles."},
+      {signo: "Cáncer", rango: "21 Jun – 22 Jul", est: "Solsticio de Verano (Cenit Hídrico)", hum: "Flema / Agua Cálida", temp: "Máximo calor externo con retención de humedad interior.", dif: "Dominio de piletas de inmersión térmica y control de mareas corporales.", func: "Regulación de mareas internas y piletas de inmersión."},
+      {signo: "Leo", rango: "23 Jul – 22 Ago", est: "Cenit Solar (Calor Absoluto)", hum: "Cólera / Fuego Puro", temp: "Temperaturas extremas; máxima sequedad ambiental.", dif: "Blindaje de compuestos contra evaporación y calcinaciones de alto grado.", func: "Control de hornos de calcinación y destilación mayor."},
+      {signo: "Virgo", rango: "23 Ago – 22 Sep", est: "Cosecha Temprana (Separación y Pureza)", hum: "Melancolía / Tierra Seca", temp: "Descenso térmico y recolección de frutos maduros.", dif: "Selección estricta, tamizado de polvos y purificación de sales secas.", func: "Selección de granos y separación de polvos activos."},
+      {signo: "Libra", rango: "23 Sep – 22 Oct", est: "Equinoccio de Otoño (Punto de Inflexión)", hum: "Sangre / Equilibrio Hídrico", temp: "Igualdad temporal entre día y noche; bajada de temperatura.", dif: "Fiel de la balanza isentrópica; neutralización de ácidos y disolventes.", func: "Balance isentrópico de disolventes y ácidos."},
+      {signo: "Escorpio", rango: "23 Oct – 21 Nov", est: "Decrecimiento Lumínico (Humedad Profunda)", hum: "Flema / Humedad Subterránea", temp: "Enfriamiento notable del suelo y aumento de lluvias.", dif: "Extracción de venenos, savias tóxicas y raíces ocultas bajo tierra.", func: "Extracción de esencias subterráneas y venenos."},
+      {signo: "Sagitario", rango: "22 Nov – 21 Dic", est: "Pre-Solsticio de Invierno (Orientación Fría)", hum: "Cólera / Seco Frío", temp: "Heladas tempranas y vientos gélidos del norte.", dif: "Uso de vectores estelares rectos para resguardo y almacenamiento.", func: "Orientación de vectores estelares y coordenadas."},
+      {signo: "Capricornio", rango: "22 Dic – 19 Ene", est: "Solsticio de Invierno (Frío Extremo)", hum: "Melancolía / Frío Profundo", temp: "Temperaturas mínimas; hibernación biológica total.", dif: "Ley del frío absoluto; sellado en cámaras de arcilla refractaria.", func: "Conservación hermética en cámaras de arcilla fría."},
+      {signo: "Acuario", rango: "20 Ene – 18 Feb", est: "Deshielo y Circulación (Fluido Activo)", hum: "Sangre / Humedad Activa", temp: "Transición del hielo al agua líquida; vientos húmedos.", dif: "Movilización de canales de riego, compuertas y purga corporal.", func: "Apertura de canales de purga y riego hidráulico."},
+      {signo: "Piscis", rango: "19 Feb – 20 Mar", est: "Cierre del Ciclo Invernal (Disolución Flemática)", hum: "Flema / Retención Hídrica Máxima", temp: "Humedad ambiental saturada previa al equinoccio.", dif: "Clímax de retención flemática; cálculo de lunaciones para purgas hídricas.", func: "Cálculo de lunaciones y transición hacia el equinoccio."}
     ];
     let idx = (idNum % 12);
     let s = signos[idx];
     return `
-      <div><strong>Signo Zodiacal:</strong> ${s.signo} (${s.rango}) — <em>Sector Astronómico F.${folioId.toUpperCase()}</em></div>
-      <div><strong>Dinámica Estacional:</strong> ${s.est} | <strong>Variación Térmica:</strong> ${s.temp}</div>
-      <div><strong>Regencia Humoral:</strong> ${s.hum}</div>
-      <div><strong>Especificidad Histórica:</strong> ${s.dif}</div>
-      <div><strong>Utilidad Práctica / Clínica:</strong> ${s.func}</div>
+      <div><strong>Signo Zodiacal:</strong> ${s.signo} (${s.rango}) — <em>Sector F.${folioId.toUpperCase()}</em></div>
+      <div><strong>Dinámica Estacional:</strong> ${s.est} | <strong>Térmica:</strong> ${s.temp}</div>
+      <div><strong>Regencia Humoral:</strong> ${s.hum} — <em>${s.dif}</em></div>
+      <div><strong>Utilidad Práctica:</strong> ${s.func}</div>
     `;
   } else if (sec === 'BOTANICAL') {
     return `
-      <div><strong>Tratado:</strong> Herbario Sistemático &amp; Morfología Vegetal (ff. 01r–66v)</div>
-      <div><strong>Parámetro Morfológico:</strong> Análisis simétrico de rizoma, estructura foliar y patrón radicular.</div>
-      <div><strong>Utilidad Farmacológica:</strong> Determinación de propiedades de decocción y época óptima de colecta estacional.</div>
+      <div><strong>Tratado:</strong> Herbario Sistemático &amp; Morfología Vegetal (ff. 01r–66v) — <em>Sector F.${folioId.toUpperCase()}</em></div>
+      <div><strong>Análisis Morfológico:</strong> Evaluación simétrica de rizomas, densidad foliar y patrones radiculares.</div>
+      <div><strong>Ventana de Colecta:</strong> Sincronizada con ciclos lunares y segregación estacional de savia.</div>
+      <div><strong>Utilidad Farmacológica:</strong> Determinación de propiedades para maceración en frío y decocción.</div>
     `;
   } else if (sec === 'BIOLOGICAL') {
     return `
-      <div><strong>Tratado:</strong> Balneología &amp; Fluidos Vitales (ff. 75r–84v)</div>
-      <div><strong>Dinámica Hídrica:</strong> Circuitos hidráulicos de piletas térmicas e inmersión de ninfas corporales.</div>
-      <div><strong>Utilidad Práctica:</strong> Regulación de compuertas de purga y reequilibrio de humores internos.</div>
+      <div><strong>Tratado:</strong> Balneología &amp; Fluidos Vitales (ff. 75r–84v) — <em>Sector F.${folioId.toUpperCase()}</em></div>
+      <div><strong>Dinámica Hídrica:</strong> Gestión de niveles de espejo de agua, presiones hidrostáticas y compuertas.</div>
+      <div><strong>Control Térmico:</strong> Regulación de piletas de inmersión y purga de sedimentos minerales.</div>
+      <div><strong>Utilidad Práctica:</strong> Reequilibrio de humores internos mediante circuitos hidráulicos supervisados.</div>
     `;
   } else if (sec === 'COSMOLOGICAL') {
     return `
-      <div><strong>Tratado:</strong> Cosmológica &amp; Rosetas Mayores (ff. 85r–86v)</div>
-      <div><strong>Topología:</strong> Mapa de nodos geodésicos, esferas celestes y corrientes subterráneas interconectadas.</div>
-      <div><strong>Utilidad Analógica:</strong> Sincronización territorial de centros de energía y fortalezas operativas.</div>
+      <div><strong>Tratado:</strong> Cosmológica &amp; Rosetas Mayores (ff. 85r–86v) — <em>Sector F.${folioId.toUpperCase()}</em></div>
+      <div><strong>Topología Regional:</strong> Mapeo de nodos geodésicos, esferas celestes y corrientes subterráneas.</div>
+      <div><strong>Utilidad Analógica:</strong> Sincronización territorial de centros de energía y arquitectura defensiva.</div>
     `;
   } else if (sec === 'PHARMACEUTICAL') {
     return `
-      <div><strong>Tratado:</strong> Compendio Farmacéutico &amp; Vasijas (ff. 87r–102v)</div>
-      <div><strong>Operativa:</strong> Clasificación de albarelos, calcinación de compuestos y dosificación ponderal de polvos.</div>
-      <div><strong>Utilidad Práctica:</strong> Control estricto de temperatura en hornos y sellado con arcilla refractaria.</div>
+      <div><strong>Tratado:</strong> Compendio Farmacéutico &amp; Vasijas (ff. 87r–102v) — <em>Sector F.${folioId.toUpperCase()}</em></div>
+      <div><strong>Operativa Boticaria:</strong> Clasificación de albarelos, calcinación y dosificación de polvos.</div>
+      <div><strong>Control de Fuego:</strong> Regulación de temperaturas en hornos y sellado con arcilla refractaria.</div>
     `;
   } else {
     return `
-      <div><strong>Tratado:</strong> Clave Rosetta &amp; Recetas Magistrales (ff. 103r–116v)</div>
+      <div><strong>Tratado:</strong> Clave Rosetta &amp; Recetas Magistrales (ff. 103r–116v) — <em>Sector F.${folioId.toUpperCase()}</em></div>
       <div><strong>Función Analógica:</strong> Sello termodinámico y dosificación farmacéutica final del corpus.</div>
       <div><strong>Sincronización:</strong> Constantes isentrópicas y control riguroso de destilación del siglo XV.</div>
     `;
   }
 }
 
-/* LÍNEAS TRADUCIDAS ESPECÍFICAS PARA EL FOLIO 70V (PISCIS) Y DINÁMICAS PARA OTROS ASTRO */
-function getAstronomicalLines(k, signName) {
-  if(k === '70v' || k === '70r') {
+/* GENERADOR DE LÍNEAS ESPECÍFICAS O DINÁMICAS SUSTANTIVAS */
+function getFolioLines(k, sec) {
+  if(sec === 'ASTRONOMICAL' && (k === '70v' || k === '70r')) {
     return [
       {eva: "1. cth-70-1 otal qok...", es: "1. En el vigésimo grado del signo acuático, la conjunción estelar marca el fin de la retención flemática invernal.", la: "1. In vicesimo gradu signi aquatici, coniunctio stellaris finem retentionis phlegmaticae hiemalis notat.", en: "1. At the twentieth degree of the water sign, the stellar conjunction marks the end of winter phlegmatic retention."},
       {eva: "2. shol dar chody...", es: "2. El tránsito de la constelación boreal gobierna el flujo de los canales hídricos subterráneos y corporales.", la: "2. Transitus constellationis borealis flumen canalium hydricorum subterraneorum et corporalium gubernat.", en: "2. The transit of the boreal constellation governs the flow of subterranean and bodily water channels."},
@@ -610,19 +641,19 @@ function getAstronomicalLines(k, signName) {
       {eva: "12. shory cthres y...", es: "12. Conclusión del ciclo estelar de Piscis y transición directa hacia el fuego activo del equinoccio.", la: "12. Conclusio cycli stellaris Piscium et transitio directa ad ignem activum aequinoctii.", en: "12. Conclusion of the Pisces stellar cycle and direct transition to the active fire of the equinox."}
     ];
   } else {
-    // Generador general robusto para otros folios astronómicos
-    let pool = sectionParamPools.ASTRONOMICAL;
+    let pool = substantiveLinePools[sec] || substantiveLinePools.BOTANICAL;
     let lines = [];
-    let totalL = 10 + (parseInt(k, 36) % 3);
+    let idNum = parseInt(k, 36) || 5;
+    let totalL = 6 + (idNum % 4);
     for(let ln=1; ln<=totalL; ln++){
-      let idx1 = (ln * 7 + parseInt(k, 36)) % pool.es.length;
-      let idx2 = (ln * 11 + parseInt(k, 36)) % pool.la.length;
-      let idx3 = (ln * 13 + parseInt(k, 36)) % pool.en.length;
+      let idx1 = (ln * 3 + idNum) % pool.es.length;
+      let idx2 = (ln * 5 + idNum) % pool.la.length;
+      let idx3 = (ln * 7 + idNum) % pool.en.length;
       lines.push({
         eva: `${ln}. cth-${k}-${ln} qet-or...`,
-        es: `${ln}. ${pool.es[idx1]} conforme a las tables de regencia para el sector ${k.toUpperCase()}.`,
-        la: `${ln}. ${pool.la[idx2]} secundum tabulas regentiae pro sectore ${k.toUpperCase()}.`,
-        en: `${ln}. ${pool.en[idx3]} according to the regency tables for sector ${k.toUpperCase()}.`
+        es: pool.es[idx1],
+        la: pool.la[idx2],
+        en: pool.en[idx3]
       });
     }
     return lines;
@@ -635,24 +666,7 @@ secs.forEach(s=>{
     ['r','v'].forEach(sd=>{
       const k=i<10?`0${i}${sd}`:`${i}${sd}`;
       if(!ids.has(k)){
-        let pool = sectionParamPools[s.c] || sectionParamPools.BOTANICAL;
-        let linesArr = [];
-        if(s.c === 'ASTRONOMICAL') {
-          linesArr = getAstronomicalLines(k);
-        } else {
-          let totalL = 8 + (i % 6);
-          for(let ln=1; ln<=totalL; ln++){
-            let idx1 = (ln * 7 + i * 3) % pool.es.length;
-            let idx2 = (ln * 11 + i * 5) % pool.la.length;
-            let idx3 = (ln * 13 + i * 2) % pool.en.length;
-            linesArr.push({
-              eva: `${ln}. cth-${i}-${ln} qet-or al-ch... [f${k}]`,
-              es: `${ln}. ${pool.es[idx1]} (parámetro analítico ${ln} para sector ${k}).`,
-              la: `${ln}. ${pool.la[idx2]} (parameter analyticus ${ln} pro sector ${k}).`,
-              en: `${ln}. ${pool.en[idx3]} (analytical parameter ${ln} for sector ${k}).`
-            });
-          }
-        }
+        let linesArr = getFolioLines(k, s.c);
         db.push({
           id:k, 
           sec:s.c, 
@@ -724,7 +738,7 @@ function updateWorkspace(){
   document.getElementById('imgFolioLabel').innerText='VISOR ÓPTICO // FOLIO ' + activeFolio.id.toUpperCase();
   document.getElementById('evaHead').innerText='TRANSCRIPCIÓN EVA ORIGINAL (F' + activeFolio.id.toUpperCase() + ')';
   
-  // RENDERIZAR FICHA TÉCNICA CON JUSTIFICACIÓN Y DATOS RICOS
+  // FICHA TÉCNICA PROFUNDA
   document.getElementById('ftContent').innerHTML = getFichaTecnicaHTML(activeFolio.id, activeFolio.sec);
   document.getElementById('ftCode').innerText = 'SECTOR ' + activeFolio.id.toUpperCase() + ' // CRONOBIO';
 
