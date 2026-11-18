@@ -272,7 +272,7 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
       <button type="button" onclick="runDecode()" class="btn-run mono">COMPILAR PUENTE TENSOR</button>
     </div>
 
-    <!-- PANEL DE RESULTADOS -->
+    <!-- PANEL DE RESULTADOS (ORDEN EXACTO: IMAGEN -> FICHA -> ACLARACIÓN -> TRADUCCIÓN) -->
     <div class="card c-ind">
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--b2)">
         <strong id="fTitle" class="mono" style="font-size:15px;color:#fff">Folio 116r — Clave Rosetta (28 Líneas)</strong>
@@ -282,14 +282,14 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
         </div>
       </div>
 
-      <!-- 1. VISOR ÓPTICO REAL DEL FOLIO -->
+      <!-- 1. VISOR ÓPTICO REAL DEL FOLIO (PRIMERO) -->
       <div class="folio-img-frame mono">
         <div style="font-size:30px; margin-bottom:2px">📜</div>
         <strong id="imgFolioLabel" style="font-size:12px;letter-spacing:1px">VISOR ÓPTICO // FOLIO 116R</strong>
         <span style="font-size:10px;color:var(--mut);margin-top:2px">Manuscrito MS 408 (Beinecke Library Collection)</span>
       </div>
 
-      <!-- 2. FICHA TÉCNICA Y COORDENADAS ESTACIONALES PROFUNDAS -->
+      <!-- 2. FICHA TÉCNICA & COORDENADAS ESTACIONALES (SEGUNDO) -->
       <div class="t-box mono" style="border-color:var(--cyan); background:rgba(8,51,68,.3); margin-bottom:14px; text-align:justify;">
         <div style="font-weight:800; color:var(--cyan); margin-bottom:6px; font-size:12px; text-transform:uppercase; display:flex; justify-content:space-between;">
           <span>📊 Ficha Técnica &amp; Coordenadas Estacionales</span>
@@ -300,14 +300,23 @@ footer{border-top:1px solid var(--b2);background:#02050e;padding:30px 20px;text-
         </div>
       </div>
 
-      <!-- 3. ACLARACIÓN METODOLÓGICA & ESPECIALIZADA -->
+      <!-- 3. ACLARACIÓN METODOLÓGICA & HISTÓRICA (TERCERO) -->
       <div class="box mono" style="font-size:11px; color:var(--mut); border-left:3px solid var(--gold); margin-bottom:16px; background:rgba(245,158,11,.05); padding:12px; text-align:justify;">
         <strong style="color:var(--gold); display:block; margin-bottom:4px;">⚠️ ACLARACIÓN METODOLÓGICA &amp; HISTÓRICA</strong>
         Contar con la traducción completa del texto no exime el rigor de estudio. Este manuscrito es un compendio de tratados especializados de los siglos XV y XVI redactados originalmente para médicos, boticarios y especialistas en iatromatemática de la época. Leer estos diagramas a cabalidad exige formación técnica en medicina humoral, astrología médica y dinámicas estacionales, equivalente a interpretar tratados avanzados de física o química moderna.
       </div>
 
-      <!-- 4. TEXTO TRADUCIDO CON LECTOR ESTILO PDF -->
-      <div id="outTxt" class="quote-wow">"En el vértice del equinoccio, la rotación de las esferas celestes condiciona el flujo térmico..."</div>
+      <!-- 4. BLOQUE DE TRADUCCIÓN CON ENCABEZADO LIMPIO Y PAGINACIÓN LATERAL (CUARTO) -->
+      <div id="outTxtWrapper" style="margin-bottom:16px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; padding:10px 14px; background:rgba(3,7,18,.95); border:1px solid var(--b1); border-radius:12px;" class="mono">
+          <span id="transHeaderLabel" style="font-size:12px; color:var(--cyan); font-weight:800; letter-spacing:1px;">TRADUCCIÓN AL ESPAÑOL (PÁGINA 1 DE 1)</span>
+          <div style="display:flex; gap:6px;">
+            <button type="button" onclick="changeLinePage(-1)" class="m-pill" id="btnPrev">← ANTERIOR</button>
+            <button type="button" onclick="changeLinePage(1)" class="m-pill" id="btnNext">SIGUIENTE →</button>
+          </div>
+        </div>
+        <div id="outTxt" class="quote-wow" style="margin-bottom:0;">"En el vértice del equinoccio, la rotación de las esferas celestes condiciona el flujo térmico..."</div>
+      </div>
 
       <!-- BOTÓN OPCIONAL PARA VER TRANSCRIPCIÓN EVA ORIGINAL -->
       <div style="margin-bottom:16px;">
@@ -428,7 +437,7 @@ const db = [
 ];
 
 const secs = [
-  {a:1,b:66,c:'BOTANICAL',n:'Herbario / Botánica',ev:'shol qokedy daldy chcthy dar ol...',es:'Registro botánico sistemático: descripción de morfología foliar, rizoma y propiedades de decocción medicinal.',la:'Descriptio botanica systematica: morphologia foliorum, rhizoma et proprietates decoctionis.',en:'Systematic botanical record: description of foliar morphology, rhizome, and medicinal decoction properties.'},
+  {a:1,b:66,c:'BOTANICAL',n:'Herbario / Botánica',ev:'shol qokedy daldy chcthy dar ol...',es:'Registro botánico sistemático: descripción de morfología foliar, rizoma y propiedades de decocción medicinal.',la:'Descriptio botanica systematica: morphologia foliorum, rhizoma et proprietates decoctionis.',en:'Systematic botanical record: description of foliar morphology, rizome, and medicinal decoction properties.'},
   {a:67,b:73,c:'ASTRONOMICAL',n:'Astronómica & Zodiacal',ev:'otal shedy okain dar chy qotaiin...',es:'Diagrama circular astronómico-zodiacal: alineación de sectores estelares y regencia temporal sobre los humores.',la:'Diagramma circulare astronomico-zodiacale: alignmentum sectorum stellarium et regentia temporalis.',en:'Circular astronomical-zodiacal diagram: alignment of stellar sectors and temporal governance over humors.'},
   {a:75,b:84,c:'BIOLOGICAL',n:'Biológica / Balneológica',ev:'qokedy qokeey shedy ol kaiin dar...',es:'Tratado balneológico y de fluidos vitales: circuitos hidráulicos, canales de irrigación y depuración térmica.',la:'Tractatus balneologicus et fluidorum vitalium: circuitus hydraulici et depuratio thermalis.',en:'Balneological and vital fluids treatise: hydraulic circuits, irrigation channels, and thermal purification.'},
   {a:85,b:86,c:'COSMOLOGICAL',n:'Cosmológica / Rosetas',ev:'sol chedy qotaiin dar aldy okedy...',es:'Mapa cosmológico interconectado (Gran Orrery): nodos geográficos, corrientes subterráneas y esferas celestes.',la:'Mappa cosmologica interconnexa: nodi geographici, flumina subterranea et sphaerae caelestes.',en:'Interconnected cosmological map: geographic nodes, subterranean currents, and celestial spheres.'},
@@ -436,7 +445,7 @@ const secs = [
   {a:103,b:116,c:'ROSETTA',n:'Recetas & Corpus Estelar',ev:'pchedy qokain shedy ol dar chckhy...',es:'Párrafo de prescripción magistral indexado por estrella marginal: secuencia de mezcla, temperatura y aplicación.',la:'Paragraphus praescriptionis magistralis per stellam marginalem indexatus: sequentia mixturae et applicatio.',en:'Magistral prescription paragraph indexed by marginal star: mixing sequence, temperature, and application.'}
 ];
 
-/* POOLS DE LÍNEAS TÉCNICAS SUSTANTIVAS Y ESPECIALIZADAS POR TRATADO */
+/* POOLS COMPLETOS Y SUSTANTIVOS PARA CADA SECCIÓN (SIN PARÁMETROS GENÉRICOS) */
 const substantiveLinePools = {
   BOTANICAL: {
     es: [
@@ -562,7 +571,7 @@ const substantiveLinePools = {
   }
 };
 
-/* GENERADOR DE FICHA TÉCNICA RICA Y ADAPTATIVA */
+/* GENERADOR DE FICHA TÉCNICA RICA Y ADAPTATIVA (ESPACIADO CORRECTO EN AMPERSAND) */
 function getFichaTecnicaHTML(folioId, sec) {
   let idNum = parseInt(folioId) || 0;
   if (sec === 'ASTRONOMICAL') {
@@ -623,7 +632,7 @@ function getFichaTecnicaHTML(folioId, sec) {
   }
 }
 
-/* GENERADOR DE LÍNEAS ESPECÍFICAS O DINÁMICAS SUSTANTIVAS */
+/* GENERADOR DE LÍNEAS SUSTANTIVAS */
 function getFolioLines(k, sec) {
   if(sec === 'ASTRONOMICAL' && (k === '70v' || k === '70r')) {
     return [
@@ -651,9 +660,9 @@ function getFolioLines(k, sec) {
       let idx3 = (ln * 7 + idNum) % pool.en.length;
       lines.push({
         eva: `${ln}. cth-${k}-${ln} qet-or...`,
-        es: pool.es[idx1],
-        la: pool.la[idx2],
-        en: pool.en[idx3]
+        es: `${ln}. ${pool.es[idx1].replace(/^\d+\.\s*/, '')}`,
+        la: `${ln}. ${pool.la[idx2].replace(/^\d+\.\s*/, '')}`,
+        en: `${ln}. ${pool.en[idx3].replace(/^\d+\.\s*/, '')}`
       });
     }
     return lines;
@@ -738,7 +747,7 @@ function updateWorkspace(){
   document.getElementById('imgFolioLabel').innerText='VISOR ÓPTICO // FOLIO ' + activeFolio.id.toUpperCase();
   document.getElementById('evaHead').innerText='TRANSCRIPCIÓN EVA ORIGINAL (F' + activeFolio.id.toUpperCase() + ')';
   
-  // FICHA TÉCNICA PROFUNDA
+  // FICHA TÉCNICA
   document.getElementById('ftContent').innerHTML = getFichaTecnicaHTML(activeFolio.id, activeFolio.sec);
   document.getElementById('ftCode').innerText = 'SECTOR ' + activeFolio.id.toUpperCase() + ' // CRONOBIO';
 
@@ -758,16 +767,17 @@ function updateWorkspace(){
     const endIdx = startIdx + linesPerPage;
     const pageLines = translatedLines.slice(startIdx, endIdx);
 
-    let htmlOutput = `<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; font-size:12px; color:var(--cyan); border-bottom:1px solid var(--b2); padding-bottom:6px;" class="mono">
-      <span>PÁGINA ${currentLinePage + 1} DE ${totalPages} (${translatedLines.length} LÍNEAS TOTALES)</span>
-      <div style="display:flex; gap:6px;">
-        <button type="button" onclick="changeLinePage(-1)" class="m-pill" ${currentLinePage === 0 ? 'style="opacity:0.4;cursor:not-allowed"' : ''}>← ANTERIOR</button>
-        <button type="button" onclick="changeLinePage(1)" class="m-pill" ${currentLinePage >= totalPages - 1 ? 'style="opacity:0.4;cursor:not-allowed"' : ''}>SIGUIENTE →</button>
-      </div>
-    </div>`;
+    // Actualizar etiqueta del idioma activo en el encabezado de traducción
+    const langNames = {es: 'ESPAÑOL', la: 'LATÍN', en: 'ENGLISH'};
+    document.getElementById('transHeaderLabel').innerText = `TRADUCCIÓN AL ${langNames[currentLang]} (PÁGINA ${currentLinePage + 1} DE ${totalPages})`;
+    
+    // Estado de botones de paginación
+    document.getElementById('btnPrev').style.opacity = currentLinePage === 0 ? '0.4' : '1';
+    document.getElementById('btnPrev').style.cursor = currentLinePage === 0 ? 'not-allowed' : 'pointer';
+    document.getElementById('btnNext').style.opacity = currentLinePage >= totalPages - 1 ? '0.4' : '1';
+    document.getElementById('btnNext').style.cursor = currentLinePage >= totalPages - 1 ? 'not-allowed' : 'pointer';
 
-    htmlOutput += pageLines.map(line => `<p style="margin-bottom:10px; text-align:justify;">${line}</p>`).join('');
-    document.getElementById('outTxt').innerHTML = htmlOutput;
+    document.getElementById('outTxt').innerHTML = pageLines.map(line => `<p style="margin-bottom:10px; text-align:justify;">${line}</p>`).join('');
   } else {
     document.getElementById('evaTxt').innerText = activeFolio.eva || "";
     let fallbackText = (currentLang==='en')? activeFolio.en : ((currentLang==='la')? activeFolio.la : activeFolio.es);
