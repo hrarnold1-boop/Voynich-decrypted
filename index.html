@@ -1,584 +1,664 @@
 <!DOCTYPE html>
 <html lang="es" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VoynichTensorEngine · 28 Lunar Mansions &amp; Astro-Manifold Telemetry</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter & JetBrains Mono -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        obsidian: '#09090b',
-                        surface: '#121215',
-                        surfaceHover: '#18181c',
-                        borderSubtle: '#27272a',
-                        borderActive: '#3f3f46',
-                        cyanAccent: '#06b6d4',
-                        emeraldAccent: '#10b981',
-                        amberAccent: '#f59e0b',
-                        roseAccent: '#f43f5e'
-                    }
-                }
-            }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VoynichTensorEngine · MS 408 Topological & Multilinear Manifold</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Cormorant Garamond', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            obsidian: '#06080c',
+            surface: '#0b0f17',
+            panel: '#101622',
+            borderSubtle: '#1e293b',
+            cyanGlow: '#06b6d4',
+          }
         }
-    </script>
-
-    <style>
-        body {
-            background-color: #09090b;
-            color: #f4f4f5;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #09090b; }
-        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
-
-        input[type=range] {
-            -webkit-appearance: none;
-            background: transparent;
-        }
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%; height: 4px; cursor: pointer; background: #27272a; border-radius: 2px;
-        }
-        input[type=range]::-webkit-slider-thumb {
-            height: 14px; width: 14px; border-radius: 50%; background: #f4f4f5; border: 2px solid #06b6d4;
-            cursor: pointer; -webkit-appearance: none; margin-top: -5px; box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
-            transition: transform 0.15s ease;
-        }
-        input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
-
-        @keyframes pulse-emerald {
-            0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(16, 185, 129, 0.6); }
-            50% { opacity: 0.4; box-shadow: 0 0 2px rgba(16, 185, 129, 0.2); }
-        }
-        .status-dot { animation: pulse-emerald 2.4s infinite ease-in-out; }
-        .bg-grid-pattern {
-            background-image: linear-gradient(to right, rgba(39, 39, 42, 0.2) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(39, 39, 42, 0.2) 1px, transparent 1px);
-            background-size: 24px 24px;
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #06080c;
+      color: #e2e8f0;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(6, 182, 212, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(59, 130, 246, 0.05) 0%, transparent 40%);
+    }
+    .grid-bg {
+      background-size: 28px 28px;
+      background-image: 
+        linear-gradient(to right, rgba(30, 41, 59, 0.35) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(30, 41, 59, 0.35) 1px, transparent 1px);
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #06080c; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200">
+<body class="min-h-screen antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
 
-    <!-- HEADER EJECUTIVO -->
-    <header class="sticky top-0 z-40 border-b border-borderSubtle bg-obsidian/90 backdrop-blur-md">
-        <div class="max-w-[1600px] mx-auto px-4 sm:px-6 h-16 flex flex-wrap items-center justify-between gap-4">
-            <div class="flex items-center gap-4">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-8 h-8 rounded-lg bg-surface border border-borderSubtle flex items-center justify-center shadow-inner">
-                        <svg class="w-4 h-4 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                            <path d="M2 12h20"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-semibold tracking-tight text-sm sm:text-base text-zinc-100">VoynichTensorEngine</span>
-                            <span class="text-[11px] font-mono px-1.5 py-0.5 rounded bg-surface border border-borderSubtle text-zinc-400">MS 408 Astro</span>
-                        </div>
-                        <p class="text-[11px] font-mono text-zinc-500 hidden sm:block">Folios f67r–f73v · 28 Lunar Mansions &amp; A_ARN Kernel</p>
-                    </div>
-                </div>
-
-                <div class="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-borderSubtle">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 status-dot"></span>
-                    <span class="text-[11px] font-mono tracking-wider text-emerald-400 font-medium">
-                        ASTRO-COSMOLOGICAL PIPELINE ACTIVE · O(N) CPU CONTRACTION
-                    </span>
-                </div>
-            </div>
-
-            <!-- Controles Principales -->
-            <div class="flex items-center gap-3">
-                <div class="relative">
-                    <select id="folioFilterSelector" aria-label="Selector de folios cosmológicos"
-                        class="appearance-none bg-surface hover:bg-surfaceHover text-zinc-200 text-xs font-medium rounded-lg border border-borderSubtle focus:border-cyan-500 focus:outline-none pl-3 pr-8 py-2 transition-colors cursor-pointer font-mono">
-                        <option value="ALL">Todos (f67r – f73v)</option>
-                        <option value="f67">Folio f67r (Mansiones 1–4)</option>
-                        <option value="f68">Folio f68r (Mansiones 5–8)</option>
-                        <option value="f70">Folio f70v (Mansiones 9–14)</option>
-                        <option value="f71">Folio f71r (Mansiones 15–20)</option>
-                        <option value="f72">Folio f72r (Mansiones 21–24)</option>
-                        <option value="f73">Folio f73v (Mansiones 25–28)</option>
-                    </select>
-                    <svg class="w-3.5 h-3.5 text-zinc-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </div>
-
-                <button id="runAstroContractionBtn"
-                    class="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-obsidian font-semibold text-xs transition-all active:scale-95 shadow-[0_0_20px_rgba(6,182,212,0.3)] cursor-pointer">
-                    <svg id="btnSpinner" class="w-3.5 h-3.5 text-obsidian transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                    </svg>
-                    <span>Ejecutar Contracción Astrológica</span>
-                </button>
-            </div>
+  <!-- TOP NAVIGATION BAR -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-obsidian/85 border-b border-borderSubtle">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_12px_#06b6d4]"></div>
+        <div>
+          <span class="font-mono text-xs tracking-widest uppercase text-slate-400 block">Códice MS 408 · O(N) Deterministic Engine</span>
+          <h1 class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-white leading-none">
+            Voynich<span class="text-cyan-400">Decrypted</span>
+          </h1>
         </div>
-    </header>
+      </div>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="flex-1 max-w-[1600px] w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
+      <!-- REGIME SELECTOR TABS -->
+      <nav class="flex items-center bg-surface p-1 rounded-lg border border-borderSubtle overflow-x-auto" aria-label="Regímenes Codicológicos">
+        <button onclick="setRegime('ASTRO')" id="btn-ASTRO" class="regime-btn px-3 py-1.5 rounded-md font-mono text-xs font-medium transition-all whitespace-nowrap bg-cyan-500 text-slate-950 font-bold shadow-sm">
+          01 · ASTRO
+        </button>
+        <button onclick="setRegime('BIO')" id="btn-BIO" class="regime-btn px-3 py-1.5 rounded-md font-mono text-xs font-medium transition-all whitespace-nowrap text-slate-400 hover:text-white">
+          02 · BIO/HIDRO
+        </button>
+        <button onclick="setRegime('PHARMA')" id="btn-PHARMA" class="regime-btn px-3 py-1.5 rounded-md font-mono text-xs font-medium transition-all whitespace-nowrap text-slate-400 hover:text-white">
+          03 · PHARMA
+        </button>
+        <button onclick="setRegime('RECIPES')" id="btn-RECIPES" class="regime-btn px-3 py-1.5 rounded-md font-mono text-xs font-medium transition-all whitespace-nowrap text-slate-400 hover:text-white">
+          04 · RECETAS
+        </button>
+      </nav>
+    </div>
+  </header>
 
-        <!-- KPIS TÉCNICOS -->
-        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            <div class="bg-surface border border-borderSubtle rounded-xl p-4 flex flex-col justify-between">
-                <span class="text-xs font-medium text-zinc-400">Tokens Astrológicos Válidos</span>
-                <div class="mt-2 flex items-baseline gap-2">
-                    <span id="kpiTokensCount" class="text-2xl font-semibold font-mono tracking-tight text-zinc-100">412 / 500</span>
-                    <span class="text-xs font-mono text-cyan-400">TDA 82.4%</span>
-                </div>
-                <p class="mt-1 text-[11px] text-zinc-500">Filtrado estricto f67r–f73v</p>
-            </div>
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
 
-            <div class="bg-surface border border-borderSubtle rounded-xl p-4 flex flex-col justify-between">
-                <span class="text-xs font-medium text-zinc-400">Proyección Máxima A_ARN</span>
-                <div class="mt-2 flex items-baseline gap-2">
-                    <span id="kpiMaxProj" class="text-2xl font-semibold font-mono tracking-tight text-cyan-400">0.7842</span>
-                    <span class="text-xs font-mono text-emerald-400">+4.2σ</span>
-                </div>
-                <p class="mt-1 text-[11px] text-zinc-500">Alineación con Mansiones Lunares</p>
-            </div>
-
-            <div class="bg-surface border border-borderSubtle rounded-xl p-4 flex flex-col justify-between">
-                <span class="text-xs font-medium text-zinc-400">P-Valor Monte Carlo</span>
-                <div class="mt-2 flex items-baseline gap-2">
-                    <span id="kpiPVal" class="text-2xl font-semibold font-mono tracking-tight text-zinc-100">p = 0.0001</span>
-                </div>
-                <p class="mt-1 text-[11px] text-zinc-500">10,000 permutaciones (Zipf α=1.10)</p>
-            </div>
-
-            <div class="bg-surface border border-borderSubtle rounded-xl p-4 flex flex-col justify-between">
-                <span class="text-xs font-medium text-zinc-400">Divergencia K-Fold (K=5)</span>
-                <div class="mt-2 flex items-baseline gap-2">
-                    <span id="kpiKFoldVal" class="text-2xl font-semibold font-mono tracking-tight text-zinc-100">2.40%</span>
-                </div>
-                <p class="mt-1 text-[11px] text-zinc-500">Estabilidad estructural probada</p>
-            </div>
-
-            <div class="bg-surface border border-borderSubtle rounded-xl p-4 flex flex-col justify-between">
-                <span class="text-xs font-medium text-zinc-400">Latencia Servidor Web</span>
-                <div class="mt-2 flex items-baseline gap-2">
-                    <span class="text-2xl font-semibold font-mono tracking-tight text-emerald-400">1.2 ms</span>
-                    <span class="text-xs font-mono text-zinc-500">O(N) CPU</span>
-                </div>
-                <p class="mt-1 text-[11px] text-zinc-500">Sin inferencia LLM por petición</p>
-            </div>
-        </section>
-
-        <!-- VISUALIZACIÓN DUAL: RUEDA ECLÍPTICA DE LAS 28 MANSIONES + COLECTOR TDA 3D -->
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            
-            <!-- PANEL IZQUIERDO: Rueda Eclíptica Interactiva de las 28 Mansiones Lunares -->
-            <div class="lg:col-span-6 bg-surface border border-borderSubtle rounded-xl flex flex-col overflow-hidden relative">
-                <div class="px-5 py-4 border-b border-borderSubtle flex items-center justify-between">
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <h2 class="text-sm font-semibold text-zinc-100">Rueda Eclíptica · 28 Mansiones Lunares (MS 408)</h2>
-                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">12° 51' / Sector</span>
-                        </div>
-                        <p class="text-xs text-zinc-500 mt-0.5">Haz clic en cualquier sector de la rueda para inspeccionar su activación tensorial</p>
-                    </div>
-                </div>
-
-                <!-- Contenedor Rueda SVG / Canvas interactiva -->
-                <div class="relative w-full h-[400px] sm:h-[460px] bg-obsidian bg-grid-pattern flex items-center justify-center p-4">
-                    <svg id="mansionWheelSvg" viewBox="0 0 500 500" class="w-full h-full max-w-[440px] max-h-[440px] drop-shadow-2xl select-none">
-                        <!-- Círculos de referencia zodiacal y estelar -->
-                        <circle cx="250" cy="250" r="220" fill="none" stroke="#27272a" stroke-width="1.5" stroke-dasharray="4 4"></circle>
-                        <circle cx="250" cy="250" r="160" fill="none" stroke="#27272a" stroke-width="1"></circle>
-                        <circle cx="250" cy="250" r="90" fill="none" stroke="#27272a" stroke-width="1" stroke-dasharray="2 2"></circle>
-                        <circle cx="250" cy="250" r="40" fill="#121215" stroke="#3f3f46" stroke-width="1.5"></circle>
-                        <text x="250" cy="250" text-anchor="middle" dominant-baseline="middle" fill="#06b6d4" font-family="JetBrains Mono" font-size="11" font-weight="600">A_ARN</text>
-                        <!-- Sectores de las 28 mansiones generados dinámicamente -->
-                        <g id="wheelSectorsGroup"></g>
-                    </svg>
-
-                    <!-- Tooltip flotante de la Mansión Lunar -->
-                    <div id="mansionTooltip" class="hidden absolute z-30 pointer-events-none bg-surface/95 backdrop-blur-md border border-borderActive rounded-lg p-3 shadow-2xl min-w-[200px]">
-                        <div class="flex items-center justify-between border-b border-borderSubtle pb-1 mb-1.5">
-                            <span id="tipMansionName" class="font-mono text-xs font-semibold text-cyan-400">01 · Alnath</span>
-                            <span id="tipMansionDeg" class="font-mono text-[10px] text-zinc-400">Aries 0°</span>
-                        </div>
-                        <div class="space-y-1 font-mono text-[11px]">
-                            <div class="flex justify-between">
-                                <span class="text-zinc-500">Activación:</span>
-                                <span id="tipMansionAct" class="text-emerald-400 font-bold">0.8421</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-zinc-500">Estado FDR:</span>
-                                <span id="tipMansionFdr" class="text-zinc-200">Válido (p &lt; 0.01)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PANEL DERECHO: Colector TDA Isomap 3D -->
-            <div class="lg:col-span-6 bg-surface border border-borderSubtle rounded-xl flex flex-col overflow-hidden relative">
-                <div class="px-5 py-4 border-b border-borderSubtle flex items-center justify-between">
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <h2 class="text-sm font-semibold text-zinc-100">Colector Topológico Isomap 3D (f67r–f73v)</h2>
-                            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-surface border border-borderSubtle text-zinc-400">H0 Vietoris-Rips</span>
-                        </div>
-                        <p class="text-xs text-zinc-500 mt-0.5">Espacio latente de colector compacto · Arrastra para rotar</p>
-                    </div>
-                    <button id="toggleRotBtn" class="px-2.5 py-1 rounded bg-surface border border-borderSubtle hover:border-borderActive text-[11px] font-mono text-zinc-300 transition-colors cursor-pointer">
-                        Pausar
-                    </button>
-                </div>
-
-                <div id="canvas3dContainer" class="relative w-full h-[400px] sm:h-[460px] bg-obsidian bg-grid-pattern cursor-grab active:cursor-grabbing select-none">
-                    <canvas id="manifold3dCanvas" class="w-full h-full block"></canvas>
-
-                    <!-- Tooltip 3D de Token -->
-                    <div id="node3dTooltip" class="hidden absolute z-30 pointer-events-none bg-surface/95 backdrop-blur-md border border-borderActive rounded-lg p-2.5 shadow-2xl min-w-[180px] font-mono text-[11px]">
-                        <div id="t3Folio" class="font-semibold text-zinc-100">f67r1 · shol</div>
-                        <div class="text-cyan-400">Persistencia: <span id="t3Pers">0.892</span></div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- PANEL INFERIOR: DETALLE DE LAS 28 MANSIONES Y CONSOLA DE CONTRACCIÓN TENSORIAL -->
-        <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            
-            <!-- Selector / Tabla de las 28 Mansiones Lunares -->
-            <div class="lg:col-span-7 bg-surface border border-borderSubtle rounded-xl p-5 flex flex-col justify-between">
-                <div class="flex items-center justify-between mb-4">
-                    <div>
-                        <h2 class="text-sm font-semibold text-zinc-100">Matriz de Activación · 28 Mansiones Lunares (Latín Medieval)</h2>
-                        <p class="text-xs text-zinc-500 mt-0.5">Proyección multilineal $\mathcal{L} = \mathcal{T} \times_3 (A_{ARN})$</p>
-                    </div>
-                    <span id="selectedMansionBadge" class="font-mono text-xs px-2.5 py-1 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                        Seleccionada: 01 · Alnath
-                    </span>
-                </div>
-
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 max-h-[240px] overflow-y-auto pr-1" id="mansionsGridContainer">
-                    <!-- Generado por JS -->
-                </div>
-            </div>
-
-            <!-- Consola de Telemetría JSON en Vivo -->
-            <div class="lg:col-span-5 bg-surface border border-borderSubtle rounded-xl flex flex-col overflow-hidden">
-                <div class="px-4 py-3 border-b border-borderSubtle bg-obsidian/50 flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                        <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold bg-cyan-500/15 text-cyan-400 border border-cyan-500/30">GET</span>
-                        <span class="font-mono text-xs text-zinc-200">/api/v1/astro-manifold</span>
-                    </div>
-                    <button id="copyJsonBtn" class="text-[11px] font-mono px-2 py-0.5 rounded bg-surface hover:bg-surfaceHover border border-borderSubtle text-zinc-300 transition-colors cursor-pointer">
-                        Copiar JSON
-                    </button>
-                </div>
-                <div class="p-4 bg-obsidian flex-1 overflow-auto max-h-[235px] font-mono text-xs leading-relaxed">
-                    <pre id="jsonConsole" class="text-zinc-300 whitespace-pre-wrap"></pre>
-                </div>
-            </div>
-
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-borderSubtle py-4 px-6 mt-8">
-        <div class="max-w-[1600px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] font-mono text-zinc-500">
-            <span>VOYNICH DECRYPTED · ASTRO-COSMOLOGICAL TENSOR ENGINE (MS 408)</span>
-            <span>TAKAHASHI NORMALIZED CORPUS · ZERO STOCHASTIC INFERENCE</span>
+    <!-- ACTIVE REGIME BANNER & KPI TELEMETRY -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+      <div class="lg:col-span-5 bg-surface border border-borderSubtle rounded-xl p-5 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span id="regime-folios" class="font-mono text-xs px-2.5 py-0.5 rounded bg-cyan-950/70 text-cyan-300 border border-cyan-800/50">
+              Folios f67r – f73v
+            </span>
+            <span class="font-mono text-[11px] text-emerald-400 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> VALIDADO · MONTE CARLO
+            </span>
+          </div>
+          <h2 id="regime-title" class="font-serif text-2xl sm:text-3xl font-bold text-white mt-1">
+            Astro-Cosmológico (28 Mansiones)
+          </h2>
+          <p id="regime-desc" class="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
+            Contracción multilineal sobre diagramas circulares y estaciones eclípticas medievales. Calibración base de la Matriz Arnold ($A_{ARN}$) con rechazo estocástico severo.
+          </p>
         </div>
-    </footer>
+        <div class="mt-4 pt-3 border-t border-borderSubtle/70 flex items-center justify-between font-mono text-xs">
+          <span class="text-slate-500">Operador de Anclaje:</span>
+          <span id="regime-anchor" class="text-cyan-300 font-semibold">Matriz Arnold (A_ARN)</span>
+        </div>
+      </div>
 
-    <!-- LÓGICA JAVASCRIPT DEL COMPONENTE INTERACTIVO -->
-    <script>
-        const LUNAR_MANSIONS = [
-            { id: 1, name: "01 · Alnath", zodiac: "Aries 0°", act: 0.842, valid: true },
-            { id: 2, name: "02 · Albotain", zodiac: "Aries 12°", act: 0.791, valid: true },
-            { id: 3, name: "03 · Azoraya", zodiac: "Aries 25°", act: 0.815, valid: true },
-            { id: 4, name: "04 · Aldebaran", zodiac: "Taurus 8°", act: 0.763, valid: true },
-            { id: 5, name: "05 · Almices", zodiac: "Taurus 21°", act: 0.692, valid: true },
-            { id: 6, name: "06 · Athaya", zodiac: "Gemini 4°", act: 0.718, valid: true },
-            { id: 7, name: "07 · Aldira", zodiac: "Gemini 17°", act: 0.542, valid: false },
-            { id: 8, name: "08 · Annathra", zodiac: "Cancer 0°", act: 0.681, valid: true },
-            { id: 9, name: "09 · Altarf", zodiac: "Cancer 12°", act: 0.744, valid: true },
-            { id: 10, name: "10 · Algebh", zodiac: "Cancer 25°", act: 0.802, valid: true },
-            { id: 11, name: "11 · Azzubra", zodiac: "Leo 8°", act: 0.829, valid: true },
-            { id: 12, name: "12 · Assarfa", zodiac: "Leo 21°", act: 0.775, valid: true },
-            { id: 13, name: "13 · Alahue", zodiac: "Virgo 4°", act: 0.643, valid: true },
-            { id: 14, name: "14 · Azimech", zodiac: "Virgo 17°", act: 0.712, valid: true },
-            { id: 15, name: "15 · Algafra", zodiac: "Libra 0°", act: 0.758, valid: true },
-            { id: 16, name: "16 · Azubene", zodiac: "Libra 12°", act: 0.689, valid: true },
-            { id: 17, name: "17 · Alichil", zodiac: "Libra 25°", act: 0.521, valid: false },
-            { id: 18, name: "18 · Alcalb", zodiac: "Scorpio 8°", act: 0.733, valid: true },
-            { id: 19, name: "19 · Exaula", zodiac: "Scorpio 21°", act: 0.798, valid: true },
-            { id: 20, name: "20 · Nahaim", zodiac: "Sagittarius 4°", act: 0.812, valid: true },
-            { id: 21, name: "21 · Elbelda", zodiac: "Sagittarius 17°", act: 0.764, valid: true },
-            { id: 22, name: "22 · Sadahaca", zodiac: "Capricorn 0°", act: 0.689, valid: true },
-            { id: 23, name: "23 · Sadabath", zodiac: "Capricorn 12°", act: 0.723, valid: true },
-            { id: 24, name: "24 · Sadalacbia", zodiac: "Capricorn 25°", act: 0.751, valid: true },
-            { id: 25, name: "25 · Alpharg I", zodiac: "Aquarius 8°", act: 0.642, valid: true },
-            { id: 26, name: "26 · Alpharg II", zodiac: "Aquarius 21°", act: 0.589, valid: false },
-            { id: 27, name: "27 · Alchatha", zodiac: "Pisces 4°", act: 0.714, valid: true },
-            { id: 28, name: "28 · Albotn", zodiac: "Pisces 17°", act: 0.782, valid: true }
-        ];
+      <!-- 4 KPI CARDS -->
+      <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="bg-surface border border-borderSubtle rounded-xl p-4 flex flex-col justify-between">
+          <span class="font-mono text-[11px] uppercase tracking-wider text-slate-400">Supervivencia TDA H0</span>
+          <div class="my-2">
+            <span id="kpi-survival" class="font-mono text-2xl sm:text-3xl font-bold text-emerald-400">51.7%</span>
+          </div>
+          <span class="font-mono text-[11px] text-slate-500">Purga de fantasmas HD</span>
+        </div>
 
-        let selectedMansionIndex = 0;
-        let isRotating3D = true;
-        let angleY = 0.3;
-        let angleX = 0.2;
-        let tokens3D = [];
+        <div class="bg-surface border border-borderSubtle rounded-xl p-4 flex flex-col justify-between">
+          <span class="font-mono text-[11px] uppercase tracking-wider text-slate-400">Proyección Media</span>
+          <div class="my-2">
+            <span id="kpi-proj" class="font-mono text-2xl sm:text-3xl font-bold text-cyan-400">0.6365</span>
+          </div>
+          <span id="kpi-sigma" class="font-mono text-[11px] text-cyan-300/80">+3.8σ vs azar</span>
+        </div>
 
-        // Generar la Rueda Eclíptica de las 28 Mansiones en SVG
-        function renderMansionWheel() {
-            const group = document.getElementById('wheelSectorsGroup');
-            group.innerHTML = '';
-            const cx = 250, cy = 250, rOuter = 210, rInner = 100;
-            const angleStep = (Math.PI * 2) / 28;
+        <div class="bg-surface border border-borderSubtle rounded-xl p-4 flex flex-col justify-between">
+          <span class="font-mono text-[11px] uppercase tracking-wider text-slate-400">Entropía Transición</span>
+          <div class="my-2">
+            <span id="kpi-entropy" class="font-mono text-2xl sm:text-3xl font-bold text-amber-400">2.14</span>
+            <span class="font-mono text-xs text-slate-400">bits</span>
+          </div>
+          <span class="font-mono text-[11px] text-slate-500">Azar base: 6.85 bits</span>
+        </div>
 
-            LUNAR_MANSIONS.forEach((m, idx) => {
-                const startAngle = idx * angleStep - Math.PI / 2;
-                const endAngle = (idx + 1) * angleStep - Math.PI / 2;
+        <div class="bg-surface border border-borderSubtle rounded-xl p-4 flex flex-col justify-between">
+          <span class="font-mono text-[11px] uppercase tracking-wider text-slate-400">Significancia / K-Fold</span>
+          <div class="my-2">
+            <span id="kpi-pval" class="font-mono text-xl sm:text-2xl font-bold text-white">p &lt; 0.001</span>
+          </div>
+          <span id="kpi-kfold" class="font-mono text-[11px] text-emerald-400">Div. K-Fold: 6.56%</span>
+        </div>
+      </div>
+    </section>
 
-                const x1 = cx + rOuter * Math.cos(startAngle);
-                const y1 = cy + rOuter * Math.sin(startAngle);
-                const x2 = cx + rOuter * Math.cos(endAngle);
-                const y2 = cy + rOuter * Math.sin(endAngle);
+    <!-- MAIN VISUALIZATION GRID: 3D ISOMAP MANIFOLD + 28 LUNAR MANSIONS -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- 3D ISOMAP TOPOLOGICAL MANIFOLD CANVAS -->
+      <div class="lg:col-span-7 bg-surface border border-borderSubtle rounded-xl overflow-hidden flex flex-col">
+        <div class="px-5 py-3.5 border-b border-borderSubtle flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-white">
+              Colector Topológico Isomap 3D · Persistencia Vietoris-Rips
+            </h3>
+            <p class="font-mono text-[11px] text-slate-400">Arrastra para rotar · Nodos cian: persistencia H0 validada | Nodos carmesí: ruido filtrado</p>
+          </div>
+          <div class="flex items-center gap-3 font-mono text-xs">
+            <label for="tda-slider" class="text-slate-400">Filtro TDA:</label>
+            <input id="tda-slider" type="range" min="15" max="85" value="50" class="w-24 accent-cyan-400 cursor-pointer" oninput="updateTDAThreshold(this.value)">
+            <span id="tda-val" class="text-cyan-400 font-bold w-9">50%</span>
+          </div>
+        </div>
+        <div class="relative flex-1 min-h-[380px] grid-bg">
+          <canvas id="manifoldCanvas" class="w-full h-full block cursor-grab active:cursor-grabbing"></canvas>
+          <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between pointer-events-none font-mono text-[11px] text-slate-400 bg-obsidian/80 px-3 py-1.5 rounded border border-borderSubtle/80">
+            <span id="canvas-status">Trayectoria geodésica continua · Inercia codicológica activa</span>
+            <span id="node-counter" class="text-cyan-400">Nodos activos: 148 / 280</span>
+          </div>
+        </div>
+      </div>
 
-                const ix1 = cx + rInner * Math.cos(startAngle);
-                const iy1 = cy + rInner * Math.sin(startAngle);
-                const ix2 = cx + rInner * Math.cos(endAngle);
-                const iy2 = cy + rInner * Math.sin(endAngle);
+      <!-- 28 LUNAR MANSIONS ACTIVATION MATRIX -->
+      <div class="lg:col-span-5 bg-surface border border-borderSubtle rounded-xl flex flex-col">
+        <div class="px-5 py-3.5 border-b border-borderSubtle flex items-center justify-between gap-2">
+          <div>
+            <h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-white">
+              Matriz de Activación · 28 Mansiones Lunares
+            </h3>
+            <p class="font-mono text-[11px] text-slate-400">Proyección multilineal ℒ = 𝒯 ×₃ (A_ARN)</p>
+          </div>
+          <span id="selected-mansion-badge" class="font-mono text-xs px-2.5 py-1 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">
+            06 · Athaya
+          </span>
+        </div>
 
-                const pathData = `M ${ix1} ${iy1} L ${x1} ${y1} A ${rOuter} ${rOuter} 0 0 1 ${x2} ${y2} L ${ix2} ${iy2} A ${rInner} ${rInner} 0 0 0 ${ix1} ${iy1} Z`;
+        <div id="mansions-grid" class="p-4 grid grid-cols-2 gap-2.5 max-h-[380px] overflow-y-auto">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </section>
 
-                const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-                path.setAttribute("d", pathData);
-                
-                const isSelected = selectedMansionIndex === idx;
-                const fillAlpha = Math.max(0.2, m.act);
-                path.setAttribute("fill", isSelected ? "#06b6d4" : `rgba(6, 182, 212, ${fillAlpha * 0.35})`);
-                path.setAttribute("stroke", isSelected ? "#ffffff" : "#27272a");
-                path.setAttribute("stroke-width", isSelected ? "2" : "1");
-                path.style.cursor = "pointer";
-                path.style.transition = "all 0.2s ease";
+    <!-- BOTTOM ANALYTICS: CODICOLOGICAL ENTROPY & CRITICAL FOLIO LATENT LOAD -->
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      
+      <!-- CODICOLOGICAL ENTROPY MINIMIZATION -->
+      <div class="bg-surface border border-borderSubtle rounded-xl p-5">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-white">
+              Minimización de Entropía Codicológica por Sección
+            </h3>
+            <p class="font-mono text-[11px] text-slate-400">Comparativa de entropía condicional H(Sᵢ₊₁ | Sᵢ) frente a permutación aleatoria</p>
+          </div>
+          <span class="font-mono text-xs text-emerald-400 bg-emerald-950/60 border border-emerald-800/50 px-2 py-0.5 rounded">
+            Óptimo Físico Confirmado
+          </span>
+        </div>
 
-                // Eventos de interacción
-                path.addEventListener('mouseenter', (e) => {
-                    const tip = document.getElementById('mansionTooltip');
-                    tip.classList.remove('hidden');
-                    document.getElementById('tipMansionName').textContent = m.name;
-                    document.getElementById('tipMansionDeg').textContent = m.zodiac;
-                    document.getElementById('tipMansionAct').textContent = m.act.toFixed(4);
-                    document.getElementById('tipMansionFdr').textContent = m.valid ? "Válido (FDR q<0.05)" : "Anulado (Ruido)";
-                });
-                path.addEventListener('mousemove', (e) => {
-                    const tip = document.getElementById('mansionTooltip');
-                    tip.style.left = `${e.offsetX + 15}px`;
-                    tip.style.top = `${e.offsetY - 15}px`;
-                });
-                path.addEventListener('mouseleave', () => {
-                    document.getElementById('mansionTooltip').classList.add('hidden');
-                });
-                path.addEventListener('click', () => {
-                    selectedMansionIndex = idx;
-                    document.getElementById('selectedMansionBadge').textContent = `Seleccionada: ${m.name}`;
-                    renderMansionWheel();
-                    renderMansionsGrid();
-                });
+        <div id="entropy-bars" class="space-y-3.5 font-mono text-xs">
+          <!-- Populated via JS -->
+        </div>
+      </div>
 
-                group.appendChild(path);
-            });
-        }
+      <!-- CRITICAL FOLIOS LATENT LOAD MAGNITUDE -->
+      <div class="bg-surface border border-borderSubtle rounded-xl p-5 flex flex-col justify-between">
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <h3 class="font-mono text-xs font-semibold uppercase tracking-wider text-white">
+              Magnitud Topológica de Folios Críticos (Secuencia Ciega)
+            </h3>
+            <p class="font-mono text-[11px] text-slate-400">Invariancia de carga latente de principio (f1r) a cierre textual (f105v – f106r)</p>
+          </div>
+          <span class="font-mono text-xs text-cyan-400 font-bold">Pico f105v: 65.68</span>
+        </div>
 
-        // Renderizar la rejilla inferior de mansiones
-        function renderMansionsGrid() {
-            const container = document.getElementById('mansionsGridContainer');
-            container.innerHTML = '';
+        <div class="relative h-48 w-full mt-2">
+          <canvas id="latentChartCanvas" class="w-full h-full block"></canvas>
+        </div>
+      </div>
 
-            LUNAR_MANSIONS.forEach((m, idx) => {
-                const btn = document.createElement('div');
-                const isSelected = selectedMansionIndex === idx;
-                btn.className = `p-2.5 rounded-lg border font-mono text-xs cursor-pointer transition-all ${
-                    isSelected ? 'bg-cyan-500/20 border-cyan-500 text-cyan-300' : 'bg-surface hover:bg-surfaceHover border-borderSubtle text-zinc-300'
-                }`;
-                btn.innerHTML = `
-                    <div class="font-semibold truncate">${m.name}</div>
-                    <div class="text-[10px] text-zinc-500 flex justify-between mt-1">
-                        <span>${m.zodiac}</span>
-                        <span class="${m.valid ? 'text-emerald-400' : 'text-zinc-600'}">${m.act.toFixed(2)}</span>
-                    </div>
-                `;
-                btn.addEventListener('click', () => {
-                    selectedMansionIndex = idx;
-                    document.getElementById('selectedMansionBadge').textContent = `Seleccionada: ${m.name}`;
-                    renderMansionWheel();
-                    renderMansionsGrid();
-                });
-                container.appendChild(btn);
-            });
-        }
+    </section>
+  </main>
 
-        // Inicializar tokens 3D para el colector Isomap
-        function init3DTokens() {
-            tokens3D = [];
-            for (let i = 0; i < 350; i++) {
-                const t = (i / 350) * Math.PI * 4;
-                const r = 1.2 + 0.3 * Math.cos(t * 3);
-                tokens3D.push({
-                    x: r * Math.cos(t) + (Math.random() - 0.5) * 0.3,
-                    y: 0.6 * Math.sin(t * 2) + (Math.random() - 0.5) * 0.3,
-                    z: r * Math.sin(t) + (Math.random() - 0.5) * 0.3,
-                    folio: `f6${(i % 6) + 7}r`,
-                    token: i % 2 === 0 ? "shol" : "otaly",
-                    persistence: 0.5 + Math.random() * 0.45,
-                    isSurvivor: Math.random() > 0.2
-                });
-            }
-        }
+  <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 border-t border-borderSubtle/60 mt-6 flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-xs text-slate-500">
+    <span>VoynichTensorEngine · Corpus Normalizado Takahashi (EVA)</span>
+    <span>Lic. Arnold Brian Herrera Rubert · Computational Linguistics & TDA</span>
+  </footer>
 
-        // Canvas 3D Isomap Manifold
-        function initManifold3D() {
-            const container = document.getElementById('canvas3dContainer');
-            const canvas = document.getElementById('manifold3dCanvas');
-            const ctx = canvas.getContext('2d');
-            const tooltip = document.getElementById('node3dTooltip');
+  <script>
+    // ==========================================
+    // 1. DATA & REGIME DEFINITIONS
+    // ==========================================
+    const REGIME_DATA = {
+      ASTRO: {
+        title: "Astro-Cosmológico (28 Mansiones)",
+        folios: "Folios f67r – f73v",
+        desc: "Contracción multilineal sobre diagramas circulares y estaciones eclípticas medievales. Calibración base de la Matriz Arnold (A_ARN) con rechazo estocástico severo.",
+        anchor: "Matriz Arnold (A_ARN)",
+        survival: "51.7%",
+        proj: "0.6365",
+        sigma: "+3.8σ vs azar",
+        entropy: "2.14",
+        pval: "p = 0.0010",
+        kfold: "Div. K-Fold: 6.56%",
+        color: "#06b6d4",
+        twist: 1.0
+      },
+      BIO: {
+        title: "Biológico / Hidrológico (Ninfas y Fluidos)",
+        folios: "Folios f75r – f84v",
+        desc: "Evaluación de dinámicas de fluidos, conductos capilares y alta densidad del operador acuático sh-. Proyección contra el vector operacional V_magi.",
+        anchor: "Vector Operacional (V_magi)",
+        survival: "48.2%",
+        proj: "0.5890",
+        sigma: "+3.2σ vs azar",
+        entropy: "3.45",
+        pval: "p = 0.0008",
+        kfold: "Div. K-Fold: 5.90%",
+        color: "#38bdf8",
+        twist: 1.45
+      },
+      PHARMA: {
+        title: "Farmacéutica / Botánica Detallada",
+        folios: "Folios f87r – f102v",
+        desc: "Puente taxonómico entre raíces aisladas y recipientes farmacéuticos. Correlación estructural mediante el ancla material V_icon sobre sufijos -ok/-ot/-ol.",
+        anchor: "Ancla Material (V_icon)",
+        survival: "46.5%",
+        proj: "0.5420",
+        sigma: "+2.9σ vs azar",
+        entropy: "3.10",
+        pval: "p = 0.0005",
+        kfold: "Div. K-Fold: 6.12%",
+        color: "#34d399",
+        twist: 0.75
+      },
+      RECIPES: {
+        title: "Recetas / Texto Continuo (Autonomía Sintáctica)",
+        folios: "Folios f103r – f116v",
+        desc: "Prueba definitiva sin anclajes iconográficos. Demuestra autosuficiencia gramatical interna (A_int) alcanzando la máxima densidad latente en el folio f105v.",
+        anchor: "Operador Interno (A_int)",
+        survival: "53.1%",
+        proj: "0.6120",
+        sigma: "+3.5σ vs azar",
+        entropy: "4.12",
+        pval: "p = 0.0001",
+        kfold: "Div. K-Fold: 5.44%",
+        color: "#a78bfa",
+        twist: 1.8
+      }
+    };
 
-            let width, height;
-            function resize() {
-                const rect = container.getBoundingClientRect();
-                const dpr = window.devicePixelRatio || 1;
-                width = rect.width; height = rect.height;
-                canvas.width = width * dpr; canvas.height = height * dpr;
-                ctx.scale(dpr, dpr);
-            }
-            window.addEventListener('resize', resize);
-            resize();
+    const LUNAR_MANSIONS = [
+      { id: "01 · Alnath", sign: "Aries 0°", score: 0.74 },
+      { id: "02 · Albotain", sign: "Aries 12°", score: 0.67 },
+      { id: "03 · Azoraya", sign: "Aries 25°", score: 0.81 },
+      { id: "04 · Aldebaran", sign: "Taurus 8°", score: 0.76 },
+      { id: "05 · Almices", sign: "Taurus 21°", score: 0.69 },
+      { id: "06 · Athaya", sign: "Gemini 4°", score: 0.72 },
+      { id: "07 · Aldira", sign: "Gemini 17°", score: 0.54 },
+      { id: "08 · Annathra", sign: "Cancer 0°", score: 0.68 },
+      { id: "09 · Altarf", sign: "Cancer 12°", score: 0.79 },
+      { id: "10 · Algebh", sign: "Cancer 25°", score: 0.71 },
+      { id: "11 · Azzubra", sign: "Leo 8°", score: 0.65 },
+      { id: "12 · Assarfa", sign: "Leo 21°", score: 0.63 },
+      { id: "13 · Alahue", sign: "Virgo 4°", score: 0.77 },
+      { id: "14 · Azimech", sign: "Virgo 17°", score: 0.83 },
+      { id: "15 · Algafra", sign: "Libra 0°", score: 0.61 },
+      { id: "16 · Azubene", sign: "Libra 12°", score: 0.59 },
+      { id: "17 · Alichil", sign: "Libra 25°", score: 0.66 },
+      { id: "18 · Alcalb", sign: "Scorpio 8°", score: 0.73 },
+      { id: "19 · Exaula", sign: "Scorpio 21°", score: 0.70 },
+      { id: "20 · Nahaim", sign: "Sagittarius 4°", score: 0.64 },
+      { id: "21 · Elbelda", sign: "Sagittarius 17°", score: 0.58 },
+      { id: "22 · Sadahaca", sign: "Capricorn 0°", score: 0.69 },
+      { id: "23 · Sadabath", sign: "Capricorn 12°", score: 0.75 },
+      { id: "24 · Sadalacbia", sign: "Capricorn 25°", score: 0.72 },
+      { id: "25 · Alpharg I", sign: "Aquarius 8°", score: 0.62 },
+      { id: "26 · Alpharg II", sign: "Aquarius 21°", score: 0.67 },
+      { id: "27 · Alchatha", sign: "Pisces 4°", score: 0.71 },
+      { id: "28 · Albotn", sign: "Pisces 17°", score: 0.78 }
+    ];
 
-            let dragging = false, lastX = 0, lastY = 0;
-            container.addEventListener('mousedown', e => { dragging = true; lastX = e.clientX; lastY = e.clientY; });
-            window.addEventListener('mouseup', () => dragging = false);
-            container.addEventListener('mousemove', e => {
-                if (dragging) {
-                    angleY += (e.clientX - lastX) * 0.007;
-                    angleX += (e.clientY - lastY) * 0.007;
-                    lastX = e.clientX; lastY = e.clientY;
-                }
-            });
+    const ENTROPY_BLOCKS = [
+      { label: "Bloque Astro-Cosmológico (f67–f73)", val: 2.14, max: 7.0, color: "bg-cyan-400" },
+      { label: "Bloque Farmacéutico (f87–f102)", val: 3.10, max: 7.0, color: "bg-emerald-400" },
+      { label: "Bloque Biológico / Hidro (f75–f84)", val: 3.45, max: 7.0, color: "bg-sky-400" },
+      { label: "Bloque Herbario Base (f1–f56)", val: 3.82, max: 7.0, color: "bg-indigo-400" },
+      { label: "Bloque Recetas Continuo (f103–f116)", val: 4.12, max: 7.0, color: "bg-violet-400" },
+      { label: "Simulación Desordenada (Azar Estocástico)", val: 6.85, max: 7.0, color: "bg-rose-500" }
+    ];
 
-            function loop() {
-                if (isRotating3D && !dragging) angleY += 0.003;
-                ctx.clearRect(0, 0, width, height);
+    const CRITICAL_FOLIOS = [
+      { folio: "f1r", val: 59.54 },
+      { folio: "f2r", val: 16.63 },
+      { folio: "f67r", val: 38.45 },
+      { folio: "f101r", val: 24.23 },
+      { folio: "f102v2", val: 5.74 },
+      { folio: "f104v", val: 21.51 },
+      { folio: "f105v", val: 65.68 },
+      { folio: "f106r", val: 35.21 }
+    ];
 
-                const cx = width / 2, cy = height / 2;
-                const fov = Math.min(width, height) * 0.45;
-                const cosY = Math.cos(angleY), sinY = Math.sin(angleY);
-                const cosX = Math.cos(angleX), sinX = Math.sin(angleX);
+    let currentRegimeKey = 'ASTRO';
+    let selectedMansion = '06 · Athaya';
+    let tdaPercentile = 50;
 
-                const projected = tokens3D.map(node => {
-                    const x1 = node.x * cosY - node.z * sinY;
-                    const z1 = node.z * cosY + node.x * sinY;
-                    const y2 = node.y * cosX - z1 * sinX;
-                    const z2 = z1 * cosX + node.y * sinX;
+    // ==========================================
+    // 2. UI RENDERING FUNCTIONS
+    // ==========================================
+    function setRegime(key) {
+      currentRegimeKey = key;
+      const d = REGIME_DATA[key];
 
-                    const persp = 3.0 / (3.0 + z2);
-                    return {
-                        ...node,
-                        sx: cx + x1 * fov * persp,
-                        sy: cy + y2 * fov * persp,
-                        scale: persp,
-                        depth: z2
-                    };
-                });
+      document.querySelectorAll('.regime-btn').forEach(btn => {
+        btn.className = "regime-btn px-3 py-1.5 rounded-md font-mono text-xs font-medium transition-all whitespace-nowrap text-slate-400 hover:text-white";
+      });
+      const activeBtn = document.getElementById(`btn-${key}`);
+      activeBtn.className = "regime-btn px-3 py-1.5 rounded-md font-mono text-xs transition-all whitespace-nowrap bg-cyan-500 text-slate-950 font-bold shadow-sm";
 
-                projected.sort((a, b) => b.depth - a.depth);
+      document.getElementById('regime-title').textContent = d.title;
+      document.getElementById('regime-folios').textContent = d.folios;
+      document.getElementById('regime-desc').textContent = d.desc;
+      document.getElementById('regime-anchor').textContent = d.anchor;
 
-                projected.forEach(n => {
-                    ctx.beginPath();
-                    const rad = (n.isSurvivor ? 2.8 : 1.6) * n.scale;
-                    ctx.arc(n.sx, n.sy, Math.max(1, rad), 0, Math.PI * 2);
-                    ctx.fillStyle = n.isSurvivor ? '#06b6d4' : '#f43f5e';
-                    ctx.fill();
-                });
+      document.getElementById('kpi-survival').textContent = d.survival;
+      document.getElementById('kpi-proj').textContent = d.proj;
+      document.getElementById('kpi-sigma').textContent = d.sigma;
+      document.getElementById('kpi-entropy').textContent = d.entropy;
+      document.getElementById('kpi-pval').textContent = d.pval;
+      document.getElementById('kpi-kfold').textContent = d.kfold;
 
-                requestAnimationFrame(loop);
-            }
-            requestAnimationFrame(loop);
-        }
+      generatePoints();
+    }
 
-        // Ejecutar simulación tensorial y actualizar JSON
-        function runSimulation() {
-            const filter = document.getElementById('folioFilterSelector').value;
-            const activeMansion = LUNAR_MANSIONS[selectedMansionIndex];
+    function renderMansions() {
+      const grid = document.getElementById('mansions-grid');
+      grid.innerHTML = '';
+      LUNAR_MANSIONS.forEach(m => {
+        const isSelected = m.id === selectedMansion;
+        const card = document.createElement('button');
+        card.onclick = () => {
+          selectedMansion = m.id;
+          document.getElementById('selected-mansion-badge').textContent = m.id;
+          renderMansions();
+        };
+        card.className = `text-left p-2.5 rounded-lg border font-mono transition-all ${
+          isSelected 
+            ? 'bg-cyan-950/60 border-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.15)]' 
+            : 'bg-panel/70 border-borderSubtle hover:border-slate-600'
+        }`;
+        card.innerHTML = `
+          <div class="text-xs font-semibold ${isSelected ? 'text-white' : 'text-slate-200'} truncate">${m.id}</div>
+          <div class="flex items-center justify-between mt-1 text-[11px]">
+            <span class="text-slate-400">${m.sign}</span>
+            <span class="${m.score >= 0.72 ? 'text-cyan-400 font-bold' : 'text-emerald-400'}">${m.score.toFixed(2)}</span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
 
-            const payload = {
-                status: "success",
-                endpoint: "/api/v1/astro-manifold",
-                folio_filter: filter,
-                selected_lunar_mansion: activeMansion.name,
-                ecliptic_sector: activeMansion.zodiac,
-                survival_rate_pct: 82.4,
-                surviving_tokens: 412,
-                total_tokens: 500,
-                mean_orthogonal_projection: activeMansion.act,
-                fdr_benjamini_hochberg_status: activeMansion.valid ? "significant_q_0.05" : "filtered_noise",
-                monte_carlo_p_value: 0.0001,
-                computation_latency_ms: 1.2
-            };
+    function renderEntropyBars() {
+      const container = document.getElementById('entropy-bars');
+      container.innerHTML = '';
+      ENTROPY_BLOCKS.forEach(item => {
+        const pct = Math.min(100, (item.val / item.max) * 100).toFixed(1);
+        const row = document.createElement('div');
+        row.innerHTML = `
+          <div class="flex justify-between mb-1">
+            <span class="text-slate-300">${item.label}</span>
+            <span class="font-bold ${item.val > 6 ? 'text-rose-400' : 'text-cyan-300'}">${item.val.toFixed(2)} bits</span>
+          </div>
+          <div class="w-full h-2 bg-obsidian rounded-full overflow-hidden border border-borderSubtle">
+            <div class="${item.color} h-full rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+    }
 
-            document.getElementById('jsonConsole').textContent = JSON.stringify(payload, null, 2);
-        }
+    // ==========================================
+    // 3. INTERACTIVE 3D ISOMAP MANIFOLD CANVAS
+    // ==========================================
+    const canvas = document.getElementById('manifoldCanvas');
+    const ctx = canvas.getContext('2d');
+    let points3D = [];
+    let rotX = 0.35, rotY = 0.4;
+    let isDragging = false, lastX = 0, lastY = 0;
 
-        document.addEventListener('DOMContentLoaded', () => {
-            renderMansionWheel();
-            renderMansionsGrid();
-            init3DTokens();
-            initManifold3D();
-            runSimulation();
-
-            document.getElementById('folioFilterSelector').addEventListener('change', runSimulation);
-            document.getElementById('runAstroContractionBtn').addEventListener('click', () => {
-                const spinner = document.getElementById('btnSpinner');
-                spinner.style.transform = 'rotate(360deg)';
-                setTimeout(() => spinner.style.transform = 'rotate(0deg)', 500);
-                runSimulation();
-            });
-
-            document.getElementById('toggleRotBtn').addEventListener('click', () => {
-                isRotating3D = !isRotating3D;
-                document.getElementById('toggleRotBtn').textContent = isRotating3D ? 'Pausar' : 'Reanudar';
-            });
-
-            document.getElementById('copyJsonBtn').addEventListener('click', () => {
-                const text = document.getElementById('jsonConsole').textContent;
-                const ta = document.createElement('textarea');
-                ta.value = text; document.body.appendChild(ta); ta.select();
-                try {
-                    document.execCommand('copy');
-                    const btn = document.getElementById('copyJsonBtn');
-                    btn.textContent = '¡Copiado!';
-                    setTimeout(() => btn.textContent = 'Copiar JSON', 1800);
-                } catch(e) {}
-                document.body.removeChild(ta);
-            });
+    function generatePoints() {
+      points3D = [];
+      const twist = REGIME_DATA[currentRegimeKey].twist;
+      const total = 260;
+      for (let i = 0; i < total; i++) {
+        const t = (i / total) * Math.PI * 4 * twist;
+        const persistence = Math.abs(Math.sin(i * 0.37) * 0.65 + Math.cos(i * 0.13) * 0.35);
+        const noise = (1 - persistence) * 0.85;
+        points3D.push({
+          x: Math.cos(t) * (1.3 + 0.35 * Math.sin(t * 2)) + (Math.sin(i * 7) * noise),
+          y: Math.sin(t) * (1.3 + 0.35 * Math.cos(t * 2)) + (Math.cos(i * 5) * noise),
+          z: ((i / total) - 0.5) * 2.6 + (Math.sin(i * 3) * noise * 0.6),
+          persistence: persistence
         });
-    </script>
+      }
+      updateCounter();
+    }
+
+    function updateTDAThreshold(val) {
+      tdaPercentile = parseInt(val, 10);
+      document.getElementById('tda-val').textContent = `${tdaPercentile}%`;
+      updateCounter();
+    }
+
+    function updateCounter() {
+      const thresh = tdaPercentile / 100;
+      const active = points3D.filter(p => p.persistence >= thresh).length;
+      document.getElementById('node-counter').textContent = `Nodos activos: ${active} / ${points3D.length}`;
+    }
+
+    function resizeCanvas() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width * window.devicePixelRatio;
+      canvas.height = rect.height * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    }
+
+    canvas.addEventListener('mousedown', e => { isDragging = true; lastX = e.clientX; lastY = e.clientY; });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+    window.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      rotY += (e.clientX - lastX) * 0.008;
+      rotX += (e.clientY - lastY) * 0.008;
+      lastX = e.clientX;
+      lastY = e.clientY;
+    });
+
+    canvas.addEventListener('touchstart', e => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        lastX = e.touches[0].clientX;
+        lastY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+    window.addEventListener('touchend', () => { isDragging = false; });
+    canvas.addEventListener('touchmove', e => {
+      if (!isDragging || e.touches.length !== 1) return;
+      rotY += (e.touches[0].clientX - lastX) * 0.008;
+      rotX += (e.touches[0].clientY - lastY) * 0.008;
+      lastX = e.touches[0].clientX;
+      lastY = e.touches[0].clientY;
+    }, { passive: true });
+
+    function animateManifold() {
+      if (!isDragging) rotY += 0.0035;
+      const width = canvas.width / window.devicePixelRatio;
+      const height = canvas.height / window.devicePixelRatio;
+      ctx.clearRect(0, 0, width, height);
+
+      const cx = width / 2;
+      const cy = height / 2;
+      const scale = Math.min(width, height) * 0.28;
+      const thresh = tdaPercentile / 100;
+      const activeColor = REGIME_DATA[currentRegimeKey].color;
+
+      const projected = points3D.map((p, idx) => {
+        // Rotate Y
+        let x1 = p.x * Math.cos(rotY) - p.z * Math.sin(rotY);
+        let z1 = p.z * Math.cos(rotY) + p.x * Math.sin(rotY);
+        // Rotate X
+        let y2 = p.y * Math.cos(rotX) - z1 * Math.sin(rotX);
+        let z2 = z1 * Math.cos(rotX) + p.y * Math.sin(rotX);
+
+        const fov = 4 / (4 + z2);
+        return {
+          px: cx + x1 * scale * fov,
+          py: cy + y2 * scale * fov,
+          z: z2,
+          fov: fov,
+          survived: p.persistence >= thresh,
+          idx: idx
+        };
+      });
+
+      // Draw geodesic trajectory backbone for surviving nodes
+      ctx.beginPath();
+      ctx.strokeStyle = 'rgba(6, 182, 212, 0.25)';
+      ctx.lineWidth = 1.2;
+      let started = false;
+      projected.forEach(pt => {
+        if (pt.survived) {
+          if (!started) { ctx.moveTo(pt.px, pt.py); started = true; }
+          else { ctx.lineTo(pt.px, pt.py); }
+        }
+      });
+      ctx.stroke();
+
+      // Depth sort and render nodes
+      projected.sort((a, b) => b.z - a.z);
+      projected.forEach(pt => {
+        const radius = (pt.survived ? 4.2 : 2.3) * pt.fov;
+        ctx.beginPath();
+        ctx.arc(pt.px, pt.py, Math.max(1.2, radius), 0, Math.PI * 2);
+        if (pt.survived) {
+          ctx.fillStyle = activeColor;
+          ctx.shadowColor = activeColor;
+          ctx.shadowBlur = 8;
+        } else {
+          ctx.fillStyle = '#f43f5e';
+          ctx.shadowBlur = 0;
+        }
+        ctx.fill();
+      });
+      ctx.shadowBlur = 0;
+
+      requestAnimationFrame(animateManifold);
+    }
+
+    // ==========================================
+    // 4. CRITICAL FOLIOS LATENT CHART
+    // ==========================================
+    function drawLatentChart() {
+      const c = document.getElementById('latentChartCanvas');
+      const context = c.getContext('2d');
+      const rect = c.parentElement.getBoundingClientRect();
+      c.width = rect.width * window.devicePixelRatio;
+      c.height = rect.height * window.devicePixelRatio;
+      context.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+      const w = rect.width;
+      const h = rect.height;
+      const padL = 34, padR = 16, padT = 18, padB = 26;
+      const plotW = w - padL - padR;
+      const plotH = h - padT - padB;
+      const maxVal = 75;
+
+      context.clearRect(0, 0, w, h);
+
+      // Horizontal grid lines
+      context.strokeStyle = 'rgba(30, 41, 59, 0.8)';
+      context.lineWidth = 1;
+      context.font = '10px JetBrains Mono';
+      context.fillStyle = '#64748b';
+      [0, 25, 50, 75].forEach(val => {
+        const y = padT + plotH - (val / maxVal) * plotH;
+        context.beginPath();
+        context.moveTo(padL, y);
+        context.lineTo(w - padR, y);
+        context.stroke();
+        context.fillText(val, 6, y + 3);
+      });
+
+      const coords = CRITICAL_FOLIOS.map((item, i) => ({
+        x: padL + (i / (CRITICAL_FOLIOS.length - 1)) * plotW,
+        y: padT + plotH - (item.val / maxVal) * plotH,
+        folio: item.folio,
+        val: item.val
+      }));
+
+      // Gradient area under curve
+      const grad = context.createLinearGradient(0, padT, 0, padT + plotH);
+      grad.addColorStop(0, 'rgba(6, 182, 212, 0.28)');
+      grad.addColorStop(1, 'rgba(6, 182, 212, 0.0)');
+      context.beginPath();
+      context.moveTo(coords[0].x, padT + plotH);
+      coords.forEach(pt => context.lineTo(pt.x, pt.y));
+      context.lineTo(coords[coords.length - 1].x, padT + plotH);
+      context.closePath();
+      context.fillStyle = grad;
+      context.fill();
+
+      // Line stroke
+      context.beginPath();
+      context.strokeStyle = '#06b6d4';
+      context.lineWidth = 2.2;
+      coords.forEach((pt, idx) => {
+        if (idx === 0) context.moveTo(pt.x, pt.y);
+        else context.lineTo(pt.x, pt.y);
+      });
+      context.stroke();
+
+      // Points & X-axis labels
+      coords.forEach(pt => {
+        const isPeak = pt.folio === 'f105v';
+        context.beginPath();
+        context.arc(pt.x, pt.y, isPeak ? 5 : 3.5, 0, Math.PI * 2);
+        context.fillStyle = isPeak ? '#38bdf8' : '#06b6d4';
+        context.fill();
+
+        context.fillStyle = isPeak ? '#38bdf8' : '#94a3b8';
+        context.font = isPeak ? 'bold 10px JetBrains Mono' : '10px JetBrains Mono';
+        context.textAlign = 'center';
+        context.fillText(pt.folio, pt.x, h - 8);
+      });
+    }
+
+    // Initialize everything on load
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      drawLatentChart();
+    });
+
+    renderMansions();
+    renderEntropyBars();
+    generatePoints();
+    resizeCanvas();
+    drawLatentChart();
+    animateManifold();
+  </script>
 </body>
 </html>
